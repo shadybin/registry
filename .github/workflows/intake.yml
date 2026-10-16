@@ -9,7 +9,8 @@ name: intake
 
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    # Off the quarter hours, which GitHub drops when it is busy.
+    - cron: "7,22,37,52 * * * *"
   workflow_dispatch:
 
 concurrency:

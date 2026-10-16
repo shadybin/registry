@@ -1,0 +1,18 @@
+{
+  "repo": "github.com/miradorlabs/terma-cli",
+  "language": "go",
+  "builds": [
+    {
+      "runner": "ubuntu-24.04",
+      "toolchain": {"go": "go.mod"},
+      "run": ["go run github.com/goreleaser/goreleaser/v2@v2.18.3 release --clean --skip=publish,sign,announce"],
+      "artifacts": ["dist/*.tar.gz", "dist/*.zip"]
+    }
+  ],
+  "checksums": "checksums.txt",
+  "analyze": {
+    "packages": ["./cmd/terma"],
+    "targets": ["darwin", "linux", "windows"],
+    "files": [".goreleaser.yaml"]
+  }
+}

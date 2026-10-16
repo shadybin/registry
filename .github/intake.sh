@@ -74,8 +74,8 @@ fetch() {
 }
 
 shopt -s nullglob
-for project in github.com/*/*/project.json; do
-  repo=${project%/project.json}
+for project in github.com/*/*/shadybin.json; do
+  repo=${project%/shadybin.json}
   gh_repo=${repo#github.com/}
   # Oldest first, so latest ends at the newest.
   tags=$(gh release list -R "$gh_repo" --limit 20 --json tagName,isDraft \

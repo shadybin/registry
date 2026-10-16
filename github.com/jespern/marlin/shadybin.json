@@ -1,0 +1,74 @@
+{
+  "repo": "github.com/jespern/marlin",
+  "language": "zig",
+  "builds": [
+    {
+      "runner": "ubuntu-24.04",
+      "run": [
+        "curl -fsSL --retry 3 -o \"$RUNNER_TEMP/zig-x86_64-linux-0.16.0.tar.xz\" https://ziglang.org/download/0.16.0/zig-x86_64-linux-0.16.0.tar.xz && echo \"70e49664a74374b48b51e6f3fdfbf437f6395d42509050588bd49abe52ba3d00  $RUNNER_TEMP/zig-x86_64-linux-0.16.0.tar.xz\" | shasum -a 256 -c - && tar -xJf \"$RUNNER_TEMP/zig-x86_64-linux-0.16.0.tar.xz\" -C \"$RUNNER_TEMP\" && PATH=\"$RUNNER_TEMP/zig-x86_64-linux-0.16.0:$PATH\" zig build -Dtarget=x86_64-linux-musl -Doptimize=ReleaseSafe -Dembedded-sqlite=true -Dversion=\"${TAG#v}\"",
+        "mkdir -p dist && cp zig-out/bin/marlin dist/marlin-x86_64-linux"
+      ],
+      "artifacts": [
+        "dist/marlin-x86_64-linux"
+      ]
+    },
+    {
+      "runner": "ubuntu-24.04-arm",
+      "run": [
+        "curl -fsSL --retry 3 -o \"$RUNNER_TEMP/zig-aarch64-linux-0.16.0.tar.xz\" https://ziglang.org/download/0.16.0/zig-aarch64-linux-0.16.0.tar.xz && echo \"ea4b09bfb22ec6f6c6ceac57ab63efb6b46e17ab08d21f69f3a48b38e1534f17  $RUNNER_TEMP/zig-aarch64-linux-0.16.0.tar.xz\" | shasum -a 256 -c - && tar -xJf \"$RUNNER_TEMP/zig-aarch64-linux-0.16.0.tar.xz\" -C \"$RUNNER_TEMP\" && PATH=\"$RUNNER_TEMP/zig-aarch64-linux-0.16.0:$PATH\" zig build -Dtarget=aarch64-linux-musl -Doptimize=ReleaseSafe -Dembedded-sqlite=true -Dversion=\"${TAG#v}\"",
+        "mkdir -p dist && cp zig-out/bin/marlin dist/marlin-aarch64-linux"
+      ],
+      "artifacts": [
+        "dist/marlin-aarch64-linux"
+      ]
+    },
+    {
+      "runner": "macos-15-intel",
+      "run": [
+        "curl -fsSL --retry 3 -o \"$RUNNER_TEMP/zig-x86_64-macos-0.16.0.tar.xz\" https://ziglang.org/download/0.16.0/zig-x86_64-macos-0.16.0.tar.xz && echo \"0387557ed1877bc6a2e1802c8391953baddba76081876301c522f52977b52ba7  $RUNNER_TEMP/zig-x86_64-macos-0.16.0.tar.xz\" | shasum -a 256 -c - && tar -xJf \"$RUNNER_TEMP/zig-x86_64-macos-0.16.0.tar.xz\" -C \"$RUNNER_TEMP\" && PATH=\"$RUNNER_TEMP/zig-x86_64-macos-0.16.0:$PATH\" zig build --sysroot \"$(xcrun --sdk macosx --show-sdk-path)\" -Dtarget=x86_64-macos.13.0 -Doptimize=ReleaseSafe -Dembedded-sqlite=true -Dversion=\"${TAG#v}\"",
+        "mkdir -p dist && cp zig-out/bin/marlin dist/marlin-x86_64-darwin"
+      ],
+      "artifacts": [
+        "dist/marlin-x86_64-darwin"
+      ]
+    },
+    {
+      "runner": "macos-15",
+      "run": [
+        "curl -fsSL --retry 3 -o \"$RUNNER_TEMP/zig-aarch64-macos-0.16.0.tar.xz\" https://ziglang.org/download/0.16.0/zig-aarch64-macos-0.16.0.tar.xz && echo \"b23d70deaa879b5c2d486ed3316f7eaa53e84acf6fc9cc747de152450d401489  $RUNNER_TEMP/zig-aarch64-macos-0.16.0.tar.xz\" | shasum -a 256 -c - && tar -xJf \"$RUNNER_TEMP/zig-aarch64-macos-0.16.0.tar.xz\" -C \"$RUNNER_TEMP\" && PATH=\"$RUNNER_TEMP/zig-aarch64-macos-0.16.0:$PATH\" zig build --sysroot \"$(xcrun --sdk macosx --show-sdk-path)\" -Dtarget=aarch64-macos.13.0 -Doptimize=ReleaseSafe -Dembedded-sqlite=true -Dversion=\"${TAG#v}\"",
+        "mkdir -p dist && cp zig-out/bin/marlin dist/marlin-aarch64-darwin"
+      ],
+      "artifacts": [
+        "dist/marlin-aarch64-darwin"
+      ]
+    }
+  ],
+  "checksums": "*.sha256",
+  "analyze": {
+    "exclude": [
+      "**/*_test.zig",
+      "src/testing/**",
+      "docs/**",
+      "*.md",
+      "LICENSE",
+      "NOTICE",
+      "THIRD_PARTY_NOTICES"
+    ]
+  },
+  "vendored": [
+    {
+      "path": "vendor/sqlite",
+      "name": "sqlite.org/sqlite-amalgamation",
+      "version": "3.53.4",
+      "url": "https://sqlite.org/2026/sqlite-amalgamation-3530400.zip",
+      "sha256": "1e71ddf93849c6a6ecf58b827c0692073d2dd7ee40196158068f7b29f422e87d"
+    },
+    {
+      "path": "vendor/libyaml",
+      "name": "github.com/yaml/libyaml",
+      "version": "0.2.5",
+      "url": "https://github.com/yaml/libyaml/archive/refs/tags/0.2.5.tar.gz",
+      "sha256": "fa240dbf262be053f3898006d502d514936c818e422afdcf33921c63bed9bf2e"
+    }
+  ]
+}

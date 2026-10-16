@@ -14,7 +14,7 @@ from the files here.
 
 ```text
 github.com/<owner>/<repo>/
-  project.json            how shadybin rebuilds and reviews the project
+  shadybin.json            how shadybin rebuilds and reviews the project
   badge.json              the badge: the latest release and its standing
   latest                  the newest certified release, the base the next is reviewed against
   <tag>/
@@ -66,9 +66,9 @@ A project's badge names its latest GitHub release, whatever shadybin made of it:
 
 ## Adding a project
 
-1. Open a pull request adding `github.com/<owner>/<repo>/project.json`, which says how to
+1. Open a pull request adding `github.com/<owner>/<repo>/shadybin.json`, which says how to
    rebuild the project. See the ones here and
-   [the spec](https://github.com/shadybin/shadybin/blob/main/spec/SPEC.md#projectjson).
+   [the spec](https://github.com/shadybin/shadybin/blob/main/spec/SPEC.md#shadybinjson).
    It lives here, not in the project's repository, so a vendor cannot change how its own
    release is checked from inside the release.
 2. In the project's release workflow, after the release is published, call the certify
