@@ -26,20 +26,20 @@ jobs:
       contents: write # commit what was signed
       attestations: read
     env:
-      # TODO: pin to a shadybin release once there is one, and pin the signer workflow's
-      # digest (--signer-digest) to the certify.yml commits shadybin has published.
-      SHADYBIN_VERSION: main
+      # The shadybin that signs is a certified release: v1, which only shadybin's org admins
+      # can move. Which certify commits count is .github/certify-commits.
+      SHADYBIN_VERSION: v1
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
         with:
           repository: shadybin/shadybin
           ref: ${{ env.SHADYBIN_VERSION }}
           path: .shadybin
           persist-credentials: false
 
-      - uses: actions/setup-go@v6
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6.5.0
         with:
           go-version-file: .shadybin/go.mod
           cache: false
@@ -65,4 +65,22 @@ jobs:
           signed=$(git diff --cached --name-only -- '*/statement.txt.sig' | sed 's|/statement.txt.sig||' | paste -sd ' ' -)
           if [ -n "$signed" ]; then message="certify $signed"; else message="update badges and pages"; fi
           git commit -q -m "$message"
+          # Someone may have pushed while intake ran: intake only adds files under the
+          # projects' directories, so rebasing onto them is safe.
+          git pull -q --rebase origin main
           git push
+
+  # GitHub's scheduler does not always run the schedule above (it never did for this
+  # repository's first hours), so each run also starts the next, 15 minutes on. A failed
+  # or cancelled run breaks the chain; the schedule, or a manual run, starts it again.
+  next:
+    needs: intake
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - run: sleep 840
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run intake.yml -R "$GITHUB_REPOSITORY" --ref main
