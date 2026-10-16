@@ -72,19 +72,22 @@ A project's badge names its latest GitHub release, whatever shadybin made of it:
    It lives here, not in the project's repository, so a vendor cannot change how its own
    release is checked from inside the release.
 2. In the project's release workflow, after the release is published, call the certify
-   workflow, pinned to a commit of shadybin/shadybin:
+   workflow at `@v1`:
 
    ```yaml
    shadybin:
      needs: release
      permissions: { contents: write, id-token: write, attestations: write }
-     uses: shadybin/shadybin/.github/workflows/certify.yml@<commit>
+     uses: shadybin/shadybin/.github/workflows/certify.yml@v1
      with: { tag: "${{ github.ref_name }}" }
      secrets: { ANTHROPIC_API_KEY: "${{ secrets.ANTHROPIC_API_KEY }}" }
    ```
 
    It runs on the project's own Actions minutes and Claude API key, and attaches its
-   statement, report, manifest and review to the release.
+   statement, report, manifest and review to the release. `v1` moves to each compatible
+   shadybin release, so this never needs updating; to review each update instead, pin an
+   exact release (`@v1.0.0`) and let Dependabot bump it.
 3. Every 15 minutes, this repository's `intake` workflow finds them. It checks that the
-   certify workflow made them, for that tag, on a GitHub-hosted runner, reruns the rule
-   behind the verdict, and signs.
+   certify workflow made them, at a released commit listed in
+   [`.github/certify-commits`](.github/certify-commits), on a GitHub-hosted runner,
+   reruns the rule behind the verdict, and signs.

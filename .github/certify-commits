@@ -1,0 +1,6 @@
+# The commits of shadybin/shadybin's certify.yml whose attestations intake accepts: every
+# commit a v1.x.y release has been at, plus the pre-release commit vendors pinned before
+# there were releases. Moving v1 means adding its commit here. Deleting a line withdraws
+# that certify, so a release it attests is no longer signed.
+7b883fdc66a7beb429d67bc45529ff5d8f0f9d1f pre-release, after certify built its own commit
+cc7e58f1fbb15a68f72ca516158c1d1aa59b5450 v1.0.0
