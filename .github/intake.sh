@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # For every registered project, takes in its recent releases that carry a statement,
 # report, manifest and review from the certify workflow and are not in the registry yet:
-# checks all four were attested by that workflow, for that tag, on a GitHub-hosted runner,
+# checks all four were attested by that workflow, in the project's repository, on a
+# GitHub-hosted runner,
 # then signs, which reruns the verdict's rule first and caches the dependency reviews.
 # Then it points each project's badge at the project's latest release. Run from the
 # registry's root by the intake workflow.
@@ -36,9 +37,12 @@ for project in github.com/*/*/project.json; do
 
     ok=1
     for a in "${assets[@]}"; do
+      # Which ref triggered the run does not matter: certify checks out refs/tags/<tag>
+      # itself, and the statement it signs names the tag, so a run started from a branch,
+      # such as a re-certification of an older release, rebuilds and reviews the same.
       if ! gh attestation verify "$tmp/$a" -R "$gh_repo" --signer-workflow "$signer" \
-        --source-ref "refs/tags/$tag" --deny-self-hosted-runners >/dev/null; then
-        echo "::warning::$repo $tag: $a was not attested by $signer for refs/tags/$tag"
+        --deny-self-hosted-runners >/dev/null; then
+        echo "::warning::$repo $tag: $a was not attested by $signer"
         ok=0
       fi
     done
