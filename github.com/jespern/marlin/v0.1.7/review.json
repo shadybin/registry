@@ -1,0 +1,735 @@
+{
+  "model": "claude-opus-5-5",
+  "prompt": "3",
+  "previous": "",
+  "modules": [
+    {
+      "path": "github.com/jespern/marlin",
+      "version": "",
+      "owned": true,
+      "scope": "project"
+    },
+    {
+      "path": "github.com/zig-utils/zig-regex",
+      "version": "zig_regex-0.2.0-omky0f_2BgAXpSGi4MbMSngUU98FBX9RQIB2ShE3G2ww",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository (an archive GitHub makes from it)"
+    },
+    {
+      "path": "github.com/rockorager/libvaxis",
+      "version": "vaxis-0.6.0-BWNV_LC4CwBka_bJk8SOXqzCM-nyQH00jzdL0kUhGwRE",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/zigimg/zigimg",
+      "version": "zigimg-0.1.0-8_eo2oyaFwBZwJpmqPkCfVXWBrHcqbYwmrp1I6bTD3lI",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "sqlite.org/sqlite-amalgamation",
+      "version": "3.53.4",
+      "owned": false,
+      "scope": "too large",
+      "provenance": "matches its upstream release https://sqlite.org/2026/sqlite-amalgamation-3530400.zip"
+    },
+    {
+      "path": "github.com/yaml/libyaml",
+      "version": "0.2.5",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "matches its upstream release https://github.com/yaml/libyaml/archive/refs/tags/0.2.5.tar.gz"
+    }
+  ],
+  "units": [
+    {
+      "kind": "project",
+      "module": "github.com/jespern/marlin",
+      "from": "",
+      "to": "",
+      "scope": "whole",
+      "part": 1,
+      "parts": 4,
+      "packages": [
+        "github.com/jespern/marlin",
+        "github.com/jespern/marlin/assets",
+        "github.com/jespern/marlin/src"
+      ],
+      "digest": "sha256:7b5c07b66f561a22f7b093385fb6b894731feb84ec930832387efcd138e8ba29",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This part holds the build graph, entry point, CLI dispatch and a checksum-verified asset cache/downloader for marlin, an AI-agent session multiplexer. I checked build.zig for default-path build-time execution (none besides compiling vendored C: SQLite and libyaml), the asset downloader (data only, pinned SHA-256 before install), and CLI dispatch (shell escape and internal subcommands that delegate to other parts). Nothing in this unit exfiltrates data, runs downloaded code or hides behavior.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "assets/wo.pak",
+            "line": 0,
+            "title": "Opaque binary asset bundles in repository",
+            "detail": "assets/mk.pak (241 KB) and assets/wo.pak (3.5 MB) are opaque binaries that cannot be read as source. build.zig does not embed them, and their location outside src/ puts them out of @embedFile reach for the module rooted at src/. At run time asset_store.zig reads them from a source checkout or downloads them, and in both cases holds them to a pinned SHA-256 and a format validator. They appear to be data bundles for the optional Mario Kart 64 and wipEout easter-egg ports, not code. Their decoders live in other parts of the module and should be checked there."
+          },
+          {
+            "severity": "info",
+            "file": "src/asset_store.zig",
+            "line": 116,
+            "title": "Asset download pinned by checksum",
+            "detail": "download() fetches only data, never executables. acquireWith() runs verify(), which checks a pinned SHA-256 and a validator, before install(). Cached copies and copies from a checkout go through the same check. Following redirects (@enumFromInt(3)) is harmless given the digest pin."
+          },
+          {
+            "severity": "info",
+            "file": "src/cli.zig",
+            "line": 276,
+            "title": "User-initiated shell escape",
+            "detail": "runShellRequest spawns $SHELL, or $SHELL -c \u003ccommand\u003e, with the full environment. This is the documented !command / bare ! shell escape, and the user starts it."
+          },
+          {
+            "severity": "info",
+            "file": "src/cli.zig",
+            "line": 101,
+            "title": "Hidden internal subcommands",
+            "detail": "The internal commands cc_approve, landlock_exec, _pipe, _rebuild, _web, _push and resolve_host are left out of help. Comments say the daemon or the ssh remote-attach path spawns them. Their implementations are in other parts. Nothing in this unit shows them granting access or skipping checks."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "Requests for the optional game asset bundles (mk.pak, wo.pak). Nothing is uploaded; follows up to 3 redirects. The response is checked against the pinned SHA-256 and a format validator before it is cached.",
+            "to": "network: HTTP GET to the URL in each consumer's Spec (defined in other parts)",
+            "file": "src/asset_store.zig"
+          },
+          {
+            "what": "Verified asset bundle bytes, written atomically through a temp file and rename (the tool's own cache).",
+            "to": "$XDG_CACHE_HOME or ~/.cache/marlin/assets/\u003csha256\u003e/\u003cfilename\u003e",
+            "file": "src/asset_store.zig"
+          },
+          {
+            "what": "The user's shell-escape command line and the user's environment, with the working directory set to the session cwd. The user asks for this with !cmd or a bare !.",
+            "to": "child process: the user's $SHELL",
+            "file": "src/cli.zig"
+          },
+          {
+            "what": "A hostname looked up by the internal resolve_host worker that the daemon spawns. Prints one IPv4 address to stdout.",
+            "to": "DNS resolver",
+            "file": "src/cli.zig"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "project",
+      "module": "github.com/jespern/marlin",
+      "from": "",
+      "to": "",
+      "scope": "whole",
+      "part": 2,
+      "parts": 4,
+      "packages": [
+        "github.com/jespern/marlin/src/client"
+      ],
+      "digest": "sha256:461bb29a9535ccb482e4546db9f5f9752012079a0d55379b1cae0f5926ee8e2a",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This unit is the marlin client package: the daemon socket/SSH transport, the TUI with its commands, keybindings, rendering, setup wizard and screensaver effects, headless CLI commands, the cc_approve MCP bridge, voice dictation and the localhost web companion. I checked network use, subprocess spawning, credential handling, downloads and embedded binaries. All of them match the tool's documented purpose, and I found no exfiltration, backdoor, hidden behavior or execution of downloaded code.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "concern",
+            "file": "src/client/web.zig",
+            "line": 200,
+            "title": "Unauthenticated localhost/tailnet control bridge",
+            "detail": "The web companion has no authentication; any local process or user on the machine (and any tailnet member when [web] tailscale is enabled) can POST arbitrary ClientMsg lines via /send, including approvals, permission mode changes and MCP server additions (which run commands). This is documented in the file header and README as an intentional design ('the tailnet is the gate'), with Host/Origin checks against browser attacks."
+          },
+          {
+            "severity": "info",
+            "file": "src/client/web.zig",
+            "line": 24,
+            "title": "Web companion default state inconsistent with README",
+            "detail": "The module comment says serving honors `[web] enabled` 'on by default', whereas the README describes the web companion as opt-in. The default lives in core config (outside this unit); worth confirming."
+          },
+          {
+            "severity": "info",
+            "file": "src/client/web.zig",
+            "line": 43,
+            "title": "Embedded binary icons",
+            "detail": "webui-icon-180.png and webui-icon-512.png are embedded via @embedFile and served only as PWA icons with content-type image/png; purpose is evident."
+          },
+          {
+            "severity": "info",
+            "file": "src/client/voice.zig",
+            "line": 228,
+            "title": "Unverified data downloads",
+            "detail": "Voice models and wipEout assets are downloaded over HTTPS without checksum verification in this unit. They are data (models/assets), not executed code, and only fetched on explicit user command."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "NDJSON protocol messages: prompts, attachments, approvals, session commands",
+            "to": "local daemon unix socket, or `ssh \u003chost\u003e sh -lc 'exec marlin _pipe'` child process when MARLIN_REMOTE is set",
+            "file": "src/client/attach.zig"
+          },
+          {
+            "what": "Provider API key typed in the masked /setup prompt, plus base URL and model; buffers are zeroed after sending",
+            "to": "daemon (via attach socket/ssh pipe, sendSensitive)",
+            "file": "src/client/setup.zig"
+          },
+          {
+            "what": "OTLP endpoint and header values entered by the user for /otel set",
+            "to": "daemon (sendSensitive)",
+            "file": "src/client/commands.zig"
+          },
+          {
+            "what": "Downloaded speech-model data files, only after the user runs /voice setup",
+            "to": "huggingface.co (whisper.cpp model URLs) and ~/.local/share/marlin/models",
+            "file": "src/client/voice.zig"
+          },
+          {
+            "what": "Game asset bundle download on first `!wipeout`",
+            "to": "wipEout asset bundle URL (from wipeout module) into the data directory",
+            "file": "src/client/tui.zig"
+          },
+          {
+            "what": "Microphone recording while the user holds/toggles the voice key; deleted after transcription",
+            "to": "$TMPDIR wav file, ffmpeg and STT subprocesses",
+            "file": "src/client/tui.zig"
+          },
+          {
+            "what": "Reads clipboard image on Ctrl+V to attach to a prompt",
+            "to": "osascript / wl-paste / xclip subprocesses",
+            "file": "src/client/media.zig"
+          },
+          {
+            "what": "Selected transcript text copied to clipboard, cwd, progress, desktop notifications, effect frames",
+            "to": "terminal (OSC 52 / OSC 7 / OSC 9 / OSC 99 / Kitty graphics)",
+            "file": "src/client/tui.zig"
+          },
+          {
+            "what": "http(s)/file URI the user Ctrl/Cmd-clicks in the transcript",
+            "to": "/usr/bin/open or xdg-open",
+            "file": "src/client/tui.zig"
+          },
+          {
+            "what": "Session event streams and arbitrary client messages forwarded to the daemon",
+            "to": "127.0.0.1 HTTP listener, optionally exposed via `tailscale serve` to the tailnet",
+            "file": "src/client/web.zig"
+          },
+          {
+            "what": "Persisted [voice] and [web] settings",
+            "to": "~/.config/marlin/config.toml",
+            "file": "src/client/commands.zig"
+          },
+          {
+            "what": "Full session handle",
+            "to": "user-specified --session-file path",
+            "file": "src/client/session_file.zig"
+          },
+          {
+            "what": "Self rebuild of the client when the binary lives in \u003ccheckout\u003e/zig-out/bin",
+            "to": "`zig build` subprocess in the source checkout",
+            "file": "src/client/self_build.zig"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "project",
+      "module": "github.com/jespern/marlin",
+      "from": "",
+      "to": "",
+      "scope": "whole",
+      "part": 3,
+      "parts": 4,
+      "packages": [
+        "github.com/jespern/marlin/src/client",
+        "github.com/jespern/marlin/src/core",
+        "github.com/jespern/marlin/src/daemon",
+        "github.com/jespern/marlin/src/daemon/guest"
+      ],
+      "digest": "sha256:df903a87d086e900df733bd6b66fa5951d83b179c6f6f5a46de9c4063fc01afa",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This part covers marlin's core config/protocol code, the daemon (session dispatcher, agent loop, SQLite store, sandbox, permissions, plugins, OTLP exporter, LAN discovery) and the Claude Code and Codex guest adapters. I checked every network call, subprocess spawn, credential read and write, and file write. All of them serve the documented agent-multiplexer purpose: provider requests, catalog and blocklist fetches, user-configured OTLP, Bonjour advertisement, and user-installed plugins, hooks and MCP servers. I found no exfiltration, backdoor, obfuscation or execution of downloaded code.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "concern",
+            "file": "src/core/config.zig",
+            "line": 131,
+            "title": "Unauthenticated local web companion enabled by default",
+            "detail": "README describes the web companion as 'an opt-in, localhost-only client', but Config.web_enabled defaults to true. The code comment says it is an unauthenticated loopback surface that can drive every daemon capability, including shutdown and full-access approvals. Binding is loopback-only with Host/Origin checks, so this looks like a design choice rather than a hidden backdoor, but other local users on a multi-user host could reach it."
+          },
+          {
+            "severity": "info",
+            "file": "src/core/discovery.zig",
+            "line": 168,
+            "title": "LAN Bonjour advertisement on by default",
+            "detail": "The daemon advertises user@hostname, the ssh user and the session count on the LAN by default. The README documents `marlin discover` and the config documents the opt-out, so this is visible to the user, but it broadcasts identifying details to the local network without opt-in."
+          },
+          {
+            "severity": "concern",
+            "file": "src/daemon/permissions.zig",
+            "line": 140,
+            "title": "Heuristic auto-approval of guest shell commands",
+            "detail": "ccAutoAllow auto-grants Claude Code Bash commands unless a lexical scan finds an out-of-workspace or protected path. The code openly states this is a convenience, not a security boundary, and read-only children are denied mutations outright."
+          },
+          {
+            "severity": "info",
+            "file": "src/daemon/loop.zig",
+            "line": 296,
+            "title": "Guest image attachments written to shared temp directory",
+            "detail": "Attachments are written to $TMPDIR/marlin-attachments with default permissions. If TMPDIR is a shared /tmp, other local users may be able to read the images."
+          },
+          {
+            "severity": "info",
+            "file": "src/core/credentials.zig",
+            "line": 143,
+            "title": "Credentials file chmod after write",
+            "detail": "credentials.store writes the file and only then chmods it to 0600, which leaves a brief window where it may be readable under the process umask."
+          },
+          {
+            "severity": "info",
+            "file": "src/daemon/network_policy.zig",
+            "line": 27,
+            "title": "Default blocklist download from jsDelivr",
+            "detail": "The generated config subscribes to the HaGeZi TIF mini blocklist, so the daemon fetches from cdn.jsdelivr.net at startup. The contents are parsed only as domain names and never executed."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "Assembled conversation context (system prompt, project instructions, environment facts such as cwd, git branch and date, transcript, tool results, image attachments) and the provider API key as a bearer or x-api-key header",
+            "to": "Configured LLM provider endpoint (OpenRouter, Anthropic, Vercel, LiteLLM, local or custom base_url)",
+            "file": "src/daemon/loop.zig"
+          },
+          {
+            "what": "HTTP GET of the public model catalog for the /model picker, cached for one hour",
+            "to": "OpenRouter models endpoint (registry.openrouterModelsUrl)",
+            "file": "src/daemon/daemon.zig"
+          },
+          {
+            "what": "HTTP GET of a DNS blocklist feed, about every 12 hours; cached under ~/.cache/marlin/blocklists and used only as a list of domains",
+            "to": "https://cdn.jsdelivr.net (HaGeZi TIF mini blocklist)",
+            "file": "src/daemon/network_policy.zig"
+          },
+          {
+            "what": "Trace spans: model, token usage, timings and tool names. Prompts, replies and tool arguments/results are included only when content capture is opted in. Uses the user-supplied auth headers.",
+            "to": "User-configured OTLP collector endpoint",
+            "file": "src/daemon/otel.zig"
+          },
+          {
+            "what": "Instance name user@hostname, marlin version, ssh user name and session count in a TXT record; on by default, disabled with [discovery] enabled=false or MARLIN_DISCOVERY=0",
+            "to": "Local network via the system Bonjour responder (_marlin._tcp)",
+            "file": "src/core/discovery.zig"
+          },
+          {
+            "what": "Provider API keys and OTEL endpoint/header settings entered during setup or via /otel",
+            "to": "~/.config/marlin/credentials (mode 0600)",
+            "file": "src/core/credentials.zig"
+          },
+          {
+            "what": "Starter config and user preference, MCP, council, provider and voice edits",
+            "to": "~/.config/marlin/config.toml",
+            "file": "src/core/config.zig"
+          },
+          {
+            "what": "Repository URL; uses the user's existing git credentials; hooks are disabled",
+            "to": "git clone of a user-named marketplace repository (GitHub or other Git URL) into ~/.config/marlin/plugins/snapshots",
+            "file": "src/daemon/plugins.zig"
+          },
+          {
+            "what": "JSON event payloads: session id, tool name, args, error text, token counts",
+            "to": "User-configured hook scripts (stdin)",
+            "file": "src/daemon/hooks.zig"
+          },
+          {
+            "what": "User prompts and steering; scrubbed environment plus OTEL endpoint/headers and TRACEPARENT when Marlin exports telemetry",
+            "to": "claude subprocess (stdin, argv, env)",
+            "file": "src/daemon/guest/claude_code_turn.zig"
+          },
+          {
+            "what": "Prompts, approval decisions and thread ids; scrubbed environment plus TRACEPARENT; OTEL overrides passed as -c arguments",
+            "to": "codex app-server subprocess (JSON-RPC over stdio)",
+            "file": "src/daemon/guest/codex_turn.zig"
+          },
+          {
+            "what": "User image attachments written to files so guest agents can read them",
+            "to": "$TMPDIR/marlin-attachments/\u003chash\u003e.\u003cext\u003e",
+            "file": "src/daemon/loop.zig"
+          },
+          {
+            "what": "Full session transcripts, blobs and telemetry",
+            "to": "~/.local/state/marlin/marlin.db (SQLite)",
+            "file": "src/daemon/store.zig"
+          },
+          {
+            "what": "Session commands, messages, approvals and push subscription data from the browser",
+            "to": "Same-origin daemon web companion (/send, /events, /push/*)",
+            "file": "src/client/webui.html"
+          },
+          {
+            "what": "Login status probes (`codex login status`, `claude auth status`) run with a scrubbed environment",
+            "to": "codex / claude CLIs",
+            "file": "src/daemon/daemon.zig"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "project",
+      "module": "github.com/jespern/marlin",
+      "from": "",
+      "to": "",
+      "scope": "whole",
+      "part": 4,
+      "parts": 4,
+      "packages": [
+        "github.com/jespern/marlin/src/daemon/provider",
+        "github.com/jespern/marlin/src/daemon/tools",
+        "github.com/jespern/marlin/src/mk64",
+        "github.com/jespern/marlin/src/mobile",
+        "github.com/jespern/marlin/src/wipeout",
+        "github.com/jespern/marlin/vendor/sqlite"
+      ],
+      "digest": "sha256:57233c85d8417b8c78aeb0fdcffa7f4bff7f83d730d69bd6d57ab1ced1a3da4f",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This unit covers the daemon's provider layer (OpenAI-compatible and Anthropic wire dialects, Claude Code and Codex guest adapters, the HTTP client), the built-in tools (bash, file, search, fetch, MCP, exec), the Web Push notification helper, and two terminal game ports (MK64 and wipEout) with their asset loaders. I checked network destinations, subprocess spawning, credential handling, TLS, and asset downloads: secrets go only to their configured providers, downloaded game data is checksum-pinned and never executed, credential paths are refused by the file tools, and nothing is obfuscated or hidden. Nothing malicious was found; the only concern is a deliberate loosening of the Codex guest sandbox's network access, documented in the code.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "concern",
+            "file": "src/daemon/provider/codex.zig",
+            "line": 104,
+            "title": "Codex guest sandbox network access enabled",
+            "detail": "The Codex guest is always launched with `-c sandbox_workspace_write.network_access=true`, so its workspace-write sandbox allows network access. The source comment explains the reason (matching Marlin's own sandbox, which scopes writes only) and it applies only to the guest's write mode. It is a deliberate, documented policy choice, but it does loosen the guest's default sandbox."
+          },
+          {
+            "severity": "info",
+            "file": "src/wipeout/snapshot.zig",
+            "line": 51,
+            "title": "Bytewise deserialization of state files without enum validation",
+            "detail": "Both the save file and the race snapshot are read by memcpy straight into extern structs that contain Zig enums (Scene, RaceType, ship Mode and others). Only magic, version and size are checked, plus a few indices in restoreState. A corrupted or crafted local file could hold invalid enum values. This is an ordinary robustness bug limited to the user's own state directory, not deliberate."
+          },
+          {
+            "severity": "info",
+            "file": "src/mk64/cache.zig",
+            "line": 4,
+            "title": "Game asset bundles downloaded with pinned checksums",
+            "detail": "The MK64 and wipEout data packs are downloaded from the vendor's GitHub repository. Each pack is checked against a SHA-256 compiled into the binary and parsed as data (geometry, textures). Nothing in them is executed. A URL override exists for wipEout, but the pinned digest is still enforced."
+          },
+          {
+            "severity": "info",
+            "file": "src/daemon/provider/http.zig",
+            "line": 930,
+            "title": "Self-exec DNS resolver helper preserves TLS hostname verification",
+            "detail": "The DNS preflight connects to a numeric address while keeping the logical hostname for TLS SNI and certificate verification. The code calls ensureTlsReady to load the CA bundle before any direct TLS connect. TLS verification is not weakened."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "HTTPS POST of chat request bodies (system prompt, user messages, tool results, base64 images) with the provider API key as a Bearer or x-api-key header",
+            "to": "Configured model provider endpoint (OpenRouter, Anthropic, Vercel, LiteLLM, local or [providers.*] base URL)",
+            "file": "src/daemon/provider/http.zig"
+          },
+          {
+            "what": "Hostname and port to resolve. The child prints a numeric address, and the parent connects to it while keeping the original host for TLS SNI and certificate checks.",
+            "to": "Own marlin executable (`resolve_host` subprocess)",
+            "file": "src/daemon/provider/http.zig"
+          },
+          {
+            "what": "argv with model, session UUID, permission mode, an MCP config pointing back at `marlin cc_approve`, and an appended system prompt. The turn's stream-json goes over stdin.",
+            "to": "Official `claude` binary (or MARLIN_CLAUDE_CODE_BIN) subprocess",
+            "file": "src/daemon/provider/claude_code.zig"
+          },
+          {
+            "what": "JSON-RPC initialize and model/list requests with the client name and version, plus `-c` overrides including an OTLP endpoint and headers when the operator configures one",
+            "to": "Official `codex app-server` (or MARLIN_CODEX_BIN) subprocess",
+            "file": "src/daemon/provider/codex.zig"
+          },
+          {
+            "what": "Trace spans, and when capture_content is explicitly enabled, also log events with tool arguments and user prompts",
+            "to": "Operator-configured OTLP collector (by way of codex)",
+            "file": "src/daemon/provider/codex.zig"
+          },
+          {
+            "what": "HTTP GET of the URL",
+            "to": "Model-requested http(s) URL, subject to network policy checks on every redirect hop",
+            "file": "src/daemon/tools/fetch.zig"
+          },
+          {
+            "what": "Model-supplied shell command run with a scrubbed environment in the session cwd",
+            "to": "bash -c subprocess, optionally inside a Seatbelt or Landlock sandbox",
+            "file": "src/daemon/tools/bash.zig"
+          },
+          {
+            "what": "Tool arguments as JSON on stdin",
+            "to": "Config-declared executable",
+            "file": "src/daemon/tools/exec_tool.zig"
+          },
+          {
+            "what": "JSON-RPC tools/list and tools/call requests carrying tool arguments",
+            "to": "Configured stdio MCP server subprocesses",
+            "file": "src/daemon/tools/mcp.zig"
+          },
+          {
+            "what": "Search pattern, glob and path",
+            "to": "rg / grep subprocesses",
+            "file": "src/daemon/tools/search.zig"
+          },
+          {
+            "what": "File contents written by write_file and edit",
+            "to": "Files under paths chosen by the model (protected credential paths are refused)",
+            "file": "src/daemon/tools/files.zig"
+          },
+          {
+            "what": "Notification JSON: a fixed title and body, plus the session id",
+            "to": "Own marlin executable (`_push deliver` subprocess)",
+            "file": "src/mobile/push.zig"
+          },
+          {
+            "what": "aes128gcm-encrypted notification payload with a VAPID JWT authorization header",
+            "to": "Allowlisted Web Push services (Apple, FCM, Mozilla, Windows) taken from stored phone subscriptions",
+            "file": "src/mobile/webpush.zig"
+          },
+          {
+            "what": "VAPID private key (vapid.json) and subscription files, written with mode 0600",
+            "to": "$XDG_STATE_HOME/marlin/push",
+            "file": "src/mobile/webpush.zig"
+          },
+          {
+            "what": "HTTP GET of the mk.pak data bundle, verified against a pinned SHA-256 and then structurally validated",
+            "to": "raw.githubusercontent.com/jespern/marlin (by way of asset_store)",
+            "file": "src/mk64/cache.zig"
+          },
+          {
+            "what": "HTTP GET of the wo.pak data bundle, verified against a pinned SHA-256 and then validated as a file index",
+            "to": "raw.githubusercontent.com/jespern/marlin, or the MARLIN_WIPEOUT_URL override",
+            "file": "src/wipeout/assets.zig"
+          },
+          {
+            "what": "Game options and best times",
+            "to": "$XDG_STATE_HOME/marlin/wipeout-save.bin",
+            "file": "src/wipeout/save.zig"
+          },
+          {
+            "what": "Bytewise game-state snapshot",
+            "to": "$XDG_STATE_HOME/marlin/wipeout-race.bin",
+            "file": "src/wipeout/snapshot.zig"
+          },
+          {
+            "what": "Time-trial pose recordings",
+            "to": "Ghost file path in the cache/state directory",
+            "file": "src/mk64/ghost.zig"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/zig-utils/zig-regex",
+      "from": "",
+      "to": "zig_regex-0.2.0-omky0f_2BgAXpSGi4MbMSngUU98FBX9RQIB2ShE3G2ww",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/zig-utils/zig-regex",
+        "github.com/zig-utils/zig-regex/src"
+      ],
+      "digest": "sha256:d209b78fb8debef1962a22bafdf14d50ecbcab8551b0cb66a67c2f51dbe3fc7c",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "The surface of this pure-Zig regex library is a stock build.zig that defines the regex module, tests, examples and benchmarks; a build.zig.zon with no dependencies; and a C FFI wrapper that exports compile/match/free functions using the C allocator. I found no build-time commands, downloads, network or file access, encoded payloads or load-time hooks.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.0-omky0f_2BgAXpSGi4MbMSngUU98FBX9RQIB2ShE3G2ww/build.zig",
+            "line": 9,
+            "title": "Standard build script with no side effects",
+            "detail": "build.zig only defines modules, executables, tests, examples and benchmarks from the package's own sources, with no system commands, downloads, generated code or file writes outside the normal install prefix. When consumed as a dependency, only the 'regex' module (src/root.zig) is imported. build.zig.zon declares no dependencies."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.0-omky0f_2BgAXpSGi4MbMSngUU98FBX9RQIB2ShE3G2ww/src/c_api.zig",
+            "line": 107,
+            "title": "C API returns non-null-terminated slice as C string",
+            "detail": "zig_match_get_text returns a pointer into the input slice cast as null-terminated, so C callers may read past the match end. Its own comment acknowledges this. It is an ordinary API bug, not deliberate, and only reachable through the exported C functions."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.0-omky0f_2BgAXpSGi4MbMSngUU98FBX9RQIB2ShE3G2ww/build.zig.zon",
+            "line": 7,
+            "title": "Package paths omit test/example directories referenced by build.zig",
+            "detail": "build.zig.zon lists README.md and LICENSE in its paths, but tests/, examples/ and benchmarks/ are referenced by build.zig and are not packaged. Those steps only run if invoked directly on this package, so this does not affect consumers."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/rockorager/libvaxis",
+      "from": "",
+      "to": "vaxis-0.6.0-BWNV_LC4CwBka_bJk8SOXqzCM-nyQH00jzdL0kUhGwRE",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/rockorager/libvaxis",
+        "github.com/rockorager/libvaxis/include",
+        "github.com/rockorager/libvaxis/src"
+      ],
+      "digest": "sha256:133d48051fb53f8b9df68901664d53924526622b14c06eee08201341b41bda19",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This unit is the build surface and C ABI wrapper of libvaxis, a Zig terminal UI library: build.zig, the pinned dependency manifest, the C header, and src/c_api.zig, which exports screen, window, parser, TTY, runtime and embedded-terminal functions. I checked the build script for build-time execution, downloads and code generation, and the C API for hidden network use, secret access, backdoors and load-time side effects. I found none: all behaviour matches a terminal UI library.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/rockorager/libvaxis@vaxis-0.6.0-BWNV_LC4CwBka_bJk8SOXqzCM-nyQH00jzdL0kUhGwRE/build.zig",
+            "line": 4,
+            "title": "Build script is conventional",
+            "detail": "build.zig defines library, example, bench, test and docs steps. It reads build.zig.zon with @embedFile only to get the version string. It runs no external commands, downloads nothing and generates no code beyond a version option. Run steps exist only for the example, bench and test targets."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/rockorager/libvaxis@vaxis-0.6.0-BWNV_LC4CwBka_bJk8SOXqzCM-nyQH00jzdL0kUhGwRE/build.zig.zon",
+            "line": 6,
+            "title": "Dependencies pinned by commit and hash",
+            "detail": "The zigimg and uucode dependencies are fetched from GitHub at fixed commits and verified against Zig package hashes. Both are well-known libraries that fit the module's purpose."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/rockorager/libvaxis@vaxis-0.6.0-BWNV_LC4CwBka_bJk8SOXqzCM-nyQH00jzdL0kUhGwRE/src/c_api.zig",
+            "line": 560,
+            "title": "C API can spawn a caller-specified program in a PTY",
+            "detail": "vaxis_terminal_new/spawn start the program named in the caller's argv inside a PTY. This is the documented embedded-terminal widget, and the child is chosen by the host application, not by the library."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/rockorager/libvaxis@vaxis-0.6.0-BWNV_LC4CwBka_bJk8SOXqzCM-nyQH00jzdL0kUhGwRE/src/c_api.zig",
+            "line": 748,
+            "title": "F3 key during query used for capability detection",
+            "detail": "applyRuntimeEvent treats an F3 key with shift or alt during terminal querying as a capability reply for explicit width or scaled text. This mirrors upstream vaxis.Loop, which detects these features through cursor-position reports. It only toggles rendering capabilities and grants no access."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "Escape sequences for rendering, alt screen, mouse mode, bracketed paste, window title, terminal capability queries, and Kitty graphics image data or file paths, all supplied by the calling application.",
+            "to": "the controlling terminal (TTY)",
+            "file": "github.com/rockorager/libvaxis@vaxis-0.6.0-BWNV_LC4CwBka_bJk8SOXqzCM-nyQH00jzdL0kUhGwRE/src/c_api.zig"
+          },
+          {
+            "what": "The argv, environment entries and working directory given by the caller, plus key events the caller forwards to the embedded terminal.",
+            "to": "child process spawned in a PTY (vaxis_terminal_spawn)",
+            "file": "github.com/rockorager/libvaxis@vaxis-0.6.0-BWNV_LC4CwBka_bJk8SOXqzCM-nyQH00jzdL0kUhGwRE/src/c_api.zig"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/zigimg/zigimg",
+      "from": "",
+      "to": "zigimg-0.1.0-8_eo2oyaFwBZwJpmqPkCfVXWBrHcqbYwmrp1I6bTD3lI",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/zigimg/zigimg"
+      ],
+      "digest": "sha256:66237f751ea8032a016293d3265eb7878658a2a57f5bb986a6f6f01bf2fc0ba0",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "zigimg is a pure-Zig image encoding/decoding library. The surface consists of its README, a standard build.zig that declares the module and a test artifact, and a build.zig.zon with no dependencies. None of these files contain build-time code generation, downloads, external process execution or hidden payloads, and no capabilities were flagged.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/zigimg/zigimg@zigimg-0.1.0-8_eo2oyaFwBZwJpmqPkCfVXWBrHcqbYwmrp1I6bTD3lI/build.zig",
+            "line": 1,
+            "title": "Build script is standard module/test declaration",
+            "detail": "build.zig only declares the zigimg module from zigimg.zig, adds a test artifact and its run step, and defines test steps. It does not download anything, run external programs, generate code or read files outside the package. The tests only run when a developer asks for `zig build test`."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/zigimg/zigimg@zigimg-0.1.0-8_eo2oyaFwBZwJpmqPkCfVXWBrHcqbYwmrp1I6bTD3lI/build.zig.zon",
+            "line": 1,
+            "title": "No external dependencies declared",
+            "detail": "The manifest lists no dependencies, so nothing transitive is fetched. Its paths cover only the project's source, tests, license and README."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/yaml/libyaml",
+      "from": "",
+      "to": "0.2.5",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/yaml/libyaml"
+      ],
+      "digest": "sha256:7fa852712536b7437d106121e79f8079ab07e0ec0b924b4b61e57f722db494c4",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This unit is the parser, scanner, reader, loader and core API of libyaml 0.2.5: a pure C YAML tokenizer, parser and document composer with memory-management helpers. I checked every provided file for load-time constructors, build-time hooks, encoded or embedded payloads, network, exec, environment or secret access, and code patching, and found none. The code matches upstream libyaml and does I/O only through caller-supplied FILE* streams or handlers.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/yaml/libyaml@0.2.5/api.c",
+            "line": 0,
+            "title": "I/O only through caller-provided streams",
+            "detail": "The library does I/O only through FILE* streams and handlers the caller supplies. yaml_file_read_handler uses fread and yaml_file_write_handler uses fwrite on those streams. It never opens files, reads the environment, uses the network or runs processes."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/yaml/libyaml@0.2.5/yaml_private.h",
+            "line": 1,
+            "title": "No load-time code or hidden payloads in headers",
+            "detail": "The headers define only macros, types and declarations: buffer, stack and queue helpers, token and event initializers, and an unused-attribute shim. There are no constructor attributes, inline assembly, embedded blobs or encoded data. The optional config.h include is the standard autotools pattern."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/yaml/libyaml@0.2.5/api.c",
+            "line": 0,
+            "title": "Unused context arguments in macro calls",
+            "detail": "yaml_document_delete passes an undeclared identifier, \u0026context, to the STACK_EMPTY, POP and STACK_DEL macros. yaml_emitter_delete passes 'empty'. These macros never use their context argument, so this is a harmless quirk that matches the upstream source."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "Serialized YAML output written with fwrite by yaml_file_write_handler",
+            "to": "a FILE* stream the caller opens and passes to yaml_emitter_set_output_file",
+            "file": "github.com/yaml/libyaml@0.2.5/api.c"
+          }
+        ]
+      }
+    }
+  ],
+  "verdict": "certified",
+  "reasons": null
+}

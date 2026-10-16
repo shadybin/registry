@@ -1,0 +1,64 @@
+{
+  "kind": "third-party",
+  "module": "github.com/rockorager/libvaxis",
+  "from": "",
+  "to": "vaxis-0.6.0-BWNV_LC4CwBka_bJk8SOXqzCM-nyQH00jzdL0kUhGwRE",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "github.com/rockorager/libvaxis",
+    "github.com/rockorager/libvaxis/include",
+    "github.com/rockorager/libvaxis/src"
+  ],
+  "digest": "sha256:133d48051fb53f8b9df68901664d53924526622b14c06eee08201341b41bda19",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This unit is the build surface and C ABI wrapper of libvaxis, a Zig terminal UI library: build.zig, the pinned dependency manifest, the C header, and src/c_api.zig, which exports screen, window, parser, TTY, runtime and embedded-terminal functions. I checked the build script for build-time execution, downloads and code generation, and the C API for hidden network use, secret access, backdoors and load-time side effects. I found none: all behaviour matches a terminal UI library.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/rockorager/libvaxis@vaxis-0.6.0-BWNV_LC4CwBka_bJk8SOXqzCM-nyQH00jzdL0kUhGwRE/build.zig",
+        "line": 4,
+        "title": "Build script is conventional",
+        "detail": "build.zig defines library, example, bench, test and docs steps. It reads build.zig.zon with @embedFile only to get the version string. It runs no external commands, downloads nothing and generates no code beyond a version option. Run steps exist only for the example, bench and test targets."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/rockorager/libvaxis@vaxis-0.6.0-BWNV_LC4CwBka_bJk8SOXqzCM-nyQH00jzdL0kUhGwRE/build.zig.zon",
+        "line": 6,
+        "title": "Dependencies pinned by commit and hash",
+        "detail": "The zigimg and uucode dependencies are fetched from GitHub at fixed commits and verified against Zig package hashes. Both are well-known libraries that fit the module's purpose."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/rockorager/libvaxis@vaxis-0.6.0-BWNV_LC4CwBka_bJk8SOXqzCM-nyQH00jzdL0kUhGwRE/src/c_api.zig",
+        "line": 560,
+        "title": "C API can spawn a caller-specified program in a PTY",
+        "detail": "vaxis_terminal_new/spawn start the program named in the caller's argv inside a PTY. This is the documented embedded-terminal widget, and the child is chosen by the host application, not by the library."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/rockorager/libvaxis@vaxis-0.6.0-BWNV_LC4CwBka_bJk8SOXqzCM-nyQH00jzdL0kUhGwRE/src/c_api.zig",
+        "line": 748,
+        "title": "F3 key during query used for capability detection",
+        "detail": "applyRuntimeEvent treats an F3 key with shift or alt during terminal querying as a capability reply for explicit width or scaled text. This mirrors upstream vaxis.Loop, which detects these features through cursor-position reports. It only toggles rendering capabilities and grants no access."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": [
+      {
+        "what": "Escape sequences for rendering, alt screen, mouse mode, bracketed paste, window title, terminal capability queries, and Kitty graphics image data or file paths, all supplied by the calling application.",
+        "to": "the controlling terminal (TTY)",
+        "file": "github.com/rockorager/libvaxis@vaxis-0.6.0-BWNV_LC4CwBka_bJk8SOXqzCM-nyQH00jzdL0kUhGwRE/src/c_api.zig"
+      },
+      {
+        "what": "The argv, environment entries and working directory given by the caller, plus key events the caller forwards to the embedded terminal.",
+        "to": "child process spawned in a PTY (vaxis_terminal_spawn)",
+        "file": "github.com/rockorager/libvaxis@vaxis-0.6.0-BWNV_LC4CwBka_bJk8SOXqzCM-nyQH00jzdL0kUhGwRE/src/c_api.zig"
+      }
+    ]
+  }
+}

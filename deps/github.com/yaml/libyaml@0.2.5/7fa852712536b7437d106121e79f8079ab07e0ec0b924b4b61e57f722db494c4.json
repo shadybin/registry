@@ -1,0 +1,50 @@
+{
+  "kind": "third-party",
+  "module": "github.com/yaml/libyaml",
+  "from": "",
+  "to": "0.2.5",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "github.com/yaml/libyaml"
+  ],
+  "digest": "sha256:7fa852712536b7437d106121e79f8079ab07e0ec0b924b4b61e57f722db494c4",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This unit is the parser, scanner, reader, loader and core API of libyaml 0.2.5: a pure C YAML tokenizer, parser and document composer with memory-management helpers. I checked every provided file for load-time constructors, build-time hooks, encoded or embedded payloads, network, exec, environment or secret access, and code patching, and found none. The code matches upstream libyaml and does I/O only through caller-supplied FILE* streams or handlers.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/yaml/libyaml@0.2.5/api.c",
+        "line": 0,
+        "title": "I/O only through caller-provided streams",
+        "detail": "The library does I/O only through FILE* streams and handlers the caller supplies. yaml_file_read_handler uses fread and yaml_file_write_handler uses fwrite on those streams. It never opens files, reads the environment, uses the network or runs processes."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/yaml/libyaml@0.2.5/yaml_private.h",
+        "line": 1,
+        "title": "No load-time code or hidden payloads in headers",
+        "detail": "The headers define only macros, types and declarations: buffer, stack and queue helpers, token and event initializers, and an unused-attribute shim. There are no constructor attributes, inline assembly, embedded blobs or encoded data. The optional config.h include is the standard autotools pattern."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/yaml/libyaml@0.2.5/api.c",
+        "line": 0,
+        "title": "Unused context arguments in macro calls",
+        "detail": "yaml_document_delete passes an undeclared identifier, \u0026context, to the STACK_EMPTY, POP and STACK_DEL macros. yaml_emitter_delete passes 'empty'. These macros never use their context argument, so this is a harmless quirk that matches the upstream source."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": [
+      {
+        "what": "Serialized YAML output written with fwrite by yaml_file_write_handler",
+        "to": "a FILE* stream the caller opens and passes to yaml_emitter_set_output_file",
+        "file": "github.com/yaml/libyaml@0.2.5/api.c"
+      }
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "kind": "third-party",
+  "module": "github.com/zig-utils/zig-regex",
+  "from": "",
+  "to": "zig_regex-0.2.0-omky0f_2BgAXpSGi4MbMSngUU98FBX9RQIB2ShE3G2ww",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "github.com/zig-utils/zig-regex",
+    "github.com/zig-utils/zig-regex/src"
+  ],
+  "digest": "sha256:d209b78fb8debef1962a22bafdf14d50ecbcab8551b0cb66a67c2f51dbe3fc7c",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "The surface of this pure-Zig regex library is a stock build.zig that defines the regex module, tests, examples and benchmarks; a build.zig.zon with no dependencies; and a C FFI wrapper that exports compile/match/free functions using the C allocator. I found no build-time commands, downloads, network or file access, encoded payloads or load-time hooks.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.0-omky0f_2BgAXpSGi4MbMSngUU98FBX9RQIB2ShE3G2ww/build.zig",
+        "line": 9,
+        "title": "Standard build script with no side effects",
+        "detail": "build.zig only defines modules, executables, tests, examples and benchmarks from the package's own sources, with no system commands, downloads, generated code or file writes outside the normal install prefix. When consumed as a dependency, only the 'regex' module (src/root.zig) is imported. build.zig.zon declares no dependencies."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.0-omky0f_2BgAXpSGi4MbMSngUU98FBX9RQIB2ShE3G2ww/src/c_api.zig",
+        "line": 107,
+        "title": "C API returns non-null-terminated slice as C string",
+        "detail": "zig_match_get_text returns a pointer into the input slice cast as null-terminated, so C callers may read past the match end. Its own comment acknowledges this. It is an ordinary API bug, not deliberate, and only reachable through the exported C functions."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.0-omky0f_2BgAXpSGi4MbMSngUU98FBX9RQIB2ShE3G2ww/build.zig.zon",
+        "line": 7,
+        "title": "Package paths omit test/example directories referenced by build.zig",
+        "detail": "build.zig.zon lists README.md and LICENSE in its paths, but tests/, examples/ and benchmarks/ are referenced by build.zig and are not packaged. Those steps only run if invoked directly on this package, so this does not affect consumers."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

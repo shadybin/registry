@@ -1,0 +1,37 @@
+{
+  "kind": "third-party",
+  "module": "github.com/zigimg/zigimg",
+  "from": "",
+  "to": "zigimg-0.1.0-8_eo2oyaFwBZwJpmqPkCfVXWBrHcqbYwmrp1I6bTD3lI",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "github.com/zigimg/zigimg"
+  ],
+  "digest": "sha256:66237f751ea8032a016293d3265eb7878658a2a57f5bb986a6f6f01bf2fc0ba0",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "zigimg is a pure-Zig image encoding/decoding library. The surface consists of its README, a standard build.zig that declares the module and a test artifact, and a build.zig.zon with no dependencies. None of these files contain build-time code generation, downloads, external process execution or hidden payloads, and no capabilities were flagged.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/zigimg/zigimg@zigimg-0.1.0-8_eo2oyaFwBZwJpmqPkCfVXWBrHcqbYwmrp1I6bTD3lI/build.zig",
+        "line": 1,
+        "title": "Build script is standard module/test declaration",
+        "detail": "build.zig only declares the zigimg module from zigimg.zig, adds a test artifact and its run step, and defines test steps. It does not download anything, run external programs, generate code or read files outside the package. The tests only run when a developer asks for `zig build test`."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/zigimg/zigimg@zigimg-0.1.0-8_eo2oyaFwBZwJpmqPkCfVXWBrHcqbYwmrp1I6bTD3lI/build.zig.zon",
+        "line": 1,
+        "title": "No external dependencies declared",
+        "detail": "The manifest lists no dependencies, so nothing transitive is fetched. Its paths cover only the project's source, tests, license and README."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}
