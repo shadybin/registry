@@ -1,0 +1,65 @@
+# Takes into the registry every release a vendor certified with shadybin/shadybin's certify
+# workflow, and signs it. No person is involved: the expensive work ran on the vendor's
+# minutes, and what is signed follows from checks anyone can rerun. The commit history is
+# the public record of every signature.
+#
+# The `signing` environment holds SHADYBIN_SIGNING_KEY and deploys from main only, so no
+# branch, pull request or fork can run a job that sees the key.
+name: intake
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: intake
+
+permissions: {}
+
+jobs:
+  intake:
+    runs-on: ubuntu-latest
+    environment: signing
+    permissions:
+      contents: write # commit what was signed
+      attestations: read
+    env:
+      # TODO: pin to a shadybin release once there is one, and pin the signer workflow's
+      # digest (--signer-digest) to the certify.yml commits shadybin has published.
+      SHADYBIN_VERSION: main
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/checkout@v5
+        with:
+          repository: shadybin/shadybin
+          ref: ${{ env.SHADYBIN_VERSION }}
+          path: .shadybin
+          persist-credentials: false
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: .shadybin/go.mod
+          cache: false
+
+      - name: Build shadybin
+        run: |
+          (cd .shadybin && go build -trimpath -o "$RUNNER_TEMP/bin/shadybin" ./cmd/shadybin)
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+          rm -rf .shadybin
+
+      - name: Take in certified releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHADYBIN_SIGNING_KEY: ${{ secrets.SHADYBIN_SIGNING_KEY }}
+        run: .github/intake.sh
+
+      - name: Publish
+        run: |
+          git add -A
+          git diff --cached --quiet && exit 0
+          git config user.name "shadybin"
+          git config user.email "shadybin@users.noreply.github.com"
+          git commit -q -m "certify $(git diff --cached --name-only -- '*/statement.txt.sig' | sed 's|/statement.txt.sig||' | paste -sd ' ' -)"
+          git push
