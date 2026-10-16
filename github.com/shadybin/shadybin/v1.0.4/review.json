@@ -1,0 +1,229 @@
+{
+  "model": "claude-opus-5-5",
+  "prompt": "3",
+  "previous": "v1.0.3",
+  "modules": [
+    {
+      "path": "github.com/anthropics/anthropic-sdk-go",
+      "version": "v1.82.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/bahlo/generic-list-go",
+      "version": "v0.2.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/buger/jsonparser",
+      "version": "v1.1.2",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/go-logr/logr",
+      "version": "v1.4.2",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/go-logr/stdr",
+      "version": "v1.2.2",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/invopop/jsonschema",
+      "version": "v0.14.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/pb33f/ordered-map/v2",
+      "version": "v2.3.1",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/shadybin/shadybin",
+      "version": "",
+      "owned": true,
+      "scope": "project",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/shadybin/shadybin/verify",
+      "version": "",
+      "owned": true,
+      "scope": "project",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/standard-webhooks/standard-webhooks/libraries",
+      "version": "v0.0.1",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/tidwall/gjson",
+      "version": "v1.18.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/tidwall/match",
+      "version": "v1.1.1",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/tidwall/pretty",
+      "version": "v1.2.1",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/tidwall/sjson",
+      "version": "v1.2.5",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "go.opentelemetry.io/auto/sdk",
+      "version": "v1.1.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "go.opentelemetry.io/otel",
+      "version": "v1.33.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "go.opentelemetry.io/otel/metric",
+      "version": "v1.33.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "go.opentelemetry.io/otel/trace",
+      "version": "v1.33.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "go.yaml.in/yaml/v4",
+      "version": "v4.0.0-rc.2",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "golang.org/x/sync",
+      "version": "v0.16.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    }
+  ],
+  "units": [
+    {
+      "kind": "project",
+      "module": "github.com/shadybin/shadybin",
+      "from": "v1.0.3",
+      "to": "",
+      "scope": "diff",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/shadybin/shadybin/cmd/shadybin",
+        "github.com/shadybin/shadybin/internal/checksums",
+        "github.com/shadybin/shadybin/internal/cli",
+        "github.com/shadybin/shadybin/internal/env",
+        "github.com/shadybin/shadybin/internal/keys",
+        "github.com/shadybin/shadybin/internal/manifest",
+        "github.com/shadybin/shadybin/internal/registry",
+        "github.com/shadybin/shadybin/internal/review",
+        "github.com/shadybin/shadybin/verify"
+      ],
+      "digest": "sha256:22c83325033712fc51a8dde83fa2ad6c1ba921590a15f74f421ffec6ce7e33a6",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "Since v1.0.3 this diff adds zip and tar consistency checks against archive smuggling and renames project.json to shadybin.json. It moves the credential-stripping environment filter into internal/env and applies it to go list, go, cargo metadata and zig fetch. It also replaces running `zig build --fetch` with hash-checked `zig fetch` in an empty build directory, and classifies in-repo vendored or replaced Go, Rust and Zig code as vendor code. I checked each change for exfiltration, hidden behaviour or weakened checks and found none: every change narrows what the vendor's code can reach or widens what gets reviewed.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "internal/review/zig.go",
+            "line": 239,
+            "title": "Zig fetch work directory is never removed",
+            "detail": "newZigFetcher creates a temp directory with os.MkdirTemp and nothing in the diff removes it, so fetched packages build up in the temp directory across runs. This is not a security issue."
+          },
+          {
+            "severity": "info",
+            "file": "internal/checksums/archive.go",
+            "line": 133,
+            "title": "Trailing-data check after tar EOF is bounded by maxArchive",
+            "detail": "After the tar end-of-archive marker, the new check reads at most maxArchive bytes and rejects any non-zero byte. Trailing data beyond that limit is not inspected. Most likely the earlier size limits already bound the whole archive, so this is minor."
+          },
+          {
+            "severity": "info",
+            "file": "internal/review/zig.go",
+            "line": 256,
+            "title": "Repository zig-pkg copies are trusted by directory name",
+            "detail": "Packages found in the repository's zig-pkg are used without checking them against the pinned hash. They are marked InRepo, though, and so are reviewed whole as vendor code, which matches the stated intent."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "Dependency URLs from the project's and its packages' build.zig.zon, run with the credential-stripped environment; the reported hash is checked against the pinned one.",
+            "to": "the zig program (`zig fetch \u003curl\u003e`), which downloads each dependency URL named in build.zig.zon into a shadybin-owned temp directory",
+            "file": "internal/review/zig.go"
+          },
+          {
+            "what": "A fixed, empty build.zig, so zig fetch runs no build script of the vendor's or of a dependency's.",
+            "to": "a new temp directory (os.MkdirTemp \"shadybin-zig-fetch-*\")/build.zig",
+            "file": "internal/review/zig.go"
+          },
+          {
+            "what": "The caller's environment minus credential-like variables, plus GOOS. Before this change it got the full environment.",
+            "to": "the go program (`go list -deps -json`)",
+            "file": "internal/review/golang.go"
+          },
+          {
+            "what": "The caller's environment minus credential-like variables, plus the caller-supplied extras. Before this change it got the full environment.",
+            "to": "the go program (goCmd)",
+            "file": "internal/manifest/manifest.go"
+          },
+          {
+            "what": "The caller's environment minus credential-like variables, with RUSTUP_TOOLCHAIN and RUSTC pinned and the rustc wrapper variables cleared.",
+            "to": "the cargo program (`cargo metadata`)",
+            "file": "internal/review/rust.go"
+          }
+        ]
+      }
+    }
+  ],
+  "verdict": "certified",
+  "reasons": null
+}
