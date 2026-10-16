@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314532d'/%3E%3Cpath d='M18 33l9 9 19-20' fill='none' stroke='%23fff' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+:root { --ink:#1c1f1a; --muted:#5c6157; --paper:#fbfaf6; --card:#fff; --line:#e6e3da; --green:#14532d;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace; }
+* { box-sizing: border-box; }
+html { background: var(--paper); }
+body { margin: 0; color: var(--ink); font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: var(--green); text-underline-offset: 3px; }
+.wrap { max-width: 56rem; margin: 0 auto; padding: 0 1.5rem; }
+header { padding: 1.5rem 0; }
+header .wrap { display: flex; align-items: center; justify-content: space-between; }
+.wordmark { font: 600 1.15rem/1 var(--mono); color: var(--ink); text-decoration: none; }
+.wordmark span { color: var(--green); }
+nav a { color: var(--muted); text-decoration: none; margin-left: 1.5rem; font-size: 0.95rem; }
+main { padding: 2.5rem 0 4rem; }
+h1 { font-size: 2rem; letter-spacing: -0.03em; margin: 0 0 0.5rem; word-break: break-word; }
+.sub { color: var(--muted); margin: 0 0 1.5rem; }
+.badge { height: 20px; vertical-align: middle; }
+table { border-collapse: collapse; width: 100%; background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; font-size: 0.95rem; }
+th, td { text-align: left; padding: 0.75rem 1rem; border-top: 1px solid var(--line); vertical-align: middle; }
+th { border-top: 0; color: var(--muted); font-weight: 600; font-size: 0.85rem; background: #f6f4ee; }
+.tag { font: 600 0.95rem var(--mono); }
+.pill { display: inline-block; font: 600 0.8rem/1 var(--mono); padding: 0.35rem 0.55rem; border-radius: 6px; white-space: nowrap; }
+.green { background: #dcfce7; color: #14532d; } .red { background: #fee2e2; color: #991b1b; }
+.grey { background: #ececeb; color: #4b4b48; } .orange { background: #ffedd5; color: #9a3412; }
+.files a { margin-right: 0.8rem; white-space: nowrap; }
+.muted { color: var(--muted); }
+footer { border-top: 1px solid var(--line); padding: 2rem 0 3rem; color: var(--muted); font-size: 0.9rem; }
+</style>
+<title>The shadybin registry</title></head><body><header><div class="wrap"><a class="wordmark" href="https://shadybin.dev/">shady<span>bin</span></a>
+<nav><a href="https://shadybin.dev/registry/">Registry</a><a href="https://github.com/shadybin/registry#readme">About</a><a href="https://github.com/shadybin/shadybin">GitHub</a></nav></div></header>
+<main><div class="wrap">
+<h1>The registry</h1>
+<p class="sub">Every project shadybin certifies, and each one's latest release. <a href="https://github.com/shadybin/registry#adding-a-project">Add yours.</a></p>
+<table>
+<tr><th>Project</th><th>Latest release</th></tr>
+<tr><td><a href="https://shadybin.dev/registry/github.com/jespern/marlin/">github.com/jespern/marlin</a></td><td><img class="badge" src="https://img.shields.io/endpoint?url=https://shadybin.dev/registry/github.com/jespern/marlin/badge.json" alt="badge"></td></tr><tr><td><a href="https://shadybin.dev/registry/github.com/miradorlabs/terma-cli/">github.com/miradorlabs/terma-cli</a></td><td><img class="badge" src="https://img.shields.io/endpoint?url=https://shadybin.dev/registry/github.com/miradorlabs/terma-cli/badge.json" alt="badge"></td></tr>
+</table>
+</div></main><footer><div class="wrap">Every signature here is a commit in <a href="https://github.com/shadybin/registry">shadybin/registry</a>. Verify any of them with shadybin's public key, <code>d971638b…2ed8fc</code>; see <a href="https://github.com/shadybin/registry#checking-a-release">how</a>.</div></footer></body></html>

@@ -70,3 +70,6 @@ for project in github.com/*/*/project.json; do
       echo "::warning::$repo $tag: badge not updated"
   fi
 done
+
+# The pages people reach from a badge: an index, and each project's releases.
+shadybin pages -registry .

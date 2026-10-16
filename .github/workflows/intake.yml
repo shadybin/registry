@@ -62,5 +62,6 @@ jobs:
           git config user.name "shadybin"
           git config user.email "shadybin@users.noreply.github.com"
           signed=$(git diff --cached --name-only -- '*/statement.txt.sig' | sed 's|/statement.txt.sig||' | paste -sd ' ' -)
-          git commit -q -m "${signed:+certify $signed}${signed:-update badges}"
+          if [ -n "$signed" ]; then message="certify $signed"; else message="update badges and pages"; fi
+          git commit -q -m "$message"
           git push
