@@ -4,3 +4,4 @@
 # that certify, so a release it attests is no longer signed.
 7b883fdc66a7beb429d67bc45529ff5d8f0f9d1f pre-release, after certify built its own commit
 cc7e58f1fbb15a68f72ca516158c1d1aa59b5450 v1.0.0
+5fec846e9580da38bbbeb81fcffab3c6ecee5636 v1.0.1
