@@ -61,5 +61,6 @@ jobs:
           git diff --cached --quiet && exit 0
           git config user.name "shadybin"
           git config user.email "shadybin@users.noreply.github.com"
-          git commit -q -m "certify $(git diff --cached --name-only -- '*/statement.txt.sig' | sed 's|/statement.txt.sig||' | paste -sd ' ' -)"
+          signed=$(git diff --cached --name-only -- '*/statement.txt.sig' | sed 's|/statement.txt.sig||' | paste -sd ' ' -)
+          git commit -q -m "${signed:+certify $signed}${signed:-update badges}"
           git push

@@ -3,7 +3,8 @@
 # report, manifest and review from the certify workflow and are not in the registry yet:
 # checks all four were attested by that workflow, for that tag, on a GitHub-hosted runner,
 # then signs, which reruns the verdict's rule first and caches the dependency reviews.
-# Run from the registry's root by the intake workflow.
+# Then it points each project's badge at the project's latest release. Run from the
+# registry's root by the intake workflow.
 #
 # What the vendor's release carries is only ever read: copied, hashed and parsed, never run.
 set -euo pipefail
@@ -56,4 +57,12 @@ for project in github.com/*/*/project.json; do
     fi
     rm -rf "$tmp"
   done
+
+  # The badge names the latest release, the one users are getting, whatever shadybin made
+  # of it: so an old green badge cannot outlive a release nobody certified.
+  if latest=$(gh api "repos/$gh_repo/releases/latest" -q '.tag_name + " " + .published_at' 2>/dev/null) &&
+    read -r tag published <<<"$latest" && [[ "$tag" =~ $tag_pattern ]]; then
+    shadybin badge -registry . -repo "$repo" -tag "$tag" -published "$published" ||
+      echo "::warning::$repo $tag: badge not updated"
+  fi
 done
