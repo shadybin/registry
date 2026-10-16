@@ -1,0 +1,131 @@
+{
+  "kind": "third-party",
+  "module": "github.com/anthropics/anthropic-sdk-go",
+  "from": "",
+  "to": "v1.82.0",
+  "scope": "capabilities",
+  "part": 5,
+  "parts": 6,
+  "packages": [
+    "github.com/anthropics/anthropic-sdk-go",
+    "github.com/anthropics/anthropic-sdk-go/config",
+    "github.com/anthropics/anthropic-sdk-go/internal/apierror",
+    "github.com/anthropics/anthropic-sdk-go/internal/apiform"
+  ],
+  "digest": "sha256:00f62f5b6656c99e2452209d1373846237120ae5e1a6a97036db0fe038e387b7",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This unit is generated client code from the Anthropic Go SDK: Messages, batches, models, organization admin and skills endpoints, plus the config package for profile and credential files and OIDC federation token exchange, the API error type, and the multipart form encoder. I checked the init functions (union and decoder registration only), all network endpoints (the configured Anthropic API, with HTTPS-only and no-redirect token exchange), file writes (the SDK's own config directory with restrictive modes) and environment reads. I found no exfiltration, backdoor, obfuscation or hidden behaviour.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/config/writers.go",
+        "line": 0,
+        "title": "Local credential file handling",
+        "detail": "The config package reads profiles and credentials from the Anthropic config directory and from ANTHROPIC_* environment variables, and writes credential files with 0600 and 0700 permissions. It refuses symlinked targets and validates profile names against path traversal. All of this is the SDK's documented credential storage."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/config/https.go",
+        "line": 0,
+        "title": "Token endpoint hardening present",
+        "detail": "RequireSecureTokenEndpoint rejects non-HTTPS token endpoints except loopback. WithoutRedirects stops a 307/308 from replaying credentials to another host. RedactOAuthErrorBody keeps only RFC 6749 error keys when logging. These checks strengthen security."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/apierror/apierror.go",
+        "line": 0,
+        "title": "Sensitive headers redacted in error dumps",
+        "detail": "DumpRequest and DumpResponse replace Authorization, x-api-key, cookie and similar header values with *** before dumping."
+      }
+    ],
+    "capabilities": [
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go",
+        "capability": "NETWORK",
+        "explanation": "Every service method (Messages.New/NewStreaming/CountTokens, batches, models, organization admin, skills) builds an HTTP request through requestconfig.ExecuteNewRequest to the configured Anthropic API base URL. This is the SDK's purpose.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/message.go"
+      },
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "Comes from reflection: schemautil.go walks jsonschema.Schema fields with reflect, and init() functions register custom JSON decoders and union discriminators with apijson (reflect.MakeSlice/Set). No code is loaded or run from data.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/schemautil.go"
+      },
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go/config",
+        "capability": "NETWORK",
+        "explanation": "ExchangeFederationAssertion POSTs a jwt-bearer grant to \u003cbase\u003e/v1/oauth/token, defaulting to https://api.anthropic.com, requiring HTTPS (or loopback) and refusing redirects. This is the documented workload identity federation flow.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/config/federation.go"
+      },
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go/config",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "Comes from reflection inside encoding/json and from compiling a fixed regexp for profile-name validation. Nothing is executed from data.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/config/config.go"
+      },
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go/internal/apierror",
+        "capability": "NETWORK",
+        "explanation": "Uses net/http types and httputil.DumpRequestOut/DumpResponse to format a failed request or response for debugging, with auth headers redacted. DumpRequestOut uses an in-memory fake transport and sends nothing over the network.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/apierror/apierror.go"
+      },
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go/internal/apierror",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "Comes from reflection-based JSON decoding (apijson.UnmarshalRoot, encoding/json) of API error bodies. Nothing is executed from data.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/apierror/apierror.go"
+      },
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go/internal/apiform",
+        "capability": "NETWORK",
+        "explanation": "Uses mime/multipart and net/textproto to build multipart form bodies (e.g. skill file uploads) in memory. It makes no network connections itself.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/apiform/encoder.go"
+      }
+    ],
+    "data_flows": [
+      {
+        "what": "User-supplied prompts, messages, tool definitions and optional user-profile and workspace headers",
+        "to": "Anthropic API (configured base URL), /v1/messages and /v1/messages/count_tokens",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/message.go"
+      },
+      {
+        "what": "Batch message requests the caller supplies",
+        "to": "Anthropic API /v1/messages/batches",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/messagebatch.go"
+      },
+      {
+        "what": "Skill files the caller passes as io.Readers",
+        "to": "Anthropic API /v1/skills (multipart upload)",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/skill.go"
+      },
+      {
+        "what": "Organization admin operations the caller invokes: API keys, users, invites, workspaces, federation, external keys",
+        "to": "Anthropic Admin API /v1/organizations/*",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/organizationapikey.go"
+      },
+      {
+        "what": "OIDC JWT assertion, federation rule ID, organization ID, service account ID and workspace ID",
+        "to": "Anthropic token endpoint \u003cbase\u003e/v1/oauth/token (HTTPS only, no redirects)",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/config/federation.go"
+      },
+      {
+        "what": "Profile config JSON (mode 0644) and OAuth access/refresh tokens (mode 0600), written atomically when the caller asks",
+        "to": "Local Anthropic config dir (~/.config/anthropic/configs and credentials, or ANTHROPIC_CONFIG_DIR)",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/config/writers.go"
+      },
+      {
+        "what": "Deprecation warning naming the model",
+        "to": "stderr",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/thinking_warn.go"
+      },
+      {
+        "what": "Warn-once messages naming unknown authentication fields in profile files",
+        "to": "Go standard log output",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/config/config.go"
+      }
+    ]
+  }
+}

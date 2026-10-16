@@ -1,0 +1,50 @@
+{
+  "kind": "third-party",
+  "module": "github.com/go-logr/logr",
+  "from": "",
+  "to": "v1.4.2",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "github.com/go-logr/logr",
+    "github.com/go-logr/logr/funcr"
+  ],
+  "digest": "sha256:c9d2107279947ada6bd01e77349ff9d954d65ea50d3d5379d23c5609a03a2971",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "go-logr/logr v1.4.2 is a structured-logging API (Logger/LogSink, context helpers, slog bridges); its funcr subpackage formats log lines and passes them to a caller-provided function. I read every surface file for init code, I/O, exec, network, encoded payloads, environment-dependent behaviour and text addressed to reviewers, and found none. The flagged capabilities arise only from reflection, runtime caller lookup and dynamic calls into user-supplied interfaces.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/go-logr/logr@v1.4.2/funcr/funcr.go",
+        "line": 0,
+        "title": "No side effects beyond formatting and dispatch to user-supplied sinks",
+        "detail": "Both packages are purely in-process logging abstractions. logr defines Logger/LogSink, context helpers and slog adapters. funcr formats key/value pairs and hands the strings to a caller-supplied function. The unit has no init functions, build scripts, embedded data, encoded strings, exec, file or network I/O, or environment or credential access. The content matches the well-known upstream v1.4.2 source."
+      }
+    ],
+    "capabilities": [
+      {
+        "package": "github.com/go-logr/logr",
+        "capability": "NETWORK",
+        "explanation": "The logr package contains no networking code. The capability is most likely inferred from its dynamic calls: user-supplied LogSink and slog.Handler implementations (slogsink.go, sloghandler.go) and the slog.Record/Value machinery, which can call String()/Error() methods of arbitrary types, including net types. Any real I/O is done by the sink or handler the application chooses.",
+        "file": "github.com/go-logr/logr@v1.4.2/slogsink.go"
+      },
+      {
+        "package": "github.com/go-logr/logr/funcr",
+        "capability": "MODIFY_SYSTEM_STATE",
+        "explanation": "funcr has no code that changes process or system state. The capability most likely comes from reflection used to render values (reflect.ValueOf, Field, MapRange, Interface) and from runtime.Caller/FuncForPC used for call-site attribution. It may also come from invoking user-supplied MarshalLog/String/Error methods and the caller-provided write function. These are harmless formatting operations.",
+        "file": "github.com/go-logr/logr@v1.4.2/funcr/funcr.go"
+      },
+      {
+        "package": "github.com/go-logr/logr/funcr",
+        "capability": "NETWORK",
+        "explanation": "funcr makes no network calls. The capability is most likely inferred conservatively from its calls through interfaces, such as fmt.Stringer, error, encoding.TextMarshaler, logr.Marshaler and the caller-supplied write func, which static analysis may resolve to network-related types. Output goes only to the function the application passes to New/NewJSON.",
+        "file": "github.com/go-logr/logr@v1.4.2/funcr/funcr.go"
+      }
+    ],
+    "data_flows": []
+  }
+}

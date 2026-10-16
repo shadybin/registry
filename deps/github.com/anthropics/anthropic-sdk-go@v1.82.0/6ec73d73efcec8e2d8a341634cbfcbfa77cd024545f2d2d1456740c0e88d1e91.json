@@ -1,0 +1,61 @@
+{
+  "kind": "third-party",
+  "module": "github.com/anthropics/anthropic-sdk-go",
+  "from": "",
+  "to": "v1.82.0",
+  "scope": "capabilities",
+  "part": 2,
+  "parts": 6,
+  "packages": [
+    "github.com/anthropics/anthropic-sdk-go"
+  ],
+  "digest": "sha256:6ec73d73efcec8e2d8a341634cbfcbfa77cd024545f2d2d1456740c0e88d1e91",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This unit is the beta Messages and Message Batches API surface of the Anthropic Go SDK: request/response types plus service methods that send caller-supplied parameters to the configured Anthropic API. I checked the init() functions (union and validator registration only), the request paths and headers, and looked for hidden endpoints, credential or environment access, and encoded payloads, and found none.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betamessage.go",
+        "line": 0,
+        "title": "Generated API client code, no suspicious behavior",
+        "detail": "Both files are standard Stainless-generated SDK code: request and response types, union helpers, and init() functions that only register JSON union discriminators and field validators. Every network call goes through the shared requestconfig path to the configured API endpoint and carries only caller-supplied parameters. There is no environment, file or credential access, no hidden endpoints, and no encoded payloads."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betamessage.go",
+        "line": 0,
+        "title": "Tool-use types are passive data",
+        "detail": "The browser/computer toolset types, including javascript_exec, bash and file_upload, are only data structures that describe tool calls the model returns. This SDK code does not execute any of them."
+      }
+    ],
+    "capabilities": [
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go",
+        "capability": "NETWORK",
+        "explanation": "BetaMessageService.New, NewStreaming and CountTokens, and the BetaMessageBatchService methods (New, Get, List, Delete, Cancel, ResultsStreaming) build relative API paths such as v1/messages and v1/messages/batches and send them through requestconfig.ExecuteNewRequest, which makes HTTP requests to the client's configured Anthropic API base URL. The net/url use here is only url.PathEscape on batch IDs. This is the core purpose of an API client SDK.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betamessage.go"
+      },
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "Comes from the SDK's reflection-based JSON machinery. It is reached through apijson.UnmarshalRoot, apijson.RegisterUnion/Discriminator, apijson.RegisterFieldValidator, param.MarshalObject/MarshalUnion and the closures passed as request options (requestconfig.RequestOptionFunc). These invoke MarshalJSON/UnmarshalJSON methods and option callbacks chosen by type at run time. No code is loaded or run from data.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betamessage.go"
+      }
+    ],
+    "data_flows": [
+      {
+        "what": "Caller-supplied message request parameters: messages, system prompt, tools, model and settings. Also optional anthropic-beta, anthropic-user-profile-id and anthropic-workspace-id headers.",
+        "to": "Anthropic API (configured base URL) POST v1/messages?beta=true and v1/messages/count_tokens?beta=true",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betamessage.go"
+      },
+      {
+        "what": "Caller-supplied batch requests and batch IDs, pagination query parameters, and workspace and beta headers.",
+        "to": "Anthropic API (configured base URL) v1/messages/batches endpoints (create, get, list, delete, cancel, results)",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betamessagebatch.go"
+      }
+    ]
+  }
+}

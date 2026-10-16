@@ -1,0 +1,43 @@
+{
+  "kind": "third-party",
+  "module": "github.com/tidwall/pretty",
+  "from": "",
+  "to": "v1.2.1",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "github.com/tidwall/pretty"
+  ],
+  "digest": "sha256:e292bf18aff94396c410dc1db06f5fe206941848b9d78b6de7eb4dc4ee87e01e",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "github.com/tidwall/pretty is a pure JSON formatting library: pretty-printing, compacting, colorizing and stripping comments. It imports only bytes, encoding/json, sort and strconv. I checked the single file, including its init function, and found no file, process, network or environment access, and no encoded payloads.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/tidwall/pretty@v1.2.1/pretty.go",
+        "line": 441,
+        "title": "init assigns default terminal color style",
+        "detail": "init() only builds the TerminalStyle struct of ANSI color codes and a byte-escaping Append function. It has no side effects beyond setting a package variable."
+      }
+    ],
+    "capabilities": [
+      {
+        "package": "github.com/tidwall/pretty",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "Comes from harmless calls: json.Unmarshal in parsestr (reflection-based decoding), sort.Stable on byKeyVal through the sort.Interface, and the Style.Append callback that Color calls. None of these runs code taken from data. They are ordinary JSON decoding, sorting and a caller-supplied formatting hook.",
+        "file": "github.com/tidwall/pretty@v1.2.1/pretty.go"
+      },
+      {
+        "package": "github.com/tidwall/pretty",
+        "capability": "NETWORK",
+        "explanation": "No network code exists in the package. Its only imports are bytes, encoding/json, sort and strconv. The capability is an artifact of the conservative call graph: json.Unmarshal's reflective dispatch to Unmarshaler/TextUnmarshaler implementations can reach types such as those in package net. Here it only ever decodes into a plain string.",
+        "file": "github.com/tidwall/pretty@v1.2.1/pretty.go"
+      }
+    ],
+    "data_flows": []
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "kind": "third-party",
+  "module": "github.com/tidwall/sjson",
+  "from": "",
+  "to": "v1.2.5",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "github.com/tidwall/sjson"
+  ],
+  "digest": "sha256:845e820c76da45e73095ca6f717985c69627929668f200e1641f84a6fda2d54c",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "sjson v1.2.5 is a pure-Go library that sets and deletes values in JSON text by path. It uses gjson for lookups and encoding/json for marshaling. I checked the single source file for init code, build-time hooks, network or file I/O, process execution and encoded payloads, and found none; the unsafe usage is the library's documented zero-copy optimisation.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/tidwall/sjson@v1.2.5/sjson.go",
+        "line": 478,
+        "title": "unsafe string/byte aliasing for in-place JSON edits",
+        "detail": "In-place replacement (ReplaceInPlace with Optimistic) casts the input string's backing memory to a writable []byte and mutates it. The library documents this, and SetOptions disables it for string inputs. It is an upstream design choice for performance, not malicious."
+      }
+    ],
+    "capabilities": [
+      {
+        "package": "github.com/tidwall/sjson",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "Comes from unsafe.Pointer conversions between string and []byte headers (SetOptions, SetBytesOptions, SetRawBytesOptions, set) used to avoid copying, and from encoding/json.Marshal, which calls user-supplied MarshalJSON/MarshalText methods through reflection. Both are ordinary performance and serialization patterns for a JSON library. Nothing runs code taken from data.",
+        "file": "github.com/tidwall/sjson@v1.2.5/sjson.go"
+      },
+      {
+        "package": "github.com/tidwall/sjson",
+        "capability": "NETWORK",
+        "explanation": "No network code exists in the package. The capability is inferred transitively: encoding/json.Marshal, called in appendStringify and SetBytesOptions, can dispatch to Marshaler implementations in the net package (e.g. net.IP.MarshalText). That is a harmless formatting call, not network I/O.",
+        "file": "github.com/tidwall/sjson@v1.2.5/sjson.go"
+      }
+    ],
+    "data_flows": []
+  }
+}

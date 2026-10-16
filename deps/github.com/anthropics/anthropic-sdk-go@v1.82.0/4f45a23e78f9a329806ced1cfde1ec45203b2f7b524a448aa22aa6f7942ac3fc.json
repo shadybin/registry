@@ -1,0 +1,153 @@
+{
+  "kind": "third-party",
+  "module": "github.com/anthropics/anthropic-sdk-go",
+  "from": "",
+  "to": "v1.82.0",
+  "scope": "capabilities",
+  "part": 6,
+  "parts": 6,
+  "packages": [
+    "github.com/anthropics/anthropic-sdk-go/internal/apijson",
+    "github.com/anthropics/anthropic-sdk-go/internal/auth",
+    "github.com/anthropics/anthropic-sdk-go/internal/requestconfig",
+    "github.com/anthropics/anthropic-sdk-go/internal/telemetry",
+    "github.com/anthropics/anthropic-sdk-go/internal/tracing",
+    "github.com/anthropics/anthropic-sdk-go/option",
+    "github.com/anthropics/anthropic-sdk-go/packages/ssestream"
+  ],
+  "digest": "sha256:4f45a23e78f9a329806ced1cfde1ec45203b2f7b524a448aa22aa6f7942ac3fc",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "These packages are the Anthropic Go SDK's request pipeline: JSON encoding and decoding, OAuth/OIDC federation and refresh-token auth, the request/retry engine, OpenTelemetry span recording and SSE stream decoding. I checked the network destinations (configured base URL only, with a secure token endpoint and same-origin bearer attachment), file access (the SDK's own credentials file and a user-specified identity token file, both with safety checks), telemetry (application-registered OTel provider only), and looked for hidden behaviour, encoded payloads or code execution, finding none.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/requestconfig/requestconfig.go",
+        "line": 67,
+        "title": "Platform headers sent to API",
+        "detail": "Every request carries the OS, architecture and Go runtime version in X-Stainless-* headers. This is standard for generated Stainless SDKs and goes only to the configured API endpoint."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/tracing/tracing.go",
+        "line": 127,
+        "title": "OpenTelemetry spans via the application's provider",
+        "detail": "Spans are on by default but go only through the TracerProvider the application registered, which is a no-op unless the application configures one. Prompt and response content is recorded only in opt-in content mode. Spans can be turned off with an option or with ANTHROPIC_OPEN_TELEMETRY=false."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/apijson/decoder.go",
+        "line": 636,
+        "title": "unsafe used to set unexported metadata field",
+        "detail": "reflect.NewAt with unsafe.Pointer writes the unexported raw-JSON metadata field of response structs. It touches only the SDK's own types."
+      }
+    ],
+    "capabilities": [
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go/internal/apijson",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "Comes from reflection: the encoder and decoder walk struct types, call MarshalJSON/UnmarshalJSON through interfaces and run registered custom decoders. setUnexportedField uses reflect.NewAt with unsafe.Pointer to fill the private JSON.raw metadata field. This is ordinary serialization machinery and runs no code chosen from data.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/apijson/decoder.go"
+      },
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go/internal/apijson",
+        "capability": "NETWORK",
+        "explanation": "The package makes no network calls of its own. The capability is attributed transitively through interface calls (json.Marshaler/Unmarshaler, the param package) that the analysis cannot resolve; apijson only encodes and decodes JSON bytes.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/apijson/encoder.go"
+      },
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go/internal/auth",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "Calls TokenProvider and IdentityTokenProvider through function values and interfaces, and the HTTP handler passed in by the client. It also uses encoding/json reflection. These are callbacks the application or SDK supplies.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/auth/middleware.go"
+      },
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go/internal/auth",
+        "capability": "NETWORK",
+        "explanation": "Sends OAuth token requests: the OIDC jwt-bearer exchange and the refresh_token grant, POSTed to the configured base URL plus /v1/oauth/token. The base URL is first checked with RequireSecureTokenEndpoint, and redirects are disabled. The middleware attaches the bearer token only to requests whose origin matches the configured base URL.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/auth/workload.go"
+      },
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go/internal/requestconfig",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "Runs the middleware chain and request-option functions the application supplies, and the SpanRecorder callbacks. Encoding a request body uses reflection.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/requestconfig/requestconfig.go"
+      },
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go/internal/requestconfig",
+        "capability": "NETWORK",
+        "explanation": "Sends API requests with the configured http.Client or custom doer, with retries and backoff, to the configured base URL (default https://api.anthropic.com/). Also builds the default HTTP client transport.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/requestconfig/requestconfig.go"
+      },
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go/internal/telemetry",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "Calls the application's tracer, the tool description callback and the StreamedMessage interface methods. Uses json and gjson decoding, which relies on reflection.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/telemetry/runner.go"
+      },
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go/internal/telemetry",
+        "capability": "NETWORK",
+        "explanation": "Reads response headers from net/http values and sets span attributes. Spans go to the OpenTelemetry TracerProvider the application registered, whose exporters may use the network. The package opens no connections itself.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/telemetry/apicall.go"
+      },
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go/internal/tracing",
+        "capability": "NETWORK",
+        "explanation": "Uses net/http, net/url and net.Error types. It wraps response bodies to end spans, and injects trace-context headers with the propagator the application registered. It parses URLs to build server and url.* span attributes. It sends no data anywhere of its own.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/tracing/tracing.go"
+      },
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go/option",
+        "capability": "NETWORK",
+        "explanation": "Client options configure the HTTP client, base URL, headers, middleware and the federation token provider. WithDebugLog dumps requests and responses with httputil after redacting sensitive headers. WithEnvironmentProduction sets api.anthropic.com as the default base URL.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/option/requestoption.go"
+      },
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go/packages/ssestream",
+        "capability": "NETWORK",
+        "explanation": "Decodes server-sent events from the body of an http.Response the SDK has already received. It opens no connections.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/packages/ssestream/ssestream.go"
+      }
+    ],
+    "data_flows": [
+      {
+        "what": "API request bodies and headers: API key or bearer token, User-Agent, anthropic-version, and X-Stainless OS/arch/Go-version/package-version headers.",
+        "to": "Configured API base URL (default https://api.anthropic.com/)",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/requestconfig/requestconfig.go"
+      },
+      {
+        "what": "OIDC identity JWT, federation rule ID, organization ID, and optional service account and workspace IDs, for the token exchange.",
+        "to": "base URL + /v1/oauth/token (must pass RequireSecureTokenEndpoint)",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/auth/workload.go"
+      },
+      {
+        "what": "Refresh token and client_id for the user OAuth refresh.",
+        "to": "base URL + /v1/oauth/token",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/auth/credentials_file.go"
+      },
+      {
+        "what": "Cached or refreshed access token, refresh token and expiry.",
+        "to": "Profile credentials file (config.WriteCredentials)",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/auth/credentials_file.go"
+      },
+      {
+        "what": "Span metadata: model, token usage, request IDs, URL path, and allow-listed query parameters. Prompt and response content only when content mode is enabled. Trace-context headers go on outgoing requests.",
+        "to": "Application-registered OpenTelemetry TracerProvider and propagator",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/tracing/tracing.go"
+      },
+      {
+        "what": "HTTP request and response dumps with sensitive headers redacted.",
+        "to": "Application-supplied log.Logger (opt-in WithDebugLog)",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/option/middleware.go"
+      },
+      {
+        "what": "One-time warnings about credential cache or refresh failures and shadowed config.",
+        "to": "Standard logger (stderr)",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/auth/logging.go"
+      }
+    ]
+  }
+}

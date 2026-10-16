@@ -1,0 +1,43 @@
+{
+  "kind": "third-party",
+  "module": "go.opentelemetry.io/otel/trace",
+  "from": "",
+  "to": "v1.33.0",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "go.opentelemetry.io/otel/trace"
+  ],
+  "digest": "sha256:daed41bd36caf1b429465293a6458407be31013c3bec3f97a830a8d85a4f794d",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This unit is the OpenTelemetry Go trace API package (v1.33.0): interfaces for TracerProvider, Tracer and Span, a no-op implementation, SpanContext and ID types with hex and JSON encoding, and W3C tracestate parsing. I checked every file for init code, encoded payloads, network, exec, filesystem or unsafe use, and found nothing beyond pure data-structure logic. The flagged capabilities come from reflection in encoding/json and interface calls in fmt, not from any real network or code-execution behavior.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "go.opentelemetry.io/otel/trace@v1.33.0/trace.go",
+        "line": 0,
+        "title": "Pure API package with no side effects",
+        "detail": "The package has no init functions, no package-level side effects beyond zero-value variables, no unsafe, cgo, exec, filesystem or network use, and no embedded or encoded data. Its contents match the upstream OpenTelemetry trace API: span and context types, a no-op tracer, W3C trace-id/span-id hex parsing and tracestate parsing."
+      }
+    ],
+    "capabilities": [
+      {
+        "package": "go.opentelemetry.io/otel/trace",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "Comes from harmless calls: encoding/json.Marshal in the MarshalJSON methods for TraceID, SpanID, TraceFlags, SpanContext and TraceState, which use reflection, and from calls through interfaces (fmt.Errorf formatting values, option apply funcs, the TraceState.Walk callback). Nothing here loads or runs code chosen from data.",
+        "file": "go.opentelemetry.io/otel/trace@v1.33.0/trace.go"
+      },
+      {
+        "package": "go.opentelemetry.io/otel/trace",
+        "capability": "NETWORK",
+        "explanation": "No network code exists in this package; it imports only bytes, context, encoding/hex, encoding/json, fmt, strings, time and otel's attribute, codes and embedded packages. The capability is most likely a call-graph over-approximation: fmt.Errorf formatting and json.Marshal calling Error()/String()/MarshalJSON on interface values can resolve, in static analysis, to methods of net types. This is harmless.",
+        "file": "go.opentelemetry.io/otel/trace@v1.33.0/tracestate.go"
+      }
+    ],
+    "data_flows": []
+  }
+}

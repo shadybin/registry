@@ -1,0 +1,37 @@
+{
+  "kind": "third-party",
+  "module": "go.yaml.in/yaml/v4",
+  "from": "",
+  "to": "v4.0.0-rc.2",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "go.yaml.in/yaml/v4"
+  ],
+  "digest": "sha256:4e0b4d073cba773023e439c72144a9ae9d5889f55ece21abfc502949faea0c32",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "The surface of go.yaml.in/yaml/v4 v4.0.0-rc.2 consists of resolve.go and yaml.go. They implement YAML scalar resolution, the public Marshal/Unmarshal API, struct field reflection and event formatting. I checked the init functions, the imports and the encoded data: there is no network, exec, filesystem, environment or unsafe use, no files missing from the source repository, and nothing beyond what a YAML library needs.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "go.yaml.in/yaml/v4@v4.0.0-rc.2/resolve.go",
+        "line": 35,
+        "title": "Init functions only populate static tables",
+        "detail": "resolve.go has two init functions that fill in in-memory lookup tables: resolveTable, resolveMap and the long/short tag maps. yaml.go has one init that caches the reflect.Type of the Unmarshaler interface. None of them does I/O, touches the environment, uses the network or patches other code."
+      },
+      {
+        "severity": "info",
+        "file": "go.yaml.in/yaml/v4@v4.0.0-rc.2/resolve.go",
+        "line": 281,
+        "title": "Base64 use is standard !!binary encoding",
+        "detail": "Base64 appears only in encodeBase64, which encodes non-UTF-8 strings as !!binary scalars during marshalling. This is standard YAML behaviour and the file contains no embedded payload."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

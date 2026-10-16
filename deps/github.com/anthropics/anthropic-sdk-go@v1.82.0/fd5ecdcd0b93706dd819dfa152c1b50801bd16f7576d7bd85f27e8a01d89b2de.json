@@ -1,0 +1,86 @@
+{
+  "kind": "third-party",
+  "module": "github.com/anthropics/anthropic-sdk-go",
+  "from": "",
+  "to": "v1.82.0",
+  "scope": "capabilities",
+  "part": 4,
+  "parts": 6,
+  "packages": [
+    "github.com/anthropics/anthropic-sdk-go"
+  ],
+  "digest": "sha256:fd5ecdcd0b93706dd819dfa152c1b50801bd16f7576d7bd85f27e8a01d89b2de",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This part of the Anthropic Go SDK holds generated REST client services (sessions, events, threads, skills, tunnels, vaults, credentials, user profiles, files, completions), client construction with credential discovery, webhook verification via standard-webhooks, and the message and session tool-runner loops. I checked for hidden endpoints, credential exfiltration, code download or execution, and obfuscation, and found none. All network traffic goes to the configured Anthropic API, and local execution is limited to tools the caller registers.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/client.go",
+        "line": 110,
+        "title": "Webhook key and custom headers only honored when no credentials are found",
+        "detail": "In DefaultClientOptions, ANTHROPIC_WEBHOOK_SIGNING_KEY and ANTHROPIC_CUSTOM_HEADERS are read only on the no-credentials fallback path. Every earlier credential source returns before reaching them, so these variables are silently ignored whenever any credential is found. This looks like an ordinary bug, not a deliberate concealment."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betasessiontoolrunner.go",
+        "line": 0,
+        "title": "Model-driven local tool execution",
+        "detail": "SessionToolRunner runs the caller's registered tools with input chosen by the remote agent. Calls gated with ask or deny are held or refused, and unknown permissions fail closed. Executed tools carry whatever risk the caller's tool implementations carry. This is the documented purpose."
+      }
+    ],
+    "capabilities": [
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go",
+        "capability": "NETWORK",
+        "explanation": "Every service method (sessions, events, threads, resources, skills, tunnels, user profiles, vaults, credentials, completions, files) builds a request with a fixed API path and sends it through requestconfig.ExecuteNewRequest or cfg.Execute to the configured base URL. That is the Anthropic API by default, or ANTHROPIC_BASE_URL / option.WithBaseURL. StreamEvents opens SSE streams. SessionToolRunner tails the stream, lists events and posts tool results. client.go sets up the default HTTP client. All of this is the SDK's stated purpose.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betasessiontoolrunner.go"
+      },
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "The tool runners (BetaToolRunner and SessionToolRunner) call BetaTool.Execute on implementations the caller registers, choosing the tool by the name the model returns. Only tools in the caller's registry can run, and confirmation-gated calls fail closed unless an explicit \"allow\" arrives. runtime.AddCleanup registers a span-ending cleanup. Reflection-based JSON/param marshalling of generated types also contributes. Nothing downloads or evaluates code.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betatoolrunner.go"
+      }
+    ],
+    "data_flows": [
+      {
+        "what": "API key or auth token from env or profile config, plus request bodies such as messages, events, credentials and tunnel parameters",
+        "to": "Anthropic API base URL (default production, or ANTHROPIC_BASE_URL)",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/client.go"
+      },
+      {
+        "what": "Output of locally executed tools, posted as user.tool_result or user.custom_tool_result events",
+        "to": "Anthropic API /v1/sessions/{id}/events",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betasessiontoolrunner.go"
+      },
+      {
+        "what": "File contents the caller passes to Upload",
+        "to": "Anthropic API /v1/files",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/file.go"
+      },
+      {
+        "what": "Skill files the caller supplies, sent as a multipart upload",
+        "to": "Anthropic API /v1/skills",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaskill.go"
+      },
+      {
+        "what": "Credential secrets (OAuth tokens, bearer tokens, env-var secret values) that the caller explicitly creates or updates",
+        "to": "Anthropic API /v1/vaults/{id}/credentials",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betavaultcredential.go"
+      },
+      {
+        "what": "Span attributes covering model, tool names, and tool inputs and results, subject to the telemetry options",
+        "to": "Application's OpenTelemetry tracer, when enabled",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betatoolrunner.go"
+      },
+      {
+        "what": "Warning messages about skipped or failed compaction",
+        "to": "stderr",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betatoolrunner.go"
+      }
+    ]
+  }
+}

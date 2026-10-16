@@ -1,0 +1,86 @@
+{
+  "kind": "third-party",
+  "module": "github.com/anthropics/anthropic-sdk-go",
+  "from": "",
+  "to": "v1.82.0",
+  "scope": "capabilities",
+  "part": 3,
+  "parts": 6,
+  "packages": [
+    "github.com/anthropics/anthropic-sdk-go"
+  ],
+  "digest": "sha256:af65ca12d1d1bfb898de56c73a1cb16fd84fd805818a277eefe273debd5da264",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This unit is part of the official Anthropic Go SDK: generated bindings for beta Models, Organization admin APIs (API keys, analytics, plugins, telemetry destinations, spend limits, RBAC, workspaces, federation) and Managed Agents sessions, plus message accumulation and structured-output parsing helpers. I checked every file for init-time side effects, hidden endpoints, credential handling, file/exec access and obfuscation. All network activity goes to the configured Anthropic API through requestconfig with data the caller supplies, and the init functions only register JSON unions.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaorganizationcompliancesetting.go",
+        "line": 0,
+        "title": "Generated API client code with no hidden behaviour",
+        "detail": "All files in this unit are Stainless-generated API bindings: request/response structs, union types, and service methods that call requestconfig with fixed relative paths. The init() functions only register JSON union discriminators. There is no file or environment access, no process execution, no hard-coded endpoints, credentials or encoded payloads, and no conditional behaviour based on host or environment."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaparse.go",
+        "line": 30,
+        "title": "Unbounded schema cache",
+        "detail": "schemaCache stores reflected JSON schemas keyed by reflect.Type and never evicts them, as the code comment documents. Programs that build many dynamic types could grow memory. This is benign and not a security issue."
+      }
+    ],
+    "capabilities": [
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "Comes from reflection and dynamic dispatch, not loading code. betaparse.go uses reflect.ValueOf and the invopop/jsonschema Reflector to build a JSON schema from a caller-supplied struct type. The generated services also pass function values (requestconfig.RequestOptionFunc closures, WithSpanCreatedID callbacks) and unmarshal through the reflection-based apijson package. Nothing here downloads or runs external code.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaparse.go"
+      },
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go",
+        "capability": "NETWORK",
+        "explanation": "Every service method (models, organization admin APIs, analytics, plugins, telemetry destinations, spend limits, sessions and others) builds a relative path such as \"v1/sessions?beta=true\". It sends it through requestconfig.ExecuteNewRequest or NewRequestConfig/Execute to the client's configured Anthropic API base URL. This is the SDK's core purpose.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betasession.go"
+      }
+    ],
+    "data_flows": [
+      {
+        "what": "Plugin files the caller supplies, sent as a multipart upload, plus release notes and marketplace ID",
+        "to": "Anthropic API v1/organizations/plugins (configured base URL)",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaorganizationplugin.go"
+      },
+      {
+        "what": "Plugin version files the caller supplies (multipart). Plugin archives are downloaded back to the caller as an http.Response.",
+        "to": "Anthropic API v1/organizations/plugins/{id}/versions",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaorganizationpluginversion.go"
+      },
+      {
+        "what": "Marketplace zip archive or GitHub repository URL the caller supplies",
+        "to": "Anthropic API v1/organizations/plugin_marketplaces/validate_archive and validate_repository",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaorganizationpluginmarketplace.go"
+      },
+      {
+        "what": "OTLP endpoint URL and auth header values the caller supplies, for configuring telemetry destinations server-side",
+        "to": "Anthropic API v1/organizations/telemetry_destinations",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaorganizationtelemetrydestination.go"
+      },
+      {
+        "what": "Session configuration the caller supplies: agent overrides, initial messages, resources (including an optional GitHub authorization token), vault IDs and metadata",
+        "to": "Anthropic API v1/sessions",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betasession.go"
+      },
+      {
+        "what": "KMS key configuration the caller supplies (ARNs, vault URIs, tenant IDs)",
+        "to": "Anthropic API v1/organizations/external_keys",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaorganizationexternalkey.go"
+      },
+      {
+        "what": "OIDC issuer, JWKS and federation rule configuration the caller supplies",
+        "to": "Anthropic API v1/organizations/federation_issuers and federation_rules",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaorganizationfederationissuer.go"
+      }
+    ]
+  }
+}

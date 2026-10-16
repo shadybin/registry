@@ -1,0 +1,1454 @@
+{
+  "model": "claude-opus-5-5",
+  "prompt": "3",
+  "previous": "",
+  "modules": [
+    {
+      "path": "github.com/anthropics/anthropic-sdk-go",
+      "version": "v1.82.0",
+      "owned": false,
+      "scope": "capabilities",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/bahlo/generic-list-go",
+      "version": "v0.2.0",
+      "owned": false,
+      "scope": "none",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/buger/jsonparser",
+      "version": "v1.1.2",
+      "owned": false,
+      "scope": "none",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/go-logr/logr",
+      "version": "v1.4.2",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/go-logr/stdr",
+      "version": "v1.2.2",
+      "owned": false,
+      "scope": "none",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/invopop/jsonschema",
+      "version": "v0.14.0",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/pb33f/ordered-map/v2",
+      "version": "v2.3.1",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/shadybin/shadybin",
+      "version": "",
+      "owned": true,
+      "scope": "project",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/shadybin/shadybin/verify",
+      "version": "",
+      "owned": true,
+      "scope": "project",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/standard-webhooks/standard-webhooks/libraries",
+      "version": "v0.0.1",
+      "owned": false,
+      "scope": "none",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/tidwall/gjson",
+      "version": "v1.18.0",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/tidwall/match",
+      "version": "v1.1.1",
+      "owned": false,
+      "scope": "none",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/tidwall/pretty",
+      "version": "v1.2.1",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/tidwall/sjson",
+      "version": "v1.2.5",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "go.opentelemetry.io/auto/sdk",
+      "version": "v1.1.0",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "go.opentelemetry.io/otel",
+      "version": "v1.33.0",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "go.opentelemetry.io/otel/metric",
+      "version": "v1.33.0",
+      "owned": false,
+      "scope": "none",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "go.opentelemetry.io/otel/trace",
+      "version": "v1.33.0",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "go.yaml.in/yaml/v4",
+      "version": "v4.0.0-rc.2",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "golang.org/x/sync",
+      "version": "v0.16.0",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    }
+  ],
+  "units": [
+    {
+      "kind": "project",
+      "module": "github.com/shadybin/shadybin",
+      "from": "",
+      "to": "",
+      "scope": "whole",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/shadybin/shadybin/cmd/shadybin",
+        "github.com/shadybin/shadybin/internal/checksums",
+        "github.com/shadybin/shadybin/internal/cli",
+        "github.com/shadybin/shadybin/internal/keys",
+        "github.com/shadybin/shadybin/internal/manifest",
+        "github.com/shadybin/shadybin/internal/registry",
+        "github.com/shadybin/shadybin/internal/review",
+        "github.com/shadybin/shadybin/verify"
+      ],
+      "digest": "sha256:c8e45e9d81f57c94d8ab61b0fe8a2319693eaf0b6ace92aa2290e868e88941af",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "shadybin rebuilds releases from tagged source, compares them with published checksums or archive contents, and gathers the compiled-in code for review by Claude at a fixed API endpoint. It decides verdicts by a deterministic rule and signs statements and cache entries with ed25519; the verify SDK fetches and checks signed statements. I checked the network endpoints, credential handling, subprocess use, key handling, signature verification and the verdict rule, and found no exfiltration, backdoor, obfuscation or weakened verification; only hardening concerns.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "concern",
+            "file": "internal/checksums/archive.go",
+            "line": 95,
+            "title": "Archive content comparison sees only Go's parse of the archive",
+            "detail": "In the zip branch, entries() trusts Go's central-directory view of the archive. A crafted zip whose local headers disagree with its central directory, or that carries data outside any listed entry, could extract differently with a streaming extractor. Yet it would compare as \"same contents\" and have its published digest certified. Gzip header extras and tar trailing data are also ignored. Nothing suggests this is deliberate; it is a hardening gap in the bytes-differ fallback."
+          },
+          {
+            "severity": "concern",
+            "file": "internal/review/zig.go",
+            "line": 228,
+            "title": "Vendor build code may run during review with the full environment",
+            "detail": "zigFetch runs `zig build --fetch=needed` in the checkout during review and manifest generation, which can compile and run the project's build.zig. It inherits the full environment, including ANTHROPIC_API_KEY. The rebuild path drops credential variables before running vendor code; this path does not. Where the key is the vendor's own, the exposure is limited, but the asymmetry is worth fixing."
+          },
+          {
+            "severity": "concern",
+            "file": "internal/cli/commands.go",
+            "line": 323,
+            "title": "Signed cache entries trust the review.json being signed",
+            "detail": "runSign signs cache entries for every freshly reviewed dependency unit in review.json, with shadybin's key. Before signing, it checks only that review.json matches the statement's digest and that Decide agrees. How review.json is produced in a trusted context is outside this unit (certify.yml). If a vendor could supply its own review.json, it could plant signed cache answers that other projects would use."
+          },
+          {
+            "severity": "info",
+            "file": "internal/review/source.go",
+            "line": 70,
+            "title": "Stale comment about third-party review",
+            "detail": "The comment on owned() says third-party modules are \"pinned and listed, but not reviewed\". Gather in fact reviews them at their surface or as a diff. The comment is outdated; behaviour matches the README."
+          },
+          {
+            "severity": "info",
+            "file": "internal/review/prompt.txt",
+            "line": 1,
+            "title": "Embedded reviewer prompt is the tool's own brief",
+            "detail": "The embedded system prompt addresses an AI reviewer. It is the tool's own reviewer brief, sent as the system prompt and published by design, not an attempt to influence this review. Its content matches the brief given here."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "github.com/shadybin/shadybin/cmd/shadybin",
+            "capability": "MODIFY_SYSTEM_STATE",
+            "explanation": "main calls signal.NotifyContext to cancel on Ctrl-C and os.Exit to return the command's exit code. Ordinary process control.",
+            "file": "cmd/shadybin/main.go"
+          },
+          {
+            "package": "github.com/shadybin/shadybin/internal/checksums",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "No code here runs anything chosen at run time. The capability comes from standard-library internals the package calls: archive/zip's registered decompressor function values, and io.Copy dispatching through Reader and Hash interfaces while hashing files and archive entries.",
+            "file": "internal/checksums/archive.go"
+          },
+          {
+            "package": "github.com/shadybin/shadybin/internal/checksums",
+            "capability": "NETWORK",
+            "explanation": "The package makes no network calls; it only reads local files and checksum text. Capslock reports this conservatively, through io.Copy and the reader interfaces it uses, which could in principle wrap network connections.",
+            "file": "internal/checksums/archive.go"
+          },
+          {
+            "package": "github.com/shadybin/shadybin/internal/cli",
+            "capability": "EXEC",
+            "explanation": "rebuild.go runs git (clone, rev-parse, status, log) to check out and verify the tag. It runs each build step from the registry's project.json with sh -c, in an environment with credential-like variables removed. Rebuilding releases is the tool's purpose.",
+            "file": "internal/cli/rebuild.go"
+          },
+          {
+            "package": "github.com/shadybin/shadybin/internal/cli",
+            "capability": "NETWORK",
+            "explanation": "runVerify builds an http.Transport, registering a file:// transport for a local registry directory, and the Checker fetches statements from the registry. git clone in rebuild also reaches the network.",
+            "file": "internal/cli/commands.go"
+          },
+          {
+            "package": "github.com/shadybin/shadybin/internal/manifest",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Build runs `go run github.com/google/capslock/cmd/capslock@v0.3.4`, which downloads and runs the analyser. Its version is pinned in the binary and its contents are fixed by the Go checksum database.",
+            "file": "internal/manifest/manifest.go"
+          },
+          {
+            "package": "github.com/shadybin/shadybin/internal/manifest",
+            "capability": "EXEC",
+            "explanation": "goCmd runs `go list` to list modules and dependencies, and Build runs `go run` on the pinned Capslock to produce the capability manifest.",
+            "file": "internal/manifest/manifest.go"
+          },
+          {
+            "package": "github.com/shadybin/shadybin/internal/manifest",
+            "capability": "NETWORK",
+            "explanation": "The package opens no sockets itself. Network use comes through the go commands it runs: go run and go list may download Capslock and modules from the module proxy.",
+            "file": "internal/manifest/manifest.go"
+          },
+          {
+            "package": "github.com/shadybin/shadybin/internal/registry",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "html/template executes the registry page templates through reflection-based method and function calls. The templates are constants in the binary, so nothing runs from data.",
+            "file": "internal/registry/pages.go"
+          },
+          {
+            "package": "github.com/shadybin/shadybin/internal/registry",
+            "capability": "NETWORK",
+            "explanation": "The package makes no network calls. The capability comes from html/template's URL escaping and parsing of the constant shadybin.dev and shields.io links in the pages.",
+            "file": "internal/registry/pages.go"
+          },
+          {
+            "package": "github.com/shadybin/shadybin/internal/review",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Comes from encoding/json and the Anthropic SDK's streaming and option function values. zigFetch's `zig build --fetch=needed` may also run the project's build.zig to work out which dependencies are needed. Nothing is loaded from downloaded data.",
+            "file": "internal/review/zig.go"
+          },
+          {
+            "package": "github.com/shadybin/shadybin/internal/review",
+            "capability": "EXEC",
+            "explanation": "Runs git (diff, ls-files, archive, init/fetch/show for provenance, worktree), `go list -deps -json` and `go mod download`, `cargo metadata`, and `zig build --fetch` and `zig env`, to find the code compiled in and fetch older versions to diff against.",
+            "file": "internal/review/gather.go"
+          },
+          {
+            "package": "github.com/shadybin/shadybin/internal/review",
+            "capability": "NETWORK",
+            "explanation": "Several network uses, each serving the review:\n- claude.go streams review units to the fixed endpoint https://api.anthropic.com/.\n- cache.go GETs signed dependency-review cache entries from the registry.\n- rust.go downloads older crates from static.crates.io.\n- vendored.go downloads upstream archives for vendored copies and checks them against their pinned sha256.",
+            "file": "internal/review/claude.go"
+          },
+          {
+            "package": "github.com/shadybin/shadybin/verify",
+            "capability": "NETWORK",
+            "explanation": "Checker.get fetches statement.txt and statement.txt.sig from the registry, https://shadybin.dev/registry by default. It then verifies the ed25519 signature against the pinned keys. This is the SDK's purpose.",
+            "file": "verify/verify.go"
+          }
+        ],
+        "data_flows": [
+          {
+            "what": "The system prompt, plus each review unit: the project's source, diffs and dependency surfaces, and the README excerpt",
+            "to": "Claude API at https://api.anthropic.com/ (fixed endpoint), authenticated with ANTHROPIC_API_KEY from the environment",
+            "file": "internal/review/claude.go"
+          },
+          {
+            "what": "Requests for deps/\u003cmodule\u003e@\u003cversion\u003e/\u003cdigest\u003e.json and .sig, which reveal the module names and versions being reviewed",
+            "to": "Registry URL given by -cache (HTTP GET), or a local directory",
+            "file": "internal/review/cache.go"
+          },
+          {
+            "what": "Crate name and version requests; git fetch of the commit named in .cargo_vcs_info.json",
+            "to": "https://static.crates.io and the crate's declared source repository (via git fetch)",
+            "file": "internal/review/rust.go"
+          },
+          {
+            "what": "HTTP GET of upstream release archives, checked against the pinned sha256",
+            "to": "URLs declared in project.json's vendored entries",
+            "file": "internal/review/vendored.go"
+          },
+          {
+            "what": "Module path and version for `go mod download`, and `go list` in the checkout",
+            "to": "go command, and through it the Go module proxy",
+            "file": "internal/review/golang.go"
+          },
+          {
+            "what": "Dependency fetches via `zig build --fetch=needed`",
+            "to": "zig command, and through it the dependency URLs in build.zig.zon",
+            "file": "internal/review/zig.go"
+          },
+          {
+            "what": "`go run` of the pinned Capslock, and `go list` over the checkout",
+            "to": "go command, and through it the Go module proxy",
+            "file": "internal/manifest/manifest.go"
+          },
+          {
+            "what": "Clone of the project's repository at the tag. Build commands run with the caller's environment, minus credential-like variables, plus SOURCE_DATE_EPOCH, TAG and the build's env.",
+            "to": "git, and sh running the project.json build steps",
+            "file": "internal/cli/rebuild.go"
+          },
+          {
+            "what": "Copies of the built artifacts",
+            "to": "Output directory given by -out",
+            "file": "internal/cli/rebuild.go"
+          },
+          {
+            "what": "statement.txt, the appended signature line, report.md, manifest.json, review.json, badges, the latest file, and signed cache entries",
+            "to": "Local registry directory (-registry)",
+            "file": "internal/cli/commands.go"
+          },
+          {
+            "what": "A newly generated ed25519 private key seed",
+            "to": "File given by keygen -o, created with mode 0600",
+            "file": "internal/keys/keys.go"
+          },
+          {
+            "what": "HTTP GET of the release's statement and signature, which reveals the repository and tag being checked",
+            "to": "Registry (https://shadybin.dev/registry by default)",
+            "file": "verify/verify.go"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/anthropics/anthropic-sdk-go",
+      "from": "",
+      "to": "v1.82.0",
+      "scope": "capabilities",
+      "part": 1,
+      "parts": 6,
+      "packages": [
+        "github.com/anthropics/anthropic-sdk-go"
+      ],
+      "digest": "sha256:15bbd0e284b926e250c47e3207681823836a7aacf71fda91eaff60ec2741aa37",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This part of the anthropic-sdk-go root package holds generated API types and service methods for beta endpoints: agents, deployments, dreams, environments, files and memory stores. Each method sends caller-supplied parameters over HTTP to the configured Anthropic API. I checked the init functions, the request construction and the use of headers and paths, and found no hidden network destinations, credential harvesting, code execution or persistence.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaagent.go",
+            "line": 0,
+            "title": "Generated SDK code with no suspicious behavior",
+            "detail": "All files are Stainless-generated API client code: typed request/response structs, union helpers, and service methods that send HTTP requests to the configured Anthropic API endpoint through internal/requestconfig. The init() functions only call apijson.RegisterUnion with constant discriminators. There is no file, environment or credential access beyond what the caller passes in, no exec, and no hidden endpoints."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go",
+            "capability": "NETWORK",
+            "explanation": "Every service method (e.g. BetaAgentService.New/Get/List, BetaDeploymentService.Run, BetaFileService.Upload/Download, BetaMemoryStoreMemoryService.*) builds a path such as \"v1/agents?beta=true\" and calls requestconfig.ExecuteNewRequest or cfg.Execute, which performs HTTP requests to the Anthropic API base URL set in the client options. This is the SDK's whole purpose.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaagent.go"
+          },
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Comes from the reflection-based serialization machinery the generated types use: apijson.UnmarshalRoot, param.MarshalObject/MarshalUnion, and apijson.RegisterUnion called in init() to register discriminated unions, plus RequestOptionFunc closures run by requestconfig. None of this loads or runs code chosen at run time from outside the program; the init functions only register type discriminators.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaagent.go"
+          }
+        ],
+        "data_flows": [
+          {
+            "what": "Caller-supplied agent definitions (name, system prompt, tools, MCP server URLs, metadata), workspace ID and beta headers",
+            "to": "Anthropic API (configured base URL), /v1/agents endpoints",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaagent.go"
+          },
+          {
+            "what": "Deployment configs including initial events, resources such as GitHub repository authorization tokens supplied by the caller, vault IDs, schedules",
+            "to": "Anthropic API, /v1/deployments endpoints",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betadeployment.go"
+          },
+          {
+            "what": "File contents the caller uploads as multipart form data; file downloads returned to the caller as an http.Response",
+            "to": "Anthropic API, /v1/files endpoints",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betafile.go"
+          },
+          {
+            "what": "Memory text content and paths supplied by the caller",
+            "to": "Anthropic API, /v1/memory_stores endpoints",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betamemorystorememory.go"
+          },
+          {
+            "what": "Worker poll/heartbeat/ack/stop requests, including an optional Anthropic-Worker-ID header",
+            "to": "Anthropic API, /v1/environments/{id}/work endpoints",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaenvironmentwork.go"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/anthropics/anthropic-sdk-go",
+      "from": "",
+      "to": "v1.82.0",
+      "scope": "capabilities",
+      "part": 2,
+      "parts": 6,
+      "packages": [
+        "github.com/anthropics/anthropic-sdk-go"
+      ],
+      "digest": "sha256:6ec73d73efcec8e2d8a341634cbfcbfa77cd024545f2d2d1456740c0e88d1e91",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This unit is the beta Messages and Message Batches API surface of the Anthropic Go SDK: request/response types plus service methods that send caller-supplied parameters to the configured Anthropic API. I checked the init() functions (union and validator registration only), the request paths and headers, and looked for hidden endpoints, credential or environment access, and encoded payloads, and found none.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betamessage.go",
+            "line": 0,
+            "title": "Generated API client code, no suspicious behavior",
+            "detail": "Both files are standard Stainless-generated SDK code: request and response types, union helpers, and init() functions that only register JSON union discriminators and field validators. Every network call goes through the shared requestconfig path to the configured API endpoint and carries only caller-supplied parameters. There is no environment, file or credential access, no hidden endpoints, and no encoded payloads."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betamessage.go",
+            "line": 0,
+            "title": "Tool-use types are passive data",
+            "detail": "The browser/computer toolset types, including javascript_exec, bash and file_upload, are only data structures that describe tool calls the model returns. This SDK code does not execute any of them."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go",
+            "capability": "NETWORK",
+            "explanation": "BetaMessageService.New, NewStreaming and CountTokens, and the BetaMessageBatchService methods (New, Get, List, Delete, Cancel, ResultsStreaming) build relative API paths such as v1/messages and v1/messages/batches and send them through requestconfig.ExecuteNewRequest, which makes HTTP requests to the client's configured Anthropic API base URL. The net/url use here is only url.PathEscape on batch IDs. This is the core purpose of an API client SDK.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betamessage.go"
+          },
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Comes from the SDK's reflection-based JSON machinery. It is reached through apijson.UnmarshalRoot, apijson.RegisterUnion/Discriminator, apijson.RegisterFieldValidator, param.MarshalObject/MarshalUnion and the closures passed as request options (requestconfig.RequestOptionFunc). These invoke MarshalJSON/UnmarshalJSON methods and option callbacks chosen by type at run time. No code is loaded or run from data.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betamessage.go"
+          }
+        ],
+        "data_flows": [
+          {
+            "what": "Caller-supplied message request parameters: messages, system prompt, tools, model and settings. Also optional anthropic-beta, anthropic-user-profile-id and anthropic-workspace-id headers.",
+            "to": "Anthropic API (configured base URL) POST v1/messages?beta=true and v1/messages/count_tokens?beta=true",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betamessage.go"
+          },
+          {
+            "what": "Caller-supplied batch requests and batch IDs, pagination query parameters, and workspace and beta headers.",
+            "to": "Anthropic API (configured base URL) v1/messages/batches endpoints (create, get, list, delete, cancel, results)",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betamessagebatch.go"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/anthropics/anthropic-sdk-go",
+      "from": "",
+      "to": "v1.82.0",
+      "scope": "capabilities",
+      "part": 3,
+      "parts": 6,
+      "packages": [
+        "github.com/anthropics/anthropic-sdk-go"
+      ],
+      "digest": "sha256:af65ca12d1d1bfb898de56c73a1cb16fd84fd805818a277eefe273debd5da264",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This unit is part of the official Anthropic Go SDK: generated bindings for beta Models, Organization admin APIs (API keys, analytics, plugins, telemetry destinations, spend limits, RBAC, workspaces, federation) and Managed Agents sessions, plus message accumulation and structured-output parsing helpers. I checked every file for init-time side effects, hidden endpoints, credential handling, file/exec access and obfuscation. All network activity goes to the configured Anthropic API through requestconfig with data the caller supplies, and the init functions only register JSON unions.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaorganizationcompliancesetting.go",
+            "line": 0,
+            "title": "Generated API client code with no hidden behaviour",
+            "detail": "All files in this unit are Stainless-generated API bindings: request/response structs, union types, and service methods that call requestconfig with fixed relative paths. The init() functions only register JSON union discriminators. There is no file or environment access, no process execution, no hard-coded endpoints, credentials or encoded payloads, and no conditional behaviour based on host or environment."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaparse.go",
+            "line": 30,
+            "title": "Unbounded schema cache",
+            "detail": "schemaCache stores reflected JSON schemas keyed by reflect.Type and never evicts them, as the code comment documents. Programs that build many dynamic types could grow memory. This is benign and not a security issue."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Comes from reflection and dynamic dispatch, not loading code. betaparse.go uses reflect.ValueOf and the invopop/jsonschema Reflector to build a JSON schema from a caller-supplied struct type. The generated services also pass function values (requestconfig.RequestOptionFunc closures, WithSpanCreatedID callbacks) and unmarshal through the reflection-based apijson package. Nothing here downloads or runs external code.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaparse.go"
+          },
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go",
+            "capability": "NETWORK",
+            "explanation": "Every service method (models, organization admin APIs, analytics, plugins, telemetry destinations, spend limits, sessions and others) builds a relative path such as \"v1/sessions?beta=true\". It sends it through requestconfig.ExecuteNewRequest or NewRequestConfig/Execute to the client's configured Anthropic API base URL. This is the SDK's core purpose.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betasession.go"
+          }
+        ],
+        "data_flows": [
+          {
+            "what": "Plugin files the caller supplies, sent as a multipart upload, plus release notes and marketplace ID",
+            "to": "Anthropic API v1/organizations/plugins (configured base URL)",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaorganizationplugin.go"
+          },
+          {
+            "what": "Plugin version files the caller supplies (multipart). Plugin archives are downloaded back to the caller as an http.Response.",
+            "to": "Anthropic API v1/organizations/plugins/{id}/versions",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaorganizationpluginversion.go"
+          },
+          {
+            "what": "Marketplace zip archive or GitHub repository URL the caller supplies",
+            "to": "Anthropic API v1/organizations/plugin_marketplaces/validate_archive and validate_repository",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaorganizationpluginmarketplace.go"
+          },
+          {
+            "what": "OTLP endpoint URL and auth header values the caller supplies, for configuring telemetry destinations server-side",
+            "to": "Anthropic API v1/organizations/telemetry_destinations",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaorganizationtelemetrydestination.go"
+          },
+          {
+            "what": "Session configuration the caller supplies: agent overrides, initial messages, resources (including an optional GitHub authorization token), vault IDs and metadata",
+            "to": "Anthropic API v1/sessions",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betasession.go"
+          },
+          {
+            "what": "KMS key configuration the caller supplies (ARNs, vault URIs, tenant IDs)",
+            "to": "Anthropic API v1/organizations/external_keys",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaorganizationexternalkey.go"
+          },
+          {
+            "what": "OIDC issuer, JWKS and federation rule configuration the caller supplies",
+            "to": "Anthropic API v1/organizations/federation_issuers and federation_rules",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaorganizationfederationissuer.go"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/anthropics/anthropic-sdk-go",
+      "from": "",
+      "to": "v1.82.0",
+      "scope": "capabilities",
+      "part": 4,
+      "parts": 6,
+      "packages": [
+        "github.com/anthropics/anthropic-sdk-go"
+      ],
+      "digest": "sha256:fd5ecdcd0b93706dd819dfa152c1b50801bd16f7576d7bd85f27e8a01d89b2de",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This part of the Anthropic Go SDK holds generated REST client services (sessions, events, threads, skills, tunnels, vaults, credentials, user profiles, files, completions), client construction with credential discovery, webhook verification via standard-webhooks, and the message and session tool-runner loops. I checked for hidden endpoints, credential exfiltration, code download or execution, and obfuscation, and found none. All network traffic goes to the configured Anthropic API, and local execution is limited to tools the caller registers.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/client.go",
+            "line": 110,
+            "title": "Webhook key and custom headers only honored when no credentials are found",
+            "detail": "In DefaultClientOptions, ANTHROPIC_WEBHOOK_SIGNING_KEY and ANTHROPIC_CUSTOM_HEADERS are read only on the no-credentials fallback path. Every earlier credential source returns before reaching them, so these variables are silently ignored whenever any credential is found. This looks like an ordinary bug, not a deliberate concealment."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betasessiontoolrunner.go",
+            "line": 0,
+            "title": "Model-driven local tool execution",
+            "detail": "SessionToolRunner runs the caller's registered tools with input chosen by the remote agent. Calls gated with ask or deny are held or refused, and unknown permissions fail closed. Executed tools carry whatever risk the caller's tool implementations carry. This is the documented purpose."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go",
+            "capability": "NETWORK",
+            "explanation": "Every service method (sessions, events, threads, resources, skills, tunnels, user profiles, vaults, credentials, completions, files) builds a request with a fixed API path and sends it through requestconfig.ExecuteNewRequest or cfg.Execute to the configured base URL. That is the Anthropic API by default, or ANTHROPIC_BASE_URL / option.WithBaseURL. StreamEvents opens SSE streams. SessionToolRunner tails the stream, lists events and posts tool results. client.go sets up the default HTTP client. All of this is the SDK's stated purpose.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betasessiontoolrunner.go"
+          },
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "The tool runners (BetaToolRunner and SessionToolRunner) call BetaTool.Execute on implementations the caller registers, choosing the tool by the name the model returns. Only tools in the caller's registry can run, and confirmation-gated calls fail closed unless an explicit \"allow\" arrives. runtime.AddCleanup registers a span-ending cleanup. Reflection-based JSON/param marshalling of generated types also contributes. Nothing downloads or evaluates code.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betatoolrunner.go"
+          }
+        ],
+        "data_flows": [
+          {
+            "what": "API key or auth token from env or profile config, plus request bodies such as messages, events, credentials and tunnel parameters",
+            "to": "Anthropic API base URL (default production, or ANTHROPIC_BASE_URL)",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/client.go"
+          },
+          {
+            "what": "Output of locally executed tools, posted as user.tool_result or user.custom_tool_result events",
+            "to": "Anthropic API /v1/sessions/{id}/events",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betasessiontoolrunner.go"
+          },
+          {
+            "what": "File contents the caller passes to Upload",
+            "to": "Anthropic API /v1/files",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/file.go"
+          },
+          {
+            "what": "Skill files the caller supplies, sent as a multipart upload",
+            "to": "Anthropic API /v1/skills",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaskill.go"
+          },
+          {
+            "what": "Credential secrets (OAuth tokens, bearer tokens, env-var secret values) that the caller explicitly creates or updates",
+            "to": "Anthropic API /v1/vaults/{id}/credentials",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betavaultcredential.go"
+          },
+          {
+            "what": "Span attributes covering model, tool names, and tool inputs and results, subject to the telemetry options",
+            "to": "Application's OpenTelemetry tracer, when enabled",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betatoolrunner.go"
+          },
+          {
+            "what": "Warning messages about skipped or failed compaction",
+            "to": "stderr",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betatoolrunner.go"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/anthropics/anthropic-sdk-go",
+      "from": "",
+      "to": "v1.82.0",
+      "scope": "capabilities",
+      "part": 5,
+      "parts": 6,
+      "packages": [
+        "github.com/anthropics/anthropic-sdk-go",
+        "github.com/anthropics/anthropic-sdk-go/config",
+        "github.com/anthropics/anthropic-sdk-go/internal/apierror",
+        "github.com/anthropics/anthropic-sdk-go/internal/apiform"
+      ],
+      "digest": "sha256:00f62f5b6656c99e2452209d1373846237120ae5e1a6a97036db0fe038e387b7",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This unit is generated client code from the Anthropic Go SDK: Messages, batches, models, organization admin and skills endpoints, plus the config package for profile and credential files and OIDC federation token exchange, the API error type, and the multipart form encoder. I checked the init functions (union and decoder registration only), all network endpoints (the configured Anthropic API, with HTTPS-only and no-redirect token exchange), file writes (the SDK's own config directory with restrictive modes) and environment reads. I found no exfiltration, backdoor, obfuscation or hidden behaviour.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/config/writers.go",
+            "line": 0,
+            "title": "Local credential file handling",
+            "detail": "The config package reads profiles and credentials from the Anthropic config directory and from ANTHROPIC_* environment variables, and writes credential files with 0600 and 0700 permissions. It refuses symlinked targets and validates profile names against path traversal. All of this is the SDK's documented credential storage."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/config/https.go",
+            "line": 0,
+            "title": "Token endpoint hardening present",
+            "detail": "RequireSecureTokenEndpoint rejects non-HTTPS token endpoints except loopback. WithoutRedirects stops a 307/308 from replaying credentials to another host. RedactOAuthErrorBody keeps only RFC 6749 error keys when logging. These checks strengthen security."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/apierror/apierror.go",
+            "line": 0,
+            "title": "Sensitive headers redacted in error dumps",
+            "detail": "DumpRequest and DumpResponse replace Authorization, x-api-key, cookie and similar header values with *** before dumping."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go",
+            "capability": "NETWORK",
+            "explanation": "Every service method (Messages.New/NewStreaming/CountTokens, batches, models, organization admin, skills) builds an HTTP request through requestconfig.ExecuteNewRequest to the configured Anthropic API base URL. This is the SDK's purpose.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/message.go"
+          },
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Comes from reflection: schemautil.go walks jsonschema.Schema fields with reflect, and init() functions register custom JSON decoders and union discriminators with apijson (reflect.MakeSlice/Set). No code is loaded or run from data.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/schemautil.go"
+          },
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go/config",
+            "capability": "NETWORK",
+            "explanation": "ExchangeFederationAssertion POSTs a jwt-bearer grant to \u003cbase\u003e/v1/oauth/token, defaulting to https://api.anthropic.com, requiring HTTPS (or loopback) and refusing redirects. This is the documented workload identity federation flow.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/config/federation.go"
+          },
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go/config",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Comes from reflection inside encoding/json and from compiling a fixed regexp for profile-name validation. Nothing is executed from data.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/config/config.go"
+          },
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go/internal/apierror",
+            "capability": "NETWORK",
+            "explanation": "Uses net/http types and httputil.DumpRequestOut/DumpResponse to format a failed request or response for debugging, with auth headers redacted. DumpRequestOut uses an in-memory fake transport and sends nothing over the network.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/apierror/apierror.go"
+          },
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go/internal/apierror",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Comes from reflection-based JSON decoding (apijson.UnmarshalRoot, encoding/json) of API error bodies. Nothing is executed from data.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/apierror/apierror.go"
+          },
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go/internal/apiform",
+            "capability": "NETWORK",
+            "explanation": "Uses mime/multipart and net/textproto to build multipart form bodies (e.g. skill file uploads) in memory. It makes no network connections itself.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/apiform/encoder.go"
+          }
+        ],
+        "data_flows": [
+          {
+            "what": "User-supplied prompts, messages, tool definitions and optional user-profile and workspace headers",
+            "to": "Anthropic API (configured base URL), /v1/messages and /v1/messages/count_tokens",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/message.go"
+          },
+          {
+            "what": "Batch message requests the caller supplies",
+            "to": "Anthropic API /v1/messages/batches",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/messagebatch.go"
+          },
+          {
+            "what": "Skill files the caller passes as io.Readers",
+            "to": "Anthropic API /v1/skills (multipart upload)",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/skill.go"
+          },
+          {
+            "what": "Organization admin operations the caller invokes: API keys, users, invites, workspaces, federation, external keys",
+            "to": "Anthropic Admin API /v1/organizations/*",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/organizationapikey.go"
+          },
+          {
+            "what": "OIDC JWT assertion, federation rule ID, organization ID, service account ID and workspace ID",
+            "to": "Anthropic token endpoint \u003cbase\u003e/v1/oauth/token (HTTPS only, no redirects)",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/config/federation.go"
+          },
+          {
+            "what": "Profile config JSON (mode 0644) and OAuth access/refresh tokens (mode 0600), written atomically when the caller asks",
+            "to": "Local Anthropic config dir (~/.config/anthropic/configs and credentials, or ANTHROPIC_CONFIG_DIR)",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/config/writers.go"
+          },
+          {
+            "what": "Deprecation warning naming the model",
+            "to": "stderr",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/thinking_warn.go"
+          },
+          {
+            "what": "Warn-once messages naming unknown authentication fields in profile files",
+            "to": "Go standard log output",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/config/config.go"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/anthropics/anthropic-sdk-go",
+      "from": "",
+      "to": "v1.82.0",
+      "scope": "capabilities",
+      "part": 6,
+      "parts": 6,
+      "packages": [
+        "github.com/anthropics/anthropic-sdk-go/internal/apijson",
+        "github.com/anthropics/anthropic-sdk-go/internal/auth",
+        "github.com/anthropics/anthropic-sdk-go/internal/requestconfig",
+        "github.com/anthropics/anthropic-sdk-go/internal/telemetry",
+        "github.com/anthropics/anthropic-sdk-go/internal/tracing",
+        "github.com/anthropics/anthropic-sdk-go/option",
+        "github.com/anthropics/anthropic-sdk-go/packages/ssestream"
+      ],
+      "digest": "sha256:4f45a23e78f9a329806ced1cfde1ec45203b2f7b524a448aa22aa6f7942ac3fc",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "These packages are the Anthropic Go SDK's request pipeline: JSON encoding and decoding, OAuth/OIDC federation and refresh-token auth, the request/retry engine, OpenTelemetry span recording and SSE stream decoding. I checked the network destinations (configured base URL only, with a secure token endpoint and same-origin bearer attachment), file access (the SDK's own credentials file and a user-specified identity token file, both with safety checks), telemetry (application-registered OTel provider only), and looked for hidden behaviour, encoded payloads or code execution, finding none.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/requestconfig/requestconfig.go",
+            "line": 67,
+            "title": "Platform headers sent to API",
+            "detail": "Every request carries the OS, architecture and Go runtime version in X-Stainless-* headers. This is standard for generated Stainless SDKs and goes only to the configured API endpoint."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/tracing/tracing.go",
+            "line": 127,
+            "title": "OpenTelemetry spans via the application's provider",
+            "detail": "Spans are on by default but go only through the TracerProvider the application registered, which is a no-op unless the application configures one. Prompt and response content is recorded only in opt-in content mode. Spans can be turned off with an option or with ANTHROPIC_OPEN_TELEMETRY=false."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/apijson/decoder.go",
+            "line": 636,
+            "title": "unsafe used to set unexported metadata field",
+            "detail": "reflect.NewAt with unsafe.Pointer writes the unexported raw-JSON metadata field of response structs. It touches only the SDK's own types."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go/internal/apijson",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Comes from reflection: the encoder and decoder walk struct types, call MarshalJSON/UnmarshalJSON through interfaces and run registered custom decoders. setUnexportedField uses reflect.NewAt with unsafe.Pointer to fill the private JSON.raw metadata field. This is ordinary serialization machinery and runs no code chosen from data.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/apijson/decoder.go"
+          },
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go/internal/apijson",
+            "capability": "NETWORK",
+            "explanation": "The package makes no network calls of its own. The capability is attributed transitively through interface calls (json.Marshaler/Unmarshaler, the param package) that the analysis cannot resolve; apijson only encodes and decodes JSON bytes.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/apijson/encoder.go"
+          },
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go/internal/auth",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Calls TokenProvider and IdentityTokenProvider through function values and interfaces, and the HTTP handler passed in by the client. It also uses encoding/json reflection. These are callbacks the application or SDK supplies.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/auth/middleware.go"
+          },
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go/internal/auth",
+            "capability": "NETWORK",
+            "explanation": "Sends OAuth token requests: the OIDC jwt-bearer exchange and the refresh_token grant, POSTed to the configured base URL plus /v1/oauth/token. The base URL is first checked with RequireSecureTokenEndpoint, and redirects are disabled. The middleware attaches the bearer token only to requests whose origin matches the configured base URL.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/auth/workload.go"
+          },
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go/internal/requestconfig",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Runs the middleware chain and request-option functions the application supplies, and the SpanRecorder callbacks. Encoding a request body uses reflection.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/requestconfig/requestconfig.go"
+          },
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go/internal/requestconfig",
+            "capability": "NETWORK",
+            "explanation": "Sends API requests with the configured http.Client or custom doer, with retries and backoff, to the configured base URL (default https://api.anthropic.com/). Also builds the default HTTP client transport.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/requestconfig/requestconfig.go"
+          },
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go/internal/telemetry",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Calls the application's tracer, the tool description callback and the StreamedMessage interface methods. Uses json and gjson decoding, which relies on reflection.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/telemetry/runner.go"
+          },
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go/internal/telemetry",
+            "capability": "NETWORK",
+            "explanation": "Reads response headers from net/http values and sets span attributes. Spans go to the OpenTelemetry TracerProvider the application registered, whose exporters may use the network. The package opens no connections itself.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/telemetry/apicall.go"
+          },
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go/internal/tracing",
+            "capability": "NETWORK",
+            "explanation": "Uses net/http, net/url and net.Error types. It wraps response bodies to end spans, and injects trace-context headers with the propagator the application registered. It parses URLs to build server and url.* span attributes. It sends no data anywhere of its own.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/tracing/tracing.go"
+          },
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go/option",
+            "capability": "NETWORK",
+            "explanation": "Client options configure the HTTP client, base URL, headers, middleware and the federation token provider. WithDebugLog dumps requests and responses with httputil after redacting sensitive headers. WithEnvironmentProduction sets api.anthropic.com as the default base URL.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/option/requestoption.go"
+          },
+          {
+            "package": "github.com/anthropics/anthropic-sdk-go/packages/ssestream",
+            "capability": "NETWORK",
+            "explanation": "Decodes server-sent events from the body of an http.Response the SDK has already received. It opens no connections.",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/packages/ssestream/ssestream.go"
+          }
+        ],
+        "data_flows": [
+          {
+            "what": "API request bodies and headers: API key or bearer token, User-Agent, anthropic-version, and X-Stainless OS/arch/Go-version/package-version headers.",
+            "to": "Configured API base URL (default https://api.anthropic.com/)",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/requestconfig/requestconfig.go"
+          },
+          {
+            "what": "OIDC identity JWT, federation rule ID, organization ID, and optional service account and workspace IDs, for the token exchange.",
+            "to": "base URL + /v1/oauth/token (must pass RequireSecureTokenEndpoint)",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/auth/workload.go"
+          },
+          {
+            "what": "Refresh token and client_id for the user OAuth refresh.",
+            "to": "base URL + /v1/oauth/token",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/auth/credentials_file.go"
+          },
+          {
+            "what": "Cached or refreshed access token, refresh token and expiry.",
+            "to": "Profile credentials file (config.WriteCredentials)",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/auth/credentials_file.go"
+          },
+          {
+            "what": "Span metadata: model, token usage, request IDs, URL path, and allow-listed query parameters. Prompt and response content only when content mode is enabled. Trace-context headers go on outgoing requests.",
+            "to": "Application-registered OpenTelemetry TracerProvider and propagator",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/tracing/tracing.go"
+          },
+          {
+            "what": "HTTP request and response dumps with sensitive headers redacted.",
+            "to": "Application-supplied log.Logger (opt-in WithDebugLog)",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/option/middleware.go"
+          },
+          {
+            "what": "One-time warnings about credential cache or refresh failures and shadowed config.",
+            "to": "Standard logger (stderr)",
+            "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/internal/auth/logging.go"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/go-logr/logr",
+      "from": "",
+      "to": "v1.4.2",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/go-logr/logr",
+        "github.com/go-logr/logr/funcr"
+      ],
+      "digest": "sha256:c9d2107279947ada6bd01e77349ff9d954d65ea50d3d5379d23c5609a03a2971",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "go-logr/logr v1.4.2 is a structured-logging API (Logger/LogSink, context helpers, slog bridges); its funcr subpackage formats log lines and passes them to a caller-provided function. I read every surface file for init code, I/O, exec, network, encoded payloads, environment-dependent behaviour and text addressed to reviewers, and found none. The flagged capabilities arise only from reflection, runtime caller lookup and dynamic calls into user-supplied interfaces.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/go-logr/logr@v1.4.2/funcr/funcr.go",
+            "line": 0,
+            "title": "No side effects beyond formatting and dispatch to user-supplied sinks",
+            "detail": "Both packages are purely in-process logging abstractions. logr defines Logger/LogSink, context helpers and slog adapters. funcr formats key/value pairs and hands the strings to a caller-supplied function. The unit has no init functions, build scripts, embedded data, encoded strings, exec, file or network I/O, or environment or credential access. The content matches the well-known upstream v1.4.2 source."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "github.com/go-logr/logr",
+            "capability": "NETWORK",
+            "explanation": "The logr package contains no networking code. The capability is most likely inferred from its dynamic calls: user-supplied LogSink and slog.Handler implementations (slogsink.go, sloghandler.go) and the slog.Record/Value machinery, which can call String()/Error() methods of arbitrary types, including net types. Any real I/O is done by the sink or handler the application chooses.",
+            "file": "github.com/go-logr/logr@v1.4.2/slogsink.go"
+          },
+          {
+            "package": "github.com/go-logr/logr/funcr",
+            "capability": "MODIFY_SYSTEM_STATE",
+            "explanation": "funcr has no code that changes process or system state. The capability most likely comes from reflection used to render values (reflect.ValueOf, Field, MapRange, Interface) and from runtime.Caller/FuncForPC used for call-site attribution. It may also come from invoking user-supplied MarshalLog/String/Error methods and the caller-provided write function. These are harmless formatting operations.",
+            "file": "github.com/go-logr/logr@v1.4.2/funcr/funcr.go"
+          },
+          {
+            "package": "github.com/go-logr/logr/funcr",
+            "capability": "NETWORK",
+            "explanation": "funcr makes no network calls. The capability is most likely inferred conservatively from its calls through interfaces, such as fmt.Stringer, error, encoding.TextMarshaler, logr.Marshaler and the caller-supplied write func, which static analysis may resolve to network-related types. Output goes only to the function the application passes to New/NewJSON.",
+            "file": "github.com/go-logr/logr@v1.4.2/funcr/funcr.go"
+          }
+        ],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/invopop/jsonschema",
+      "from": "",
+      "to": "v0.14.0",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/invopop/jsonschema"
+      ],
+      "digest": "sha256:f33d2e4dade3534c32fc5083419dc4aa4f79b8e479523b46aac25a6f823c5624",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "invopop/jsonschema generates JSON Schema documents from Go types by reflection, with optional extraction of doc comments from local Go source files. I checked all surface files for init code, network or exec use, file writes, encoded payloads and hooking, and found none. The NETWORK capability comes only from using net.IP and url.URL types and url.Parse.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/invopop/jsonschema@v0.14.0/reflect_comments.go",
+            "line": 64,
+            "title": "Reads Go source files from a caller-provided path",
+            "detail": "AddGoComments uses filepath.Walk to read and parse the .go files under a directory the caller supplies, extracting doc comments into an in-memory map. It is read-only, local and documented as the library's purpose."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "github.com/invopop/jsonschema",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Comes from reflection: reflect.New and calls through interfaces the caller's types implement (JSONSchema, JSONSchemaExtend, JSONSchemaAlias, JSONSchemaProperty, GetFieldDocString), plus caller-supplied hooks (Mapper, Namer, Lookup, KeyNamer, AdditionalFields, LookupComment). These are the documented ways a schema-reflection library lets types customise their schema. reflect.DeepEqual in MarshalJSON adds to it. No code is loaded or run from data.",
+            "file": "github.com/invopop/jsonschema@v0.14.0/reflect.go"
+          },
+          {
+            "package": "github.com/invopop/jsonschema",
+            "capability": "NETWORK",
+            "explanation": "No network I/O. The capability comes from importing net and net/url: reflect.TypeOf(net.IP{}) and reflect.TypeOf(url.URL{}) are used only to map those types to schema formats, and url.Parse is used in ID.Validate to check schema IDs.",
+            "file": "github.com/invopop/jsonschema@v0.14.0/reflect.go"
+          }
+        ],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/pb33f/ordered-map/v2",
+      "from": "",
+      "to": "v2.3.1",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/pb33f/ordered-map/v2"
+      ],
+      "digest": "sha256:6769fa1d49d84f9e7d4c20dca89686a5af58fd51ccca6cdcc160344a34920b81",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This is a fork of wk8/go-ordered-map: a generic insertion-ordered map with JSON (via encoding/json and buger/jsonparser) and YAML (go.yaml.in/yaml/v4) marshalling. I read all three files and found no init functions, build-time code, network, file, exec or environment access, encoded payloads, or runtime patching. The flagged capabilities come from reflection and interface-based serialization only.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/pb33f/ordered-map/v2@v2.3.1/yaml.go",
+            "line": 17,
+            "title": "Minor correctness quirks in YAML handling",
+            "detail": "MarshalYAML returns []byte(\"null\") for a nil map, which encodes as a byte sequence rather than a YAML null. UnmarshalYAML indexes Content[index+1] without checking bounds. These are ordinary bugs inherited from the wk8/go-ordered-map fork and have no security impact."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "github.com/pb33f/ordered-map/v2",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "This comes from reflection in MarshalJSON/UnmarshalJSON (reflect.ValueOf, Convert, Set) used to handle wrapper key types, and from calls through interfaces (json.Marshal, yaml Encode/Decode, TextMarshaler/TextUnmarshaler) that may invoke user-defined marshal methods. This is ordinary serialization behaviour, not dynamic code loading.",
+            "file": "github.com/pb33f/ordered-map/v2@v2.3.1/json.go"
+          },
+          {
+            "package": "github.com/pb33f/ordered-map/v2",
+            "capability": "NETWORK",
+            "explanation": "No network calls are present. The capability is most likely attributed transitively through encoding/json or yaml marshalling paths that can reach interface methods, for example the MarshalText/MarshalJSON of net types. The package itself only serializes and deserializes data in memory.",
+            "file": "github.com/pb33f/ordered-map/v2@v2.3.1/json.go"
+          }
+        ],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/tidwall/gjson",
+      "from": "",
+      "to": "v1.18.0",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/tidwall/gjson"
+      ],
+      "digest": "sha256:939591726bd563bc8c94962e74f73dc83f4d74d0d77efef767b2d44ec4aafbff",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "gjson v1.18.0 is a pure-Go JSON path query library. Its surface file gjson.go contains parsing, validation and modifier functions, plus an init that only builds an in-memory map of modifier functions. I checked for I/O, network, exec, environment access, encoded payloads and runtime hooking and found none; the only unsafe use is the library's well-known zero-copy string/byte conversion.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/tidwall/gjson@v1.18.0/gjson.go",
+            "line": 3360,
+            "title": "unsafe pointer casts for zero-copy string/byte conversion",
+            "detail": "The package uses unsafe.Pointer to convert between strings and byte slices without copying (getBytes, stringBytes, bytesString) and to compute result indexes (fillIndex). This is the upstream library's long-standing performance technique. It is local memory handling with no external effect, so it is not shady."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/tidwall/gjson@v1.18.0/gjson.go",
+            "line": 2763,
+            "title": "init registers modifier table only",
+            "detail": "init() only fills the built-in modifiers map with local pure functions (pretty, ugly, reverse, this, flatten, join, valid, keys, values, tostr, fromstr, group, dig). None of them perform I/O, run programs or have other side effects."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/tidwall/pretty",
+      "from": "",
+      "to": "v1.2.1",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/tidwall/pretty"
+      ],
+      "digest": "sha256:e292bf18aff94396c410dc1db06f5fe206941848b9d78b6de7eb4dc4ee87e01e",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "github.com/tidwall/pretty is a pure JSON formatting library: pretty-printing, compacting, colorizing and stripping comments. It imports only bytes, encoding/json, sort and strconv. I checked the single file, including its init function, and found no file, process, network or environment access, and no encoded payloads.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/tidwall/pretty@v1.2.1/pretty.go",
+            "line": 441,
+            "title": "init assigns default terminal color style",
+            "detail": "init() only builds the TerminalStyle struct of ANSI color codes and a byte-escaping Append function. It has no side effects beyond setting a package variable."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "github.com/tidwall/pretty",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Comes from harmless calls: json.Unmarshal in parsestr (reflection-based decoding), sort.Stable on byKeyVal through the sort.Interface, and the Style.Append callback that Color calls. None of these runs code taken from data. They are ordinary JSON decoding, sorting and a caller-supplied formatting hook.",
+            "file": "github.com/tidwall/pretty@v1.2.1/pretty.go"
+          },
+          {
+            "package": "github.com/tidwall/pretty",
+            "capability": "NETWORK",
+            "explanation": "No network code exists in the package. Its only imports are bytes, encoding/json, sort and strconv. The capability is an artifact of the conservative call graph: json.Unmarshal's reflective dispatch to Unmarshaler/TextUnmarshaler implementations can reach types such as those in package net. Here it only ever decodes into a plain string.",
+            "file": "github.com/tidwall/pretty@v1.2.1/pretty.go"
+          }
+        ],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/tidwall/sjson",
+      "from": "",
+      "to": "v1.2.5",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/tidwall/sjson"
+      ],
+      "digest": "sha256:845e820c76da45e73095ca6f717985c69627929668f200e1641f84a6fda2d54c",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "sjson v1.2.5 is a pure-Go library that sets and deletes values in JSON text by path. It uses gjson for lookups and encoding/json for marshaling. I checked the single source file for init code, build-time hooks, network or file I/O, process execution and encoded payloads, and found none; the unsafe usage is the library's documented zero-copy optimisation.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/tidwall/sjson@v1.2.5/sjson.go",
+            "line": 478,
+            "title": "unsafe string/byte aliasing for in-place JSON edits",
+            "detail": "In-place replacement (ReplaceInPlace with Optimistic) casts the input string's backing memory to a writable []byte and mutates it. The library documents this, and SetOptions disables it for string inputs. It is an upstream design choice for performance, not malicious."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "github.com/tidwall/sjson",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Comes from unsafe.Pointer conversions between string and []byte headers (SetOptions, SetBytesOptions, SetRawBytesOptions, set) used to avoid copying, and from encoding/json.Marshal, which calls user-supplied MarshalJSON/MarshalText methods through reflection. Both are ordinary performance and serialization patterns for a JSON library. Nothing runs code taken from data.",
+            "file": "github.com/tidwall/sjson@v1.2.5/sjson.go"
+          },
+          {
+            "package": "github.com/tidwall/sjson",
+            "capability": "NETWORK",
+            "explanation": "No network code exists in the package. The capability is inferred transitively: encoding/json.Marshal, called in appendStringify and SetBytesOptions, can dispatch to Marshaler implementations in the net package (e.g. net.IP.MarshalText). That is a harmless formatting call, not network I/O.",
+            "file": "github.com/tidwall/sjson@v1.2.5/sjson.go"
+          }
+        ],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "go.opentelemetry.io/auto/sdk",
+      "from": "",
+      "to": "v1.1.0",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "go.opentelemetry.io/auto/sdk",
+        "go.opentelemetry.io/auto/sdk/internal/telemetry"
+      ],
+      "digest": "sha256:3f11baf3b49c1ab3c11cd45366a2c96cf1acf8205c2e0c0054250fc405431d3f",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This is the OpenTelemetry auto-instrumentable trace SDK: a TracerProvider whose spans are serialised to OTLP JSON and handed to no-op hook functions that an external eBPF agent can probe. I checked every file for build-time code, init side effects, network use, process execution, encoded payloads and secret access. The only init-time work is reading OTEL_* limit environment variables, and none of the rest is present.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "go.opentelemetry.io/auto/sdk@v1.1.0/span.go",
+            "line": 297,
+            "title": "eBPF hook points are no-op functions",
+            "detail": "tracer.start and span.ended are //go:noinline functions that call no-op package variables. They are documented as being 'implemented in eBPF': an external OpenTelemetry auto-instrumentation agent attaches uprobes to read span data and supply sampling decisions. This is the module's stated purpose. The Go code itself does nothing with the data."
+          },
+          {
+            "severity": "info",
+            "file": "go.opentelemetry.io/auto/sdk@v1.1.0/limit.go",
+            "line": 13,
+            "title": "Init-time environment read for span limits",
+            "detail": "Span limits are read from standard OTEL_* environment variables at package initialisation. This is an ordinary configuration read with no side effects beyond logging invalid values."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "go.opentelemetry.io/auto/sdk",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "No dynamic code loading or execution. The capability comes from reflection and dynamic dispatch: typeStr uses reflect.TypeOf to name error types, json.Marshal walks span structures by reflection, and the package calls interface methods on caller-supplied options and errors. The package-level function variables `start` and `ended` are no-op hooks that eBPF auto-instrumentation attaches uprobes to, as documented.",
+            "file": "go.opentelemetry.io/auto/sdk@v1.1.0/span.go"
+          },
+          {
+            "package": "go.opentelemetry.io/auto/sdk",
+            "capability": "NETWORK",
+            "explanation": "No code in the package opens sockets or makes requests. The capability is attributed through transitive dependencies (the otel trace/semconv API, slog, fmt/json formatting of interface values), not through any network call here. With no eBPF instrumentation attached, the SDK produces no telemetry at all.",
+            "file": "go.opentelemetry.io/auto/sdk@v1.1.0/tracer.go"
+          },
+          {
+            "package": "go.opentelemetry.io/auto/sdk/internal/telemetry",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Comes from unsafe.StringData/SliceData/unsafe.String/unsafe.Slice in the compact Value representation, and from reflection-based encoding/json marshalling and unmarshalling. Nothing executes code chosen at run time.",
+            "file": "go.opentelemetry.io/auto/sdk@v1.1.0/internal/telemetry/value.go"
+          },
+          {
+            "package": "go.opentelemetry.io/auto/sdk/internal/telemetry",
+            "capability": "NETWORK",
+            "explanation": "Pure OTLP-JSON data types with marshal/unmarshal methods; there is no network I/O. The capability comes from transitive standard-library paths such as encoding/json and fmt, which dispatch to interface methods.",
+            "file": "go.opentelemetry.io/auto/sdk@v1.1.0/internal/telemetry/traces.go"
+          }
+        ],
+        "data_flows": [
+          {
+            "what": "OTLP-JSON encoding of finished span data (names, attributes, events, links, status)",
+            "to": "An externally attached eBPF auto-instrumentation probe (uprobe on span.ended), if one is configured; otherwise a no-op",
+            "file": "go.opentelemetry.io/auto/sdk@v1.1.0/span.go"
+          },
+          {
+            "what": "Warning naming an OTEL_* limit environment variable that held an invalid value",
+            "to": "Process log via slog (stderr by default)",
+            "file": "go.opentelemetry.io/auto/sdk@v1.1.0/limit.go"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "go.opentelemetry.io/otel",
+      "from": "",
+      "to": "v1.33.0",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "go.opentelemetry.io/otel/attribute",
+        "go.opentelemetry.io/otel/codes"
+      ],
+      "digest": "sha256:365d6c53b18e8b5c3cc7e088b00b8027098ed91c5229803758642c6a30db6ee1",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This unit is the surface of go.opentelemetry.io/otel v1.33.0's attribute and codes packages: pure in-memory types for telemetry key/value attributes and status codes, with JSON and string encoding. I checked for init code, build steps, embedded payloads, runtime hooking, and network, file or exec use, and found none. The flagged NETWORK and ARBITRARY_EXECUTION capabilities come from reflection and fmt/json interface dispatch.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "go.opentelemetry.io/otel@v1.33.0/attribute/set.go",
+            "line": 0,
+            "title": "Pure data-type library with no side effects",
+            "detail": "The attribute and codes packages match upstream OpenTelemetry v1.33.0. They contain no init functions, no build-time code, no cgo or assembly, and no encoded or embedded data. The packages do no file, network or process access. type_string.go is ordinary stringer output."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "go.opentelemetry.io/otel/attribute",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Comes from reflection and dynamic dispatch, not loaded code. set.go uses reflect.ValueOf, reflect.New and reflect.ArrayOf to build fixed-size arrays of KeyValue so that attribute sets are comparable. value.go IntSliceValue does the same for int64 arrays. Calls through encoding/json and fmt to interface methods (Stringer, MarshalJSON) are also flagged. Nothing is loaded or run from data.",
+            "file": "go.opentelemetry.io/otel@v1.33.0/attribute/set.go"
+          },
+          {
+            "package": "go.opentelemetry.io/otel/attribute",
+            "capability": "NETWORK",
+            "explanation": "No network code in this package. The capability is a conservative call-graph artifact: fmt.Sprint, json.Marshal and the Stringer(k, v fmt.Stringer) helper in kv.go call interface methods that Capslock cannot resolve, so it includes net types' String or MarshalJSON methods. Nothing here opens connections.",
+            "file": "go.opentelemetry.io/otel@v1.33.0/attribute/value.go"
+          },
+          {
+            "package": "go.opentelemetry.io/otel/codes",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Comes from json.Unmarshal into interface{} and from fmt.Errorf/Sprintf in Code.UnmarshalJSON and MarshalJSON. These use reflection and interface dispatch internally. No code is loaded or executed from data.",
+            "file": "go.opentelemetry.io/otel@v1.33.0/codes/codes.go"
+          },
+          {
+            "package": "go.opentelemetry.io/otel/codes",
+            "capability": "NETWORK",
+            "explanation": "No network use. This is a call-graph artifact of fmt and encoding/json interface dispatch (Stringer/Marshaler methods that might belong to net types). The package only converts status codes to and from strings and JSON.",
+            "file": "go.opentelemetry.io/otel@v1.33.0/codes/codes.go"
+          }
+        ],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "go.opentelemetry.io/otel/trace",
+      "from": "",
+      "to": "v1.33.0",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "go.opentelemetry.io/otel/trace"
+      ],
+      "digest": "sha256:daed41bd36caf1b429465293a6458407be31013c3bec3f97a830a8d85a4f794d",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This unit is the OpenTelemetry Go trace API package (v1.33.0): interfaces for TracerProvider, Tracer and Span, a no-op implementation, SpanContext and ID types with hex and JSON encoding, and W3C tracestate parsing. I checked every file for init code, encoded payloads, network, exec, filesystem or unsafe use, and found nothing beyond pure data-structure logic. The flagged capabilities come from reflection in encoding/json and interface calls in fmt, not from any real network or code-execution behavior.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "go.opentelemetry.io/otel/trace@v1.33.0/trace.go",
+            "line": 0,
+            "title": "Pure API package with no side effects",
+            "detail": "The package has no init functions, no package-level side effects beyond zero-value variables, no unsafe, cgo, exec, filesystem or network use, and no embedded or encoded data. Its contents match the upstream OpenTelemetry trace API: span and context types, a no-op tracer, W3C trace-id/span-id hex parsing and tracestate parsing."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "go.opentelemetry.io/otel/trace",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Comes from harmless calls: encoding/json.Marshal in the MarshalJSON methods for TraceID, SpanID, TraceFlags, SpanContext and TraceState, which use reflection, and from calls through interfaces (fmt.Errorf formatting values, option apply funcs, the TraceState.Walk callback). Nothing here loads or runs code chosen from data.",
+            "file": "go.opentelemetry.io/otel/trace@v1.33.0/trace.go"
+          },
+          {
+            "package": "go.opentelemetry.io/otel/trace",
+            "capability": "NETWORK",
+            "explanation": "No network code exists in this package; it imports only bytes, context, encoding/hex, encoding/json, fmt, strings, time and otel's attribute, codes and embedded packages. The capability is most likely a call-graph over-approximation: fmt.Errorf formatting and json.Marshal calling Error()/String()/MarshalJSON on interface values can resolve, in static analysis, to methods of net types. This is harmless.",
+            "file": "go.opentelemetry.io/otel/trace@v1.33.0/tracestate.go"
+          }
+        ],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "go.yaml.in/yaml/v4",
+      "from": "",
+      "to": "v4.0.0-rc.2",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "go.yaml.in/yaml/v4"
+      ],
+      "digest": "sha256:4e0b4d073cba773023e439c72144a9ae9d5889f55ece21abfc502949faea0c32",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "The surface of go.yaml.in/yaml/v4 v4.0.0-rc.2 consists of resolve.go and yaml.go. They implement YAML scalar resolution, the public Marshal/Unmarshal API, struct field reflection and event formatting. I checked the init functions, the imports and the encoded data: there is no network, exec, filesystem, environment or unsafe use, no files missing from the source repository, and nothing beyond what a YAML library needs.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "go.yaml.in/yaml/v4@v4.0.0-rc.2/resolve.go",
+            "line": 35,
+            "title": "Init functions only populate static tables",
+            "detail": "resolve.go has two init functions that fill in in-memory lookup tables: resolveTable, resolveMap and the long/short tag maps. yaml.go has one init that caches the reflect.Type of the Unmarshaler interface. None of them does I/O, touches the environment, uses the network or patches other code."
+          },
+          {
+            "severity": "info",
+            "file": "go.yaml.in/yaml/v4@v4.0.0-rc.2/resolve.go",
+            "line": 281,
+            "title": "Base64 use is standard !!binary encoding",
+            "detail": "Base64 appears only in encodeBase64, which encodes non-UTF-8 strings as !!binary scalars during marshalling. This is standard YAML behaviour and the file contains no embedded payload."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "golang.org/x/sync",
+      "from": "",
+      "to": "v0.16.0",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "golang.org/x/sync/errgroup"
+      ],
+      "digest": "sha256:8099ccb8e778a2a4525e8d6e7f2caad2d9dfb3baf1455781068bc484ee76a6ef",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "golang.org/x/sync/errgroup is a small goroutine-synchronization library that uses only context, fmt and sync from the standard library. I checked the whole file for init code, network or file access, process execution, encoded payloads and runtime patching and found none. The NETWORK capability is a transitive standard-library attribution, not real network use.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "golang.org/x/sync@v0.16.0/errgroup/errgroup.go",
+            "line": 0,
+            "title": "Standard errgroup implementation, no side effects",
+            "detail": "The file matches upstream errgroup: Group, WithContext, Wait, Go, TryGo and SetLimit. It imports only context, fmt and sync. It has no init functions, no build steps, no encoded data, no file or network access and no runtime hooking."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "golang.org/x/sync/errgroup",
+            "capability": "NETWORK",
+            "explanation": "No direct network use. errgroup imports only context, fmt and sync. Capslock attributes NETWORK conservatively through transitive standard-library edges, such as the context package or fmt's interface-based formatting reaching net types, or through calls to caller-supplied functions in Go/TryGo. The package itself opens no connections.",
+            "file": "golang.org/x/sync@v0.16.0/errgroup/errgroup.go"
+          }
+        ],
+        "data_flows": []
+      }
+    }
+  ],
+  "verdict": "certified",
+  "reasons": null
+}

@@ -1,0 +1,69 @@
+{
+  "kind": "third-party",
+  "module": "github.com/anthropics/anthropic-sdk-go",
+  "from": "",
+  "to": "v1.82.0",
+  "scope": "capabilities",
+  "part": 1,
+  "parts": 6,
+  "packages": [
+    "github.com/anthropics/anthropic-sdk-go"
+  ],
+  "digest": "sha256:15bbd0e284b926e250c47e3207681823836a7aacf71fda91eaff60ec2741aa37",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This part of the anthropic-sdk-go root package holds generated API types and service methods for beta endpoints: agents, deployments, dreams, environments, files and memory stores. Each method sends caller-supplied parameters over HTTP to the configured Anthropic API. I checked the init functions, the request construction and the use of headers and paths, and found no hidden network destinations, credential harvesting, code execution or persistence.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaagent.go",
+        "line": 0,
+        "title": "Generated SDK code with no suspicious behavior",
+        "detail": "All files are Stainless-generated API client code: typed request/response structs, union helpers, and service methods that send HTTP requests to the configured Anthropic API endpoint through internal/requestconfig. The init() functions only call apijson.RegisterUnion with constant discriminators. There is no file, environment or credential access beyond what the caller passes in, no exec, and no hidden endpoints."
+      }
+    ],
+    "capabilities": [
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go",
+        "capability": "NETWORK",
+        "explanation": "Every service method (e.g. BetaAgentService.New/Get/List, BetaDeploymentService.Run, BetaFileService.Upload/Download, BetaMemoryStoreMemoryService.*) builds a path such as \"v1/agents?beta=true\" and calls requestconfig.ExecuteNewRequest or cfg.Execute, which performs HTTP requests to the Anthropic API base URL set in the client options. This is the SDK's whole purpose.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaagent.go"
+      },
+      {
+        "package": "github.com/anthropics/anthropic-sdk-go",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "Comes from the reflection-based serialization machinery the generated types use: apijson.UnmarshalRoot, param.MarshalObject/MarshalUnion, and apijson.RegisterUnion called in init() to register discriminated unions, plus RequestOptionFunc closures run by requestconfig. None of this loads or runs code chosen at run time from outside the program; the init functions only register type discriminators.",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaagent.go"
+      }
+    ],
+    "data_flows": [
+      {
+        "what": "Caller-supplied agent definitions (name, system prompt, tools, MCP server URLs, metadata), workspace ID and beta headers",
+        "to": "Anthropic API (configured base URL), /v1/agents endpoints",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaagent.go"
+      },
+      {
+        "what": "Deployment configs including initial events, resources such as GitHub repository authorization tokens supplied by the caller, vault IDs, schedules",
+        "to": "Anthropic API, /v1/deployments endpoints",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betadeployment.go"
+      },
+      {
+        "what": "File contents the caller uploads as multipart form data; file downloads returned to the caller as an http.Response",
+        "to": "Anthropic API, /v1/files endpoints",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betafile.go"
+      },
+      {
+        "what": "Memory text content and paths supplied by the caller",
+        "to": "Anthropic API, /v1/memory_stores endpoints",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betamemorystorememory.go"
+      },
+      {
+        "what": "Worker poll/heartbeat/ack/stop requests, including an optional Anthropic-Worker-ID header",
+        "to": "Anthropic API, /v1/environments/{id}/work endpoints",
+        "file": "github.com/anthropics/anthropic-sdk-go@v1.82.0/betaenvironmentwork.go"
+      }
+    ]
+  }
+}

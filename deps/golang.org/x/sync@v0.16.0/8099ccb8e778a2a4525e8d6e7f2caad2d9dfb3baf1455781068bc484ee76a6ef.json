@@ -1,0 +1,37 @@
+{
+  "kind": "third-party",
+  "module": "golang.org/x/sync",
+  "from": "",
+  "to": "v0.16.0",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "golang.org/x/sync/errgroup"
+  ],
+  "digest": "sha256:8099ccb8e778a2a4525e8d6e7f2caad2d9dfb3baf1455781068bc484ee76a6ef",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "golang.org/x/sync/errgroup is a small goroutine-synchronization library that uses only context, fmt and sync from the standard library. I checked the whole file for init code, network or file access, process execution, encoded payloads and runtime patching and found none. The NETWORK capability is a transitive standard-library attribution, not real network use.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "golang.org/x/sync@v0.16.0/errgroup/errgroup.go",
+        "line": 0,
+        "title": "Standard errgroup implementation, no side effects",
+        "detail": "The file matches upstream errgroup: Group, WithContext, Wait, Go, TryGo and SetLimit. It imports only context, fmt and sync. It has no init functions, no build steps, no encoded data, no file or network access and no runtime hooking."
+      }
+    ],
+    "capabilities": [
+      {
+        "package": "golang.org/x/sync/errgroup",
+        "capability": "NETWORK",
+        "explanation": "No direct network use. errgroup imports only context, fmt and sync. Capslock attributes NETWORK conservatively through transitive standard-library edges, such as the context package or fmt's interface-based formatting reaching net types, or through calls to caller-supplied functions in Go/TryGo. The package itself opens no connections.",
+        "file": "golang.org/x/sync@v0.16.0/errgroup/errgroup.go"
+      }
+    ],
+    "data_flows": []
+  }
+}

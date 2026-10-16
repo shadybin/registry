@@ -1,0 +1,43 @@
+{
+  "kind": "third-party",
+  "module": "github.com/invopop/jsonschema",
+  "from": "",
+  "to": "v0.14.0",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "github.com/invopop/jsonschema"
+  ],
+  "digest": "sha256:f33d2e4dade3534c32fc5083419dc4aa4f79b8e479523b46aac25a6f823c5624",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "invopop/jsonschema generates JSON Schema documents from Go types by reflection, with optional extraction of doc comments from local Go source files. I checked all surface files for init code, network or exec use, file writes, encoded payloads and hooking, and found none. The NETWORK capability comes only from using net.IP and url.URL types and url.Parse.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/invopop/jsonschema@v0.14.0/reflect_comments.go",
+        "line": 64,
+        "title": "Reads Go source files from a caller-provided path",
+        "detail": "AddGoComments uses filepath.Walk to read and parse the .go files under a directory the caller supplies, extracting doc comments into an in-memory map. It is read-only, local and documented as the library's purpose."
+      }
+    ],
+    "capabilities": [
+      {
+        "package": "github.com/invopop/jsonschema",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "Comes from reflection: reflect.New and calls through interfaces the caller's types implement (JSONSchema, JSONSchemaExtend, JSONSchemaAlias, JSONSchemaProperty, GetFieldDocString), plus caller-supplied hooks (Mapper, Namer, Lookup, KeyNamer, AdditionalFields, LookupComment). These are the documented ways a schema-reflection library lets types customise their schema. reflect.DeepEqual in MarshalJSON adds to it. No code is loaded or run from data.",
+        "file": "github.com/invopop/jsonschema@v0.14.0/reflect.go"
+      },
+      {
+        "package": "github.com/invopop/jsonschema",
+        "capability": "NETWORK",
+        "explanation": "No network I/O. The capability comes from importing net and net/url: reflect.TypeOf(net.IP{}) and reflect.TypeOf(url.URL{}) are used only to map those types to schema formats, and url.Parse is used in ID.Validate to check schema IDs.",
+        "file": "github.com/invopop/jsonschema@v0.14.0/reflect.go"
+      }
+    ],
+    "data_flows": []
+  }
+}

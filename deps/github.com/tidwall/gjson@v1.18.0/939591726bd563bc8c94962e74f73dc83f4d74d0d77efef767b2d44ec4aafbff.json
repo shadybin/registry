@@ -1,0 +1,37 @@
+{
+  "kind": "third-party",
+  "module": "github.com/tidwall/gjson",
+  "from": "",
+  "to": "v1.18.0",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "github.com/tidwall/gjson"
+  ],
+  "digest": "sha256:939591726bd563bc8c94962e74f73dc83f4d74d0d77efef767b2d44ec4aafbff",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "gjson v1.18.0 is a pure-Go JSON path query library. Its surface file gjson.go contains parsing, validation and modifier functions, plus an init that only builds an in-memory map of modifier functions. I checked for I/O, network, exec, environment access, encoded payloads and runtime hooking and found none; the only unsafe use is the library's well-known zero-copy string/byte conversion.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/tidwall/gjson@v1.18.0/gjson.go",
+        "line": 3360,
+        "title": "unsafe pointer casts for zero-copy string/byte conversion",
+        "detail": "The package uses unsafe.Pointer to convert between strings and byte slices without copying (getBytes, stringBytes, bytesString) and to compute result indexes (fillIndex). This is the upstream library's long-standing performance technique. It is local memory handling with no external effect, so it is not shady."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/tidwall/gjson@v1.18.0/gjson.go",
+        "line": 2763,
+        "title": "init registers modifier table only",
+        "detail": "init() only fills the built-in modifiers map with local pure functions (pretty, ugly, reverse, this, flatten, join, valid, keys, values, tostr, fromstr, group, dig). None of them perform I/O, run programs or have other side effects."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

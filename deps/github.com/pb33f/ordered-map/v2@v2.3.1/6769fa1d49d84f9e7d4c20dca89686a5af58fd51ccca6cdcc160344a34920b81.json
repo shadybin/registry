@@ -1,0 +1,43 @@
+{
+  "kind": "third-party",
+  "module": "github.com/pb33f/ordered-map/v2",
+  "from": "",
+  "to": "v2.3.1",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "github.com/pb33f/ordered-map/v2"
+  ],
+  "digest": "sha256:6769fa1d49d84f9e7d4c20dca89686a5af58fd51ccca6cdcc160344a34920b81",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This is a fork of wk8/go-ordered-map: a generic insertion-ordered map with JSON (via encoding/json and buger/jsonparser) and YAML (go.yaml.in/yaml/v4) marshalling. I read all three files and found no init functions, build-time code, network, file, exec or environment access, encoded payloads, or runtime patching. The flagged capabilities come from reflection and interface-based serialization only.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/pb33f/ordered-map/v2@v2.3.1/yaml.go",
+        "line": 17,
+        "title": "Minor correctness quirks in YAML handling",
+        "detail": "MarshalYAML returns []byte(\"null\") for a nil map, which encodes as a byte sequence rather than a YAML null. UnmarshalYAML indexes Content[index+1] without checking bounds. These are ordinary bugs inherited from the wk8/go-ordered-map fork and have no security impact."
+      }
+    ],
+    "capabilities": [
+      {
+        "package": "github.com/pb33f/ordered-map/v2",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "This comes from reflection in MarshalJSON/UnmarshalJSON (reflect.ValueOf, Convert, Set) used to handle wrapper key types, and from calls through interfaces (json.Marshal, yaml Encode/Decode, TextMarshaler/TextUnmarshaler) that may invoke user-defined marshal methods. This is ordinary serialization behaviour, not dynamic code loading.",
+        "file": "github.com/pb33f/ordered-map/v2@v2.3.1/json.go"
+      },
+      {
+        "package": "github.com/pb33f/ordered-map/v2",
+        "capability": "NETWORK",
+        "explanation": "No network calls are present. The capability is most likely attributed transitively through encoding/json or yaml marshalling paths that can reach interface methods, for example the MarshalText/MarshalJSON of net types. The package itself only serializes and deserializes data in memory.",
+        "file": "github.com/pb33f/ordered-map/v2@v2.3.1/json.go"
+      }
+    ],
+    "data_flows": []
+  }
+}

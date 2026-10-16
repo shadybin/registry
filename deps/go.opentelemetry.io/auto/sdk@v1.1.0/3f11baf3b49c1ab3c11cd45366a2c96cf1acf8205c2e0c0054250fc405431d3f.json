@@ -1,0 +1,74 @@
+{
+  "kind": "third-party",
+  "module": "go.opentelemetry.io/auto/sdk",
+  "from": "",
+  "to": "v1.1.0",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "go.opentelemetry.io/auto/sdk",
+    "go.opentelemetry.io/auto/sdk/internal/telemetry"
+  ],
+  "digest": "sha256:3f11baf3b49c1ab3c11cd45366a2c96cf1acf8205c2e0c0054250fc405431d3f",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This is the OpenTelemetry auto-instrumentable trace SDK: a TracerProvider whose spans are serialised to OTLP JSON and handed to no-op hook functions that an external eBPF agent can probe. I checked every file for build-time code, init side effects, network use, process execution, encoded payloads and secret access. The only init-time work is reading OTEL_* limit environment variables, and none of the rest is present.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "go.opentelemetry.io/auto/sdk@v1.1.0/span.go",
+        "line": 297,
+        "title": "eBPF hook points are no-op functions",
+        "detail": "tracer.start and span.ended are //go:noinline functions that call no-op package variables. They are documented as being 'implemented in eBPF': an external OpenTelemetry auto-instrumentation agent attaches uprobes to read span data and supply sampling decisions. This is the module's stated purpose. The Go code itself does nothing with the data."
+      },
+      {
+        "severity": "info",
+        "file": "go.opentelemetry.io/auto/sdk@v1.1.0/limit.go",
+        "line": 13,
+        "title": "Init-time environment read for span limits",
+        "detail": "Span limits are read from standard OTEL_* environment variables at package initialisation. This is an ordinary configuration read with no side effects beyond logging invalid values."
+      }
+    ],
+    "capabilities": [
+      {
+        "package": "go.opentelemetry.io/auto/sdk",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "No dynamic code loading or execution. The capability comes from reflection and dynamic dispatch: typeStr uses reflect.TypeOf to name error types, json.Marshal walks span structures by reflection, and the package calls interface methods on caller-supplied options and errors. The package-level function variables `start` and `ended` are no-op hooks that eBPF auto-instrumentation attaches uprobes to, as documented.",
+        "file": "go.opentelemetry.io/auto/sdk@v1.1.0/span.go"
+      },
+      {
+        "package": "go.opentelemetry.io/auto/sdk",
+        "capability": "NETWORK",
+        "explanation": "No code in the package opens sockets or makes requests. The capability is attributed through transitive dependencies (the otel trace/semconv API, slog, fmt/json formatting of interface values), not through any network call here. With no eBPF instrumentation attached, the SDK produces no telemetry at all.",
+        "file": "go.opentelemetry.io/auto/sdk@v1.1.0/tracer.go"
+      },
+      {
+        "package": "go.opentelemetry.io/auto/sdk/internal/telemetry",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "Comes from unsafe.StringData/SliceData/unsafe.String/unsafe.Slice in the compact Value representation, and from reflection-based encoding/json marshalling and unmarshalling. Nothing executes code chosen at run time.",
+        "file": "go.opentelemetry.io/auto/sdk@v1.1.0/internal/telemetry/value.go"
+      },
+      {
+        "package": "go.opentelemetry.io/auto/sdk/internal/telemetry",
+        "capability": "NETWORK",
+        "explanation": "Pure OTLP-JSON data types with marshal/unmarshal methods; there is no network I/O. The capability comes from transitive standard-library paths such as encoding/json and fmt, which dispatch to interface methods.",
+        "file": "go.opentelemetry.io/auto/sdk@v1.1.0/internal/telemetry/traces.go"
+      }
+    ],
+    "data_flows": [
+      {
+        "what": "OTLP-JSON encoding of finished span data (names, attributes, events, links, status)",
+        "to": "An externally attached eBPF auto-instrumentation probe (uprobe on span.ended), if one is configured; otherwise a no-op",
+        "file": "go.opentelemetry.io/auto/sdk@v1.1.0/span.go"
+      },
+      {
+        "what": "Warning naming an OTEL_* limit environment variable that held an invalid value",
+        "to": "Process log via slog (stderr by default)",
+        "file": "go.opentelemetry.io/auto/sdk@v1.1.0/limit.go"
+      }
+    ]
+  }
+}

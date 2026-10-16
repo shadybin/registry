@@ -1,0 +1,56 @@
+{
+  "kind": "third-party",
+  "module": "go.opentelemetry.io/otel",
+  "from": "",
+  "to": "v1.33.0",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "go.opentelemetry.io/otel/attribute",
+    "go.opentelemetry.io/otel/codes"
+  ],
+  "digest": "sha256:365d6c53b18e8b5c3cc7e088b00b8027098ed91c5229803758642c6a30db6ee1",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This unit is the surface of go.opentelemetry.io/otel v1.33.0's attribute and codes packages: pure in-memory types for telemetry key/value attributes and status codes, with JSON and string encoding. I checked for init code, build steps, embedded payloads, runtime hooking, and network, file or exec use, and found none. The flagged NETWORK and ARBITRARY_EXECUTION capabilities come from reflection and fmt/json interface dispatch.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "go.opentelemetry.io/otel@v1.33.0/attribute/set.go",
+        "line": 0,
+        "title": "Pure data-type library with no side effects",
+        "detail": "The attribute and codes packages match upstream OpenTelemetry v1.33.0. They contain no init functions, no build-time code, no cgo or assembly, and no encoded or embedded data. The packages do no file, network or process access. type_string.go is ordinary stringer output."
+      }
+    ],
+    "capabilities": [
+      {
+        "package": "go.opentelemetry.io/otel/attribute",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "Comes from reflection and dynamic dispatch, not loaded code. set.go uses reflect.ValueOf, reflect.New and reflect.ArrayOf to build fixed-size arrays of KeyValue so that attribute sets are comparable. value.go IntSliceValue does the same for int64 arrays. Calls through encoding/json and fmt to interface methods (Stringer, MarshalJSON) are also flagged. Nothing is loaded or run from data.",
+        "file": "go.opentelemetry.io/otel@v1.33.0/attribute/set.go"
+      },
+      {
+        "package": "go.opentelemetry.io/otel/attribute",
+        "capability": "NETWORK",
+        "explanation": "No network code in this package. The capability is a conservative call-graph artifact: fmt.Sprint, json.Marshal and the Stringer(k, v fmt.Stringer) helper in kv.go call interface methods that Capslock cannot resolve, so it includes net types' String or MarshalJSON methods. Nothing here opens connections.",
+        "file": "go.opentelemetry.io/otel@v1.33.0/attribute/value.go"
+      },
+      {
+        "package": "go.opentelemetry.io/otel/codes",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "Comes from json.Unmarshal into interface{} and from fmt.Errorf/Sprintf in Code.UnmarshalJSON and MarshalJSON. These use reflection and interface dispatch internally. No code is loaded or executed from data.",
+        "file": "go.opentelemetry.io/otel@v1.33.0/codes/codes.go"
+      },
+      {
+        "package": "go.opentelemetry.io/otel/codes",
+        "capability": "NETWORK",
+        "explanation": "No network use. This is a call-graph artifact of fmt and encoding/json interface dispatch (Stringer/Marshaler methods that might belong to net types). The package only converts status codes to and from strings and JSON.",
+        "file": "go.opentelemetry.io/otel@v1.33.0/codes/codes.go"
+      }
+    ],
+    "data_flows": []
+  }
+}
