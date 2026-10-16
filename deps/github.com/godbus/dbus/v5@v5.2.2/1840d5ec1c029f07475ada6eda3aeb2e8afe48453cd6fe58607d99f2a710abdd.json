@@ -1,0 +1,92 @@
+{
+  "kind": "third-party",
+  "module": "github.com/godbus/dbus/v5",
+  "from": "",
+  "to": "v5.2.2",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "github.com/godbus/dbus/v5"
+  ],
+  "digest": "sha256:1840d5ec1c029f07475ada6eda3aeb2e8afe48453cd6fe58607d99f2a710abdd",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This surface of godbus/dbus v5.2.2 is a pure-Go D-Bus client: bus address discovery, EXTERNAL and ANONYMOUS authentication, wire encoding and decoding, and Unix, tcp and nonce-tcp transports. I checked the init functions (only transport registration and endianness detection), the exec of dbus-launch, the environment changes, credential passing and every network dial. All of it matches upstream behaviour and the library's purpose, with no hidden endpoints, encoded payloads or extra data collection.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/godbus/dbus/v5@v5.2.2/conn_other.go",
+        "line": 19,
+        "title": "Session bus autolaunch runs dbus-launch from PATH",
+        "detail": "When no session bus address is found, getSessionBusPlatformAddress runs \"dbus-launch\" resolved via PATH and sets whatever environment variable name appears before '=' in its output. This is standard upstream godbus behaviour for D-Bus autolaunch, not deliberate misuse. It is noted because it runs an external binary."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/godbus/dbus/v5@v5.2.2/transport_nonce_tcp.go",
+        "line": 30,
+        "title": "nonce-tcp sends noncefile contents to the bus",
+        "detail": "The nonce-tcp transport reads the file named by the bus address's noncefile key and writes its bytes to the TCP socket. This is what the D-Bus nonce-tcp spec requires. The address comes from the caller or the environment, so it is not hidden exfiltration."
+      }
+    ],
+    "capabilities": [
+      {
+        "package": "github.com/godbus/dbus/v5",
+        "capability": "EXEC",
+        "explanation": "getSessionBusPlatformAddress runs the fixed command \"dbus-launch\" via exec.Command and parses the KEY=value line it prints, to autolaunch a session bus when no address can be found. This is the standard D-Bus autolaunch behaviour, reached only through the session-bus connect functions.",
+        "file": "github.com/godbus/dbus/v5@v5.2.2/conn_other.go"
+      },
+      {
+        "package": "github.com/godbus/dbus/v5",
+        "capability": "MODIFY_SYSTEM_STATE",
+        "explanation": "os.Setenv sets DBUS_SESSION_BUS_ADDRESS (or the variable name dbus-launch printed) in the current process, caching the discovered session bus address. getSessionBusAddress in conn.go does the same after discovering /run/user/\u003cuid\u003e/bus. It changes only this process's environment.",
+        "file": "github.com/godbus/dbus/v5@v5.2.2/conn_other.go"
+      },
+      {
+        "package": "github.com/godbus/dbus/v5",
+        "capability": "NETWORK",
+        "explanation": "The bus transports connect to the address taken from the environment or the defaults: Unix sockets via net.DialUnix in transport_unix.go (system bus at /var/run/dbus/system_bus_socket, session bus at /run/user/\u003cuid\u003e/bus), and tcp and nonce-tcp via net.Dial in transport_tcp.go and transport_nonce_tcp.go. These are the core purpose of a D-Bus client library. escape.go also uses net/url only to unescape address values, which is harmless parsing.",
+        "file": "github.com/godbus/dbus/v5@v5.2.2/transport_unix.go"
+      }
+    ],
+    "data_flows": [
+      {
+        "what": "D-Bus messages built by the application, plus any Unix file descriptors passed as SCM_RIGHTS",
+        "to": "D-Bus daemon over a Unix domain socket (system or session bus address)",
+        "file": "github.com/godbus/dbus/v5@v5.2.2/transport_unix.go"
+      },
+      {
+        "what": "The process PID, UID and GID as SCM_CREDENTIALS, sent with the initial null byte for EXTERNAL authentication",
+        "to": "D-Bus daemon over a Unix socket",
+        "file": "github.com/godbus/dbus/v5@v5.2.2/transport_unixcred_linux.go"
+      },
+      {
+        "what": "The hex-encoded effective UID during the EXTERNAL auth handshake",
+        "to": "D-Bus daemon",
+        "file": "github.com/godbus/dbus/v5@v5.2.2/auth_external.go"
+      },
+      {
+        "what": "Authentication handshake and D-Bus messages",
+        "to": "TCP host:port named in a tcp: bus address",
+        "file": "github.com/godbus/dbus/v5@v5.2.2/transport_tcp.go"
+      },
+      {
+        "what": "Contents of the noncefile named in the address (as the D-Bus spec requires), then D-Bus messages",
+        "to": "TCP host:port named in a nonce-tcp: bus address",
+        "file": "github.com/godbus/dbus/v5@v5.2.2/transport_nonce_tcp.go"
+      },
+      {
+        "what": "Runs the fixed dbus-launch command with no input and reads its output to get a session bus address",
+        "to": "dbus-launch child process",
+        "file": "github.com/godbus/dbus/v5@v5.2.2/conn_other.go"
+      },
+      {
+        "what": "A diagnostic line when an exported method's reply cannot be encoded",
+        "to": "stderr",
+        "file": "github.com/godbus/dbus/v5@v5.2.2/export.go"
+      }
+    ]
+  }
+}

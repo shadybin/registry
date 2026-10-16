@@ -1,0 +1,43 @@
+{
+  "kind": "third-party",
+  "module": "github.com/spf13/pflag",
+  "from": "",
+  "to": "v1.0.9",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "github.com/spf13/pflag"
+  ],
+  "digest": "sha256:c4f2b2b86f3cde135a002a25311caaa6031183a60336262ce4cda8974709ab72",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "The surface of github.com/spf13/pflag v1.0.9 is flag.go, a POSIX/GNU-style command-line flag parser. It only parses arguments, keeps flag state and writes usage and error text to stderr or a writer the caller supplies. It has no init functions with side effects, no network, exec, file access or encoded data, and no text aimed at reviewers; package-level initialisation is limited to NewFlagSet(os.Args[0]), the error value and the usage function.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/spf13/pflag@v1.0.9/flag.go",
+        "line": 1180,
+        "title": "os.Exit on parse error",
+        "detail": "When parsing fails under the ExitOnError policy, Parse and ParseAll call os.Exit(0) for a help request and os.Exit(2) for other errors. This is the documented flag-package behaviour, the same as the standard library, and not a security issue."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/spf13/pflag@v1.0.9/flag.go",
+        "line": 1045,
+        "title": "Go test shorthand passthrough",
+        "detail": "isGotestShorthandFlag, called from parseSingleShortArg, is defined in another file of the package that is not in this surface. Upstream it only lets 'test.' flags through when running under go test. Within this surface it is benign parsing logic."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": [
+      {
+        "what": "Usage, help, deprecation and parse-error messages",
+        "to": "os.Stderr or the writer the caller sets with SetOutput",
+        "file": "github.com/spf13/pflag@v1.0.9/flag.go"
+      }
+    ]
+  }
+}

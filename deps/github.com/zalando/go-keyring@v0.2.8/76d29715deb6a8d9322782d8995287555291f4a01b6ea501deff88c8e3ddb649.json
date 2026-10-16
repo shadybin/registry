@@ -1,0 +1,67 @@
+{
+  "kind": "third-party",
+  "module": "github.com/zalando/go-keyring",
+  "from": "",
+  "to": "v0.2.8",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "github.com/zalando/go-keyring"
+  ],
+  "digest": "sha256:76d29715deb6a8d9322782d8995287555291f4a01b6ea501deff88c8e3ddb649",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "go-keyring is a thin cross-platform wrapper that stores, reads and deletes secrets in the OS keyring: the macOS security CLI, the Linux/BSD Secret Service over D-Bus, and Windows Credential Manager. I checked the init functions, the exec use on macOS and every data path. Secrets go only to the local OS keyring the caller targets, and there is no network use, hidden behaviour or encoded payload.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/zalando/go-keyring@v0.2.8/keyring_darwin.go",
+        "line": 45,
+        "title": "Executes the macOS security CLI to access the Keychain",
+        "detail": "The macOS backend runs the hard-coded /usr/bin/security tool. Service and username are passed as exec arguments (no shell is involved). For Set, the command line is written to `security -i` with each field shell-quoted, and the password is base64-encoded first. Nothing beyond the caller's own service, user and secret is passed."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/zalando/go-keyring@v0.2.8/keyring_darwin.go",
+        "line": 87,
+        "title": "Password sent via stdin to the interactive security session",
+        "detail": "Set passes the password as the -w argument inside the interactive `security -i` session rather than on a process command line, so it is not visible in the process list. The upstream library does this on purpose."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/zalando/go-keyring@v0.2.8/keyring_unix.go",
+        "line": 186,
+        "title": "Init functions only select the provider",
+        "detail": "The init functions only choose the platform's keyring provider. They have no other side effects: no network use, no file access and no hooking of other code."
+      }
+    ],
+    "capabilities": [
+      {
+        "package": "github.com/zalando/go-keyring",
+        "capability": "EXEC",
+        "explanation": "On macOS, macOSXKeychain runs the fixed system binary /usr/bin/security with find-generic-password, add-generic-password (passed on stdin to `security -i`, with arguments shell-quoted) and delete-generic-password to read, store and delete keychain secrets. This is the library's documented way of reaching the macOS Keychain.",
+        "file": "github.com/zalando/go-keyring@v0.2.8/keyring_darwin.go"
+      }
+    ],
+    "data_flows": [
+      {
+        "what": "Service name, username and the caller's base64-encoded password, written on the stdin of `security -i`; service and username are also passed as arguments for lookup and delete.",
+        "to": "/usr/bin/security subprocess (macOS Keychain)",
+        "file": "github.com/zalando/go-keyring@v0.2.8/keyring_darwin.go"
+      },
+      {
+        "what": "Service and username attributes, an item label, and the caller's secret, used to create, search, read and delete items in the login collection.",
+        "to": "Secret Service daemon over the D-Bus session bus",
+        "file": "github.com/zalando/go-keyring@v0.2.8/keyring_unix.go"
+      },
+      {
+        "what": "Generic credentials named service:username, holding the caller's password.",
+        "to": "Windows Credential Manager via the wincred library",
+        "file": "github.com/zalando/go-keyring@v0.2.8/keyring_windows.go"
+      }
+    ]
+  }
+}

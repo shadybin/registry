@@ -1,0 +1,60 @@
+{
+  "kind": "third-party",
+  "module": "google.golang.org/protobuf",
+  "from": "",
+  "to": "v1.36.11",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "google.golang.org/protobuf/internal/editiondefaults",
+    "google.golang.org/protobuf/internal/filedesc",
+    "google.golang.org/protobuf/internal/impl",
+    "google.golang.org/protobuf/proto"
+  ],
+  "digest": "sha256:98cba3fcc4820cb65740d2269b48be9f9fb350371eaf5a048eeb88916dbb761e",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This surface of google.golang.org/protobuf v1.36.11 is the official Go protobuf runtime: wire encode/decode, reflection, legacy message support, lazy decoding, and the embedded edition-defaults blob parsed at init. I checked the init code, the embedded binary's consumer, environment reads, and the reflection/unsafe uses. All match upstream behaviour, with no network, process execution, file writes, secret access or hidden payloads.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "google.golang.org/protobuf@v1.36.11/internal/editiondefaults/defaults.go",
+        "line": 11,
+        "title": "Embedded binary edition defaults",
+        "detail": "editiondefaults embeds a 154-byte binary FeatureSetDefaults protobuf, which upstream generates from protoc. It is consumed only by filedesc.unmarshalEditionDefaults at init. That parser accepts a fixed set of field numbers, panics on anything unknown, and only sets boolean/int feature flags in a defaults cache. It cannot carry executable content or change behaviour beyond protobuf edition defaults."
+      },
+      {
+        "severity": "info",
+        "file": "google.golang.org/protobuf@v1.36.11/internal/impl/lazy.go",
+        "line": 24,
+        "title": "Environment variable toggles lazy decoding",
+        "detail": "An init-time read of GOPROTODEBUG=nolazy disables lazy unmarshalling. This is a documented upstream debug knob that only selects between eager and lazy decoding paths. It does not affect security."
+      },
+      {
+        "severity": "info",
+        "file": "google.golang.org/protobuf@v1.36.11/internal/filedesc/editions.go",
+        "line": 21,
+        "title": "Init functions are benign",
+        "detail": "filedesc and proto have init functions. They parse the embedded edition defaults, set surrogate file features, and assign proto.Error. None has side effects outside process memory."
+      }
+    ],
+    "capabilities": [
+      {
+        "package": "google.golang.org/protobuf/internal/impl",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "Comes from reflection and unsafe pointer arithmetic, which is how the protobuf runtime reaches generated message structs. Method.Func.Call is used on XXX_OneofFuncs, XXX_OneofWrappers and ExtensionRangeArray methods of generated or legacy message types. reflect.NewAt, unsafe.Pointer offsets and atomic pointer operations implement fast field access. Legacy Marshal/Unmarshal/Merge interface methods are called on user message types. Only the program's own compiled-in types are invoked; nothing is loaded or run from data.",
+        "file": "google.golang.org/protobuf@v1.36.11/internal/impl/message.go"
+      },
+      {
+        "package": "google.golang.org/protobuf/internal/impl",
+        "capability": "NETWORK",
+        "explanation": "There is no network code in the package: no net, net/http or socket use. The capability is most likely an artifact of call-graph analysis through interface dispatch: legacyMarshaler/legacyUnmarshaler/legacyMerger interface calls and reflect Method.Func.Call can, in theory, reach any method in the binary, including networking types. In practice these calls only serialize, parse and merge messages in memory.",
+        "file": "google.golang.org/protobuf@v1.36.11/internal/impl/legacy_message.go"
+      }
+    ],
+    "data_flows": []
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "kind": "third-party",
+  "module": "github.com/pelletier/go-toml/v2",
+  "from": "",
+  "to": "v2.4.3",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "github.com/pelletier/go-toml/v2/unstable"
+  ],
+  "digest": "sha256:5e811de2de17ff33711c72a18aff02666086b870cbc03c9d141aab6e9c7110f6",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "The surface is a single init function in go-toml's unstable package. It connects the module's internal parserbridge function variables to the package's own TOML scanner and parser methods. It has no network, file, exec or system side effects and touches nothing outside the module, which fits a TOML library.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/pelletier/go-toml/v2@v2.4.3/unstable/bridge.go",
+        "line": 9,
+        "title": "init wires internal parser bridge function variables",
+        "detail": "The package's init function assigns four function variables in the internal parserbridge package to the unstable package's own scanning and parsing methods (scanScalar, scanKey, scanComment, parseValue). This is in-process wiring between the module's own packages, a common way to share internals without exporting them. It patches no other library, does no I/O and runs no code chosen from data."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

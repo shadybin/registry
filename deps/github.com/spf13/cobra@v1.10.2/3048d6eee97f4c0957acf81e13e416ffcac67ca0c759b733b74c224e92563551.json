@@ -1,0 +1,66 @@
+{
+  "kind": "third-party",
+  "module": "github.com/spf13/cobra",
+  "from": "",
+  "to": "v1.10.2",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "github.com/spf13/cobra"
+  ],
+  "digest": "sha256:3048d6eee97f4c0957acf81e13e416ffcac67ca0c759b733b74c224e92563551",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This unit is the cobra CLI framework: command tree, argument and flag parsing, help and usage templates, and shell completion script generation for bash, zsh, fish and powershell. I read every supplied file. It matches upstream cobra behaviour, with no init-time side effects, network access, process execution, credential access, obfuscation or hidden commands beyond the documented __complete helper. On Windows it waits for Enter or a timeout and exits when started from Explorer (mousetrap).",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/spf13/cobra@v1.10.2/bash_completionsV2.go",
+        "line": 0,
+        "title": "Completion scripts eval the program's own __complete invocation",
+        "detail": "The generated bash, zsh, fish and powershell scripts use eval or Invoke-Expression to re-invoke the program with the user's own command line to fetch completions. This is the standard upstream cobra design and runs in the user's shell at their request."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/spf13/cobra@v1.10.2/completions.go",
+        "line": 0,
+        "title": "Opt-in debug log file via environment variable",
+        "detail": "CompDebug appends debug output to the path in BASH_COMP_DEBUG_FILE when the user sets it. This is a user-controlled, documented debugging feature."
+      }
+    ],
+    "capabilities": [
+      {
+        "package": "github.com/spf13/cobra",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "Comes from text/template execution in tmpl() (cobra.go), which renders the usage, help and version templates set by the application, and from reflect.ValueOf in the Gt/Eq template helpers. Templates call methods on *Command via reflection; these are not code fetched or chosen from outside the program. Harmless and standard for a CLI framework.",
+        "file": "github.com/spf13/cobra@v1.10.2/cobra.go"
+      },
+      {
+        "package": "github.com/spf13/cobra",
+        "capability": "NETWORK",
+        "explanation": "No networking code in cobra itself. The capability is reached transitively through github.com/spf13/pflag, whose IP, IPNet and IPMask flag types use the net package to parse and format values (for example FlagUsages calling Value.String()). cobra calls pflag FlagSet methods in command.go. Only parsing and formatting is involved, with no connections.",
+        "file": "github.com/spf13/cobra@v1.10.2/command.go"
+      }
+    ],
+    "data_flows": [
+      {
+        "what": "Generated shell completion scripts",
+        "to": "file path supplied by the calling program (GenBashCompletionFile, GenBashCompletionFileV2, GenFishCompletionFile, GenZshCompletionFile*, GenPowerShellCompletionFile*)",
+        "file": "github.com/spf13/cobra@v1.10.2/bash_completions.go"
+      },
+      {
+        "what": "Completion debug and error messages, only when that variable is set",
+        "to": "file named by the user's BASH_COMP_DEBUG_FILE environment variable (append, 0644), and stderr",
+        "file": "github.com/spf13/cobra@v1.10.2/completions.go"
+      },
+      {
+        "what": "Completion choices and directives, plus completion scripts written by the default 'completion' command",
+        "to": "stdout of the completion command, read by the user's shell",
+        "file": "github.com/spf13/cobra@v1.10.2/completions.go"
+      }
+    ]
+  }
+}

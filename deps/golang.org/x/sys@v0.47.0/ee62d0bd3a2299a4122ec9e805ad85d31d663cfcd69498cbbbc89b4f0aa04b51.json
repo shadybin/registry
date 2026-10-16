@@ -1,0 +1,44 @@
+{
+  "kind": "third-party",
+  "module": "golang.org/x/sys",
+  "from": "",
+  "to": "v0.47.0",
+  "scope": "surface",
+  "part": 2,
+  "parts": 3,
+  "packages": [
+    "golang.org/x/sys/windows"
+  ],
+  "digest": "sha256:ee62d0bd3a2299a4122ec9e805ad85d31d663cfcd69498cbbbc89b4f0aa04b51",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This unit is the surface of golang.org/x/sys/windows: DLL loading and proc-call plumbing, syscall declarations, security/token/service/setupapi wrappers, and type and constant definitions. I checked load-time initialisation, linkname use, dynamic function-pointer calls, and every file for hidden network activity, encoded payloads or environment-dependent behaviour. All of it matches the expected upstream Go project code. Nothing runs on its own beyond obtaining the standard handles, and every OS interaction is a thin wrapper invoked by the caller.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "golang.org/x/sys@v0.47.0/windows/dll_windows.go",
+        "line": 44,
+        "title": "Documented DLL preloading risk in LoadDLL/NewLazyDLL",
+        "detail": "LoadDLL and NewLazyDLL accept non-absolute names and are subject to DLL search-order hijacking. This is upstream behaviour and documented in the source; NewLazySystemDLL restricts loading to System32. It is a caller-side concern, not deliberate."
+      },
+      {
+        "severity": "info",
+        "file": "golang.org/x/sys@v0.47.0/windows/syscall_windows.go",
+        "line": 0,
+        "title": "Package-level variable initialisation calls GetStdHandle",
+        "detail": "The only load-time side effect is the package-level initialisation of Stdin/Stdout/Stderr via GetStdHandle. This is benign and matches upstream. There is no init() function, no hooking or patching, and no embedded or encoded data."
+      }
+    ],
+    "capabilities": [
+      {
+        "package": "golang.org/x/sys/windows",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "This is the package's core mechanism for calling Windows APIs. LazyDLL/DLL.FindProc resolve function addresses with GetProcAddress, and Proc.Call/LazyProc.Call invoke them through syscall.SyscallN. connectEx, WSASendMsg and WSARecvMsg call function pointers obtained via WSAIoctl(SIO_GET_EXTENSION_FUNCTION_POINTER), and NewCallback converts Go funcs into stdcall pointers. All targets are system DLL exports named in the source (generated //sys stubs) or chosen by the caller. Nothing loads or runs code from data.",
+        "file": "golang.org/x/sys@v0.47.0/windows/dll_windows.go"
+      }
+    ],
+    "data_flows": []
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "kind": "third-party",
+  "module": "go.opentelemetry.io/proto/otlp",
+  "from": "",
+  "to": "v1.7.0",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "go.opentelemetry.io/proto/otlp/common/v1",
+    "go.opentelemetry.io/proto/otlp/logs/v1",
+    "go.opentelemetry.io/proto/otlp/metrics/v1",
+    "go.opentelemetry.io/proto/otlp/resource/v1",
+    "go.opentelemetry.io/proto/otlp/trace/v1"
+  ],
+  "digest": "sha256:6261cb38040c40da850ecf0d4b1905742b4a32c025a87e844a90e3d9f238b5f7",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "The unit is the protoc-gen-go generated message types for OTLP common, resource, logs, metrics and trace v1. Their only init code registers protobuf descriptors with google.golang.org/protobuf. I checked the init functions, imports and embedded raw descriptor bytes: there is no network, file, exec or environment access, and nothing deviates from standard generated code.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "go.opentelemetry.io/proto/otlp@v1.7.0/common/v1/common.pb.go",
+        "line": 0,
+        "title": "Standard generated init registration",
+        "detail": "Each package has an init() that only registers its protobuf file descriptor with the protobuf runtime via protoimpl.TypeBuilder. This is standard protoc-gen-go output. It has no other side effects."
+      },
+      {
+        "severity": "info",
+        "file": "go.opentelemetry.io/proto/otlp@v1.7.0/metrics/v1/metrics.pb.go",
+        "line": 0,
+        "title": "Embedded raw descriptors are ordinary protobuf metadata",
+        "detail": "The rawDesc byte arrays are serialized FileDescriptorProto data. They decode to the expected OTLP message, field and enum names and go_package options. They contain no hidden payload and are passed only to the protobuf runtime."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

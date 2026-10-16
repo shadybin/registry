@@ -1,0 +1,51 @@
+{
+  "kind": "third-party",
+  "module": "golang.org/x/sys",
+  "from": "",
+  "to": "v0.47.0",
+  "scope": "surface",
+  "part": 3,
+  "parts": 3,
+  "packages": [
+    "golang.org/x/sys/windows"
+  ],
+  "digest": "sha256:286b5246fae948ee49b76ce417f050d110dc1a91102de63cc5322de8e4372f46",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This unit is the generated surface of golang.org/x/sys/windows: Win32 error constants, known-folder GUIDs, and the mksyscall-generated bindings that lazily resolve procedures from System32 DLLs and call them via syscall.SyscallN. I checked for load-time side effects, non-system DLL loading, encoded data, hidden calls and deviations from the upstream generated patterns, and found none. The code is consistent with the upstream library.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "golang.org/x/sys@v0.47.0/windows/zsyscall_windows.go",
+        "line": 38,
+        "title": "System DLLs loaded lazily from System32 only",
+        "detail": "All 23 DLLs (CfgMgr32, advapi32, kernel32, ntdll, ws2_32 and others) are loaded with NewLazySystemDLL, which restricts loading to the System32 directory. Procedures are resolved lazily on first use, and the package-level var blocks only build lazy descriptors. No init function, constructor or load-time side effect is present in these files."
+      },
+      {
+        "severity": "info",
+        "file": "golang.org/x/sys@v0.47.0/windows/zerrors_windows.go",
+        "line": 1,
+        "title": "Generated constant tables contain only data",
+        "detail": "zerrors_windows.go contains only error, HRESULT and NTSTATUS constants. zknownfolderids_windows.go contains only KNOWNFOLDERID GUID literals. Both match the upstream mkerrors.bash and mkknownfolderids.bash output style. There is no executable code, encoded payload or hidden data."
+      },
+      {
+        "severity": "info",
+        "file": "golang.org/x/sys@v0.47.0/windows/zsyscall_windows.go",
+        "line": 1,
+        "title": "Wrappers are uniform generated thin bindings",
+        "detail": "The wrappers include powerful APIs: WriteProcessMemory, VirtualProtect, CreateProcessAsUser, CreateService, InitiateSystemShutdownEx, CryptUnprotectData and others. These are the standard x/sys/windows API surface. Each function is a plain argument-marshalling call with the upstream error-handling pattern, and nothing calls them automatically. Whether they are misused depends on the importing code, which is reviewed separately."
+      }
+    ],
+    "capabilities": [
+      {
+        "package": "golang.org/x/sys/windows",
+        "capability": "ARBITRARY_EXECUTION",
+        "explanation": "zsyscall_windows.go calls Win32 functions through syscall.SyscallN using addresses resolved at run time from system DLLs (procX.Addr()). It also exposes thin wrappers such as LoadLibrary, LoadLibraryEx, GetProcAddress, CreateProcess and ShellExecute. Capslock reports calls to dynamically resolved function pointers as arbitrary execution. This is the core purpose of a Windows syscall binding library. Each wrapper runs only when the importing program calls it, and nothing in this unit invokes them on its own.",
+        "file": "golang.org/x/sys@v0.47.0/windows/zsyscall_windows.go"
+      }
+    ],
+    "data_flows": []
+  }
+}

@@ -1,0 +1,1500 @@
+{
+  "model": "claude-opus-5-5",
+  "prompt": "3",
+  "previous": "",
+  "modules": [
+    {
+      "path": "github.com/danieljoos/wincred",
+      "version": "v1.2.3",
+      "owned": false,
+      "scope": "none",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/godbus/dbus/v5",
+      "version": "v5.2.2",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/inconshreveable/mousetrap",
+      "version": "v1.1.0",
+      "owned": false,
+      "scope": "none",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/miradorlabs/terma-cli",
+      "version": "",
+      "owned": true,
+      "scope": "project",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/pelletier/go-toml/v2",
+      "version": "v2.4.3",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/spf13/cobra",
+      "version": "v1.10.2",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/spf13/pflag",
+      "version": "v1.0.9",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/zalando/go-keyring",
+      "version": "v0.2.8",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "go.opentelemetry.io/proto/otlp",
+      "version": "v1.7.0",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "golang.org/x/sys",
+      "version": "v0.47.0",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "golang.org/x/term",
+      "version": "v0.45.0",
+      "owned": false,
+      "scope": "none",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "google.golang.org/protobuf",
+      "version": "v1.36.11",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "gopkg.in/yaml.v3",
+      "version": "v3.0.1",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "mvdan.cc/sh/v3",
+      "version": "v3.14.1",
+      "owned": false,
+      "scope": "none",
+      "provenance": "from its repository"
+    }
+  ],
+  "units": [
+    {
+      "kind": "project",
+      "module": "github.com/miradorlabs/terma-cli",
+      "from": "",
+      "to": "",
+      "scope": "whole",
+      "part": 1,
+      "parts": 2,
+      "packages": [
+        "github.com/miradorlabs/terma-cli/cmd/terma",
+        "github.com/miradorlabs/terma-cli/internal/account/api",
+        "github.com/miradorlabs/terma-cli/internal/account/auth",
+        "github.com/miradorlabs/terma-cli/internal/account/keystore",
+        "github.com/miradorlabs/terma-cli/internal/account/secret",
+        "github.com/miradorlabs/terma-cli/internal/account/serverkey",
+        "github.com/miradorlabs/terma-cli/internal/agents",
+        "github.com/miradorlabs/terma-cli/internal/agents/antigravity",
+        "github.com/miradorlabs/terma-cli/internal/agents/builtin",
+        "github.com/miradorlabs/terma-cli/internal/agents/claude",
+        "github.com/miradorlabs/terma-cli/internal/agents/codex",
+        "github.com/miradorlabs/terma-cli/internal/agents/cursor",
+        "github.com/miradorlabs/terma-cli/internal/agents/dsh",
+        "github.com/miradorlabs/terma-cli/internal/agents/gemini",
+        "github.com/miradorlabs/terma-cli/internal/agents/hermes",
+        "github.com/miradorlabs/terma-cli/internal/agents/internal/pifamily",
+        "github.com/miradorlabs/terma-cli/internal/agents/internal/relayexport",
+        "github.com/miradorlabs/terma-cli/internal/agents/omp",
+        "github.com/miradorlabs/terma-cli/internal/agents/opencode",
+        "github.com/miradorlabs/terma-cli/internal/agents/pi",
+        "github.com/miradorlabs/terma-cli/internal/cli",
+        "github.com/miradorlabs/terma-cli/internal/config",
+        "github.com/miradorlabs/terma-cli/internal/delivery",
+        "github.com/miradorlabs/terma-cli/internal/doctor",
+        "github.com/miradorlabs/terma-cli/internal/flock",
+        "github.com/miradorlabs/terma-cli/internal/gitx",
+        "github.com/miradorlabs/terma-cli/internal/globalmode",
+        "github.com/miradorlabs/terma-cli/internal/harness",
+        "github.com/miradorlabs/terma-cli/internal/hooks/dispatch",
+        "github.com/miradorlabs/terma-cli/internal/hooks/hookmgr",
+        "github.com/miradorlabs/terma-cli/internal/hooks/hookrun",
+        "github.com/miradorlabs/terma-cli/internal/policy",
+        "github.com/miradorlabs/terma-cli/internal/procinfo",
+        "github.com/miradorlabs/terma-cli/internal/project",
+        "github.com/miradorlabs/terma-cli/internal/refresh",
+        "github.com/miradorlabs/terma-cli/internal/relay",
+        "github.com/miradorlabs/terma-cli/internal/relay/claim"
+      ],
+      "digest": "sha256:aab50e4fb2b556a2dea6c0cc0e779cc6c28bde82b284d256fd95b9ce16e5f2d7",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This part of terma-cli covers sign-in (PKCE loopback flow), keychain and server-key storage, the agent integrations, the hook runtime, spool delivery, doctor, and the local OTLP relay that forwards only claimed, policy-filtered telemetry to Terma. I checked the network destinations, credential handling, subprocess use, writes to other programs' configs, and the embedded plugins; everything serves the documented spend-attribution purpose. No exfiltration, backdoor, or hidden payload was found; reading Codex/Claude account identity and auto-approving terma's own Codex hooks are noted as concerns.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "concern",
+            "file": "internal/agents/codex/hooks_trust.go",
+            "line": 64,
+            "title": "Auto-approves terma's hooks in Codex's trust store",
+            "detail": "syncHookTrust writes trusted_hash entries into the user's ~/.codex/config.toml [hooks.state] for terma's own hook entries. This skips Codex's interactive hook review for those entries. It approves only entries byte-for-byte identical to what terma writes, withdraws only approvals it wrote itself, verifies the splice changes nothing else, and tells the user (\"approved Terma's N machine-wide hooks (review them with /hooks)\"). It is disclosed and scoped, but it does bypass another program's trust gate."
+          },
+          {
+            "severity": "concern",
+            "file": "internal/agents/codex/funding.go",
+            "line": 44,
+            "title": "Reads identity from Codex auth.json id_token",
+            "detail": "oauthEmail and oauthAccountID read Codex's auth.json, which holds OAuth tokens. They decode the unverified id_token to get the user's email and account_id for spend attribution; the tokens themselves are not sent. Claude's ~/.claude.json oauthAccount metadata is read the same way. This serves the tool's spend-attribution purpose, but it does read another program's credential file."
+          },
+          {
+            "severity": "concern",
+            "file": "internal/agents/omp/extension/terma.ts",
+            "line": 56,
+            "title": "Unvalidated project ID used to build an executed helper path (dormant)",
+            "detail": "In the omp extension's perRepo mode, readProjectID takes the project ID from a repository's committed .terma/settings.json and joins it into a helper path that execFileSync runs, with no validation. The OpenCode plugin explicitly validates the same input against path traversal. perRepo is never set by the Go config() in omp/harness.go, so this path is currently dormant."
+          },
+          {
+            "severity": "info",
+            "file": "internal/agents/opencode/plugin/terma.js",
+            "line": 440,
+            "title": "OpenCode plugin modifies OpenRouter request metadata",
+            "detail": "The OpenCode plugin's chat.params hook adds parent_session_id and agent to the trace field of OpenRouter request bodies. The plugin header discloses this and the data is limited to session metadata."
+          },
+          {
+            "severity": "info",
+            "file": "internal/cli/relay_deps.go",
+            "line": 157,
+            "title": "Heartbeat uses default HTTP client that follows redirects",
+            "detail": "sendHeartbeat uses http.DefaultClient, unlike the other senders, which refuse redirects. A same-host https→http redirect could expose the server key. This is an ordinary hardening gap, not deliberate."
+          },
+          {
+            "severity": "info",
+            "file": "internal/config/policy.go",
+            "line": 143,
+            "title": "Test override env var honored in release builds",
+            "detail": "The TERMA_POLICY_STUB environment variable replaces the fetched collection policy in production builds. It only changes what the user's own machine collects and grants no access to anything."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/account/api",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "No code is loaded or run from data. The capability comes from reflection-based encoding/json decoding and interface dispatch in the API client.",
+            "file": "internal/account/api/client.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/account/api",
+            "capability": "NETWORK",
+            "explanation": "Typed HTTPS client for the Terma auth and API gateways: token exchange and refresh, whoami, projects, policy, server-key minting. It refuses redirects so a bearer token cannot leak.",
+            "file": "internal/account/api/client.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/account/auth",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Comes in transitively through JSON reflection and the keychain backend. No dynamic code is run.",
+            "file": "internal/account/auth/store.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/account/auth",
+            "capability": "EXEC",
+            "explanation": "openBrowser opens the PKCE sign-in URL with `open`, `xdg-open` or `rundll32 url.dll,FileProtocolHandler`.",
+            "file": "internal/account/auth/login.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/account/auth",
+            "capability": "NETWORK",
+            "explanation": "A loopback-only listener on 127.0.0.1 receives the OAuth callback; it checks state and Host and guards against DNS rebinding.",
+            "file": "internal/account/auth/login.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/account/keystore",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Comes in transitively through JSON and go-keyring. No code is run from data.",
+            "file": "internal/account/keystore/keystore.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/account/keystore",
+            "capability": "NETWORK",
+            "explanation": "Transitive only: config's localhost DNS check and go-keyring's D-Bus Secret Service connection. The keystore itself sends nothing.",
+            "file": "internal/account/keystore/keystore.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/account/secret",
+            "capability": "NETWORK",
+            "explanation": "go-keyring reaches the system credential store. On Linux that is the Secret Service over a D-Bus socket.",
+            "file": "internal/account/secret/secret.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents",
+            "capability": "NETWORK",
+            "explanation": "Transitive through the hookrun and harness imports. The registry has no network code of its own.",
+            "file": "internal/agents/registry.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/antigravity",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Transitive through the shared hook runtime and JSON decoding. Nothing is evaluated.",
+            "file": "internal/agents/antigravity/handlers.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/antigravity",
+            "capability": "NETWORK",
+            "explanation": "Transitive through hookrun, harness and config. The handlers only write to the local spool.",
+            "file": "internal/agents/antigravity/handlers.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/claude",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "The wrapped status line runs the user's previously configured statusLine command with `sh -c`, exactly as Claude Code would have run it.",
+            "file": "internal/agents/claude/statusline_hook.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/claude",
+            "capability": "EXEC",
+            "explanation": "Runs `claude --version` to detect the agent, and starts the user's prior status-line renderer.",
+            "file": "internal/agents/claude/statusline_hook.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/claude",
+            "capability": "MODIFY_SYSTEM_STATE",
+            "explanation": "Puts the renderer in its own process group (Setpgid) and forwards SIGTERM/SIGINT/SIGHUP to that group so a cancelled render stops.",
+            "file": "internal/agents/claude/statusline_process_unix.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/claude",
+            "capability": "NETWORK",
+            "explanation": "Transitive. Claude Code is only pointed at the local relay through its settings file; this package makes no network calls.",
+            "file": "internal/agents/claude/render.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/codex",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "runPreviousNotify runs the notifier argv the user had configured in Codex before terma replaced it.",
+            "file": "internal/agents/codex/notify.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/codex",
+            "capability": "EXEC",
+            "explanation": "Runs `codex --version`, `defaults read com.openai.codex config_toml_base64` to find managed-config conflicts, and the user's previous notify program.",
+            "file": "internal/agents/codex/conflicts.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/codex",
+            "capability": "NETWORK",
+            "explanation": "Transitive. Codex is configured to export to the local relay; this package makes no network calls.",
+            "file": "internal/agents/codex/otel.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/codex",
+            "capability": "OPERATING_SYSTEM",
+            "explanation": "Reads the device and inode numbers from syscall.Stat_t to recognise a rewritten rollout file, and uses os.OpenRoot to confine rollout reads.",
+            "file": "internal/agents/codex/rollout_identity_unix.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/cursor",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Transitive through hookrun and JSON decoding.",
+            "file": "internal/agents/cursor/handlers.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/cursor",
+            "capability": "NETWORK",
+            "explanation": "Transitive. Cursor hooks only write local state and the spool.",
+            "file": "internal/agents/cursor/handlers.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/dsh",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Transitive. The package writes an embedded JS plugin for dsh to load; terma itself does not run it.",
+            "file": "internal/agents/dsh/plugin.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/dsh",
+            "capability": "NETWORK",
+            "explanation": "Transitive. The plugin it writes posts OTLP only to the local relay endpoint.",
+            "file": "internal/agents/dsh/plugin/terma.mjs"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/gemini",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Transitive through hookrun.",
+            "file": "internal/agents/gemini/handlers.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/gemini",
+            "capability": "NETWORK",
+            "explanation": "Transitive. It only writes the relay endpoint into Gemini's settings.",
+            "file": "internal/agents/gemini/settings.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/hermes",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Transitive. The package writes an embedded Python plugin for Hermes to load.",
+            "file": "internal/agents/hermes/plugin.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/hermes",
+            "capability": "EXEC",
+            "explanation": "Runs `hermes plugins enable terma` and `hermes plugins disable terma`.",
+            "file": "internal/agents/hermes/plugin.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/hermes",
+            "capability": "NETWORK",
+            "explanation": "Transitive. The plugin posts to the local relay only.",
+            "file": "internal/agents/hermes/plugin/__init__.py"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/internal/pifamily",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Transitive. The package renders an embedded TS extension for Pi and omp.",
+            "file": "internal/agents/internal/pifamily/pifamily.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/internal/pifamily",
+            "capability": "NETWORK",
+            "explanation": "Transitive. The extension posts to the local relay endpoint.",
+            "file": "internal/agents/internal/pifamily/terma.ts"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/omp",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Transitive through harness and hookrun.",
+            "file": "internal/agents/omp/harness.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/omp",
+            "capability": "EXEC",
+            "explanation": "Runs `omp --version` through harness.DetectBinary.",
+            "file": "internal/agents/omp/harness.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/omp",
+            "capability": "NETWORK",
+            "explanation": "Transitive. The written extension exports OTLP to the configured endpoint.",
+            "file": "internal/agents/omp/extension/terma.ts"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/opencode",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Transitive. The package writes an embedded plugin for OpenCode.",
+            "file": "internal/agents/opencode/harness.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/agents/opencode",
+            "capability": "NETWORK",
+            "explanation": "Transitive. The plugin posts OTLP to the relay.",
+            "file": "internal/agents/opencode/plugin/terma.js"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/cli",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Transitive through cobra, JSON and the agent registry. No code is run from data.",
+            "file": "internal/cli/root.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/cli",
+            "capability": "EXEC",
+            "explanation": "spawnDetached re-runs terma for spool flushes. runUpdateStep runs the owning package manager (brew or npm) and the new binary's `update --refresh`. nate may run `sudo rm` on the terma binary, interactively only.",
+            "file": "internal/cli/hook.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/cli",
+            "capability": "MODIFY_SYSTEM_STATE",
+            "explanation": "signal.Notify for graceful cancellation. The relay daemon install and remove commands set up and tear down a per-user service.",
+            "file": "internal/cli/root.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/cli",
+            "capability": "NETWORK",
+            "explanation": "The relay heartbeat POST to the team's OTLP ingest, API calls for sign-in and teams, and spool delivery.",
+            "file": "internal/cli/relay_deps.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/cli",
+            "capability": "OPERATING_SYSTEM",
+            "explanation": "os.Executable, the hostname, and environment and process handling for update and relay management.",
+            "file": "internal/cli/update.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/config",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "JSON reflection only.",
+            "file": "internal/config/config.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/config",
+            "capability": "NETWORK",
+            "explanation": "isLoopbackHost resolves `localhost` with net.LookupHost before allowing an http endpoint.",
+            "file": "internal/config/config.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/delivery",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Transitive through JSON and the keychain.",
+            "file": "internal/delivery/delivery.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/delivery",
+            "capability": "EXEC",
+            "explanation": "Transitive: go-keyring on macOS runs `security` to read team keys.",
+            "file": "internal/delivery/delivery.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/delivery",
+            "capability": "NETWORK",
+            "explanation": "POSTs spooled hook events as OTLP/JSON to the team's ingest host with its server key, refusing redirects.",
+            "file": "internal/delivery/otlp.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/doctor",
+            "capability": "NETWORK",
+            "explanation": "Transitive. Delivery probing goes through injected Probes functions.",
+            "file": "internal/doctor/run.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/flock",
+            "capability": "NETWORK",
+            "explanation": "Spurious or transitive classification. The package only uses flock and LockFileEx on local files.",
+            "file": "internal/flock/flock.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/gitx",
+            "capability": "EXEC",
+            "explanation": "Runs bounded `git` subprocesses: rev-parse, diff --cached, log, config, cat-file and merge-base.",
+            "file": "internal/gitx/gitx.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/gitx",
+            "capability": "NETWORK",
+            "explanation": "Only url.Parse is used to normalise remotes. It never fetches: GIT_NO_LAZY_FETCH is set.",
+            "file": "internal/gitx/gitx.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/gitx",
+            "capability": "OPERATING_SYSTEM",
+            "explanation": "Reads and filters environment variables (GIT_DIR and others) for git subprocesses, and reads git config files.",
+            "file": "internal/gitx/push.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/harness",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Transitive through JSON.",
+            "file": "internal/harness/harness.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/harness",
+            "capability": "EXEC",
+            "explanation": "DetectBinary runs `\u003cagent\u003e --version`.",
+            "file": "internal/harness/detect.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/harness",
+            "capability": "NETWORK",
+            "explanation": "Transitive through config.",
+            "file": "internal/harness/harness.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/harness",
+            "capability": "OPERATING_SYSTEM",
+            "explanation": "Writes a 0700 headers-helper script and reads the environment.",
+            "file": "internal/harness/headers_helper.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/hooks/hookmgr",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "JSON reflection only.",
+            "file": "internal/hooks/hookmgr/json.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/hooks/hookmgr",
+            "capability": "NETWORK",
+            "explanation": "Transitive through config.",
+            "file": "internal/hooks/hookmgr/hookmgr.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/hooks/hookrun",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Transitive through JSON.",
+            "file": "internal/hooks/hookrun/hookrun.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/hooks/hookrun",
+            "capability": "EXEC",
+            "explanation": "Runs git through gitx for commit, staged-file and push history.",
+            "file": "internal/hooks/hookrun/commit.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/hooks/hookrun",
+            "capability": "NETWORK",
+            "explanation": "Transitive. Hooks never touch the network; they write to the spool.",
+            "file": "internal/hooks/hookrun/hookrun.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/hooks/hookrun",
+            "capability": "OPERATING_SYSTEM",
+            "explanation": "Walks process ancestry for claims, checks whether the git push process is alive, and opens evidence files with O_NOFOLLOW.",
+            "file": "internal/hooks/hookrun/push.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/policy",
+            "capability": "NETWORK",
+            "explanation": "Fetches the collection policy from the auth host through the api client.",
+            "file": "internal/policy/policy.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/relay",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Protobuf and JSON reflection only.",
+            "file": "internal/relay/relay.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/relay",
+            "capability": "EXEC",
+            "explanation": "Transitive through the gitx import, used only for ParseOrigin.",
+            "file": "internal/relay/checkout.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/relay",
+            "capability": "NETWORK",
+            "explanation": "Serves OTLP on loopback behind a token, and forwards claimed, policy-filtered parts to the team's ingest with its key.",
+            "file": "internal/relay/forward.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/relay",
+            "capability": "OPERATING_SYSTEM",
+            "explanation": "Reads the hostname for the heartbeat, and looks up sender PIDs through injected procinfo functions.",
+            "file": "internal/relay/heartbeat.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/relay/claim",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Transitive through JSON.",
+            "file": "internal/relay/claim/claim.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/relay/claim",
+            "capability": "NETWORK",
+            "explanation": "Transitive through config. Claims are local files.",
+            "file": "internal/relay/claim/claim.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/relay/claim",
+            "capability": "OPERATING_SYSTEM",
+            "explanation": "File locks and atomic writes of claim files under the state directory.",
+            "file": "internal/relay/claim/claim.go"
+          }
+        ],
+        "data_flows": [
+          {
+            "what": "CLI access and refresh tokens, PKCE code and verifier, team ID, requests for the policy, projects and organizations, and server-key minting",
+            "to": "auth.terma.ai / api.terma.ai (or configured hosts, https only)",
+            "file": "internal/account/api/client.go"
+          },
+          {
+            "what": "Sign-in URL carrying the PKCE challenge, state, loopback port, machine hostname as label, and an organization hint",
+            "to": "user's browser via open/xdg-open, then app.terma.ai",
+            "file": "internal/account/auth/login.go"
+          },
+          {
+            "what": "Spooled hook events: session IDs, file paths, commit SHAs, branch and remote, repository root, model and quota data, account IDs and emails, assistant replies and titles. Content follows team policy; email is withheld when content is withheld.",
+            "to": "team OTLP ingest (otel.terma.ai)",
+            "file": "internal/delivery/otlp.go"
+          },
+          {
+            "what": "Agent telemetry (prompts, responses, tool content) for claimed sessions, filtered by the team's content policy and stamped with project, checkout, branch and user ID",
+            "to": "team OTLP ingest",
+            "file": "internal/relay/forward.go"
+          },
+          {
+            "what": "Relay heartbeat with hostname, terma version, launch mode, aggregate counters and signed-in user ID",
+            "to": "team OTLP ingest",
+            "file": "internal/cli/relay_deps.go"
+          },
+          {
+            "what": "ChatGPT account_id and email decoded from the id_token in ~/.codex/auth.json (the tokens themselves are not sent)",
+            "to": "spool, then Terma ingest",
+            "file": "internal/agents/codex/funding.go"
+          },
+          {
+            "what": "oauthAccount metadata from ~/.claude.json: account and org UUIDs, billing type, seat tier, email",
+            "to": "spool, then Terma ingest",
+            "file": "internal/agents/claude/funding.go"
+          },
+          {
+            "what": "Codex assistant reply text and thread titles read from rollout files and session_index.jsonl",
+            "to": "spool, then Terma ingest (policy-gated)",
+            "file": "internal/agents/codex/replies_hooks.go"
+          },
+          {
+            "what": "Parent session ID and agent name added to the request body's trace metadata for subagent sessions",
+            "to": "OpenRouter (inside the agent's own requests)",
+            "file": "internal/agents/opencode/plugin/terma.js"
+          },
+          {
+            "what": "OTEL env block pointing at the local relay with the relay token, hooks, and a wrapped statusLine",
+            "to": "~/.claude/settings.json",
+            "file": "internal/agents/claude/settings.go"
+          },
+          {
+            "what": "[otel] exporters with the relay token, hooks, notify entry, and hooks.state trust hashes for terma's own entries",
+            "to": "~/.codex/config.toml and hooks.json",
+            "file": "internal/agents/codex/toml.go"
+          },
+          {
+            "what": "Telemetry endpoint carrying the relay token, and hook extension",
+            "to": "~/.gemini/settings.json and extensions/terma",
+            "file": "internal/agents/gemini/settings.go"
+          },
+          {
+            "what": "Exporter plugin with the relay token, and its insert entry",
+            "to": "$DSH_HOME/plugins/terma-relay.mjs and cordis.patch.yml",
+            "file": "internal/agents/dsh/plugin.go"
+          },
+          {
+            "what": "Exporter plugin with the relay token",
+            "to": "$HERMES_HOME/plugins/terma",
+            "file": "internal/agents/hermes/plugin.go"
+          },
+          {
+            "what": "Exporter extension with the relay token",
+            "to": "~/.pi/agent/extensions and ~/.omp/agent/extensions",
+            "file": "internal/agents/internal/pifamily/pifamily.go"
+          },
+          {
+            "what": "CLI tokens and team server keys",
+            "to": "system keychain",
+            "file": "internal/account/secret/secret.go"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "project",
+      "module": "github.com/miradorlabs/terma-cli",
+      "from": "",
+      "to": "",
+      "scope": "whole",
+      "part": 2,
+      "parts": 2,
+      "packages": [
+        "github.com/miradorlabs/terma-cli/internal/relay/daemon",
+        "github.com/miradorlabs/terma-cli/internal/relay/service",
+        "github.com/miradorlabs/terma-cli/internal/relay/shape",
+        "github.com/miradorlabs/terma-cli/internal/repohooks",
+        "github.com/miradorlabs/terma-cli/internal/routing",
+        "github.com/miradorlabs/terma-cli/internal/selfupdate",
+        "github.com/miradorlabs/terma-cli/internal/semconv",
+        "github.com/miradorlabs/terma-cli/internal/session",
+        "github.com/miradorlabs/terma-cli/internal/setup",
+        "github.com/miradorlabs/terma-cli/internal/shellrc",
+        "github.com/miradorlabs/terma-cli/internal/spool",
+        "github.com/miradorlabs/terma-cli/internal/trailer",
+        "github.com/miradorlabs/terma-cli/internal/ui/output",
+        "github.com/miradorlabs/terma-cli/internal/ui/prompt",
+        "github.com/miradorlabs/terma-cli/internal/ui/spinner",
+        "github.com/miradorlabs/terma-cli/internal/ui/style"
+      ],
+      "digest": "sha256:bb341620106869f263819884985bb3895d14ec590b2b32a36bab045051202d28",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This part of terma covers the local OTLP relay daemon and its per-user service, git hook installation, session manifests, the event spool, the signed self-updater, collection-policy storage and UI helpers. I checked process spawning, service and hook installation, network endpoints, and update verification (ed25519 key pinned in the binary plus SHA-256). All of it matches the tool's documented behaviour, and I found no exfiltration, backdoor or hidden behaviour.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "internal/selfupdate/selfupdate.go",
+            "line": 209,
+            "title": "Self-update verifies a pinned-key signature and checksum",
+            "detail": "Apply verifies an ed25519 signature over 'terma release \u003ctag\u003e\\n' plus checksums.txt against keys pinned in sign.go, then checks the archive's SHA-256 against the signed checksums before renaming the binary into place. Downloads are restricted to https GitHub hosts, also on redirect. Release keys can only be overridden through a Client field used by tests. This meets the signed-update exception."
+          },
+          {
+            "severity": "info",
+            "file": "internal/relay/service/manager.go",
+            "line": 176,
+            "title": "Per-user relay service installed as documented",
+            "detail": "The relay is installed as a launchd agent, a systemd user unit, or a Windows HKCU Run key that launches a hidden wscript launcher. This is persistence, but it is the documented relay service set up by `terma setup` and removed by teardown or `relay daemon remove`."
+          },
+          {
+            "severity": "info",
+            "file": "internal/repohooks/sync.go",
+            "line": 28,
+            "title": "Git hooks installed into collected repositories under team policy",
+            "detail": "Writes prepare-commit-msg, post-commit and pre-push into a repository's .git/hooks only when the validated team policy has GitHooks on and admits the repository. It chains any existing hook by renaming it to .pre-terma and leaves core.hooksPath repositories alone. This matches the README's commit stamping section."
+          },
+          {
+            "severity": "info",
+            "file": "internal/ui/style/style.go",
+            "line": 64,
+            "title": "Environment detection limited to output formatting",
+            "detail": "AgentMode checks CLAUDECODE, CURSOR_TRACE_ID and similar variables only to disable colour and choose JSON output. It hides no behaviour."
+          },
+          {
+            "severity": "info",
+            "file": "internal/trailer/trailer.go",
+            "line": 0,
+            "title": "Capabilities attributed to a pure string package",
+            "detail": "Capslock attributes EXEC and NETWORK to the trailer package, but the code only uses regexp and strings. This looks like call-graph over-approximation, not real use."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/relay/daemon",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "No code here runs code chosen at run time. The capability most likely comes from reflection-based encoding/json (RunInfo, stats, env.json, retired token) and from function-valued dependencies (Deps, Updater.Update, Supervisor.Start) called through closures the CLI supplies.",
+            "file": "internal/relay/daemon/run.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/relay/daemon",
+            "capability": "EXEC",
+            "explanation": "Starts its own binary (os.Executable) as `terma relay run --quiet --launch hook [--follow]`, detached, in start/spawnCommand. On Windows it starts `terma relay supervise` in asThisTerma. These are the documented on-demand relay and its supervisor.",
+            "file": "internal/relay/daemon/lifecycle.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/relay/daemon",
+            "capability": "NETWORK",
+            "explanation": "net.Listen and http.Server run the local OTLP relay on the recorded address (default loopback). net.DialTimeout probes whether the relay listens. CheckIn POSTs to the local relay's /heartbeat with the relay token. Delivery to Terma goes through the injected relay engine and SendHeartbeat.",
+            "file": "internal/relay/daemon/run.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/relay/daemon",
+            "capability": "OPERATING_SYSTEM",
+            "explanation": "os.FindProcess and SIGTERM stop a running relay. It also creates the relay state directory, writes lock, pid, stats and log files, reads environment variables for settings and the recorded environment, and releases detached processes.",
+            "file": "internal/relay/daemon/lifecycle.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/relay/service",
+            "capability": "EXEC",
+            "explanation": "Runs launchctl (bootout, bootstrap, kickstart) on macOS and systemctl --user (daemon-reload, enable, restart, disable) on Linux. This installs, starts and removes the documented per-user relay service.",
+            "file": "internal/relay/service/manager.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/relay/service",
+            "capability": "NETWORK",
+            "explanation": "No network code in this package. It renders service definitions and runs service managers. The capability is likely inherited transitively through the imported config package; nothing here opens a connection.",
+            "file": "internal/relay/service/manager.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/repohooks",
+            "capability": "OPERATING_SYSTEM",
+            "explanation": "Writes terma's hook scripts (mode 0755) into a repository's own .git/hooks, renames a pre-existing hook to \u003cname\u003e.pre-terma, removes copies of its own script that hook managers moved aside, and reads HOME for core.hooksPath expansion. This is the documented, policy-gated commit stamping.",
+            "file": "internal/repohooks/repohooks.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/selfupdate",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "No dynamic code execution. It likely comes from reflection in encoding/json decoding of release payloads and cache files, and from regexp.",
+            "file": "internal/selfupdate/selfupdate.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/selfupdate",
+            "capability": "EXEC",
+            "explanation": "exec.LookPath(\"npm\") in ManagedBy finds the npm that owns an npm installation, so `terma update` can name or run the documented upgrade command. Nothing here downloads and executes code.",
+            "file": "internal/selfupdate/managed.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/selfupdate",
+            "capability": "NETWORK",
+            "explanation": "Queries the GitHub API and github.com release pages for the latest release, then downloads checksums.txt, checksums.txt.sig and the platform archive. Downloads are restricted to https GitHub hosts; checksums.txt must carry an ed25519 signature for the tag from a key pinned in the binary, and the archive must match its SHA-256 before the binary is replaced.",
+            "file": "internal/selfupdate/selfupdate.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/session",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "No dynamic execution. Likely from reflection-based encoding/json of session and manifest files, and from regexp.",
+            "file": "internal/session/session.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/session",
+            "capability": "NETWORK",
+            "explanation": "No network use in this package; it is a local file store. The capability is likely inherited transitively through the config package import.",
+            "file": "internal/session/session.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/session",
+            "capability": "OPERATING_SYSTEM",
+            "explanation": "Creates and removes files and directories for per-repository session manifests, deltas and parked lines under the store directory, takes file locks, and uses crypto/rand for delta file names.",
+            "file": "internal/session/session.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/spool",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "No dynamic execution. It comes from the Sender interface (SenderFunc), which calls a function the CLI supplies, and from encoding/json reflection.",
+            "file": "internal/spool/spool.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/spool",
+            "capability": "NETWORK",
+            "explanation": "The spool does no networking itself. Flush hands batches to an injected Sender, which delivers to the backend outside this unit. The capability is attributed through that interface call or transitively through config.",
+            "file": "internal/spool/flush.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/trailer",
+            "capability": "EXEC",
+            "explanation": "The package is pure string manipulation over regexp and strings, with no exec calls. The capability is likely a call-graph over-approximation, for example through regexp or interface dispatch; no code here runs a program.",
+            "file": "internal/trailer/trailer.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/trailer",
+            "capability": "NETWORK",
+            "explanation": "No network use; it only formats and parses commit-message trailers. Probably a call-graph over-approximation.",
+            "file": "internal/trailer/trailer.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/ui/output",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Reflection-based encoding in gopkg.in/yaml.v3 and encoding/json, used to render command results. This is harmless.",
+            "file": "internal/ui/output/output.go"
+          },
+          {
+            "package": "github.com/miradorlabs/terma-cli/internal/ui/output",
+            "capability": "NETWORK",
+            "explanation": "Render writes to an io.Writer, which a call graph may resolve to a net.Conn, and yaml/json are imported. No network is used intentionally; output goes to the terminal or stdout.",
+            "file": "internal/ui/output/output.go"
+          }
+        ],
+        "data_flows": [
+          {
+            "what": "Setup heartbeat request with the local relay bearer token",
+            "to": "local relay at the recorded address (default 127.0.0.1) /heartbeat",
+            "file": "internal/relay/daemon/heartbeat.go"
+          },
+          {
+            "what": "Agents' OTLP telemetry is accepted locally; the relay engine (outside this unit) forwards claimed, policy-filtered sessions to the Terma ingest endpoint with the team key",
+            "to": "HTTP server on the relay address (loopback by default)",
+            "file": "internal/relay/daemon/run.go"
+          },
+          {
+            "what": "Mints a project ingest key under the signed-in credential and stores it locally",
+            "to": "Terma backend via injected CreateKey; system keychain via keystore.Set",
+            "file": "internal/relay/daemon/mint.go"
+          },
+          {
+            "what": "Periodic fetch of each team's collection policy",
+            "to": "Terma backend via injected RefreshPolicy",
+            "file": "internal/relay/daemon/engine.go"
+          },
+          {
+            "what": "Release lookups and downloads; User-Agent terma-cli/\u003cversion\u003e",
+            "to": "api.github.com and github.com (miradorlabs/terma-cli releases)",
+            "file": "internal/selfupdate/selfupdate.go"
+          },
+          {
+            "what": "The new binary after signature and checksum verification",
+            "to": "the terma executable path (renamed into place)",
+            "file": "internal/selfupdate/selfupdate.go"
+          },
+          {
+            "what": "Per-user relay service definition with the relay environment keys (TERMA_*, XDG_*, HOME and similar)",
+            "to": "~/Library/LaunchAgents/ai.terma.relay*.plist, ~/.config/systemd/user/ai.terma.relay*.service, or HKCU Run key plus a .vbs launcher",
+            "file": "internal/relay/service/manager.go"
+          },
+          {
+            "what": "terma hook scripts chaining to any displaced hook",
+            "to": "\u003crepo\u003e/.git/hooks/{prepare-commit-msg,post-commit,pre-push}",
+            "file": "internal/repohooks/repohooks.go"
+          },
+          {
+            "what": "Queued hook events (commit, push and session events) in batches",
+            "to": "injected Sender (Terma backend)",
+            "file": "internal/spool/flush.go"
+          },
+          {
+            "what": "Relay logs, counters and run info",
+            "to": "relay state directory (activity.log, daemon.log, stats.json, daemon.json)",
+            "file": "internal/relay/daemon/log.go"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/godbus/dbus/v5",
+      "from": "",
+      "to": "v5.2.2",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/godbus/dbus/v5"
+      ],
+      "digest": "sha256:1840d5ec1c029f07475ada6eda3aeb2e8afe48453cd6fe58607d99f2a710abdd",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This surface of godbus/dbus v5.2.2 is a pure-Go D-Bus client: bus address discovery, EXTERNAL and ANONYMOUS authentication, wire encoding and decoding, and Unix, tcp and nonce-tcp transports. I checked the init functions (only transport registration and endianness detection), the exec of dbus-launch, the environment changes, credential passing and every network dial. All of it matches upstream behaviour and the library's purpose, with no hidden endpoints, encoded payloads or extra data collection.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/godbus/dbus/v5@v5.2.2/conn_other.go",
+            "line": 19,
+            "title": "Session bus autolaunch runs dbus-launch from PATH",
+            "detail": "When no session bus address is found, getSessionBusPlatformAddress runs \"dbus-launch\" resolved via PATH and sets whatever environment variable name appears before '=' in its output. This is standard upstream godbus behaviour for D-Bus autolaunch, not deliberate misuse. It is noted because it runs an external binary."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/godbus/dbus/v5@v5.2.2/transport_nonce_tcp.go",
+            "line": 30,
+            "title": "nonce-tcp sends noncefile contents to the bus",
+            "detail": "The nonce-tcp transport reads the file named by the bus address's noncefile key and writes its bytes to the TCP socket. This is what the D-Bus nonce-tcp spec requires. The address comes from the caller or the environment, so it is not hidden exfiltration."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "github.com/godbus/dbus/v5",
+            "capability": "EXEC",
+            "explanation": "getSessionBusPlatformAddress runs the fixed command \"dbus-launch\" via exec.Command and parses the KEY=value line it prints, to autolaunch a session bus when no address can be found. This is the standard D-Bus autolaunch behaviour, reached only through the session-bus connect functions.",
+            "file": "github.com/godbus/dbus/v5@v5.2.2/conn_other.go"
+          },
+          {
+            "package": "github.com/godbus/dbus/v5",
+            "capability": "MODIFY_SYSTEM_STATE",
+            "explanation": "os.Setenv sets DBUS_SESSION_BUS_ADDRESS (or the variable name dbus-launch printed) in the current process, caching the discovered session bus address. getSessionBusAddress in conn.go does the same after discovering /run/user/\u003cuid\u003e/bus. It changes only this process's environment.",
+            "file": "github.com/godbus/dbus/v5@v5.2.2/conn_other.go"
+          },
+          {
+            "package": "github.com/godbus/dbus/v5",
+            "capability": "NETWORK",
+            "explanation": "The bus transports connect to the address taken from the environment or the defaults: Unix sockets via net.DialUnix in transport_unix.go (system bus at /var/run/dbus/system_bus_socket, session bus at /run/user/\u003cuid\u003e/bus), and tcp and nonce-tcp via net.Dial in transport_tcp.go and transport_nonce_tcp.go. These are the core purpose of a D-Bus client library. escape.go also uses net/url only to unescape address values, which is harmless parsing.",
+            "file": "github.com/godbus/dbus/v5@v5.2.2/transport_unix.go"
+          }
+        ],
+        "data_flows": [
+          {
+            "what": "D-Bus messages built by the application, plus any Unix file descriptors passed as SCM_RIGHTS",
+            "to": "D-Bus daemon over a Unix domain socket (system or session bus address)",
+            "file": "github.com/godbus/dbus/v5@v5.2.2/transport_unix.go"
+          },
+          {
+            "what": "The process PID, UID and GID as SCM_CREDENTIALS, sent with the initial null byte for EXTERNAL authentication",
+            "to": "D-Bus daemon over a Unix socket",
+            "file": "github.com/godbus/dbus/v5@v5.2.2/transport_unixcred_linux.go"
+          },
+          {
+            "what": "The hex-encoded effective UID during the EXTERNAL auth handshake",
+            "to": "D-Bus daemon",
+            "file": "github.com/godbus/dbus/v5@v5.2.2/auth_external.go"
+          },
+          {
+            "what": "Authentication handshake and D-Bus messages",
+            "to": "TCP host:port named in a tcp: bus address",
+            "file": "github.com/godbus/dbus/v5@v5.2.2/transport_tcp.go"
+          },
+          {
+            "what": "Contents of the noncefile named in the address (as the D-Bus spec requires), then D-Bus messages",
+            "to": "TCP host:port named in a nonce-tcp: bus address",
+            "file": "github.com/godbus/dbus/v5@v5.2.2/transport_nonce_tcp.go"
+          },
+          {
+            "what": "Runs the fixed dbus-launch command with no input and reads its output to get a session bus address",
+            "to": "dbus-launch child process",
+            "file": "github.com/godbus/dbus/v5@v5.2.2/conn_other.go"
+          },
+          {
+            "what": "A diagnostic line when an exported method's reply cannot be encoded",
+            "to": "stderr",
+            "file": "github.com/godbus/dbus/v5@v5.2.2/export.go"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/pelletier/go-toml/v2",
+      "from": "",
+      "to": "v2.4.3",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/pelletier/go-toml/v2/unstable"
+      ],
+      "digest": "sha256:5e811de2de17ff33711c72a18aff02666086b870cbc03c9d141aab6e9c7110f6",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "The surface is a single init function in go-toml's unstable package. It connects the module's internal parserbridge function variables to the package's own TOML scanner and parser methods. It has no network, file, exec or system side effects and touches nothing outside the module, which fits a TOML library.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/pelletier/go-toml/v2@v2.4.3/unstable/bridge.go",
+            "line": 9,
+            "title": "init wires internal parser bridge function variables",
+            "detail": "The package's init function assigns four function variables in the internal parserbridge package to the unstable package's own scanning and parsing methods (scanScalar, scanKey, scanComment, parseValue). This is in-process wiring between the module's own packages, a common way to share internals without exporting them. It patches no other library, does no I/O and runs no code chosen from data."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/spf13/cobra",
+      "from": "",
+      "to": "v1.10.2",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/spf13/cobra"
+      ],
+      "digest": "sha256:3048d6eee97f4c0957acf81e13e416ffcac67ca0c759b733b74c224e92563551",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This unit is the cobra CLI framework: command tree, argument and flag parsing, help and usage templates, and shell completion script generation for bash, zsh, fish and powershell. I read every supplied file. It matches upstream cobra behaviour, with no init-time side effects, network access, process execution, credential access, obfuscation or hidden commands beyond the documented __complete helper. On Windows it waits for Enter or a timeout and exits when started from Explorer (mousetrap).",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/spf13/cobra@v1.10.2/bash_completionsV2.go",
+            "line": 0,
+            "title": "Completion scripts eval the program's own __complete invocation",
+            "detail": "The generated bash, zsh, fish and powershell scripts use eval or Invoke-Expression to re-invoke the program with the user's own command line to fetch completions. This is the standard upstream cobra design and runs in the user's shell at their request."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/spf13/cobra@v1.10.2/completions.go",
+            "line": 0,
+            "title": "Opt-in debug log file via environment variable",
+            "detail": "CompDebug appends debug output to the path in BASH_COMP_DEBUG_FILE when the user sets it. This is a user-controlled, documented debugging feature."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "github.com/spf13/cobra",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Comes from text/template execution in tmpl() (cobra.go), which renders the usage, help and version templates set by the application, and from reflect.ValueOf in the Gt/Eq template helpers. Templates call methods on *Command via reflection; these are not code fetched or chosen from outside the program. Harmless and standard for a CLI framework.",
+            "file": "github.com/spf13/cobra@v1.10.2/cobra.go"
+          },
+          {
+            "package": "github.com/spf13/cobra",
+            "capability": "NETWORK",
+            "explanation": "No networking code in cobra itself. The capability is reached transitively through github.com/spf13/pflag, whose IP, IPNet and IPMask flag types use the net package to parse and format values (for example FlagUsages calling Value.String()). cobra calls pflag FlagSet methods in command.go. Only parsing and formatting is involved, with no connections.",
+            "file": "github.com/spf13/cobra@v1.10.2/command.go"
+          }
+        ],
+        "data_flows": [
+          {
+            "what": "Generated shell completion scripts",
+            "to": "file path supplied by the calling program (GenBashCompletionFile, GenBashCompletionFileV2, GenFishCompletionFile, GenZshCompletionFile*, GenPowerShellCompletionFile*)",
+            "file": "github.com/spf13/cobra@v1.10.2/bash_completions.go"
+          },
+          {
+            "what": "Completion debug and error messages, only when that variable is set",
+            "to": "file named by the user's BASH_COMP_DEBUG_FILE environment variable (append, 0644), and stderr",
+            "file": "github.com/spf13/cobra@v1.10.2/completions.go"
+          },
+          {
+            "what": "Completion choices and directives, plus completion scripts written by the default 'completion' command",
+            "to": "stdout of the completion command, read by the user's shell",
+            "file": "github.com/spf13/cobra@v1.10.2/completions.go"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/spf13/pflag",
+      "from": "",
+      "to": "v1.0.9",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/spf13/pflag"
+      ],
+      "digest": "sha256:c4f2b2b86f3cde135a002a25311caaa6031183a60336262ce4cda8974709ab72",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "The surface of github.com/spf13/pflag v1.0.9 is flag.go, a POSIX/GNU-style command-line flag parser. It only parses arguments, keeps flag state and writes usage and error text to stderr or a writer the caller supplies. It has no init functions with side effects, no network, exec, file access or encoded data, and no text aimed at reviewers; package-level initialisation is limited to NewFlagSet(os.Args[0]), the error value and the usage function.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/spf13/pflag@v1.0.9/flag.go",
+            "line": 1180,
+            "title": "os.Exit on parse error",
+            "detail": "When parsing fails under the ExitOnError policy, Parse and ParseAll call os.Exit(0) for a help request and os.Exit(2) for other errors. This is the documented flag-package behaviour, the same as the standard library, and not a security issue."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/spf13/pflag@v1.0.9/flag.go",
+            "line": 1045,
+            "title": "Go test shorthand passthrough",
+            "detail": "isGotestShorthandFlag, called from parseSingleShortArg, is defined in another file of the package that is not in this surface. Upstream it only lets 'test.' flags through when running under go test. Within this surface it is benign parsing logic."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "Usage, help, deprecation and parse-error messages",
+            "to": "os.Stderr or the writer the caller sets with SetOutput",
+            "file": "github.com/spf13/pflag@v1.0.9/flag.go"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/zalando/go-keyring",
+      "from": "",
+      "to": "v0.2.8",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/zalando/go-keyring"
+      ],
+      "digest": "sha256:76d29715deb6a8d9322782d8995287555291f4a01b6ea501deff88c8e3ddb649",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "go-keyring is a thin cross-platform wrapper that stores, reads and deletes secrets in the OS keyring: the macOS security CLI, the Linux/BSD Secret Service over D-Bus, and Windows Credential Manager. I checked the init functions, the exec use on macOS and every data path. Secrets go only to the local OS keyring the caller targets, and there is no network use, hidden behaviour or encoded payload.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/zalando/go-keyring@v0.2.8/keyring_darwin.go",
+            "line": 45,
+            "title": "Executes the macOS security CLI to access the Keychain",
+            "detail": "The macOS backend runs the hard-coded /usr/bin/security tool. Service and username are passed as exec arguments (no shell is involved). For Set, the command line is written to `security -i` with each field shell-quoted, and the password is base64-encoded first. Nothing beyond the caller's own service, user and secret is passed."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/zalando/go-keyring@v0.2.8/keyring_darwin.go",
+            "line": 87,
+            "title": "Password sent via stdin to the interactive security session",
+            "detail": "Set passes the password as the -w argument inside the interactive `security -i` session rather than on a process command line, so it is not visible in the process list. The upstream library does this on purpose."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/zalando/go-keyring@v0.2.8/keyring_unix.go",
+            "line": 186,
+            "title": "Init functions only select the provider",
+            "detail": "The init functions only choose the platform's keyring provider. They have no other side effects: no network use, no file access and no hooking of other code."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "github.com/zalando/go-keyring",
+            "capability": "EXEC",
+            "explanation": "On macOS, macOSXKeychain runs the fixed system binary /usr/bin/security with find-generic-password, add-generic-password (passed on stdin to `security -i`, with arguments shell-quoted) and delete-generic-password to read, store and delete keychain secrets. This is the library's documented way of reaching the macOS Keychain.",
+            "file": "github.com/zalando/go-keyring@v0.2.8/keyring_darwin.go"
+          }
+        ],
+        "data_flows": [
+          {
+            "what": "Service name, username and the caller's base64-encoded password, written on the stdin of `security -i`; service and username are also passed as arguments for lookup and delete.",
+            "to": "/usr/bin/security subprocess (macOS Keychain)",
+            "file": "github.com/zalando/go-keyring@v0.2.8/keyring_darwin.go"
+          },
+          {
+            "what": "Service and username attributes, an item label, and the caller's secret, used to create, search, read and delete items in the login collection.",
+            "to": "Secret Service daemon over the D-Bus session bus",
+            "file": "github.com/zalando/go-keyring@v0.2.8/keyring_unix.go"
+          },
+          {
+            "what": "Generic credentials named service:username, holding the caller's password.",
+            "to": "Windows Credential Manager via the wincred library",
+            "file": "github.com/zalando/go-keyring@v0.2.8/keyring_windows.go"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "go.opentelemetry.io/proto/otlp",
+      "from": "",
+      "to": "v1.7.0",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "go.opentelemetry.io/proto/otlp/common/v1",
+        "go.opentelemetry.io/proto/otlp/logs/v1",
+        "go.opentelemetry.io/proto/otlp/metrics/v1",
+        "go.opentelemetry.io/proto/otlp/resource/v1",
+        "go.opentelemetry.io/proto/otlp/trace/v1"
+      ],
+      "digest": "sha256:6261cb38040c40da850ecf0d4b1905742b4a32c025a87e844a90e3d9f238b5f7",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "The unit is the protoc-gen-go generated message types for OTLP common, resource, logs, metrics and trace v1. Their only init code registers protobuf descriptors with google.golang.org/protobuf. I checked the init functions, imports and embedded raw descriptor bytes: there is no network, file, exec or environment access, and nothing deviates from standard generated code.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "go.opentelemetry.io/proto/otlp@v1.7.0/common/v1/common.pb.go",
+            "line": 0,
+            "title": "Standard generated init registration",
+            "detail": "Each package has an init() that only registers its protobuf file descriptor with the protobuf runtime via protoimpl.TypeBuilder. This is standard protoc-gen-go output. It has no other side effects."
+          },
+          {
+            "severity": "info",
+            "file": "go.opentelemetry.io/proto/otlp@v1.7.0/metrics/v1/metrics.pb.go",
+            "line": 0,
+            "title": "Embedded raw descriptors are ordinary protobuf metadata",
+            "detail": "The rawDesc byte arrays are serialized FileDescriptorProto data. They decode to the expected OTLP message, field and enum names and go_package options. They contain no hidden payload and are passed only to the protobuf runtime."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "golang.org/x/sys",
+      "from": "",
+      "to": "v0.47.0",
+      "scope": "surface",
+      "part": 1,
+      "parts": 3,
+      "packages": [
+        "golang.org/x/sys/unix"
+      ],
+      "digest": "sha256:cadd84c8ec5ffb434893a361468979593a3a19abf89a9a1ce9ed382a213574c8",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This surface of golang.org/x/sys/unix consists of the amd64 syscall assembly stubs, the generated darwin libc trampolines, the linkname bindings (auxv, darwin libSystem, vgetrandom) and the Linux syscall wrappers. All of it matches the expected upstream implementation. There is no init code, no hidden network or file activity, no encoded payloads, and nothing hooks or patches other code.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "golang.org/x/sys@v0.47.0/unix/auxv.go",
+            "line": 14,
+            "title": "linkname bindings to runtime internals",
+            "detail": "auxv.go, syscall_darwin_libSystem.go, syscall_linux.go (syscall_prlimit) and vgetrandom_linux.go use //go:linkname to bind to runtime and syscall internals: runtime.getAuxv, syscall.syscall*, syscall.prlimit and runtime.vgetrandom. These are the documented upstream x/sys bindings. They only call those functions and do not overwrite or hook them."
+          },
+          {
+            "severity": "info",
+            "file": "golang.org/x/sys@v0.47.0/unix/zsyscall_darwin_amd64.s",
+            "line": 1,
+            "title": "Assembly trampolines are standard",
+            "detail": "The BSD and Linux amd64 assembly stubs jump to package syscall's implementations, or issue SYSCALL directly for the NoError variants. The generated darwin trampolines jump to libc symbols. All of this matches upstream mkasm output, and none of it embeds code or data beyond the trampoline addresses."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "golang.org/x/sys",
+      "from": "",
+      "to": "v0.47.0",
+      "scope": "surface",
+      "part": 2,
+      "parts": 3,
+      "packages": [
+        "golang.org/x/sys/windows"
+      ],
+      "digest": "sha256:ee62d0bd3a2299a4122ec9e805ad85d31d663cfcd69498cbbbc89b4f0aa04b51",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This unit is the surface of golang.org/x/sys/windows: DLL loading and proc-call plumbing, syscall declarations, security/token/service/setupapi wrappers, and type and constant definitions. I checked load-time initialisation, linkname use, dynamic function-pointer calls, and every file for hidden network activity, encoded payloads or environment-dependent behaviour. All of it matches the expected upstream Go project code. Nothing runs on its own beyond obtaining the standard handles, and every OS interaction is a thin wrapper invoked by the caller.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "golang.org/x/sys@v0.47.0/windows/dll_windows.go",
+            "line": 44,
+            "title": "Documented DLL preloading risk in LoadDLL/NewLazyDLL",
+            "detail": "LoadDLL and NewLazyDLL accept non-absolute names and are subject to DLL search-order hijacking. This is upstream behaviour and documented in the source; NewLazySystemDLL restricts loading to System32. It is a caller-side concern, not deliberate."
+          },
+          {
+            "severity": "info",
+            "file": "golang.org/x/sys@v0.47.0/windows/syscall_windows.go",
+            "line": 0,
+            "title": "Package-level variable initialisation calls GetStdHandle",
+            "detail": "The only load-time side effect is the package-level initialisation of Stdin/Stdout/Stderr via GetStdHandle. This is benign and matches upstream. There is no init() function, no hooking or patching, and no embedded or encoded data."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "golang.org/x/sys/windows",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "This is the package's core mechanism for calling Windows APIs. LazyDLL/DLL.FindProc resolve function addresses with GetProcAddress, and Proc.Call/LazyProc.Call invoke them through syscall.SyscallN. connectEx, WSASendMsg and WSARecvMsg call function pointers obtained via WSAIoctl(SIO_GET_EXTENSION_FUNCTION_POINTER), and NewCallback converts Go funcs into stdcall pointers. All targets are system DLL exports named in the source (generated //sys stubs) or chosen by the caller. Nothing loads or runs code from data.",
+            "file": "golang.org/x/sys@v0.47.0/windows/dll_windows.go"
+          }
+        ],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "golang.org/x/sys",
+      "from": "",
+      "to": "v0.47.0",
+      "scope": "surface",
+      "part": 3,
+      "parts": 3,
+      "packages": [
+        "golang.org/x/sys/windows"
+      ],
+      "digest": "sha256:286b5246fae948ee49b76ce417f050d110dc1a91102de63cc5322de8e4372f46",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This unit is the generated surface of golang.org/x/sys/windows: Win32 error constants, known-folder GUIDs, and the mksyscall-generated bindings that lazily resolve procedures from System32 DLLs and call them via syscall.SyscallN. I checked for load-time side effects, non-system DLL loading, encoded data, hidden calls and deviations from the upstream generated patterns, and found none. The code is consistent with the upstream library.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "golang.org/x/sys@v0.47.0/windows/zsyscall_windows.go",
+            "line": 38,
+            "title": "System DLLs loaded lazily from System32 only",
+            "detail": "All 23 DLLs (CfgMgr32, advapi32, kernel32, ntdll, ws2_32 and others) are loaded with NewLazySystemDLL, which restricts loading to the System32 directory. Procedures are resolved lazily on first use, and the package-level var blocks only build lazy descriptors. No init function, constructor or load-time side effect is present in these files."
+          },
+          {
+            "severity": "info",
+            "file": "golang.org/x/sys@v0.47.0/windows/zerrors_windows.go",
+            "line": 1,
+            "title": "Generated constant tables contain only data",
+            "detail": "zerrors_windows.go contains only error, HRESULT and NTSTATUS constants. zknownfolderids_windows.go contains only KNOWNFOLDERID GUID literals. Both match the upstream mkerrors.bash and mkknownfolderids.bash output style. There is no executable code, encoded payload or hidden data."
+          },
+          {
+            "severity": "info",
+            "file": "golang.org/x/sys@v0.47.0/windows/zsyscall_windows.go",
+            "line": 1,
+            "title": "Wrappers are uniform generated thin bindings",
+            "detail": "The wrappers include powerful APIs: WriteProcessMemory, VirtualProtect, CreateProcessAsUser, CreateService, InitiateSystemShutdownEx, CryptUnprotectData and others. These are the standard x/sys/windows API surface. Each function is a plain argument-marshalling call with the upstream error-handling pattern, and nothing calls them automatically. Whether they are misused depends on the importing code, which is reviewed separately."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "golang.org/x/sys/windows",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "zsyscall_windows.go calls Win32 functions through syscall.SyscallN using addresses resolved at run time from system DLLs (procX.Addr()). It also exposes thin wrappers such as LoadLibrary, LoadLibraryEx, GetProcAddress, CreateProcess and ShellExecute. Capslock reports calls to dynamically resolved function pointers as arbitrary execution. This is the core purpose of a Windows syscall binding library. Each wrapper runs only when the importing program calls it, and nothing in this unit invokes them on its own.",
+            "file": "golang.org/x/sys@v0.47.0/windows/zsyscall_windows.go"
+          }
+        ],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "google.golang.org/protobuf",
+      "from": "",
+      "to": "v1.36.11",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "google.golang.org/protobuf/internal/editiondefaults",
+        "google.golang.org/protobuf/internal/filedesc",
+        "google.golang.org/protobuf/internal/impl",
+        "google.golang.org/protobuf/proto"
+      ],
+      "digest": "sha256:98cba3fcc4820cb65740d2269b48be9f9fb350371eaf5a048eeb88916dbb761e",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This surface of google.golang.org/protobuf v1.36.11 is the official Go protobuf runtime: wire encode/decode, reflection, legacy message support, lazy decoding, and the embedded edition-defaults blob parsed at init. I checked the init code, the embedded binary's consumer, environment reads, and the reflection/unsafe uses. All match upstream behaviour, with no network, process execution, file writes, secret access or hidden payloads.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "google.golang.org/protobuf@v1.36.11/internal/editiondefaults/defaults.go",
+            "line": 11,
+            "title": "Embedded binary edition defaults",
+            "detail": "editiondefaults embeds a 154-byte binary FeatureSetDefaults protobuf, which upstream generates from protoc. It is consumed only by filedesc.unmarshalEditionDefaults at init. That parser accepts a fixed set of field numbers, panics on anything unknown, and only sets boolean/int feature flags in a defaults cache. It cannot carry executable content or change behaviour beyond protobuf edition defaults."
+          },
+          {
+            "severity": "info",
+            "file": "google.golang.org/protobuf@v1.36.11/internal/impl/lazy.go",
+            "line": 24,
+            "title": "Environment variable toggles lazy decoding",
+            "detail": "An init-time read of GOPROTODEBUG=nolazy disables lazy unmarshalling. This is a documented upstream debug knob that only selects between eager and lazy decoding paths. It does not affect security."
+          },
+          {
+            "severity": "info",
+            "file": "google.golang.org/protobuf@v1.36.11/internal/filedesc/editions.go",
+            "line": 21,
+            "title": "Init functions are benign",
+            "detail": "filedesc and proto have init functions. They parse the embedded edition defaults, set surrogate file features, and assign proto.Error. None has side effects outside process memory."
+          }
+        ],
+        "capabilities": [
+          {
+            "package": "google.golang.org/protobuf/internal/impl",
+            "capability": "ARBITRARY_EXECUTION",
+            "explanation": "Comes from reflection and unsafe pointer arithmetic, which is how the protobuf runtime reaches generated message structs. Method.Func.Call is used on XXX_OneofFuncs, XXX_OneofWrappers and ExtensionRangeArray methods of generated or legacy message types. reflect.NewAt, unsafe.Pointer offsets and atomic pointer operations implement fast field access. Legacy Marshal/Unmarshal/Merge interface methods are called on user message types. Only the program's own compiled-in types are invoked; nothing is loaded or run from data.",
+            "file": "google.golang.org/protobuf@v1.36.11/internal/impl/message.go"
+          },
+          {
+            "package": "google.golang.org/protobuf/internal/impl",
+            "capability": "NETWORK",
+            "explanation": "There is no network code in the package: no net, net/http or socket use. The capability is most likely an artifact of call-graph analysis through interface dispatch: legacyMarshaler/legacyUnmarshaler/legacyMerger interface calls and reflect Method.Func.Call can, in theory, reach any method in the binary, including networking types. In practice these calls only serialize, parse and merge messages in memory.",
+            "file": "google.golang.org/protobuf@v1.36.11/internal/impl/legacy_message.go"
+          }
+        ],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "gopkg.in/yaml.v3",
+      "from": "",
+      "to": "v3.0.1",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "gopkg.in/yaml.v3"
+      ],
+      "digest": "sha256:19aa676171be0dc7d83ec691758179e97dd7dfa7e680a7f289611026c0056e1f",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "The surface of gopkg.in/yaml.v3 v3.0.1 shown here is resolve.go and yaml.go. Their init functions only build in-memory lookup tables for YAML scalar resolution and tags, and cache a reflect type. Nothing reaches the network, file system, environment or process execution, and the code matches the upstream library and its purpose.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "gopkg.in/yaml.v3@v3.0.1/resolve.go",
+            "line": 35,
+            "title": "Init functions only populate in-memory lookup tables",
+            "detail": "init() in resolve.go fills the resolver lookup table and the tag maps. init() in yaml.go caches the reflect type of Unmarshaler. None of these touch the file system, network, environment or other packages."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    }
+  ],
+  "verdict": "certified",
+  "reasons": null
+}

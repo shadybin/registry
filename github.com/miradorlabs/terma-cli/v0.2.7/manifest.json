@@ -1,0 +1,636 @@
+{
+  "tool": "github.com/google/capslock/cmd/capslock@v0.3.4",
+  "module": "github.com/miradorlabs/terma-cli",
+  "goos": [
+    "darwin",
+    "linux",
+    "windows"
+  ],
+  "packages": [
+    "github.com/danieljoos/wincred",
+    "github.com/godbus/dbus/v5",
+    "github.com/inconshreveable/mousetrap",
+    "github.com/miradorlabs/terma-cli/cmd/terma",
+    "github.com/miradorlabs/terma-cli/internal/account/api",
+    "github.com/miradorlabs/terma-cli/internal/account/auth",
+    "github.com/miradorlabs/terma-cli/internal/account/keystore",
+    "github.com/miradorlabs/terma-cli/internal/account/secret",
+    "github.com/miradorlabs/terma-cli/internal/account/serverkey",
+    "github.com/miradorlabs/terma-cli/internal/agents",
+    "github.com/miradorlabs/terma-cli/internal/agents/antigravity",
+    "github.com/miradorlabs/terma-cli/internal/agents/builtin",
+    "github.com/miradorlabs/terma-cli/internal/agents/claude",
+    "github.com/miradorlabs/terma-cli/internal/agents/codex",
+    "github.com/miradorlabs/terma-cli/internal/agents/cursor",
+    "github.com/miradorlabs/terma-cli/internal/agents/dsh",
+    "github.com/miradorlabs/terma-cli/internal/agents/gemini",
+    "github.com/miradorlabs/terma-cli/internal/agents/hermes",
+    "github.com/miradorlabs/terma-cli/internal/agents/internal/pifamily",
+    "github.com/miradorlabs/terma-cli/internal/agents/internal/relayexport",
+    "github.com/miradorlabs/terma-cli/internal/agents/omp",
+    "github.com/miradorlabs/terma-cli/internal/agents/opencode",
+    "github.com/miradorlabs/terma-cli/internal/agents/pi",
+    "github.com/miradorlabs/terma-cli/internal/cli",
+    "github.com/miradorlabs/terma-cli/internal/config",
+    "github.com/miradorlabs/terma-cli/internal/delivery",
+    "github.com/miradorlabs/terma-cli/internal/doctor",
+    "github.com/miradorlabs/terma-cli/internal/flock",
+    "github.com/miradorlabs/terma-cli/internal/gitx",
+    "github.com/miradorlabs/terma-cli/internal/globalmode",
+    "github.com/miradorlabs/terma-cli/internal/harness",
+    "github.com/miradorlabs/terma-cli/internal/hooks/dispatch",
+    "github.com/miradorlabs/terma-cli/internal/hooks/hookmgr",
+    "github.com/miradorlabs/terma-cli/internal/hooks/hookrun",
+    "github.com/miradorlabs/terma-cli/internal/policy",
+    "github.com/miradorlabs/terma-cli/internal/procinfo",
+    "github.com/miradorlabs/terma-cli/internal/project",
+    "github.com/miradorlabs/terma-cli/internal/refresh",
+    "github.com/miradorlabs/terma-cli/internal/relay",
+    "github.com/miradorlabs/terma-cli/internal/relay/claim",
+    "github.com/miradorlabs/terma-cli/internal/relay/daemon",
+    "github.com/miradorlabs/terma-cli/internal/relay/service",
+    "github.com/miradorlabs/terma-cli/internal/relay/shape",
+    "github.com/miradorlabs/terma-cli/internal/repohooks",
+    "github.com/miradorlabs/terma-cli/internal/routing",
+    "github.com/miradorlabs/terma-cli/internal/selfupdate",
+    "github.com/miradorlabs/terma-cli/internal/semconv",
+    "github.com/miradorlabs/terma-cli/internal/session",
+    "github.com/miradorlabs/terma-cli/internal/setup",
+    "github.com/miradorlabs/terma-cli/internal/shellrc",
+    "github.com/miradorlabs/terma-cli/internal/spool",
+    "github.com/miradorlabs/terma-cli/internal/trailer",
+    "github.com/miradorlabs/terma-cli/internal/ui/output",
+    "github.com/miradorlabs/terma-cli/internal/ui/prompt",
+    "github.com/miradorlabs/terma-cli/internal/ui/spinner",
+    "github.com/miradorlabs/terma-cli/internal/ui/style",
+    "github.com/pelletier/go-toml/v2",
+    "github.com/pelletier/go-toml/v2/internal/parserbridge",
+    "github.com/pelletier/go-toml/v2/internal/tracker",
+    "github.com/pelletier/go-toml/v2/unstable",
+    "github.com/spf13/cobra",
+    "github.com/spf13/pflag",
+    "github.com/zalando/go-keyring",
+    "github.com/zalando/go-keyring/internal/shellescape",
+    "github.com/zalando/go-keyring/secret_service",
+    "go.opentelemetry.io/proto/otlp/common/v1",
+    "go.opentelemetry.io/proto/otlp/logs/v1",
+    "go.opentelemetry.io/proto/otlp/metrics/v1",
+    "go.opentelemetry.io/proto/otlp/resource/v1",
+    "go.opentelemetry.io/proto/otlp/trace/v1",
+    "golang.org/x/sys/unix",
+    "golang.org/x/sys/windows",
+    "golang.org/x/sys/windows/registry",
+    "golang.org/x/term",
+    "google.golang.org/protobuf/encoding/protojson",
+    "google.golang.org/protobuf/encoding/prototext",
+    "google.golang.org/protobuf/encoding/protowire",
+    "google.golang.org/protobuf/internal/descfmt",
+    "google.golang.org/protobuf/internal/descopts",
+    "google.golang.org/protobuf/internal/detrand",
+    "google.golang.org/protobuf/internal/editiondefaults",
+    "google.golang.org/protobuf/internal/encoding/defval",
+    "google.golang.org/protobuf/internal/encoding/json",
+    "google.golang.org/protobuf/internal/encoding/messageset",
+    "google.golang.org/protobuf/internal/encoding/tag",
+    "google.golang.org/protobuf/internal/encoding/text",
+    "google.golang.org/protobuf/internal/errors",
+    "google.golang.org/protobuf/internal/filedesc",
+    "google.golang.org/protobuf/internal/filetype",
+    "google.golang.org/protobuf/internal/flags",
+    "google.golang.org/protobuf/internal/genid",
+    "google.golang.org/protobuf/internal/impl",
+    "google.golang.org/protobuf/internal/order",
+    "google.golang.org/protobuf/internal/pragma",
+    "google.golang.org/protobuf/internal/protolazy",
+    "google.golang.org/protobuf/internal/set",
+    "google.golang.org/protobuf/internal/strs",
+    "google.golang.org/protobuf/internal/version",
+    "google.golang.org/protobuf/proto",
+    "google.golang.org/protobuf/reflect/protoreflect",
+    "google.golang.org/protobuf/reflect/protoregistry",
+    "google.golang.org/protobuf/runtime/protoiface",
+    "google.golang.org/protobuf/runtime/protoimpl",
+    "gopkg.in/yaml.v3",
+    "mvdan.cc/sh/v3/fileutil",
+    "mvdan.cc/sh/v3/syntax"
+  ],
+  "modules": {
+    "github.com/danieljoos/wincred": "v1.2.3",
+    "github.com/godbus/dbus/v5": "v5.2.2",
+    "github.com/inconshreveable/mousetrap": "v1.1.0",
+    "github.com/pelletier/go-toml/v2": "v2.4.3",
+    "github.com/spf13/cobra": "v1.10.2",
+    "github.com/spf13/pflag": "v1.0.9",
+    "github.com/zalando/go-keyring": "v0.2.8",
+    "go.opentelemetry.io/proto/otlp": "v1.7.0",
+    "golang.org/x/sys": "v0.47.0",
+    "golang.org/x/term": "v0.45.0",
+    "google.golang.org/protobuf": "v1.36.11",
+    "gopkg.in/yaml.v3": "v3.0.1",
+    "mvdan.cc/sh/v3": "v3.14.1"
+  },
+  "capabilities": {
+    "github.com/danieljoos/wincred": [
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/godbus/dbus/v5": [
+      "EXEC",
+      "FILES",
+      "MODIFY_SYSTEM_STATE",
+      "NETWORK",
+      "READ_SYSTEM_STATE",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/inconshreveable/mousetrap": [
+      "SYSTEM_CALLS"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/account/api": [
+      "ARBITRARY_EXECUTION",
+      "FILES",
+      "NETWORK",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/account/auth": [
+      "ARBITRARY_EXECUTION",
+      "EXEC",
+      "FILES",
+      "NETWORK",
+      "READ_SYSTEM_STATE",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/account/keystore": [
+      "ARBITRARY_EXECUTION",
+      "FILES",
+      "NETWORK",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/account/secret": [
+      "NETWORK",
+      "SYSTEM_CALLS",
+      "UNANALYZED"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/agents": [
+      "NETWORK"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/agents/antigravity": [
+      "ARBITRARY_EXECUTION",
+      "FILES",
+      "NETWORK",
+      "READ_SYSTEM_STATE",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/agents/claude": [
+      "ARBITRARY_EXECUTION",
+      "EXEC",
+      "FILES",
+      "MODIFY_SYSTEM_STATE",
+      "NETWORK",
+      "READ_SYSTEM_STATE",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/agents/codex": [
+      "ARBITRARY_EXECUTION",
+      "EXEC",
+      "FILES",
+      "NETWORK",
+      "OPERATING_SYSTEM",
+      "READ_SYSTEM_STATE",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/agents/cursor": [
+      "ARBITRARY_EXECUTION",
+      "FILES",
+      "NETWORK",
+      "READ_SYSTEM_STATE",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/agents/dsh": [
+      "ARBITRARY_EXECUTION",
+      "FILES",
+      "NETWORK",
+      "READ_SYSTEM_STATE",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/agents/gemini": [
+      "ARBITRARY_EXECUTION",
+      "FILES",
+      "NETWORK",
+      "READ_SYSTEM_STATE",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/agents/hermes": [
+      "ARBITRARY_EXECUTION",
+      "EXEC",
+      "FILES",
+      "NETWORK",
+      "READ_SYSTEM_STATE",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/agents/internal/pifamily": [
+      "ARBITRARY_EXECUTION",
+      "FILES",
+      "NETWORK",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/agents/internal/relayexport": [
+      "FILES",
+      "UNANALYZED"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/agents/omp": [
+      "ARBITRARY_EXECUTION",
+      "EXEC",
+      "FILES",
+      "NETWORK",
+      "READ_SYSTEM_STATE",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/agents/opencode": [
+      "ARBITRARY_EXECUTION",
+      "FILES",
+      "NETWORK",
+      "READ_SYSTEM_STATE",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/agents/pi": [
+      "FILES",
+      "READ_SYSTEM_STATE",
+      "SYSTEM_CALLS"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/cli": [
+      "ARBITRARY_EXECUTION",
+      "EXEC",
+      "FILES",
+      "MODIFY_SYSTEM_STATE",
+      "NETWORK",
+      "OPERATING_SYSTEM",
+      "READ_SYSTEM_STATE",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/config": [
+      "ARBITRARY_EXECUTION",
+      "FILES",
+      "NETWORK",
+      "READ_SYSTEM_STATE",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/delivery": [
+      "ARBITRARY_EXECUTION",
+      "EXEC",
+      "NETWORK",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/doctor": [
+      "FILES",
+      "NETWORK",
+      "READ_SYSTEM_STATE",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/flock": [
+      "FILES",
+      "NETWORK",
+      "SYSTEM_CALLS",
+      "UNANALYZED"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/gitx": [
+      "EXEC",
+      "FILES",
+      "NETWORK",
+      "OPERATING_SYSTEM",
+      "READ_SYSTEM_STATE",
+      "SYSTEM_CALLS",
+      "UNANALYZED"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/globalmode": [
+      "FILES",
+      "SYSTEM_CALLS",
+      "UNANALYZED"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/harness": [
+      "ARBITRARY_EXECUTION",
+      "EXEC",
+      "FILES",
+      "NETWORK",
+      "OPERATING_SYSTEM",
+      "READ_SYSTEM_STATE",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/hooks/hookmgr": [
+      "ARBITRARY_EXECUTION",
+      "FILES",
+      "NETWORK",
+      "READ_SYSTEM_STATE",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/hooks/hookrun": [
+      "ARBITRARY_EXECUTION",
+      "EXEC",
+      "FILES",
+      "NETWORK",
+      "OPERATING_SYSTEM",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/policy": [
+      "NETWORK"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/procinfo": [
+      "FILES",
+      "READ_SYSTEM_STATE",
+      "SYSTEM_CALLS",
+      "UNANALYZED"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/project": [
+      "FILES",
+      "SYSTEM_CALLS",
+      "UNANALYZED"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/relay": [
+      "ARBITRARY_EXECUTION",
+      "EXEC",
+      "FILES",
+      "NETWORK",
+      "OPERATING_SYSTEM",
+      "READ_SYSTEM_STATE",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/relay/claim": [
+      "ARBITRARY_EXECUTION",
+      "FILES",
+      "NETWORK",
+      "OPERATING_SYSTEM",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/relay/daemon": [
+      "ARBITRARY_EXECUTION",
+      "EXEC",
+      "FILES",
+      "NETWORK",
+      "OPERATING_SYSTEM",
+      "READ_SYSTEM_STATE",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/relay/service": [
+      "EXEC",
+      "FILES",
+      "NETWORK",
+      "READ_SYSTEM_STATE",
+      "SYSTEM_CALLS",
+      "UNANALYZED"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/repohooks": [
+      "FILES",
+      "OPERATING_SYSTEM",
+      "READ_SYSTEM_STATE",
+      "SYSTEM_CALLS",
+      "UNANALYZED"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/selfupdate": [
+      "ARBITRARY_EXECUTION",
+      "EXEC",
+      "FILES",
+      "NETWORK",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/session": [
+      "ARBITRARY_EXECUTION",
+      "FILES",
+      "NETWORK",
+      "OPERATING_SYSTEM",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/shellrc": [
+      "FILES",
+      "READ_SYSTEM_STATE",
+      "SYSTEM_CALLS"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/spool": [
+      "ARBITRARY_EXECUTION",
+      "FILES",
+      "NETWORK",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/trailer": [
+      "EXEC",
+      "NETWORK",
+      "UNANALYZED"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/ui/output": [
+      "ARBITRARY_EXECUTION",
+      "FILES",
+      "NETWORK",
+      "READ_SYSTEM_STATE",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/ui/prompt": [
+      "FILES"
+    ],
+    "github.com/miradorlabs/terma-cli/internal/ui/style": [
+      "FILES",
+      "READ_SYSTEM_STATE",
+      "UNANALYZED"
+    ],
+    "github.com/pelletier/go-toml/v2": [
+      "REFLECT",
+      "UNANALYZED"
+    ],
+    "github.com/pelletier/go-toml/v2/unstable": [
+      "UNANALYZED"
+    ],
+    "github.com/spf13/cobra": [
+      "ARBITRARY_EXECUTION",
+      "FILES",
+      "NETWORK",
+      "READ_SYSTEM_STATE",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "github.com/spf13/pflag": [
+      "FILES",
+      "REFLECT",
+      "UNANALYZED"
+    ],
+    "github.com/zalando/go-keyring": [
+      "EXEC",
+      "FILES",
+      "UNANALYZED"
+    ],
+    "golang.org/x/sys/unix": [
+      "SYSTEM_CALLS"
+    ],
+    "golang.org/x/sys/windows": [
+      "ARBITRARY_EXECUTION",
+      "READ_SYSTEM_STATE",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "golang.org/x/sys/windows/registry": [
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNSAFE_POINTER"
+    ],
+    "golang.org/x/term": [
+      "FILES",
+      "UNANALYZED"
+    ],
+    "google.golang.org/protobuf/internal/descfmt": [
+      "REFLECT",
+      "UNANALYZED"
+    ],
+    "google.golang.org/protobuf/internal/filedesc": [
+      "REFLECT",
+      "UNANALYZED"
+    ],
+    "google.golang.org/protobuf/internal/impl": [
+      "ARBITRARY_EXECUTION",
+      "FILES",
+      "NETWORK",
+      "READ_SYSTEM_STATE",
+      "REFLECT",
+      "RUNTIME",
+      "SYSTEM_CALLS",
+      "UNANALYZED",
+      "UNSAFE_POINTER"
+    ],
+    "google.golang.org/protobuf/internal/order": [
+      "UNANALYZED"
+    ],
+    "google.golang.org/protobuf/internal/protolazy": [
+      "UNSAFE_POINTER"
+    ],
+    "google.golang.org/protobuf/proto": [
+      "UNANALYZED"
+    ],
+    "google.golang.org/protobuf/reflect/protoreflect": [
+      "UNSAFE_POINTER"
+    ],
+    "gopkg.in/yaml.v3": [
+      "FILES",
+      "REFLECT",
+      "SYSTEM_CALLS"
+    ],
+    "mvdan.cc/sh/v3/fileutil": [
+      "FILES"
+    ],
+    "mvdan.cc/sh/v3/syntax": [
+      "FILES",
+      "REFLECT",
+      "UNANALYZED"
+    ]
+  }
+}

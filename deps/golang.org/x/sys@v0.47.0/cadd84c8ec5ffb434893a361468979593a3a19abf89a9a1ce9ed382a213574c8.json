@@ -1,0 +1,37 @@
+{
+  "kind": "third-party",
+  "module": "golang.org/x/sys",
+  "from": "",
+  "to": "v0.47.0",
+  "scope": "surface",
+  "part": 1,
+  "parts": 3,
+  "packages": [
+    "golang.org/x/sys/unix"
+  ],
+  "digest": "sha256:cadd84c8ec5ffb434893a361468979593a3a19abf89a9a1ce9ed382a213574c8",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This surface of golang.org/x/sys/unix consists of the amd64 syscall assembly stubs, the generated darwin libc trampolines, the linkname bindings (auxv, darwin libSystem, vgetrandom) and the Linux syscall wrappers. All of it matches the expected upstream implementation. There is no init code, no hidden network or file activity, no encoded payloads, and nothing hooks or patches other code.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "golang.org/x/sys@v0.47.0/unix/auxv.go",
+        "line": 14,
+        "title": "linkname bindings to runtime internals",
+        "detail": "auxv.go, syscall_darwin_libSystem.go, syscall_linux.go (syscall_prlimit) and vgetrandom_linux.go use //go:linkname to bind to runtime and syscall internals: runtime.getAuxv, syscall.syscall*, syscall.prlimit and runtime.vgetrandom. These are the documented upstream x/sys bindings. They only call those functions and do not overwrite or hook them."
+      },
+      {
+        "severity": "info",
+        "file": "golang.org/x/sys@v0.47.0/unix/zsyscall_darwin_amd64.s",
+        "line": 1,
+        "title": "Assembly trampolines are standard",
+        "detail": "The BSD and Linux amd64 assembly stubs jump to package syscall's implementations, or issue SYSCALL directly for the NoError variants. The generated darwin trampolines jump to libc symbols. All of this matches upstream mkasm output, and none of it embeds code or data beyond the trampoline addresses."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

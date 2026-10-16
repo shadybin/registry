@@ -1,0 +1,30 @@
+{
+  "kind": "third-party",
+  "module": "gopkg.in/yaml.v3",
+  "from": "",
+  "to": "v3.0.1",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "gopkg.in/yaml.v3"
+  ],
+  "digest": "sha256:19aa676171be0dc7d83ec691758179e97dd7dfa7e680a7f289611026c0056e1f",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "The surface of gopkg.in/yaml.v3 v3.0.1 shown here is resolve.go and yaml.go. Their init functions only build in-memory lookup tables for YAML scalar resolution and tags, and cache a reflect type. Nothing reaches the network, file system, environment or process execution, and the code matches the upstream library and its purpose.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "gopkg.in/yaml.v3@v3.0.1/resolve.go",
+        "line": 35,
+        "title": "Init functions only populate in-memory lookup tables",
+        "detail": "init() in resolve.go fills the resolver lookup table and the tag maps. init() in yaml.go caches the reflect type of Unmarshaler. None of these touch the file system, network, environment or other packages."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}
