@@ -1,0 +1,60 @@
+{
+  "kind": "third-party",
+  "module": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz",
+  "from": "",
+  "to": "N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o",
+  "scope": "surface",
+  "part": 1,
+  "parts": 2,
+  "packages": [
+    "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz"
+  ],
+  "digest": "sha256:75eb42e21bca65e9e2dc8f84a1bc906924b7478c184edc41c76cdaec9040dcd4",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This unit is the upstream zlib 1.3.1 compression library: deflate/inflate, CRC-32 and Adler-32 checksums, and the gzip file API, plus generated tables and the documentation PDF. I read every source file for build-time generators, constructors, network or exec activity, encoded payloads and deviations from upstream and found none. The only file output is the documented gz* file writing to paths the caller chooses, plus table generators that run only under non-default build macros.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz@N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o/zlib.h",
+        "line": 0,
+        "title": "Stock zlib 1.3.1 sources",
+        "detail": "I compared all source files in this part against the known upstream zlib 1.3.1 release: adler32, compress, crc32, deflate, the gz* files, infback, inffast, inflate, inftrees, trees, uncompr, zutil and the headers. They show no deviation from upstream: no networking, no process execution, no environment probing and no load-time constructors. The generated tables in crc32.h, trees.h and inffixed.h have the expected standard values."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz@N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o/zlib.3.pdf",
+        "line": 0,
+        "title": "Binary PDF documentation file",
+        "detail": "zlib.3.pdf is the upstream manual page in PDF form, shipped in the zlib distribution. It is documentation; nothing in the reviewed sources compiles, reads or unpacks it."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz@N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o/inflate.c",
+        "line": 0,
+        "title": "inflateUndermine is compile-time disabled by default",
+        "detail": "inflateUndermine() and the related permissive distance handling are standard upstream API. They do nothing unless the library is compiled with INFLATE_ALLOW_INVALID_DISTANCE_TOOFAR_ARRR; otherwise the function returns Z_DATA_ERROR and keeps sane=1."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": [
+      {
+        "what": "Compressed (or, in transparent mode, raw) data the caller passes to gzwrite, gzputs or gzprintf; this is the library's documented gzip file API.",
+        "to": "a file path or file descriptor chosen by the calling application (gzopen/gzdopen)",
+        "file": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz@N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o/gzwrite.c"
+      },
+      {
+        "what": "Generated CRC tables. This happens only when the developer builds the table generator with MAKECRCH defined; it is not part of a normal library build.",
+        "to": "crc32.h in the current directory",
+        "file": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz@N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o/crc32.c"
+      },
+      {
+        "what": "Generated static Huffman tables. This happens only when the developer builds with GEN_TREES_H defined; it is not part of a normal library build.",
+        "to": "trees.h in the current directory",
+        "file": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz@N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o/trees.c"
+      }
+    ]
+  }
+}

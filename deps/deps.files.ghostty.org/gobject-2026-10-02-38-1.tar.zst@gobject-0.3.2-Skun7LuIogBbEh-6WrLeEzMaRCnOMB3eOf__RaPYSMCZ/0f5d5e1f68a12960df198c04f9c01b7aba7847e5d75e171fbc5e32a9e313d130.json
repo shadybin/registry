@@ -1,0 +1,45 @@
+{
+  "kind": "third-party",
+  "module": "deps.files.ghostty.org/gobject-2026-10-02-38-1.tar.zst",
+  "from": "",
+  "to": "gobject-0.3.2-Skun7LuIogBbEh-6WrLeEzMaRCnOMB3eOf__RaPYSMCZ",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "deps.files.ghostty.org/gobject-2026-10-02-38-1.tar.zst",
+    "deps.files.ghostty.org/gobject-2026-10-02-38-1.tar.zst/src/gdkpixbuf2"
+  ],
+  "digest": "sha256:0f5d5e1f68a12960df198c04f9c01b7aba7847e5d75e171fbc5e32a9e313d130",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This unit is the zig-gobject bindings package: build.zig declares Zig modules for the GNOME libraries and links them via pkg-config, and gdkpixbuf2.zig is GIR-generated extern bindings for gdk-pixbuf. I checked the build script, the package manifest and the gdkpixbuf2 source for build-time execution, fetching, embedded payloads, load-time side effects and hooking. I found nothing beyond the documented, opt-in glib-compile-resources helper.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/gobject-2026-10-02-38-1.tar.zst@gobject-0.3.2-Skun7LuIogBbEh-6WrLeEzMaRCnOMB3eOf__RaPYSMCZ/build.zig",
+        "line": 49,
+        "title": "Build helper invokes glib-compile-resources",
+        "detail": "build.zig's CompileResources helper runs the system command `glib-compile-resources` and compiles a helper executable from build/build_gresources_xml.zig, but only when a dependent build uses addCompileResources/buildCompileResources. This is the documented purpose of the helper. The rest of build.zig only declares modules and links system libraries via pkg-config."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/gobject-2026-10-02-38-1.tar.zst@gobject-0.3.2-Skun7LuIogBbEh-6WrLeEzMaRCnOMB3eOf__RaPYSMCZ/build.zig.zon",
+        "line": 12,
+        "title": "No remote dependencies",
+        "detail": "build.zig.zon has no active dependencies. The only dependency, a zig_autodoc fork, is commented out, so nothing is fetched at build time."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/gobject-2026-10-02-38-1.tar.zst@gobject-0.3.2-Skun7LuIogBbEh-6WrLeEzMaRCnOMB3eOf__RaPYSMCZ/src/gdkpixbuf2/gdkpixbuf2.zig",
+        "line": 0,
+        "title": "Generated bindings only",
+        "detail": "gdkpixbuf2.zig is a machine-generated set of extern declarations and thin wrappers for the gdk-pixbuf C library. It contains no initialisers, comptime side effects, embedded data, network access or process execution. The extern g_object_ref/unref declarations reuse GObject symbols with typed pointers, which is normal for GIR-generated bindings."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "kind": "third-party",
+  "module": "deps.files.ghostty.org/zig_js-3c23860e47fdcdc5af805efb7fd0bdac5fd3e9bc.tar.gz",
+  "from": "",
+  "to": "zig_js-0.0.0-rjCAV7-GAADvMTBL7lPMuvDk7xgS9PCMIZWiOUXLZSlj",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "deps.files.ghostty.org/zig_js-3c23860e47fdcdc5af805efb7fd0bdac5fd3e9bc.tar.gz"
+  ],
+  "digest": "sha256:5c6a08fe7f974f8734f1a615906659d57fb987fd9c7bb3d8c8f358547b1b900c",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "The surface of zig_js is a standard Zig build script and manifest. build.zig declares the 'zig-js' module rooted at src/main.zig, a test step and an optional wasm example step. build.zig.zon declares no dependencies; I found no system commands, network access, code generation, embedded binaries or file writes outside zig-out, so nothing here offers a supply-chain attack vector.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/zig_js-3c23860e47fdcdc5af805efb7fd0bdac5fd3e9bc.tar.gz@zig_js-0.0.0-rjCAV7-GAADvMTBL7lPMuvDk7xgS9PCMIZWiOUXLZSlj/build.zig",
+        "line": 18,
+        "title": "Test executable registered as an install artifact",
+        "detail": "build.zig calls b.installArtifact(test_exe), so the module's default install step would put a test binary in zig-out. When zig_js is used as a dependency, its install step does not run unless the parent build asks for it. This is a packaging quirk, not a security issue."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/zig_js-3c23860e47fdcdc5af805efb7fd0bdac5fd3e9bc.tar.gz@zig_js-0.0.0-rjCAV7-GAADvMTBL7lPMuvDk7xgS9PCMIZWiOUXLZSlj/build.zig",
+        "line": 30,
+        "title": "Example step references a file not in the package",
+        "detail": "The optional 'example' step points at example/main.zig, which the paths list in build.zig.zon does not include. That step is lazy and only runs when invoked explicitly, so it has no effect when the package is consumed as a dependency."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

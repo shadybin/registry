@@ -1,0 +1,30 @@
+{
+  "kind": "third-party",
+  "module": "deps.files.ghostty.org/pixels-12207ff340169c7d40c570b4b6a97db614fe47e0d83b5801a932dcd44917424c8806.tar.gz",
+  "from": "",
+  "to": "N-V-__8AADYiAAB_80AWnH1AxXC0tql9thT-R-DYO1gBqTLc",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "deps.files.ghostty.org/pixels-12207ff340169c7d40c570b4b6a97db614fe47e0d83b5801a932dcd44917424c8806.tar.gz"
+  ],
+  "digest": "sha256:29ed449f080bf92ddfdcd0629e071b7a7528c04f8e3385177f840062c3919807",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This third-party module is a set of six 1x1-pixel test images (black and white, in GIF, JPEG and PNG), apparently used as image-decoding fixtures. I checked the surface for build steps, code or encoded payloads. It holds only tiny binary images whose sizes match minimal valid single-pixel images, and nothing executes.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/pixels-12207ff340169c7d40c570b4b6a97db614fe47e0d83b5801a932dcd44917424c8806.tar.gz@N-V-__8AADYiAAB_80AWnH1AxXC0tql9thT-R-DYO1gBqTLc/1x1#000000.png",
+        "line": 0,
+        "title": "Binary image fixtures only",
+        "detail": "The unit contains only six tiny binary image files: 1x1 black and white pixels in GIF (35 bytes), JPEG (283–305 bytes) and PNG (88 bytes) format. Their names and sizes fit minimal valid single-pixel images. 35 bytes is the classic minimal 1x1 GIF, and 88 bytes is ordinary for a 1x1 PNG. Files this small cannot plausibly hold a meaningful payload. There is no build script, source code or loader in the unit. In Ghostty they serve as image-decoding test fixtures, e.g. for the wuffs-based image tests."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

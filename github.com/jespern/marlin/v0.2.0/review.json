@@ -1,0 +1,2002 @@
+{
+  "model": "claude-opus-5-5",
+  "prompt": "3",
+  "previous": "v0.1.7",
+  "modules": [
+    {
+      "path": "github.com/jespern/marlin",
+      "version": "",
+      "owned": true,
+      "scope": "project"
+    },
+    {
+      "path": "github.com/ghostty-org/ghostty",
+      "version": "ghostty-1.4.1-dev-5UdBC58_nQWN3FHzqvvLtKzhOKptGc_uH9t7ejdTBGd3",
+      "owned": false,
+      "scope": "too large",
+      "provenance": "from its repository (an archive GitHub makes from it)"
+    },
+    {
+      "path": "deps.files.ghostty.org/aro-d0c8c4d9c55daa7ef6e40cf0f630a5b5e900989b.tar.gz",
+      "version": "aro-0.0.0-JSD1QtuBNwCASyBtNF3pqTl_W3oAJQGEVyFAtrBSE_Pa",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/DearBindings_v0.17_ImGui_v1.92.5-docking.tar.gz",
+      "version": "N-V-__8AANT61wB--nJ95Gj_ctmzAtcjloZ__hRqNw5lC1Kr",
+      "owned": false,
+      "scope": "too large",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/freetype-1220b81f6ecfb3fd222f76cf9106fecfa6554ab07ec7fdc4124b9bb063ae2adf969d.tar.gz",
+      "version": "N-V-__8AAKLKpwC4H27Ps_0iL3bPkQb-z6ZVSrB-x_3EEkub",
+      "owned": false,
+      "scope": "too large",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/libpng-1220aa013f0c83da3fb64ea6d327f9173fa008d10e28bc9349eac3463457723b1c66.tar.gz",
+      "version": "N-V-__8AAJrvXQCqAT8Mg9o_tk6m0yf5Fz-gCNEOKLyTSerD",
+      "owned": false,
+      "scope": "too large",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz",
+      "version": "N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/translate_c-02ff0c523fb92a38939b04d0145c4a9602a74d56.tar.gz",
+      "version": "translate_c-2.0.0-Q_BUWltOBwBYABF84EUL208pIFeUIwbBs29FmVBaafN5",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/N-V-__8AAEbOfQBnvcFcCX2W5z7tDaN8vaNZGamEQtNOe0UI.tar.gz",
+      "version": "N-V-__8AAEbOfQBnvcFcCX2W5z7tDaN8vaNZGamEQtNOe0UI",
+      "owned": false,
+      "scope": "too large",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/N-V-__8AAOgqbADacob-q2_DMQlmgaG4xKHRuW-6PJ4oJzMZ.tar.xz",
+      "version": "N-V-__8AAOgqbADacob-q2_DMQlmgaG4xKHRuW-6PJ4oJzMZ",
+      "owned": false,
+      "scope": "too large",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/libxml2-2.11.5.tar.gz",
+      "version": "N-V-__8AAG3RoQEyRC2Vw7Qoro5SYBf62IHn3HjqtNVY6aWK",
+      "owned": false,
+      "scope": "too large",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/glslang-12201278a1a05c0ce0b6eb6026c65cd3e9247aa041b1c260324bf29cee559dd23ba1.tar.gz",
+      "version": "N-V-__8AABzkUgISeKGgXAzgtutgJsZc0-kkeqBBscJgMkvy",
+      "owned": false,
+      "scope": "too large",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/gobject-2026-10-02-38-1.tar.zst",
+      "version": "gobject-0.3.2-Skun7LuIogBbEh-6WrLeEzMaRCnOMB3eOf__RaPYSMCZ",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz",
+      "version": "N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/wayland-protocols-258d8f88f2c8c25a830c6316f87d23ce1a0f12d9.tar.gz",
+      "version": "N-V-__8AAKw-DAAaV8bOAAGqA0-oD7o-HNIlPFYKRXSPT03S",
+      "owned": false,
+      "scope": "none",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/harfbuzz-11.0.0.tar.xz",
+      "version": "N-V-__8AAG02ugUcWec-Ndp-i7JTsJ0dgF8nnJRUInkGLG7G",
+      "owned": false,
+      "scope": "too large",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/highway-66486a10623fa0d72fe91260f96c892e41aceb06.tar.gz",
+      "version": "N-V-__8AAGmZhABbsPJLfbqrh6JTHsXhY6qCaLAQyx25e0XE",
+      "owned": false,
+      "scope": "too large",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/ghostty-themes-release-20261026-153024-27cbbb5.tgz",
+      "version": "N-V-__8AAIs9BgCF_swp81fS2tAWIJytW8NCUa6EbSOygPE3",
+      "owned": false,
+      "scope": "none",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz",
+      "version": "N-V-__8AAIC5lwAVPJJzxnCAahSvZTIlG-HhtOvnM1uh-66x",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/gettext-0.24.tar.gz",
+      "version": "N-V-__8AADcZkgn4cMhTUpIz6mShCKyqqB-NBtf_S2bHaTC-",
+      "owned": false,
+      "scope": "too large",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/libxev-819ffa180ca20e31c7eded74e2e1aceb1eab557f.tar.gz",
+      "version": "libxev-0.0.0-86vtc8QQFACz0sVc7U-VDiDIgH-XfBuEY5JpABLjHNpn",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/NerdFontsSymbolsOnly-3.4.0.tar.gz",
+      "version": "N-V-__8AAMVLTABmYkLqhZPLXnMl-KyN38R8UVYqGrxqO26s",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/oniguruma-1220c15e72eadd0d9085a8af134904d9a0f5dfcbed5f606ad60edc60ebeccd9706bb.tar.gz",
+      "version": "N-V-__8AAHjwMQDBXnLq3Q2QhaivE0kE2aD138vtX2Bq1g7c",
+      "owned": false,
+      "scope": "too large",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/plasma_wayland_protocols-12207e0851c12acdeee0991e893e0132fc87bb763969a585dc16ecca33e88334c566.tar.gz",
+      "version": "N-V-__8AAKYZBAB-CFHBKs3u4JkeiT4BMvyHu3Y5aaWF3Bbs",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/breakpad-b99f444ba5f6b98cac261cbb391d8766b34a5918.tar.gz",
+      "version": "N-V-__8AALw2uwF_03u4JRkZwRLc3Y9hakkYV7NKRR9-RIZJ",
+      "owned": false,
+      "scope": "too large",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz",
+      "version": "N-V-__8AAPlZGwBEa-gxrcypGBZ2R8Bse4JYSfo_ul8i2jlG",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/spirv_cross-1220fb3b5586e8be67bc3feb34cbe749cf42a60d628d2953632c2f8141302748c8da.tar.gz",
+      "version": "N-V-__8AANb6pwD7O1WG6L5nvD_rNMvnSc9Cpg1ijSlTYywv",
+      "owned": false,
+      "scope": "too large",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/uucode-1fb73433bba5d93366c57f23ff2e9d7939746500.tar.gz",
+      "version": "uucode-0.2.0-ZZjBPm6FVgBcY-79AHV8ckQj86z0JwOyVyj89VeZrEiv",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/vaxis-0620b34e091deaa6f64608922be3814147128dfb.tar.gz",
+      "version": "vaxis-0.6.0-BWNV_LoTDQCQSGhvBbu_-fOf3I2P3TIiGaUzCDniO12E",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "github.com/zigimg/zigimg",
+      "version": "zigimg-0.1.0-8_eo2sBLGACBebrhQZUwRliZNSUyDn6szp99eip_6-Rw",
+      "owned": false,
+      "scope": "diff",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz",
+      "version": "N-V-__8AAKrHGAAs2shYq8UkE6bGcR1QJtLTyOE_lcosMn6t",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/N-V-__8AAFdWDwA0ktbNUi9pFBHCRN4weXIgIfCrVjfGxqgA.tar.gz",
+      "version": "N-V-__8AAFdWDwA0ktbNUi9pFBHCRN4weXIgIfCrVjfGxqgA",
+      "owned": false,
+      "scope": "none",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/pixels-12207ff340169c7d40c570b4b6a97db614fe47e0d83b5801a932dcd44917424c8806.tar.gz",
+      "version": "N-V-__8AADYiAAB_80AWnH1AxXC0tql9thT-R-DYO1gBqTLc",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/wuffs-7411f488fe2e2c205c3d3b3d28638b7356522930.tar.gz",
+      "version": "N-V-__8AAP5JWgCGP_AD0teWpa4krRvE9VPZzvviGdbmN4jI",
+      "owned": false,
+      "scope": "too large",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/z2d-8787d71bac42d9aab00428ccb37a4fd453418761.tar.gz",
+      "version": "z2d-0.13.2-j5P_HkkVFAAtOSQPRTS7wbZLbYs7oETRn7nUKSUwDjM_",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/zf-87153bb86b75d21fbac897b738f316d449f5d0c9.tar.gz",
+      "version": "zf-0.11.0-OIRy8XCRAAB6FiMwIrtD6FqlagnFwpI6YyOu7bXeYH5J",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "github.com/rockorager/libvaxis",
+      "version": "vaxis-0.6.0-BWNV_MafDAAEzkVUvrW9NFUqnnMUoeHqrs2mecnD6D7w",
+      "owned": false,
+      "scope": "diff",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/jacobsandlund/uucode",
+      "version": "uucode-0.2.0-ZZjBPoGFVgCiflJNFc6Io8xzC67B6PA5bUkk4LT0kCxg",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/sergot/zigimg",
+      "version": "zigimg-0.1.0-8_eo2ri_FwBqF5UYiggLz4IGjHJO_n9-B6gT9Ayqg8G4",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/zig_js-3c23860e47fdcdc5af805efb7fd0bdac5fd3e9bc.tar.gz",
+      "version": "zig_js-0.0.0-rjCAV7-GAADvMTBL7lPMuvDk7xgS9PCMIZWiOUXLZSlj",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/zig_objc-3352c12a868f8787ab71bf2ca6eab9fcfb635c52.tar.gz",
+      "version": "zig_objc-0.0.0-Ir_Sp_4tAQDXtPi51nW_jD9LOEzBvU9lofwO9Pzi6IB4",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "deps.files.ghostty.org/zig_wayland-27dda01712ddf3cb46ebd93380d88b01a7c828f8.tar.gz",
+      "version": "wayland-0.7.0-dev-lQa1klz9AQB87V0pMKMdm8JvyOx32XR9FxcWnw9wh6XZ",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "not checkable: an archive from deps.files.ghostty.org, not a repository"
+    },
+    {
+      "path": "github.com/zig-utils/zig-regex",
+      "version": "zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3",
+      "owned": false,
+      "scope": "diff",
+      "provenance": "from its repository (an archive GitHub makes from it)"
+    },
+    {
+      "path": "codeberg.org/ziglang/translate-c",
+      "version": "translate_c-2.0.2-Q_BUWvBNBwDnyehSiuAJmdFcMYHYGA-Jc3KiYdrV2Dqx",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "codeberg.org/ziglang/arocc",
+      "version": "aro-0.0.0-JSD1QvCRNwC2O1Jkop9TO6sXb1U1vhrH8FnYK1VdEMKn",
+      "owned": false,
+      "scope": "surface",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "sqlite.org/sqlite-amalgamation",
+      "version": "3.53.4",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "matches its upstream release https://sqlite.org/2026/sqlite-amalgamation-3530400.zip"
+    },
+    {
+      "path": "github.com/yaml/libyaml",
+      "version": "0.2.5",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "matches its upstream release https://github.com/yaml/libyaml/archive/refs/tags/0.2.5.tar.gz"
+    }
+  ],
+  "units": [
+    {
+      "kind": "project",
+      "module": "github.com/jespern/marlin",
+      "from": "v0.1.7",
+      "to": "",
+      "scope": "diff",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/jespern/marlin",
+        "github.com/jespern/marlin/assets",
+        "github.com/jespern/marlin/src",
+        "github.com/jespern/marlin/src/client",
+        "github.com/jespern/marlin/src/core",
+        "github.com/jespern/marlin/src/daemon",
+        "github.com/jespern/marlin/src/daemon/c",
+        "github.com/jespern/marlin/src/daemon/guest",
+        "github.com/jespern/marlin/src/daemon/provider",
+        "github.com/jespern/marlin/src/daemon/tools",
+        "github.com/jespern/marlin/src/mk64",
+        "github.com/jespern/marlin/src/mobile",
+        "github.com/jespern/marlin/src/wipeout",
+        "github.com/jespern/marlin/vendor/sqlite"
+      ],
+      "digest": "sha256:6a498c5303c17bfb0dfe0e612fe036aa3ba694195c1ed2c157b79ed607021d97",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "The diff ports marlin to Zig 0.17 and adds daemon-owned PTY shell sessions (libghostty-vt mirror, Kitty images), macOS screenshots via osascript, pause/resume persistence, guest runtime limits, Codex ask_user MCP bridging, login-required detection, and many TUI changes. I checked the new shell spawning, environment handling, web bridge gating, screenshot script, Codex/Claude argv changes, build dependencies and CI/certify workflow changes. I found no exfiltration, backdoor or hidden behaviour. The new data flows serve the stated features, and one gating gap in the web bridge is reported as a concern.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "src/daemon/shell_pty.zig",
+            "line": 67,
+            "title": "Daemon spawns interactive login shells for clients",
+            "detail": "The change adds daemon-owned login shells on PTYs. Any client that can reach the daemon socket can create one (shell_open), type into it, and read its output. This is the advertised `!!` feature. Access is bounded by who can reach the daemon socket."
+          },
+          {
+            "severity": "concern",
+            "file": "src/client/web.zig",
+            "line": 409,
+            "title": "Web bridge does not block shell_attach/shell_list",
+            "detail": "The web bridge rejects shell_open, shell_input, shell_resize, shell_ack and shell_close. It does not reject shell_attach, shell_list or shell_detach. A browser on the tokenless loopback web UI could therefore attach to a running shell and receive its snapshot and output, which may contain secrets. This looks like an oversight rather than a deliberate hole. The web UI can already drive agent turns."
+          },
+          {
+            "severity": "info",
+            "file": "src/daemon/context.zig",
+            "line": 259,
+            "title": "Shell output becomes model context",
+            "detail": "When a `!!` shell ends, its output is stored in the session. Up to 16 KiB of it is then sent to the model provider as context on later native turns. This is documented in code and on the site, but anything printed in that shell (tokens, env dumps) can reach the provider."
+          },
+          {
+            "severity": "info",
+            "file": "src/client/screenshot.zig",
+            "line": 330,
+            "title": "Screenshot feature runs an embedded JXA script",
+            "detail": "Alt+S writes the screen description to a temp file and runs /usr/bin/osascript with an embedded, readable JXA script. The script draws a PNG and puts it on the pasteboard. The script is plain source, it runs only when the user asks for a screenshot, and it serves the stated feature."
+          },
+          {
+            "severity": "info",
+            "file": "build.zig.zon",
+            "line": 16,
+            "title": "New pinned build dependencies",
+            "detail": "The diff adds ghostty (a GitHub archive pinned by hash) and translate_c (a Codeberg commit pinned by hash), and bumps vaxis and zig-regex to new pinned hashes. The new C headers only include sqlite3.h and yaml.h. No unusual build steps were added."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "Shell-session PTY output (base64), terminal snapshots, shell list (titles, cwd), and the daemon host's hostname in hello_ok",
+            "to": "connected marlin clients over the daemon's Unix socket (local, or SSH-piped for --remote)",
+            "file": "src/daemon/daemon.zig"
+          },
+          {
+            "what": "The scrollback of an ended `!!` shell session, plain and colored, up to 1 MiB, saved as a shell_transcript block",
+            "to": "the daemon's SQLite store (~/.config/marlin state)",
+            "file": "src/daemon/daemon.zig"
+          },
+          {
+            "what": "The last 16 KiB of a recorded shell transcript, added as user context",
+            "to": "the configured LLM provider, on the session's next native turn",
+            "file": "src/daemon/context.zig"
+          },
+          {
+            "what": "Keystrokes and pastes from attached clients; an environment copied from the daemon with TERM/COLORTERM adjusted",
+            "to": "a child login shell ($SHELL) on a PTY",
+            "file": "src/daemon/shell_pty.zig"
+          },
+          {
+            "what": "The rendered TUI screen's text and colors, which become a PNG",
+            "to": "a temp JSON file in $TMPDIR, then /usr/bin/osascript, then the macOS pasteboard (or the file named by MARLIN_SCREENSHOT_FILE)",
+            "file": "src/client/screenshot.zig"
+          },
+          {
+            "what": "An MCP server entry that points Codex at `marlin cc_approve --sid N` for ask_user, passing HOME, MARLIN_SOCKET and XDG_RUNTIME_DIR",
+            "to": "the codex app-server child process (its command-line config)",
+            "file": "src/daemon/provider/codex.zig"
+          },
+          {
+            "what": "cwd completion results: directory names under the session cwd and HOME",
+            "to": "connected clients",
+            "file": "src/daemon/daemon.zig"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "deps.files.ghostty.org/aro-d0c8c4d9c55daa7ef6e40cf0f630a5b5e900989b.tar.gz",
+      "from": "",
+      "to": "aro-0.0.0-JSD1QtuBNwCASyBtNF3pqTl_W3oAJQGEVyFAtrBSE_Pa",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "deps.files.ghostty.org/aro-d0c8c4d9c55daa7ef6e40cf0f630a5b5e900989b.tar.gz",
+        "deps.files.ghostty.org/aro-d0c8c4d9c55daa7ef6e40cf0f630a5b5e900989b.tar.gz/include"
+      ],
+      "digest": "sha256:05b4f00d27bc89153baeebd7bb25f39c3aa1e965f5d0048e2298f66c84460fc8",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "Aro is a C compiler/frontend written in Zig. This surface is its build.zig, its build.zig.zon and its bundled standard C headers. The build script defines modules, runs a local generator over builtin .def tables, installs the headers and defines optional test, fuzz and Tracy steps; it has no network access, no hidden commands and no encoded payloads. The headers are plain macro and typedef definitions.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/aro-d0c8c4d9c55daa7ef6e40cf0f630a5b5e900989b.tar.gz@aro-0.0.0-JSD1QtuBNwCASyBtNF3pqTl_W3oAJQGEVyFAtrBSE_Pa/build.zig",
+            "line": 6,
+            "title": "Build-time code generation from .def files",
+            "detail": "build.zig compiles build/generate_def.zig for the host and runs it on the Builtins/*.def files in src/aro to produce Zig modules. This is ordinary table generation for compiler builtins. The generator's own source is not part of this surface; what it does is consistent with its name and inputs."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/aro-d0c8c4d9c55daa7ef6e40cf0f630a5b5e900989b.tar.gz@aro-0.0.0-JSD1QtuBNwCASyBtNF3pqTl_W3oAJQGEVyFAtrBSE_Pa/build.zig",
+            "line": 113,
+            "title": "Unreachable git invocation and opt-in system commands",
+            "detail": "A `git describe` invocation sits behind `if (true) break :v version_string;`, so it never runs. The fuzz step's afl-clang-lto command, the tests and the Tracy integration only run when the user explicitly asks for those steps or options."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/aro-d0c8c4d9c55daa7ef6e40cf0f630a5b5e900989b.tar.gz@aro-0.0.0-JSD1QtuBNwCASyBtNF3pqTl_W3oAJQGEVyFAtrBSE_Pa/include/stdint.h",
+            "line": 0,
+            "title": "Bundled C headers are standard definitions",
+            "detail": "The include/*.h files are standard freestanding C headers: limits, stdint, stdatomic, stdarg and similar. They contain only macros and typedefs mapped to compiler builtins. There is no executable payload."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz",
+      "from": "",
+      "to": "N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o",
+      "scope": "surface",
+      "part": 1,
+      "parts": 2,
+      "packages": [
+        "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz"
+      ],
+      "digest": "sha256:75eb42e21bca65e9e2dc8f84a1bc906924b7478c184edc41c76cdaec9040dcd4",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This unit is the upstream zlib 1.3.1 compression library: deflate/inflate, CRC-32 and Adler-32 checksums, and the gzip file API, plus generated tables and the documentation PDF. I read every source file for build-time generators, constructors, network or exec activity, encoded payloads and deviations from upstream and found none. The only file output is the documented gz* file writing to paths the caller chooses, plus table generators that run only under non-default build macros.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz@N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o/zlib.h",
+            "line": 0,
+            "title": "Stock zlib 1.3.1 sources",
+            "detail": "I compared all source files in this part against the known upstream zlib 1.3.1 release: adler32, compress, crc32, deflate, the gz* files, infback, inffast, inflate, inftrees, trees, uncompr, zutil and the headers. They show no deviation from upstream: no networking, no process execution, no environment probing and no load-time constructors. The generated tables in crc32.h, trees.h and inffixed.h have the expected standard values."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz@N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o/zlib.3.pdf",
+            "line": 0,
+            "title": "Binary PDF documentation file",
+            "detail": "zlib.3.pdf is the upstream manual page in PDF form, shipped in the zlib distribution. It is documentation; nothing in the reviewed sources compiles, reads or unpacks it."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz@N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o/inflate.c",
+            "line": 0,
+            "title": "inflateUndermine is compile-time disabled by default",
+            "detail": "inflateUndermine() and the related permissive distance handling are standard upstream API. They do nothing unless the library is compiled with INFLATE_ALLOW_INVALID_DISTANCE_TOOFAR_ARRR; otherwise the function returns Z_DATA_ERROR and keeps sane=1."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "Compressed (or, in transparent mode, raw) data the caller passes to gzwrite, gzputs or gzprintf; this is the library's documented gzip file API.",
+            "to": "a file path or file descriptor chosen by the calling application (gzopen/gzdopen)",
+            "file": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz@N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o/gzwrite.c"
+          },
+          {
+            "what": "Generated CRC tables. This happens only when the developer builds the table generator with MAKECRCH defined; it is not part of a normal library build.",
+            "to": "crc32.h in the current directory",
+            "file": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz@N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o/crc32.c"
+          },
+          {
+            "what": "Generated static Huffman tables. This happens only when the developer builds with GEN_TREES_H defined; it is not part of a normal library build.",
+            "to": "trees.h in the current directory",
+            "file": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz@N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o/trees.c"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz",
+      "from": "",
+      "to": "N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o",
+      "scope": "surface",
+      "part": 2,
+      "parts": 2,
+      "packages": [
+        "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/blast",
+        "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/dotzlib",
+        "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/dotzlib/DotZLib",
+        "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/gcc_gvmat64",
+        "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/infback9",
+        "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/iostream",
+        "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/iostream2",
+        "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/iostream3",
+        "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/minizip",
+        "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/puff",
+        "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/testzlib",
+        "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/untgz",
+        "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/doc",
+        "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/examples",
+        "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/test"
+      ],
+      "digest": "sha256:4a87fef4b2f96f0c03990daf6450c4699948681c4bef98b7ef8bbb65a037efab",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This unit is the contrib, examples, test and doc trees of the zlib 1.3.1 tarball: blast, puff, infback9, minizip, the iostream wrappers, the gvmat64 assembly, and example and test programs. I checked them for network use, process execution, environment or secret access, load-time constructors, hooking, encoded payloads and hidden switches, and found none. The code matches upstream zlib, and the non-source files are upstream docs and fixtures that nothing reads or compiles.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz@N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o/contrib/dotzlib/DotZLib.chm",
+            "line": 0,
+            "title": "Binary and unreadable files are upstream docs and fixtures",
+            "detail": "The .cs files under contrib/dotzlib/DotZLib, plus DotZLib.chm, contrib/blast/test.pk (8 bytes, matching the 'AIAIAI' example stream documented in blast.c), contrib/puff/zeros.raw and doc/crc-doc.1.0.pdf, could not be shown as source. All are standard files of the upstream zlib 1.3.1 distribution: documentation, test fixtures and C# bindings. None is marked as absent from the source repository. Nothing in the reviewed C sources reads, unpacks or compiles them, and a Zig/C build of zlib does not compile C# or use these fixtures."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz@N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o/contrib/gcc_gvmat64/gvmat64.S",
+            "line": 1,
+            "title": "Assembly longest_match matches upstream contrib",
+            "detail": "gvmat64.S is the well-known longest_match optimisation by Gilles Vollant. It only reads deflate_state fields, compares window bytes and returns a match length. It makes no system calls, has no hidden symbols and does no self-modification. Its dsXxx struct offsets are hard-coded and would be wrong for current zlib, but it is not part of a normal zlib build."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz@N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o/contrib/untgz/untgz.c",
+            "line": 0,
+            "title": "Example and test programs do only local file I/O",
+            "detail": "miniunz.c, untgz.c, gun.c, gzappend.c, gzlog.c, minigzip.c and the other programs are stock zlib example and test tools. They read and write files named on their own command lines. untgz extracts tar entries without path-traversal checks, a long-known upstream weakness. These are standalone programs with their own main() functions and are not linked into the library."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "deps.files.ghostty.org/translate_c-02ff0c523fb92a38939b04d0145c4a9602a74d56.tar.gz",
+      "from": "",
+      "to": "translate_c-2.0.0-Q_BUWltOBwBYABF84EUL208pIFeUIwbBs29FmVBaafN5",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "deps.files.ghostty.org/translate_c-02ff0c523fb92a38939b04d0145c4a9602a74d56.tar.gz",
+        "deps.files.ghostty.org/translate_c-02ff0c523fb92a38939b04d0145c4a9602a74d56.tar.gz/build",
+        "deps.files.ghostty.org/translate_c-02ff0c523fb92a38939b04d0145c4a9602a74d56.tar.gz/test"
+      ],
+      "digest": "sha256:6d27dff905273924a9d2d7f3fb14813aa78a9e60f223458a460e14511740b8cf",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This is the build surface of the Zig translate-c package: build.zig, build.zig.zon, the build/Translator.zig helper that wires a run step for the translate-c executable, and test/cases.zig, which builds the test graph from local case files. I checked for network access, hidden execution, encoded payloads, credential reads and system modification and found none. Everything is standard Zig build-graph construction consistent with the package's purpose.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/translate_c-02ff0c523fb92a38939b04d0145c4a9602a74d56.tar.gz@translate_c-2.0.0-Q_BUWltOBwBYABF84EUL208pIFeUIwbBs29FmVBaafN5/build.zig.zon",
+            "line": 10,
+            "title": "Pinned dependency on aro",
+            "detail": "build.zig.zon pins the aro C frontend to a codeberg.org/ziglang git commit by content hash. The dependency is fetched by the Zig package manager, is integrity-checked, and belongs to a separate review unit."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/translate_c-02ff0c523fb92a38939b04d0145c4a9602a74d56.tar.gz@translate_c-2.0.0-Q_BUWltOBwBYABF84EUL208pIFeUIwbBs29FmVBaafN5/test/cases.zig",
+            "line": 56,
+            "title": "Test case discovery reads local files at build-graph time",
+            "detail": "lowerCases reads the test/cases directory from the package root to generate test steps. That directory is not in the package's .paths, so it is missing from the tarball and the code fails gracefully with addFail. It only runs for test steps and does no network or system access."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "The C source file path, include and framework paths, macro definitions, target triple and flags are passed as arguments. The translated Zig file and a deps file are written to the build cache.",
+            "to": "translate-c executable run as a build step (another program)",
+            "file": "deps.files.ghostty.org/translate_c-02ff0c523fb92a38939b04d0145c4a9602a74d56.tar.gz@translate_c-2.0.0-Q_BUWltOBwBYABF84EUL208pIFeUIwbBs29FmVBaafN5/build/Translator.zig"
+          },
+          {
+            "what": "Installs aro's include directory, the package's lib directory and the translate-c executable.",
+            "to": "install prefix directory",
+            "file": "deps.files.ghostty.org/translate_c-02ff0c523fb92a38939b04d0145c4a9602a74d56.tar.gz@translate_c-2.0.0-Q_BUWltOBwBYABF84EUL208pIFeUIwbBs29FmVBaafN5/build.zig"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "deps.files.ghostty.org/gobject-2026-10-02-38-1.tar.zst",
+      "from": "",
+      "to": "gobject-0.3.2-Skun7LuIogBbEh-6WrLeEzMaRCnOMB3eOf__RaPYSMCZ",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "deps.files.ghostty.org/gobject-2026-10-02-38-1.tar.zst",
+        "deps.files.ghostty.org/gobject-2026-10-02-38-1.tar.zst/src/gdkpixbuf2"
+      ],
+      "digest": "sha256:0f5d5e1f68a12960df198c04f9c01b7aba7847e5d75e171fbc5e32a9e313d130",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This unit is the zig-gobject bindings package: build.zig declares Zig modules for the GNOME libraries and links them via pkg-config, and gdkpixbuf2.zig is GIR-generated extern bindings for gdk-pixbuf. I checked the build script, the package manifest and the gdkpixbuf2 source for build-time execution, fetching, embedded payloads, load-time side effects and hooking. I found nothing beyond the documented, opt-in glib-compile-resources helper.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/gobject-2026-10-02-38-1.tar.zst@gobject-0.3.2-Skun7LuIogBbEh-6WrLeEzMaRCnOMB3eOf__RaPYSMCZ/build.zig",
+            "line": 49,
+            "title": "Build helper invokes glib-compile-resources",
+            "detail": "build.zig's CompileResources helper runs the system command `glib-compile-resources` and compiles a helper executable from build/build_gresources_xml.zig, but only when a dependent build uses addCompileResources/buildCompileResources. This is the documented purpose of the helper. The rest of build.zig only declares modules and links system libraries via pkg-config."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/gobject-2026-10-02-38-1.tar.zst@gobject-0.3.2-Skun7LuIogBbEh-6WrLeEzMaRCnOMB3eOf__RaPYSMCZ/build.zig.zon",
+            "line": 12,
+            "title": "No remote dependencies",
+            "detail": "build.zig.zon has no active dependencies. The only dependency, a zig_autodoc fork, is commented out, so nothing is fetched at build time."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/gobject-2026-10-02-38-1.tar.zst@gobject-0.3.2-Skun7LuIogBbEh-6WrLeEzMaRCnOMB3eOf__RaPYSMCZ/src/gdkpixbuf2/gdkpixbuf2.zig",
+            "line": 0,
+            "title": "Generated bindings only",
+            "detail": "gdkpixbuf2.zig is a machine-generated set of extern declarations and thin wrappers for the gdk-pixbuf C library. It contains no initialisers, comptime side effects, embedded data, network access or process execution. The extern g_object_ref/unref declarations reuse GObject symbols with typed pointers, which is normal for GIR-generated bindings."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz",
+      "from": "",
+      "to": "N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz",
+        "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz/examples",
+        "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz/examples/demo",
+        "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz/include",
+        "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz/src",
+        "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz/test/integration-test-common",
+        "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz/test/layer-tests",
+        "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz/test/lock-tests",
+        "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz/test/mock-server",
+        "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz/test/test-common",
+        "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz/test/unit-tests"
+      ],
+      "digest": "sha256:30c5a7281ad70d80c78bca1209ea9b968e22978297409493f190f4f5e6862eb9",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This unit is gtk4-layer-shell 1.1.0, a GTK4 library that shims libwayland-client calls so GTK windows become wlr-layer-shell or ext-session-lock surfaces. I read the library sources, the preload constructor, the libwayland interposition code, the examples, the tests and the mock compositor. I found no build-time payloads, encoded data, network access outside the Wayland compositor connection, secret access or hidden behaviour. The symbol interposition and the preload constructor are the library's documented purpose.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz@N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr/src/libwayland-shim.c",
+            "line": 185,
+            "title": "Interposes libwayland-client symbols (documented purpose)",
+            "detail": "libwayland-shim.c defines wl_proxy_marshal_array_flags and wl_proxy_destroy, and stolen-from-libwayland.c the other wl_proxy_marshal* entry points. This overrides libwayland-client symbols and forwards to the real ones through dlsym(RTLD_NEXT). This is the library's documented mechanism (linking.md) for making GTK4 create layer-shell and session-lock surfaces. Requests are forwarded unchanged except xdg_wm_base.get_xdg_surface and xdg_surface.get_popup on surfaces the application registered. No data is captured or sent elsewhere."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz@N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr/src/layer-shell-preload.c",
+            "line": 112,
+            "title": "Load-time constructor in preload helper",
+            "detail": "layer-shell-preload.c has an __attribute__((constructor)) that installs a hook. The hook turns the process's first XDG surface (all of them with LAYER_ALL_SURFACES=1) into a layer surface configured from LAYER_* environment variables. This file is meant for the separate liblayer-shell-preload.so and is documented in the changelog. If the embedding build compiled it into the main library, windows would be converted unexpectedly. That would be visible misbehaviour, not concealment. Check that the consuming build excludes this file."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz@N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr/src/gtk4-session-lock.c",
+            "line": 191,
+            "title": "Wrong null check on wl_output",
+            "detail": "After `struct wl_output* output = gdk_wayland_monitor_get_wl_output(monitor);` the code re-checks `!monitor` instead of `!output`. This is an ordinary bug."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz@N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr/src/registry.c",
+            "line": 82,
+            "title": "Misleading diagnostic message",
+            "detail": "get_layer_shell_global_from_display prints a message about the Session Lock protocol when Layer Shell is missing. This is a copy-paste mistake."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "Layer-shell protocol requests: layer surface creation, anchor, margin, size, exclusive zone, keyboard interactivity, layer and namespace string.",
+            "to": "Wayland compositor (via libwayland-client socket)",
+            "file": "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz@N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr/src/layer-surface.c"
+          },
+          {
+            "what": "ext_session_lock_v1 lock, unlock_and_destroy and lock-surface requests.",
+            "to": "Wayland compositor (via libwayland-client socket)",
+            "file": "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz@N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr/src/session-lock.c"
+          },
+          {
+            "what": "All of the process's Wayland requests, forwarded unchanged unless they concern XDG surfaces turned into layer or lock surfaces.",
+            "to": "Real libwayland-client (wl_proxy_marshal_array_flags via RTLD_NEXT)",
+            "file": "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz@N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr/src/libwayland-shim.c"
+          },
+          {
+            "what": "Diagnostic messages about missing protocol support.",
+            "to": "stderr",
+            "file": "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz@N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr/src/registry.c"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz",
+      "from": "",
+      "to": "N-V-__8AAIC5lwAVPJJzxnCAahSvZTIlG-HhtOvnM1uh-66x",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz",
+        "deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz/fonts",
+        "deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz/fonts/ttf",
+        "deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz/fonts/variable",
+        "deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz/fonts/webfonts"
+      ],
+      "digest": "sha256:7557268cf755ea531d671a7d8c70bd59c9cbe65a6f0b8ed0c7e623ea734e1a93",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This third-party unit is the JetBrains Mono 2.304 font archive that Ghostty embeds as its default font. It contains only TTF, variable TTF and WOFF2 font files plus macOS AppleDouble sidecar metadata, with no build steps, code or load-time logic. I found no executable surface, no capabilities and no data flows, and the file layout and sizes are consistent with the upstream release.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz@N-V-__8AAIC5lwAVPJJzxnCAahSvZTIlG-HhtOvnM1uh-66x/fonts/ttf/JetBrainsMono-Regular.ttf",
+            "line": 0,
+            "title": "Archive contains only font data files",
+            "detail": "The unit holds only TrueType, variable TrueType and WOFF2 font files for JetBrains Mono 2.304, plus a license and authors file. There are no build scripts, no code generation and no executable code. Ghostty embeds these fonts as its default terminal typeface, which fits the module's purpose. File sizes (about 270 KB per static TTF, 205–215 KB for the NL variants, about 300 KB for the variable fonts, about 90–98 KB per WOFF2) match the upstream JetBrains Mono 2.304 release. The contents cannot be read as source, so their bytes were not checked against the upstream release here."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz@N-V-__8AAIC5lwAVPJJzxnCAahSvZTIlG-HhtOvnM1uh-66x/._.",
+            "line": 0,
+            "title": "macOS AppleDouble metadata files are packaging artifacts",
+            "detail": "Every ._* file is 163 bytes and has the same digest (0bc10de2…). These are macOS AppleDouble extended-attribute sidecars, typically com.apple.provenance or quarantine metadata, that tar on macOS adds when it archives files. They are packaging artifacts. They are not fonts, and a font loader would neither compile them in nor parse them. Their identical, tiny content leaves no room for a hidden payload."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz@N-V-__8AAIC5lwAVPJJzxnCAahSvZTIlG-HhtOvnM1uh-66x/fonts/variable/JetBrainsMono[wght].ttf",
+            "line": 0,
+            "title": "Fonts are parsed at run time",
+            "detail": "Embedded fonts are parsed at run time by the font rasteriser (FreeType or CoreText). In principle a crafted font could exploit a parser bug. Nothing here suggests tampering: the file names, layout and sizes match the official release, and the archive is pinned by its content hash."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "deps.files.ghostty.org/libxev-819ffa180ca20e31c7eded74e2e1aceb1eab557f.tar.gz",
+      "from": "",
+      "to": "libxev-0.0.0-86vtc8QQFACz0sVc7U-VDiDIgH-XfBuEY5JpABLjHNpn",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "deps.files.ghostty.org/libxev-819ffa180ca20e31c7eded74e2e1aceb1eab557f.tar.gz",
+        "deps.files.ghostty.org/libxev-819ffa180ca20e31c7eded74e2e1aceb1eab557f.tar.gz/examples",
+        "deps.files.ghostty.org/libxev-819ffa180ca20e31c7eded74e2e1aceb1eab557f.tar.gz/include",
+        "deps.files.ghostty.org/libxev-819ffa180ca20e31c7eded74e2e1aceb1eab557f.tar.gz/website/public"
+      ],
+      "digest": "sha256:d61ea4308e675de9d13a480867a0e71d376da5c4dfc8d398a1de6e940f4c76d1",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "libxev is a cross-platform event-loop library; this surface is its build.zig, build.zig.zon, C header, C example programs and a website favicon. The build script only defines the Zig module, static/dynamic C libraries, tests, benchmarks and examples, and optionally generates man pages with scdoc. There are no downloads, no hidden build steps, no encoded payloads and no use of the binary asset.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/libxev-819ffa180ca20e31c7eded74e2e1aceb1eab557f.tar.gz@libxev-0.0.0-86vtc8QQFACz0sVc7U-VDiDIgH-XfBuEY5JpABLjHNpn/build.zig",
+            "line": 306,
+            "title": "Build runs scdoc to generate man pages",
+            "detail": "manPages() runs the system program `scdoc` via addSystemCommand, feeding it the package's own docs/*.scd files and installing the output as man pages. This is ordinary documentation generation, gated on scdoc being present or the emit-man-pages option, and does not touch anything outside the build."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/libxev-819ffa180ca20e31c7eded74e2e1aceb1eab557f.tar.gz@libxev-0.0.0-86vtc8QQFACz0sVc7U-VDiDIgH-XfBuEY5JpABLjHNpn/build.zig",
+            "line": 60,
+            "title": "Stale comment about libxml2",
+            "detail": "The comment above the dynamic library says it requires a native target 'so we can link to libxml2', yet nothing links libxml2. It looks like a stale copy-paste comment and has no effect on what is built."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/libxev-819ffa180ca20e31c7eded74e2e1aceb1eab557f.tar.gz@libxev-0.0.0-86vtc8QQFACz0sVc7U-VDiDIgH-XfBuEY5JpABLjHNpn/website/public/favicon.ico",
+            "line": 0,
+            "title": "Unreferenced binary website asset",
+            "detail": "website/public/favicon.ico is a 25 KB binary. Nothing in build.zig or the sources shown references it. It belongs to the project website and is not compiled in or read at build time."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "Contents of the package's own docs/*.scd man-page sources",
+            "to": "scdoc program at build time (stdin), output installed under share/man in the build prefix",
+            "file": "deps.files.ghostty.org/libxev-819ffa180ca20e31c7eded74e2e1aceb1eab557f.tar.gz@libxev-0.0.0-86vtc8QQFACz0sVc7U-VDiDIgH-XfBuEY5JpABLjHNpn/build.zig"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "deps.files.ghostty.org/NerdFontsSymbolsOnly-3.4.0.tar.gz",
+      "from": "",
+      "to": "N-V-__8AAMVLTABmYkLqhZPLXnMl-KyN38R8UVYqGrxqO26s",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "deps.files.ghostty.org/NerdFontsSymbolsOnly-3.4.0.tar.gz"
+      ],
+      "digest": "sha256:21a08f6bf102b386cce08f5137034633b2187e0217ce77dc8ed0180594ca1814",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This unit is the Nerd Fonts Symbols Only 3.4.0 archive, mirrored on deps.files.ghostty.org. It contains two TTF symbol fonts, used as glyph data, plus macOS AppleDouble (._*) metadata stubs. There is no build script, source code or executable content, and no capabilities are requested. The binaries are fonts whose sizes fit the upstream release, and the small ._ files are ordinary tar packaging artifacts, so nothing here acts on the world.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/NerdFontsSymbolsOnly-3.4.0.tar.gz@N-V-__8AAMVLTABmYkLqhZPLXnMl-KyN38R8UVYqGrxqO26s/SymbolsNerdFont-Regular.ttf",
+            "line": 0,
+            "title": "Embedded binary font files",
+            "detail": "The unit holds two TrueType fonts, SymbolsNerdFont-Regular.ttf (2.4 MB) and SymbolsNerdFontMono-Regular.ttf (2.5 MB). They are the Nerd Fonts 3.4.0 symbols-only release, and the terminal presumably embeds them as fallback glyph fonts. They are data, not code, and run nothing at build time or at load. Their contents cannot be reviewed as source. A crafted font could in principle target a font parser, but their sizes match the upstream release and nothing suggests tampering. Their digests could be checked against the upstream Nerd Fonts v3.4.0 release asset."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/NerdFontsSymbolsOnly-3.4.0.tar.gz@N-V-__8AAMVLTABmYkLqhZPLXnMl-KyN38R8UVYqGrxqO26s/._.",
+            "line": 0,
+            "title": "macOS AppleDouble metadata files in tarball",
+            "detail": "The files prefixed ._ (._., ._LICENSE, ._README.md, ._10-nerd-font-symbols.conf and ._*.ttf) are AppleDouble resource-fork and extended-attribute stubs. macOS tar adds them when it archives a directory. Each is 163 or 263 bytes, and the 163-byte ones are byte-identical across files, which fits a single xattr such as com.apple.provenance. They are packaging artifacts that nothing compiles, executes or reads."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "deps.files.ghostty.org/plasma_wayland_protocols-12207e0851c12acdeee0991e893e0132fc87bb763969a585dc16ecca33e88334c566.tar.gz",
+      "from": "",
+      "to": "N-V-__8AAKYZBAB-CFHBKs3u4JkeiT4BMvyHu3Y5aaWF3Bbs",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "deps.files.ghostty.org/plasma_wayland_protocols-12207e0851c12acdeee0991e893e0132fc87bb763969a585dc16ecca33e88334c566.tar.gz/autotests"
+      ],
+      "digest": "sha256:1997d6f48bbaa6964be52780e3f5861fedf4f9b43366d99e462059f0f5cd19db",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "The surface of this unit is a single file, autotests/build.c: a placeholder C program that includes the generated Wayland protocol headers and returns 0, to check that they compile. It has no side effects, network use, process execution or hidden payload, and no capabilities are listed to explain.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/plasma_wayland_protocols-12207e0851c12acdeee0991e893e0132fc87bb763969a585dc16ecca33e88334c566.tar.gz@N-V-__8AAKYZBAB-CFHBKs3u4JkeiT4BMvyHu3Y5aaWF3Bbs/autotests/build.c",
+            "line": 1,
+            "title": "Trivial header-compilation test template",
+            "detail": "autotests/build.c is a CMake configure_file template for plasma-wayland-protocols' autotests. It includes the generated client and server headers and returns 0 from main, which only checks that the headers compile. It contains no logic, no I/O and no encoded data."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz",
+      "from": "",
+      "to": "N-V-__8AAPlZGwBEa-gxrcypGBZ2R8Bse4JYSfo_ul8i2jlG",
+      "scope": "surface",
+      "part": 1,
+      "parts": 2,
+      "packages": [
+        "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz",
+        "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/.mvn/wrapper",
+        "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/examples",
+        "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/include",
+        "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/ndk",
+        "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/ndk/gradle/wrapper",
+        "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/ndk/lib/src/main/jni",
+        "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/ndk/sample/src/main/cpp",
+        "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/src",
+        "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/src/backends",
+        "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/src/integrations",
+        "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/src/modulefinder",
+        "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/src/path",
+        "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/src/symbolizer",
+        "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/src/transports",
+        "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/src/unwinder",
+        "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/tests/fixtures",
+        "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/tests/fuzzing-failures",
+        "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/tests/unit"
+      ],
+      "digest": "sha256:064711f2f3a388f799b468b722c1b75e8e4384f3570c5ea25586adcf3366089e",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This unit is the sentry-native 0.7.8 crash/error reporting SDK: core event, scope and session handling; inproc, breakpad and crashpad backends; curl, winhttp, disk and function transports; module finders, symbolizers and unwinders; plus tests and examples. I reviewed all source files for hidden network destinations, credential access, code loading, TLS weakening, persistence and obfuscation. The code matches upstream behaviour: data goes only to the configured DSN and local database files. The binary jars, keystore and test fixtures are standard upstream tooling and test data, not compiled in.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": ".mvn/wrapper/maven-wrapper.jar",
+            "line": 0,
+            "title": "Build-tool wrapper jars present",
+            "detail": ".mvn/wrapper/maven-wrapper.jar and ndk/gradle/wrapper/gradle-wrapper.jar are standard Maven and Gradle wrapper jars for the upstream Java/Android tooling. Neither is marked as absent from the source repository. They are not part of the C build that links this library, so they do not affect what is compiled into the binary."
+          },
+          {
+            "severity": "info",
+            "file": "ndk/debug.keystore",
+            "line": 0,
+            "title": "Android debug keystore present",
+            "detail": "ndk/debug.keystore is the upstream Android sample's debug signing keystore. It is not used in the native build."
+          },
+          {
+            "severity": "info",
+            "file": "tests/fixtures/sentry_example",
+            "line": 0,
+            "title": "Binary test fixtures read only by unit tests",
+            "detail": "tests/fixtures/*.so, sentry_example and the fuzzing-failures inputs are read only by the unit tests (test_modulefinder.c, test_fuzzfailures.c) as parse inputs. Nothing loads or executes them, and they are not compiled into the library."
+          },
+          {
+            "severity": "info",
+            "file": "src/sentry_options.c",
+            "line": 23,
+            "title": "Defaults taken from environment variables",
+            "detail": "sentry_options_new reads the SENTRY_DSN, SENTRY_DEBUG, SENTRY_RELEASE and SENTRY_ENVIRONMENT environment variables as defaults. This is documented upstream behaviour: the DSN only sets the reporting destination, and the embedding application can override all of them."
+          },
+          {
+            "severity": "info",
+            "file": "src/path/sentry_path_unix.c",
+            "line": 63,
+            "title": "Permissive file modes for database files",
+            "detail": "Lock files are created with mode 0666 and data files with 0664. Envelopes may contain crash data, so files written to a shared directory could be readable by other local users. This matches upstream and is not deliberate."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "Serialized Sentry envelopes: events, breadcrumbs, user/tags/extra/contexts, OS context, loaded module list, stack traces, sessions, and any configured attachments",
+            "to": "HTTP(S) POST to the envelope endpoint derived from the configured DSN, optionally through the configured proxy",
+            "file": "src/transports/sentry_transport_curl.c"
+          },
+          {
+            "what": "The same serialized Sentry envelopes as the curl transport",
+            "to": "HTTP(S) POST via WinHTTP to the DSN envelope endpoint (Windows)",
+            "file": "src/transports/sentry_transport_winhttp.c"
+          },
+          {
+            "what": "Minidumps plus the serialized scope event, breadcrumb files and configured attachments",
+            "to": "Out-of-process crashpad_handler executable, which uploads to the DSN minidump URL",
+            "file": "src/backends/sentry_backend_crashpad.cpp"
+          },
+          {
+            "what": "Path of crashpad_wer.dll, registered as a WER helper module (Windows crashpad backend only)",
+            "to": "Windows registry HKCU\\Software\\Microsoft\\Windows\\Windows Error Reporting\\RuntimeExceptionHelperModules",
+            "file": "src/backends/sentry_backend_crashpad.cpp"
+          },
+          {
+            "what": "Run directories, lock files, session.json, queued envelopes, the last_crash marker and the user-consent file",
+            "to": "Files under the configured database path (default .sentry-native in the working directory)",
+            "file": "src/sentry_database.c"
+          },
+          {
+            "what": "Debug log messages, only when debug is enabled",
+            "to": "stderr, or the Android log",
+            "file": "src/sentry_logger.c"
+          },
+          {
+            "what": "Envelopes written to files for the Java SDK to send",
+            "to": "Outbox directory supplied by the Android Java layer",
+            "file": "ndk/lib/src/main/jni/sentry.c"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz",
+      "from": "",
+      "to": "N-V-__8AAPlZGwBEa-gxrcypGBZ2R8Bse4JYSfo_ul8i2jlG",
+      "scope": "surface",
+      "part": 2,
+      "parts": 2,
+      "packages": [
+        "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/vendor"
+      ],
+      "digest": "sha256:a89f0b0c387e74193a472f41049ff1bd08e5635ee25ac37279372606ce02de15",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This unit is sentry-native's vendor directory: the acutest unit-test header, the jsmn JSON tokenizer, the MPack 1.0 MessagePack amalgamation (allocator routed to sentry_malloc/sentry_free), and the stb_sprintf formatter. I read every file and found no network use, no encoded payloads, no load-time constructors, no hooking, no reading of secrets, and no hidden behaviour. The code matches the upstream libraries apart from the expected sentry allocator integration.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz@N-V-__8AAPlZGwBEa-gxrcypGBZ2R8Bse4JYSfo_ul8i2jlG/vendor/acutest.h",
+            "line": 1440,
+            "title": "Test harness checks for an attached debugger",
+            "detail": "Acutest's test runner reads /proc/self/status for TracerPid, and on Windows calls IsDebuggerPresent(). It uses the result only to stop forking each test into a child process when a debugger is attached. This is documented upstream acutest behaviour that makes debugging easier. It hides nothing, and it exists only in the test-harness main(), not in library code."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz@N-V-__8AAPlZGwBEa-gxrcypGBZ2R8Bse4JYSfo_ul8i2jlG/vendor/mpack.h",
+            "line": 207,
+            "title": "MPack allocator redirected to sentry allocator",
+            "detail": "The vendored MPack 1.0 amalgamation sets MPACK_MALLOC to sentry_malloc and MPACK_FREE to sentry_free, declared extern in mpack.c. This is sentry-native's usual integration change: it routes allocations through sentry's allocator. It is not a hook or a function replacement."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz@N-V-__8AAPlZGwBEa-gxrcypGBZ2R8Bse4JYSfo_ul8i2jlG/vendor/stb_sprintf.h",
+            "line": 0,
+            "title": "stb_sprintf supports %n",
+            "detail": "stb_sprintf supports the %n specifier, which writes through a pointer argument. This is standard upstream behaviour and a hazard only if a caller passes an untrusted format string. It is not a deliberate weakness."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "MessagePack-encoded data supplied by the calling code",
+            "to": "A local file whose path the caller passes to mpack_writer_init_filename / mpack_writer_init_stdfile (sentry uses this for its own envelope and run state)",
+            "file": "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz@N-V-__8AAPlZGwBEa-gxrcypGBZ2R8Bse4JYSfo_ul8i2jlG/vendor/mpack.c"
+          },
+          {
+            "what": "Unit-test results (test names, durations, pass or fail) and the test command line. Only in the test-runner main(), which is compiled only for sentry's own tests.",
+            "to": "A file named by the --xml-output option, and child test processes started with fork or CreateProcessA",
+            "file": "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz@N-V-__8AAPlZGwBEa-gxrcypGBZ2R8Bse4JYSfo_ul8i2jlG/vendor/acutest.h"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "deps.files.ghostty.org/uucode-1fb73433bba5d93366c57f23ff2e9d7939746500.tar.gz",
+      "from": "",
+      "to": "uucode-0.2.0-ZZjBPm6FVgBcY-79AHV8ckQj86z0JwOyVyj89VeZrEiv",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "deps.files.ghostty.org/uucode-1fb73433bba5d93366c57f23ff2e9d7939746500.tar.gz"
+      ],
+      "digest": "sha256:35b9e1c111f9d2f407a309cecbc875d4addffb0a2c5a8d5283242152a6712b5e",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "uucode is a Zig Unicode library. Its build.zig assembles a build-config Zig file from the fields options, then compiles and runs a host generator that produces Unicode tables from the bundled ucd/ data. build.zig.zon only declares package metadata and paths. Neither file contains network access, external process execution, downloads, environment probing or writes outside the build cache.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/uucode-1fb73433bba5d93366c57f23ff2e9d7939746500.tar.gz@uucode-0.2.0-ZZjBPm6FVgBcY-79AHV8ckQj86z0JwOyVyj89VeZrEiv/build.zig",
+            "line": 298,
+            "title": "Build-time code generation runs a host executable",
+            "detail": "build.zig compiles src/generate.zig into a host executable and runs it during the build, with the working directory set to the package root. It writes tables.zig into the build cache, and the declared inputs are the package's own ucd/ files. This is the usual way a Unicode library builds its lookup tables from UCD data. The generator source is not part of this surface, so its runtime behaviour was not reviewed here."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/uucode-1fb73433bba5d93366c57f23ff2e9d7939746500.tar.gz@uucode-0.2.0-ZZjBPm6FVgBcY-79AHV8ckQj86z0JwOyVyj89VeZrEiv/build.zig",
+            "line": 303,
+            "title": "UCD input list derived from embedded .gitignore",
+            "detail": "The list of UCD input files is taken from the embedded ucd/.gitignore via src/ucd_inputs.zig. The list is used only to register file inputs for cache invalidation. It is an unusual source for such a list but is benign: it reads data files from inside the package, does nothing that leaves the package, and executes nothing."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/uucode-1fb73433bba5d93366c57f23ff2e9d7939746500.tar.gz@uucode-0.2.0-ZZjBPm6FVgBcY-79AHV8ckQj86z0JwOyVyj89VeZrEiv/build.zig",
+            "line": 265,
+            "title": "Build options interpolated into generated source",
+            "detail": "Strings from the fields build options are written unescaped into generated Zig source. These values come from the depending project's own build configuration, so this does not cross a trust boundary."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "Generated Zig source listing the Unicode property fields chosen through build options",
+            "to": "Zig build cache (generated build_config.zig via addWriteFiles)",
+            "file": "deps.files.ghostty.org/uucode-1fb73433bba5d93366c57f23ff2e9d7939746500.tar.gz@uucode-0.2.0-ZZjBPm6FVgBcY-79AHV8ckQj86z0JwOyVyj89VeZrEiv/build.zig"
+          },
+          {
+            "what": "Unicode lookup tables generated at build time from the package's bundled ucd/ data files",
+            "to": "Zig build cache (tables.zig output of the uucode_generate host executable)",
+            "file": "deps.files.ghostty.org/uucode-1fb73433bba5d93366c57f23ff2e9d7939746500.tar.gz@uucode-0.2.0-ZZjBPm6FVgBcY-79AHV8ckQj86z0JwOyVyj89VeZrEiv/build.zig"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "deps.files.ghostty.org/vaxis-0620b34e091deaa6f64608922be3814147128dfb.tar.gz",
+      "from": "",
+      "to": "vaxis-0.6.0-BWNV_LoTDQCQSGhvBbu_-fOf3I2P3TIiGaUzCDniO12E",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "deps.files.ghostty.org/vaxis-0620b34e091deaa6f64608922be3814147128dfb.tar.gz",
+        "deps.files.ghostty.org/vaxis-0620b34e091deaa6f64608922be3814147128dfb.tar.gz/include"
+      ],
+      "digest": "sha256:480b1ee45039d9799dc5386f2ddb096677795025a3a81e93bad6b59512d42f5c",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "The surface of vaxis 0.6.0, a terminal UI library, is its Zig build script, its package manifest and its C API header. The build script only wires up modules, libraries, tests and examples. Dependencies are pinned by commit and content hash, and the header contains only declarations, with nothing suspicious such as build-time execution, encoded payloads or reviewer-directed text.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/vaxis-0620b34e091deaa6f64608922be3814147128dfb.tar.gz@vaxis-0.6.0-BWNV_LoTDQCQSGhvBbu_-fOf3I2P3TIiGaUzCDniO12E/build.zig",
+            "line": 4,
+            "title": "Build script is conventional",
+            "detail": "build.zig reads build.zig.zon at compile time via @embedFile, only to extract the version string. It declares library, example, benchmark, test and docs steps. No system commands run, no network fetches happen outside Zig's hash-pinned dependency mechanism, and no files are generated from opaque data."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/vaxis-0620b34e091deaa6f64608922be3814147128dfb.tar.gz@vaxis-0.6.0-BWNV_LoTDQCQSGhvBbu_-fOf3I2P3TIiGaUzCDniO12E/build.zig.zon",
+            "line": 6,
+            "title": "Dependencies pinned by commit and hash",
+            "detail": "The zigimg and uucode dependencies are fetched from GitHub at fixed commits and verified against content hashes by the Zig package manager. They are separate review units."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/vaxis-0620b34e091deaa6f64608922be3814147128dfb.tar.gz@vaxis-0.6.0-BWNV_LoTDQCQSGhvBbu_-fOf3I2P3TIiGaUzCDniO12E/include/vaxis.h",
+            "line": 1,
+            "title": "C header is plain declarations",
+            "detail": "vaxis.h contains only declarations, macros and type definitions for the C API: terminal, TTY, PTY spawning, images and the OSC 7501 program-status protocol. All of this fits a terminal UI library. It has no executable code and no directives aimed at reviewers."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/zigimg/zigimg",
+      "from": "zigimg-0.1.0-8_eo2oyaFwBZwJpmqPkCfVXWBrHcqbYwmrp1I6bTD3lI",
+      "to": "zigimg-0.1.0-8_eo2sBLGACBebrhQZUwRliZNSUyDn6szp99eip_6-Rw",
+      "scope": "diff",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/zigimg/zigimg",
+        "github.com/zigimg/zigimg/src",
+        "github.com/zigimg/zigimg/src/Image",
+        "github.com/zigimg/zigimg/src/compressions",
+        "github.com/zigimg/zigimg/src/compressions/deflate",
+        "github.com/zigimg/zigimg/src/formats",
+        "github.com/zigimg/zigimg/src/formats/jpeg",
+        "github.com/zigimg/zigimg/src/formats/png",
+        "github.com/zigimg/zigimg/src/formats/tiff",
+        "github.com/zigimg/zigimg/tests",
+        "github.com/zigimg/zigimg/tests/formats"
+      ],
+      "digest": "sha256:f37010a0d7ef91181b89ce2d90bffd9e8c81b6795225bc4337a7a7d97e24506b",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "The diff moves zigimg to the Zig 0.17 builtins (@backingInt, @fromBackingInt, @trunc, @Int, @splat), adds the Sega BGR222/444 pixel formats and Image.dupe, and makes grayscale types use the shared `to` methods. It also brings bounds and overflow hardening to LZW, JPEG and GIF parsing, plus new tests. I checked every changed file and found no network access, process execution, file access beyond the existing image read/write APIs, environment reads, encoded payloads or build-script changes.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/zigimg/zigimg@zigimg-0.1.0-8_eo2sBLGACBebrhQZUwRliZNSUyDn6szp99eip_6-Rw/src/PixelFormatConverter.zig",
+            "line": 540,
+            "title": "Copy-paste bug in sega_bgr444 conversions",
+            "detail": "The sega_bgr444 to RGB and float32 conversion cases call RgbColorToRgbColor(.sega_bgr222, ...) and rgbColorToColorf32(.sega_bgr222, ...). That reads the wrong union field of the pixel storage. It is a copy-paste error and is either a compile error or a memory-safety bug, not deliberate."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/zigimg/zigimg@zigimg-0.1.0-8_eo2sBLGACBebrhQZUwRliZNSUyDn6szp99eip_6-Rw/src/color.zig",
+            "line": 0,
+            "title": "Typo in grayscale float4",
+            "detail": "ToMethodsGrayscale.float4 references self.valuie, a typo. Because Zig evaluates lazily, it only fails to compile if the function is called. Harmless."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/zigimg/zigimg@zigimg-0.1.0-8_eo2sBLGACBebrhQZUwRliZNSUyDn6szp99eip_6-Rw/src/compressions/lzw.zig",
+            "line": 23,
+            "title": "Hardening fixes for malformed input",
+            "detail": "The LZW decoder now caps the dictionary size. JPEG dequantization and IDCT now check for overflow. GIF parsing tolerates truncated files. The SGI alpha channel now reads from the correct buffer. All of these are ordinary robustness fixes for parsing untrusted images."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz",
+      "from": "",
+      "to": "N-V-__8AAKrHGAAs2shYq8UkE6bGcR1QJtLTyOE_lcosMn6t",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz/cursor",
+        "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz/doc/publican/sources/images",
+        "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz/egl",
+        "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz/src",
+        "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz/tests",
+        "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz/tests/data"
+      ],
+      "digest": "sha256:60d983f6937eb546cce5d3a5f75a359db83ed35dd38b1dd181c548897f246f10",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This unit is the libwayland source surface: the client and server libraries, the connection marshalling code (via libffi), the event loop, shm, the cursor library with its xcursor theme loader, the egl shim, the wayland-scanner, and the test suite. I checked build tools, binary files, socket and environment handling, and test code. All of it matches upstream libwayland: data goes only to the local compositor socket and shared memory, and there is no network use, credential access, hidden behaviour or code loading.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz@N-V-__8AAKrHGAAs2shYq8UkE6bGcR1QJtLTyOE_lcosMn6t/tests/test-runner.c",
+            "line": 239,
+            "title": "Debugger detection in test harness",
+            "detail": "The test runner forks a child that ptrace-attaches to the parent to detect a debugger, then disables timeouts and fd-leak checks. This is upstream libwayland test code, used only to ease debugging of tests. It is not part of the client or server libraries and has no effect on shipped behaviour."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz@N-V-__8AAKrHGAAs2shYq8UkE6bGcR1QJtLTyOE_lcosMn6t/cursor/cursor.pcf",
+            "line": 0,
+            "title": "Binary font and image files not used in build",
+            "detail": "cursor.pcf is read only by the standalone convert_font.c tool. That tool generates cursor-data.h, which is committed as readable source and matches the standard X cursor glyphs. The PNG files are documentation images. Neither binary is compiled in or unpacked at build time."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz@N-V-__8AAKrHGAAs2shYq8UkE6bGcR1QJtLTyOE_lcosMn6t/src/wayland-os.c",
+            "line": 45,
+            "title": "Overridable syscall wrappers",
+            "detail": "The wl_fcntl, wl_socket, wl_recvmsg and wl_epoll_create1 function pointers are overridable for unit tests. This matches upstream, and the pointers are initialised to the libc functions."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "Wayland protocol requests and passed file descriptors (connection.c sendmsg with SCM_RIGHTS)",
+            "to": "Local Wayland compositor over a Unix-domain socket ($XDG_RUNTIME_DIR/$WAYLAND_DISPLAY, or the fd in WAYLAND_SOCKET)",
+            "file": "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz@N-V-__8AAKrHGAAs2shYq8UkE6bGcR1QJtLTyOE_lcosMn6t/src/wayland-client.c"
+          },
+          {
+            "what": "Cursor image pixels loaded from local cursor themes or built-in fallback data",
+            "to": "Compositor, through shared memory (memfd, or an unlinked temp file in XDG_RUNTIME_DIR)",
+            "file": "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz@N-V-__8AAKrHGAAs2shYq8UkE6bGcR1QJtLTyOE_lcosMn6t/cursor/wayland-cursor.c"
+          },
+          {
+            "what": "Protocol message trace, only when WAYLAND_DEBUG is set (wl_closure_print)",
+            "to": "stderr",
+            "file": "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz@N-V-__8AAKrHGAAs2shYq8UkE6bGcR1QJtLTyOE_lcosMn6t/src/connection.c"
+          },
+          {
+            "what": "Server-side display socket creation, used only by compositors that call wl_display_add_socket",
+            "to": "Listening socket and .lock file in XDG_RUNTIME_DIR",
+            "file": "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz@N-V-__8AAKrHGAAs2shYq8UkE6bGcR1QJtLTyOE_lcosMn6t/src/wayland-server.c"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "deps.files.ghostty.org/pixels-12207ff340169c7d40c570b4b6a97db614fe47e0d83b5801a932dcd44917424c8806.tar.gz",
+      "from": "",
+      "to": "N-V-__8AADYiAAB_80AWnH1AxXC0tql9thT-R-DYO1gBqTLc",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "deps.files.ghostty.org/pixels-12207ff340169c7d40c570b4b6a97db614fe47e0d83b5801a932dcd44917424c8806.tar.gz"
+      ],
+      "digest": "sha256:29ed449f080bf92ddfdcd0629e071b7a7528c04f8e3385177f840062c3919807",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This third-party module is a set of six 1x1-pixel test images (black and white, in GIF, JPEG and PNG), apparently used as image-decoding fixtures. I checked the surface for build steps, code or encoded payloads. It holds only tiny binary images whose sizes match minimal valid single-pixel images, and nothing executes.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/pixels-12207ff340169c7d40c570b4b6a97db614fe47e0d83b5801a932dcd44917424c8806.tar.gz@N-V-__8AADYiAAB_80AWnH1AxXC0tql9thT-R-DYO1gBqTLc/1x1#000000.png",
+            "line": 0,
+            "title": "Binary image fixtures only",
+            "detail": "The unit contains only six tiny binary image files: 1x1 black and white pixels in GIF (35 bytes), JPEG (283–305 bytes) and PNG (88 bytes) format. Their names and sizes fit minimal valid single-pixel images. 35 bytes is the classic minimal 1x1 GIF, and 88 bytes is ordinary for a 1x1 PNG. Files this small cannot plausibly hold a meaningful payload. There is no build script, source code or loader in the unit. In Ghostty they serve as image-decoding test fixtures, e.g. for the wuffs-based image tests."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "deps.files.ghostty.org/z2d-8787d71bac42d9aab00428ccb37a4fd453418761.tar.gz",
+      "from": "",
+      "to": "z2d-0.13.2-j5P_HkkVFAAtOSQPRTS7wbZLbYs7oETRn7nUKSUwDjM_",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "deps.files.ghostty.org/z2d-8787d71bac42d9aab00428ccb37a4fd453418761.tar.gz",
+        "deps.files.ghostty.org/z2d-8787d71bac42d9aab00428ccb37a4fd453418761.tar.gz/src",
+        "deps.files.ghostty.org/z2d-8787d71bac42d9aab00428ccb37a4fd453418761.tar.gz/src/internal",
+        "deps.files.ghostty.org/z2d-8787d71bac42d9aab00428ccb37a4fd453418761.tar.gz/src/internal/test-fonts"
+      ],
+      "digest": "sha256:8f76496d6acf453c84de5c5b5c55fa00c8ab667cb4fae1e960490709c77fb677",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "z2d is a pure-Zig 2D vector graphics library. Its build.zig only defines the module and an option, plus optional docs, coverage and release steps that run system tools solely when explicitly invoked. The library surface parses font files from caller-supplied paths or buffers. I checked build.zig, build.zig.zon, the font/text/glyph code and the embedded test fonts, and found no network use, process execution, load-time code or hidden payloads.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/z2d-8787d71bac42d9aab00428ccb37a4fd453418761.tar.gz@z2d-0.13.2-j5P_HkkVFAAtOSQPRTS7wbZLbYs7oETRn7nUKSUwDjM_/build.zig",
+            "line": 82,
+            "title": "Developer-only build steps invoke system commands",
+            "detail": "build.zig registers optional steps that run system tools: tar and sed for docs, python3 http.server for docs-serve, rm/sh/kcov/xdg-open for coverage, and build-support/scripts/release.sh for releases. Each runs only when that named step or option (docs-serve, docs-bundle, release, -Dcover) is invoked explicitly. A dependent project that imports the z2d module triggers none of them. The release script is not even in the package's .paths. These are ordinary developer conveniences, not build-time payloads."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/z2d-8787d71bac42d9aab00428ccb37a4fd453418761.tar.gz@z2d-0.13.2-j5P_HkkVFAAtOSQPRTS7wbZLbYs7oETRn7nUKSUwDjM_/src/internal/test-fonts/Inter-Regular.subset.ttf",
+            "line": 0,
+            "title": "Binary test font fixtures used only in tests",
+            "detail": "The four font files (Inter subsets, an Inter TTC, AnnotationMono) are referenced by @embedFile only inside test blocks and test-only structs (TestSingleFont, TestFontCollection, testInitFont). Zig compiles test blocks only in test builds and analyses declarations lazily, so these binaries are not embedded in a normal library build. They are parsed only as fonts by the library's own TrueType reader. The way they are used is consistent with legitimate test fixtures."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/z2d-8787d71bac42d9aab00428ccb37a4fd453418761.tar.gz@z2d-0.13.2-j5P_HkkVFAAtOSQPRTS7wbZLbYs7oETRn7nUKSUwDjM_/src/font.zig",
+            "line": 55,
+            "title": "Font loading reads a caller-specified file",
+            "detail": "File.loadFile, reached through Context.setFontToFile, reads a caller-supplied path relative to cwd into memory. Reading that font file is the API's documented purpose. No path is hard-coded outside tests."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "deps.files.ghostty.org/zf-87153bb86b75d21fbac897b738f316d449f5d0c9.tar.gz",
+      "from": "",
+      "to": "zf-0.11.0-OIRy8XCRAAB6FiMwIrtD6FqlagnFwpI6YyOu7bXeYH5J",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "deps.files.ghostty.org/zf-87153bb86b75d21fbac897b738f316d449f5d0c9.tar.gz"
+      ],
+      "digest": "sha256:aa63492b1de9a9d142f40aefa1f4d7719800a93a7087cfab9cf6a9dcf050190e",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "The surface of zf 0.11.0, a fuzzy-finder library, consists of a standard Zig build script and manifest. The script exposes the zf module, test steps and an optional TUI executable that uses a hash-pinned, lazily fetched vaxis dependency. I checked for build-time execution, code generation, file reads, network use and unexpected files, found none, and no capabilities were listed to explain.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/zf-87153bb86b75d21fbac897b738f316d449f5d0c9.tar.gz@zf-0.11.0-OIRy8XCRAAB6FiMwIrtD6FqlagnFwpI6YyOu7bXeYH5J/build.zig",
+            "line": 1,
+            "title": "Standard build script",
+            "detail": "build.zig declares a library module from src/zf/zf.zig, test steps, and an optional TUI executable that depends on the lazily fetched vaxis dependency. It contains no system commands, no build-time code generation, no file reads beyond the source paths and no network access. It does nothing beyond a standard Zig build script."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/zf-87153bb86b75d21fbac897b738f316d449f5d0c9.tar.gz@zf-0.11.0-OIRy8XCRAAB6FiMwIrtD6FqlagnFwpI6YyOu7bXeYH5J/build.zig.zon",
+            "line": 7,
+            "title": "Pinned lazy dependency and restricted package paths",
+            "detail": "The single dependency is libvaxis, pinned to commit 6fd944a2 with a content hash and marked lazy, so it is fetched only when the TUI is built. The package paths ship only src/zf, the build files and LICENSE, so the src/tui sources the TUI build needs are absent. A consumer importing the zf module therefore gets only the library code."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/rockorager/libvaxis",
+      "from": "vaxis-0.6.0-BWNV_LC4CwBka_bJk8SOXqzCM-nyQH00jzdL0kUhGwRE",
+      "to": "vaxis-0.6.0-BWNV_MafDAAEzkVUvrW9NFUqnnMUoeHqrs2mecnD6D7w",
+      "scope": "diff",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/rockorager/libvaxis",
+        "github.com/rockorager/libvaxis/include",
+        "github.com/rockorager/libvaxis/src",
+        "github.com/rockorager/libvaxis/src/vxfw",
+        "github.com/rockorager/libvaxis/src/widgets",
+        "github.com/rockorager/libvaxis/src/widgets/terminal"
+      ],
+      "digest": "sha256:8d52265dbb853d3432feedd4bb8a945eab9a83a92911a450c1b1d80fb29337a1",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This diff adds cursor position (CPR) reporting, cancellation-based shutdown of the event loop with retry/backoff, a signal-safe SIGWINCH self-pipe with a C API for resize callbacks, and Windows win32-input-mode handling, plus mechanical updates for Zig 0.17 builtins (@backingInt/@fromBackingInt, field_names). I checked the build script, the dependency manifest, the tty/signal code, the PTY exec path and the tests: nothing sends data off the machine, reads secrets, downloads code or hides behaviour. The only notable item is the zigimg dependency moving to a hash-pinned third-party fork.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "concern",
+            "file": "build.zig.zon",
+            "line": 8,
+            "title": "Image dependency switched from upstream zigimg to a third-party fork",
+            "detail": "The zigimg dependency moves from github.com/zigimg/zigimg to a personal fork, github.com/sergot/zigimg, at a new commit. The content hash is pinned, and minimum_zig_version rises to 0.17.0 at the same time. That pattern points to a fork made for compatibility with the new compiler while upstream catches up. Still, it moves a transitive dependency to a different publisher. The fork's code is a separate review unit and is not judged here."
+          },
+          {
+            "severity": "info",
+            "file": "src/tty.zig",
+            "line": 182,
+            "title": "SIGWINCH self-pipe and dispatch thread",
+            "detail": "SIGWINCH handling now only writes a byte to a non-blocking self-pipe, which is async-signal-safe. A concurrent task reads the pipe and runs the registered callbacks. New C API functions tty_notify_winsize and tty_remove_winsize_notify expose up to 8 callbacks. This is ordinary terminal-library behaviour."
+          },
+          {
+            "severity": "info",
+            "file": "src/Loop.zig",
+            "line": 84,
+            "title": "Event loop shutdown and retry rework",
+            "detail": "The input loop stops by closing the queue and cancelling the task instead of sending a device status report. Transient read errors are retried with capped backoff, and malformed input is discarded. These are robustness changes with no external effects."
+          },
+          {
+            "severity": "info",
+            "file": "build.zig",
+            "line": 223,
+            "title": "Build changes limited to tests and examples",
+            "detail": "The build adds a translate-c step for include/vaxis.h, used only by the ABI conformance test, and a C example test executable (examples/c/tty.c) attached to the test step. Neither affects the library artifacts consumers link."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "Cursor position request escape sequence (CSI 6n) written by the new queryCursorPosition; the terminal's reply is parsed back as a cursor_position event.",
+            "to": "the controlling terminal (tty writer)",
+            "file": "src/Vaxis.zig"
+          },
+          {
+            "what": "Win32-input-mode enable/disable sequences (ESC[?9001h on init, ESC[?9001l on deinit) so key releases and modifiers arrive as input records.",
+            "to": "the Windows console (stdout)",
+            "file": "src/tty.zig"
+          },
+          {
+            "what": "A single zero byte written from the SIGWINCH handler to wake a dispatch thread that runs resize callbacks. The pipe is created with CLOEXEC and never leaves the process.",
+            "to": "an internal self-pipe within the same process",
+            "file": "src/tty.zig"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/jacobsandlund/uucode",
+      "from": "",
+      "to": "uucode-0.2.0-ZZjBPoGFVgCiflJNFc6Io8xzC67B6PA5bUkk4LT0kCxg",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/jacobsandlund/uucode"
+      ],
+      "digest": "sha256:1d95d6266a5df48149a3f6c3d8aab4d80b811ce738ab73a562f416b7f862d520",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "uucode is a Zig Unicode library whose build.zig generates a small build-config source file from user options. It also compiles and runs a host generator that turns the bundled UCD files into lookup tables. I checked build.zig and build.zig.zon and found no network access, no downloads, no access to secrets or files outside the package, no persistence, and no obfuscated or encoded payloads.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/jacobsandlund/uucode@uucode-0.2.0-ZZjBPoGFVgCiflJNFc6Io8xzC67B6PA5bUkk4LT0kCxg/build.zig",
+            "line": 289,
+            "title": "Build-time code generator executable is run",
+            "detail": "build.zig compiles src/generate.zig into a host executable (uucode_generate) and runs it during the build, with the package root as working directory. It reads the Unicode Character Database files listed in ucd/.gitignore and writes tables.zig into the Zig build cache. This is a normal codegen step for a Unicode table library. The generator source and the ucd data files are not part of this surface, so this review cannot confirm what they do."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/jacobsandlund/uucode@uucode-0.2.0-ZZjBPoGFVgCiflJNFc6Io8xzC67B6PA5bUkk4LT0kCxg/build.zig",
+            "line": 86,
+            "title": "Build options can inject source into the generated config",
+            "detail": "The -Dbuild_config.zig option accepts raw Zig source. The values of -Dfields* are interpolated into generated Zig source without escaping. Only the person invoking the build controls these inputs, so this is not a supply-chain risk."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/jacobsandlund/uucode@uucode-0.2.0-ZZjBPoGFVgCiflJNFc6Io8xzC67B6PA5bUkk4LT0kCxg/build.zig",
+            "line": 295,
+            "title": "ucd/.gitignore embedded to list input files",
+            "detail": "build.zig embeds ucd/.gitignore at build time and uses it only as a list of UCD input filenames, which become cache-invalidation inputs."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/sergot/zigimg",
+      "from": "",
+      "to": "zigimg-0.1.0-8_eo2ri_FwBqF5UYiggLz4IGjHJO_n9-B6gT9Ayqg8G4",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/sergot/zigimg"
+      ],
+      "digest": "sha256:1a025465bbcc29947a8b98937c9f0f3cc3c50b00bd169e455afc2842f25d9802",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "zigimg is a Zig image-format library; the surface reviewed is its build.zig, build.zig.zon and README. The build script only defines the module and optional test steps, and the manifest declares no dependencies; there are no build-time downloads, process execution, code generation or embedded payloads. No capabilities were listed and none of the reviewed files acts on the world beyond the standard build.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/sergot/zigimg@zigimg-0.1.0-8_eo2ri_FwBqF5UYiggLz4IGjHJO_n9-B6gT9Ayqg8G4/build.zig",
+            "line": 1,
+            "title": "Standard build script",
+            "detail": "build.zig registers the zigimg module from zigimg.zig, adds a test artifact, and defines test steps that run only when the user invokes them. It has no system commands, downloads, generated code or file writes outside the build cache when the module is used as a dependency."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/sergot/zigimg@zigimg-0.1.0-8_eo2ri_FwBqF5UYiggLz4IGjHJO_n9-B6gT9Ayqg8G4/build.zig.zon",
+            "line": 1,
+            "title": "Manifest without dependencies",
+            "detail": "The manifest declares no dependencies and lists ordinary package paths. Including 'tests' means test fixtures are packaged, but nothing in the surface reads them at build time for dependents."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/sergot/zigimg@zigimg-0.1.0-8_eo2ri_FwBqF5UYiggLz4IGjHJO_n9-B6gT9Ayqg8G4/README.md",
+            "line": 1,
+            "title": "Fork of upstream zigimg",
+            "detail": "The module path is github.com/sergot/zigimg, but the README refers to the upstream zigimg/zigimg repository. This looks like a fork. The surface shown contains nothing harmful, but the fork's provenance cannot be confirmed from these files."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "deps.files.ghostty.org/zig_js-3c23860e47fdcdc5af805efb7fd0bdac5fd3e9bc.tar.gz",
+      "from": "",
+      "to": "zig_js-0.0.0-rjCAV7-GAADvMTBL7lPMuvDk7xgS9PCMIZWiOUXLZSlj",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "deps.files.ghostty.org/zig_js-3c23860e47fdcdc5af805efb7fd0bdac5fd3e9bc.tar.gz"
+      ],
+      "digest": "sha256:5c6a08fe7f974f8734f1a615906659d57fb987fd9c7bb3d8c8f358547b1b900c",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "The surface of zig_js is a standard Zig build script and manifest. build.zig declares the 'zig-js' module rooted at src/main.zig, a test step and an optional wasm example step. build.zig.zon declares no dependencies; I found no system commands, network access, code generation, embedded binaries or file writes outside zig-out, so nothing here offers a supply-chain attack vector.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/zig_js-3c23860e47fdcdc5af805efb7fd0bdac5fd3e9bc.tar.gz@zig_js-0.0.0-rjCAV7-GAADvMTBL7lPMuvDk7xgS9PCMIZWiOUXLZSlj/build.zig",
+            "line": 18,
+            "title": "Test executable registered as an install artifact",
+            "detail": "build.zig calls b.installArtifact(test_exe), so the module's default install step would put a test binary in zig-out. When zig_js is used as a dependency, its install step does not run unless the parent build asks for it. This is a packaging quirk, not a security issue."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/zig_js-3c23860e47fdcdc5af805efb7fd0bdac5fd3e9bc.tar.gz@zig_js-0.0.0-rjCAV7-GAADvMTBL7lPMuvDk7xgS9PCMIZWiOUXLZSlj/build.zig",
+            "line": 30,
+            "title": "Example step references a file not in the package",
+            "detail": "The optional 'example' step points at example/main.zig, which the paths list in build.zig.zon does not include. That step is lazy and only runs when invoked explicitly, so it has no effect when the package is consumed as a dependency."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "deps.files.ghostty.org/zig_objc-3352c12a868f8787ab71bf2ca6eab9fcfb635c52.tar.gz",
+      "from": "",
+      "to": "zig_objc-0.0.0-Ir_Sp_4tAQDXtPi51nW_jD9LOEzBvU9lofwO9Pzi6IB4",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "deps.files.ghostty.org/zig_objc-3352c12a868f8787ab71bf2ca6eab9fcfb635c52.tar.gz"
+      ],
+      "digest": "sha256:03ac3fe0d1a97bda5a18e9ebbcbfe9fa6f0fa8e3a5eda3c130cd89f2268b3db2",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This is the surface of zig_objc, Zig bindings for the Objective-C runtime: its build.zig and build.zig.zon. The build script locates the Apple SDK via xcrun and patches one block-pointer declaration in objc/runtime.h so Zig's translate-c can handle it. It then translates the runtime headers into a module and links libobjc and Foundation; I found no network access, downloads, encoded payloads, persistence or writes outside the build cache, and the package declares no dependencies.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/zig_objc-3352c12a868f8787ab71bf2ca6eab9fcfb635c52.tar.gz@zig_objc-0.0.0-Ir_Sp_4tAQDXtPi51nW_jD9LOEzBvU9lofwO9Pzi6IB4/build.zig",
+            "line": 55,
+            "title": "Build-time patch of SDK header for translate-c",
+            "detail": "At build time the script reads objc/runtime.h from the Xcode SDK. It replaces the single objc_enumerateClasses declaration, whose block-pointer parameter Zig 0.16 translate-c cannot parse, with a void* parameter. It then writes the result into the build cache and translates it with the SDK headers. The patch is exact-match and fails loudly if the header changes. It only affects generated bindings and has no side effects outside the build cache."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/zig_objc-3352c12a868f8787ab71bf2ca6eab9fcfb635c52.tar.gz@zig_objc-0.0.0-Ir_Sp_4tAQDXtPi51nW_jD9LOEzBvU9lofwO9Pzi6IB4/build.zig",
+            "line": 160,
+            "title": "Runs xcrun at build time to find the SDK",
+            "detail": "appleSDKPath calls std.zig.system.darwin.getSdk, which runs `xcrun` to locate the Apple SDK, and caches the result per target. This is standard for building against Apple frameworks."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "A patched copy of the Apple SDK's objc/runtime.h and a small objc-import.h wrapper header, written at build time for translate-c.",
+            "to": "Zig build cache (WriteFiles step output directory)",
+            "file": "deps.files.ghostty.org/zig_objc-3352c12a868f8787ab71bf2ca6eab9fcfb635c52.tar.gz@zig_objc-0.0.0-Ir_Sp_4tAQDXtPi51nW_jD9LOEzBvU9lofwO9Pzi6IB4/build.zig"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "deps.files.ghostty.org/zig_wayland-27dda01712ddf3cb46ebd93380d88b01a7c828f8.tar.gz",
+      "from": "",
+      "to": "wayland-0.7.0-dev-lQa1klz9AQB87V0pMKMdm8JvyOx32XR9FxcWnw9wh6XZ",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "deps.files.ghostty.org/zig_wayland-27dda01712ddf3cb46ebd93380d88b01a7c828f8.tar.gz",
+        "deps.files.ghostty.org/zig_wayland-27dda01712ddf3cb46ebd93380d88b01a7c828f8.tar.gz/src"
+      ],
+      "digest": "sha256:95e65554ea1323dc32904d91ff1694b3b2f50fe6c2c2702b70518fb039ce84dd",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This is zig-wayland's build surface: build.zig exposes a Scanner helper that builds and runs src/scanner.zig at build time to turn Wayland protocol XML into Zig bindings, locating system XML via pkg-config; the package's own build function does nothing unless enable-tests is set. I checked the build script, manifest and the generator for network access, secret reads, hidden behaviour or payloads and found only ordinary XML parsing and source generation consistent with the library's purpose.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/zig_wayland-27dda01712ddf3cb46ebd93380d88b01a7c828f8.tar.gz@wayland-0.7.0-dev-lQa1klz9AQB87V0pMKMdm8JvyOx32XR9FxcWnw9wh6XZ/build.zig",
+            "line": 120,
+            "title": "Build-time pkg-config invocation",
+            "detail": "Scanner.create runs `pkg-config --variable=pkgdatadir wayland-scanner/wayland-protocols` (honouring $PKG_CONFIG) when the caller does not supply XML paths. This is the standard way to locate wayland.xml and wayland-protocols and only reads a directory path."
+          },
+          {
+            "severity": "info",
+            "file": "deps.files.ghostty.org/zig_wayland-27dda01712ddf3cb46ebd93380d88b01a7c828f8.tar.gz@wayland-0.7.0-dev-lQa1klz9AQB87V0pMKMdm8JvyOx32XR9FxcWnw9wh6XZ/src/scanner.zig",
+            "line": 26,
+            "title": "Build-time code generator",
+            "detail": "The scanner is a host executable built from src/scanner.zig and run during the build to parse protocol XML and emit Zig bindings. It only opens the XML files given with -i and writes the single -o output; it embeds wayland_client_core.zig, wayland_server_core.zig, common_core.zig, ffi.zig and client_display_functions.zig verbatim into the output. No network, environment, or unrelated file access."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "Arguments '--variable=pkgdatadir wayland-scanner' / 'wayland-protocols' to locate system protocol XML directories",
+            "to": "pkg-config subprocess at build time (or the program named by $PKG_CONFIG)",
+            "file": "deps.files.ghostty.org/zig_wayland-27dda01712ddf3cb46ebd93380d88b01a7c828f8.tar.gz@wayland-0.7.0-dev-lQa1klz9AQB87V0pMKMdm8JvyOx32XR9FxcWnw9wh6XZ/build.zig"
+          },
+          {
+            "what": "Zig binding source generated from Wayland protocol XML plus embedded core source files",
+            "to": "Generated wayland.zig file in the Zig build cache (path passed via -o)",
+            "file": "deps.files.ghostty.org/zig_wayland-27dda01712ddf3cb46ebd93380d88b01a7c828f8.tar.gz@wayland-0.7.0-dev-lQa1klz9AQB87V0pMKMdm8JvyOx32XR9FxcWnw9wh6XZ/src/scanner.zig"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/zig-utils/zig-regex",
+      "from": "zig_regex-0.2.0-omky0f_2BgAXpSGi4MbMSngUU98FBX9RQIB2ShE3G2ww",
+      "to": "zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3",
+      "scope": "diff",
+      "part": 1,
+      "parts": 3,
+      "packages": [
+        "github.com/zig-utils/zig-regex"
+      ],
+      "digest": "sha256:bec43e17835c600272ca90554138383cdcddb1370b65b87e2f4a0bc4754f2570",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This diff part covers the zig-regex build.zig and build.zig.zon. It adds test suites, a test-core step and new benchmark executables (now installed only on opt-in), replaces run-argument passthrough with build options, and bumps the version. I checked the build script for build-time execution, downloads, system commands, file writes or hidden payloads and found none: the changes only declare build and test steps over files in the package.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/build.zig",
+            "line": 252,
+            "title": "New test steps registered",
+            "detail": "The build script adds test steps (anchored_search, differential_fuzz, random_fuzz, inline_modifiers, benchmarks) and re-enables the posix_classes and fuzz tests. It also adds a 'test-core' step. All of these are ordinary addTest/addRunArtifact declarations against files in the package and run only when a developer invokes 'zig build test'. Nothing executes at build time beyond step graph construction."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/build.zig",
+            "line": 515,
+            "title": "Benchmark executables gated behind install-benchmarks option",
+            "detail": "The benchmark executables (benchmark, prefix_bench, findall_bench, zg, line_count_bench) are now installed only when -Dinstall-benchmarks=true. Before, the existing ones were always installed. This narrows what a default build produces. The new executables link libc for clock_gettime timing. None of them runs as part of a dependency build."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/build.zig",
+            "line": 117,
+            "title": "Run argument handling changed to build options",
+            "detail": "Passthrough of 'zig build run -- args' is replaced by a single -Drun-arg option, and a similar -Dfindall-bench-arg option is added. Both are developer conveniences for local run steps and have no security relevance."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/build.zig.zon",
+            "line": 3,
+            "title": "Version and minimum Zig version bump",
+            "detail": "The version is bumped to 0.2.1 and minimum_zig_version to a 0.17.0-dev build. The empty dependencies field is removed. No external dependencies are introduced."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/zig-utils/zig-regex",
+      "from": "zig_regex-0.2.0-omky0f_2BgAXpSGi4MbMSngUU98FBX9RQIB2ShE3G2ww",
+      "to": "zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3",
+      "scope": "diff",
+      "part": 2,
+      "parts": 3,
+      "packages": [
+        "github.com/zig-utils/zig-regex/src"
+      ],
+      "digest": "sha256:d4162259953de49b9742911089967384bd2d97784274a53c80c73f2fb9ee1b2a",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This diff extends a regex engine. It adds a lazy DFA, a one-pass capture matcher, a reverse NFA, Unicode property and case-fold support, /v class sets, inline modifiers, literal prefilters, parallel line counting and new grep-style CLI modes. I reviewed every changed file and the generated data tables, and found no network, filesystem (beyond the CLI's stdin/stdout), environment, exec or hidden-trigger behaviour; all changes are explained by the library's purpose.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/src/pattern_analyzer.zig",
+            "line": 597,
+            "title": "Pattern-complexity rejection relaxed",
+            "detail": "analyzeAndValidate now returns success even when the computed risk exceeds max_risk, unless some issue string starts with \"CRITICAL:\". Several heuristics were relaxed to stop flagging delimited or bounded nested quantifiers. This makes the ReDoS guard more permissive. The new global backtracking step budget in backtrack.zig limits the impact. It reads as a deliberate tuning against false positives, not a hidden bypass."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/src/parser.zig",
+            "line": 10,
+            "title": "Quantifier bound raised to 2^53-1",
+            "detail": "The parser's upper limit on {m,n} counts went from 100,000 to 9,007,199,254,740,991. Repeats above 10,000 are routed to the backtracking engine, which is step-budgeted, so NFA blow-up is avoided. Huge bounded repeats from untrusted patterns may still cost significant CPU. This is an ordinary resource-exhaustion risk, not malice."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/src/unicode_gc_data.zig",
+            "line": 1,
+            "title": "Generated Unicode data tables",
+            "detail": "Large generated tables were added: Unicode general-category ranges, simple case folding, and RGI emoji ZWJ sequences. All are plain Zig struct literals of code points used only for \\p{} and case-insensitive matching. Nothing is encoded, executed or unpacked."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/src/regex.zig",
+            "line": 0,
+            "title": "Thread spawning for parallel line counting",
+            "detail": "countMatchingLinesParallel spawns up to 16 threads with std.Thread to count matching lines in chunks of the input. Its only side effect is computation within the process."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "New -L and -c modes print the input lines that match the pattern, or a count of them. This is the CLI's evident purpose and nothing else leaves the process.",
+            "to": "stdout of the example CLI",
+            "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/src/main.zig"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "github.com/zig-utils/zig-regex",
+      "from": "zig_regex-0.2.0-omky0f_2BgAXpSGi4MbMSngUU98FBX9RQIB2ShE3G2ww",
+      "to": "zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3",
+      "scope": "diff",
+      "part": 3,
+      "parts": 3,
+      "packages": [
+        "github.com/zig-utils/zig-regex/src"
+      ],
+      "digest": "sha256:6a65fd371dd8982cb0e600cba1d1b35bbb03e50de81f1ae5f821c8ad0b635c42",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This part of the zig-regex 0.2.1 diff adds generated Unicode property tables, a UTF-8 byte-range lowering for character classes, and changes to the NFA VM that reuse buffers and fix capture handling. I checked every added and changed line for I/O, network use, process execution, environment access, encoded payloads and build-time hooks, and found none. All of the code is pure regex-engine logic.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/src/unicode_prop_data.zig",
+            "line": 1,
+            "title": "Generated Unicode property tables",
+            "detail": "The new file is a large generated table of Unicode 17.0.0 Script, Script_Extensions and binary-property ranges, used for \\p{...} matching. It holds only numeric range structs, StaticStringMap name lookups and a switch that returns slices. Nothing in it is encoded or executable, and it has no I/O or side effects. Spot checks agree with known UCD data, for example ASCII letters mapped to Latin (75) and White_Space ranges."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/src/utf8_class.zig",
+            "line": 1,
+            "title": "UTF-8 class lowering",
+            "detail": "The new file lowers code-point class sets into UTF-8/WTF-8 byte-range sequences, the standard utf8-ranges technique. It is pure computation over allocator-managed lists with no system access."
+          },
+          {
+            "severity": "info",
+            "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/src/vm.zig",
+            "line": 96,
+            "title": "VM scratch-buffer reuse and capture fixes",
+            "detail": "The VM changes are performance and correctness work:\n- reuse of the visited bitmap and the thread lists across calls;\n- a pool of capture buffers;\n- skipping allocation when there are zero captures;\n- a `matched` flag on captures, with every capture slot initialized;\n- case-insensitive matching for character classes;\n- clearing captures on transitions.\nOne behaviour change: `deinit` must now be called on the VM, and the tests were updated to do so. Nothing in the change is security-relevant."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "codeberg.org/ziglang/translate-c",
+      "from": "",
+      "to": "translate_c-2.0.2-Q_BUWvBNBwDnyehSiuAJmdFcMYHYGA-Jc3KiYdrV2Dqx",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "codeberg.org/ziglang/translate-c",
+        "codeberg.org/ziglang/translate-c/build",
+        "codeberg.org/ziglang/translate-c/test"
+      ],
+      "digest": "sha256:c0bb18f0ea2eec8f8512dc8c6fa30b82b611d27c6d1ff00382bb0e3b24e68889",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This is the surface of the translate-c Zig package: its build.zig, the Translator build helper and the test-case lowering code. Together they build the translate-c executable on top of the pinned aro dependency and wire Run steps that translate C headers into Zig modules. I checked the build-time code for network access, execution of anything other than the package's own artifact, reads outside the package and build cache, and encoded payloads, and found none; no file is marked as missing from the source repository.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "codeberg.org/ziglang/translate-c@translate_c-2.0.2-Q_BUWvBNBwDnyehSiuAJmdFcMYHYGA-Jc3KiYdrV2Dqx/build.zig",
+            "line": 40,
+            "title": "advapi32 linked on Windows",
+            "detail": "On Windows targets the translate-c tool links advapi32. This is consistent with Windows SDK and MSVC detection through the registry in the aro and Zig toolchain code; Zig's own translate-c does the same. Nothing in the surface uses it for anything else."
+          },
+          {
+            "severity": "info",
+            "file": "codeberg.org/ziglang/translate-c@translate_c-2.0.2-Q_BUWvBNBwDnyehSiuAJmdFcMYHYGA-Jc3KiYdrV2Dqx/build.zig.zon",
+            "line": 12,
+            "title": "Pinned aro dependency",
+            "detail": "The aro dependency is fetched from codeberg.org/ziglang/arocc at a fixed commit and pinned by a content hash, so its contents cannot change silently."
+          },
+          {
+            "severity": "info",
+            "file": "codeberg.org/ziglang/translate-c@translate_c-2.0.2-Q_BUWvBNBwDnyehSiuAJmdFcMYHYGA-Jc3KiYdrV2Dqx/test/cases.zig",
+            "line": 58,
+            "title": "Test case discovery at build configuration time",
+            "detail": "lowerCases opens test/cases while the build graph is configured. That directory is not in the package's .paths, so for consumers the open fails and only a fail step is attached to the test steps. The code only parses test manifests and builds test steps; nothing runs unless the test steps are invoked."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "The C source path, include and framework paths, macro definitions, target triple and translation flags go to the translate-c executable as arguments. It writes the generated .zig file and a deps.d dependency file as build outputs.",
+            "to": "translate-c child process run by the Zig build system, writing into the build cache",
+            "file": "codeberg.org/ziglang/translate-c@translate_c-2.0.2-Q_BUWvBNBwDnyehSiuAJmdFcMYHYGA-Jc3KiYdrV2Dqx/build/Translator.zig"
+          },
+          {
+            "what": "Installs the translate-c executable, aro's builtin include directory and the package's lib/ directory into the build's install prefix. Standard Zig build install steps.",
+            "to": "install prefix (zig-out)",
+            "file": "codeberg.org/ziglang/translate-c@translate_c-2.0.2-Q_BUWvBNBwDnyehSiuAJmdFcMYHYGA-Jc3KiYdrV2Dqx/build.zig"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "third-party",
+      "module": "codeberg.org/ziglang/arocc",
+      "from": "",
+      "to": "aro-0.0.0-JSD1QvCRNwC2O1Jkop9TO6sXb1U1vhrH8FnYK1VdEMKn",
+      "scope": "surface",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "codeberg.org/ziglang/arocc",
+        "codeberg.org/ziglang/arocc/include"
+      ],
+      "digest": "sha256:9fda3fa6d3f403086a666b300f9b6f319177bbd656ff8658ce61d3dfc45f980f",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "This surface is the build script, the package manifest and the bundled C standard headers of arocc, the Aro C compiler used by Zig. build.zig only defines modules, generates Zig code from builtin .def tables using an in-repo generator, and declares opt-in test, fmt and fuzz steps. The headers contain only standard definitions, and no network access, secret access, obfuscation or out-of-repo files were found.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "codeberg.org/ziglang/arocc@aro-0.0.0-JSD1QvCRNwC2O1Jkop9TO6sXb1U1vhrH8FnYK1VdEMKn/build.zig",
+            "line": 6,
+            "title": "Build-time code generation from .def files",
+            "detail": "build.zig compiles build/generate_def.zig for the host and runs it on each src/aro/Builtins/*.def file to generate Zig modules at build time. The generator source is not part of this surface, but the step is the ordinary codegen used by the upstream arocc project to turn builtin definition tables into Zig code. It takes only repository files as input and writes to the build cache."
+          },
+          {
+            "severity": "info",
+            "file": "codeberg.org/ziglang/arocc@aro-0.0.0-JSD1QvCRNwC2O1Jkop9TO6sXb1U1vhrH8FnYK1VdEMKn/build.zig",
+            "line": 109,
+            "title": "Dead git invocation and opt-in fuzz system command",
+            "detail": "There is code that runs `git describe` to compute a version string, but it is unreachable because of `if (true) break :v version_string;`. The afl-clang-lto system command runs only when a user explicitly invokes the fuzz step. Neither runs when the module is consumed as a dependency."
+          },
+          {
+            "severity": "info",
+            "file": "codeberg.org/ziglang/arocc@aro-0.0.0-JSD1QvCRNwC2O1Jkop9TO6sXb1U1vhrH8FnYK1VdEMKn/include/stdint.h",
+            "line": 0,
+            "title": "Freestanding C headers are standard",
+            "detail": "The include/ directory holds the compiler's own standard C headers (float.h, limits.h, stdint.h, stdatomic.h and others). They contain only standard macro and typedef definitions, with no hidden code and no instructions aimed at a reviewer."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": []
+      }
+    }
+  ],
+  "verdict": "certified",
+  "reasons": null
+}

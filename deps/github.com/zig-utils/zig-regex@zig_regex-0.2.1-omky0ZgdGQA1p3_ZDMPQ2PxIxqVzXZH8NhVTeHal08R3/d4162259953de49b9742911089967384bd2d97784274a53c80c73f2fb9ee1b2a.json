@@ -1,0 +1,57 @@
+{
+  "kind": "third-party",
+  "module": "github.com/zig-utils/zig-regex",
+  "from": "zig_regex-0.2.0-omky0f_2BgAXpSGi4MbMSngUU98FBX9RQIB2ShE3G2ww",
+  "to": "zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3",
+  "scope": "diff",
+  "part": 2,
+  "parts": 3,
+  "packages": [
+    "github.com/zig-utils/zig-regex/src"
+  ],
+  "digest": "sha256:d4162259953de49b9742911089967384bd2d97784274a53c80c73f2fb9ee1b2a",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This diff extends a regex engine. It adds a lazy DFA, a one-pass capture matcher, a reverse NFA, Unicode property and case-fold support, /v class sets, inline modifiers, literal prefilters, parallel line counting and new grep-style CLI modes. I reviewed every changed file and the generated data tables, and found no network, filesystem (beyond the CLI's stdin/stdout), environment, exec or hidden-trigger behaviour; all changes are explained by the library's purpose.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/src/pattern_analyzer.zig",
+        "line": 597,
+        "title": "Pattern-complexity rejection relaxed",
+        "detail": "analyzeAndValidate now returns success even when the computed risk exceeds max_risk, unless some issue string starts with \"CRITICAL:\". Several heuristics were relaxed to stop flagging delimited or bounded nested quantifiers. This makes the ReDoS guard more permissive. The new global backtracking step budget in backtrack.zig limits the impact. It reads as a deliberate tuning against false positives, not a hidden bypass."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/src/parser.zig",
+        "line": 10,
+        "title": "Quantifier bound raised to 2^53-1",
+        "detail": "The parser's upper limit on {m,n} counts went from 100,000 to 9,007,199,254,740,991. Repeats above 10,000 are routed to the backtracking engine, which is step-budgeted, so NFA blow-up is avoided. Huge bounded repeats from untrusted patterns may still cost significant CPU. This is an ordinary resource-exhaustion risk, not malice."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/src/unicode_gc_data.zig",
+        "line": 1,
+        "title": "Generated Unicode data tables",
+        "detail": "Large generated tables were added: Unicode general-category ranges, simple case folding, and RGI emoji ZWJ sequences. All are plain Zig struct literals of code points used only for \\p{} and case-insensitive matching. Nothing is encoded, executed or unpacked."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/src/regex.zig",
+        "line": 0,
+        "title": "Thread spawning for parallel line counting",
+        "detail": "countMatchingLinesParallel spawns up to 16 threads with std.Thread to count matching lines in chunks of the input. Its only side effect is computation within the process."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": [
+      {
+        "what": "New -L and -c modes print the input lines that match the pattern, or a count of them. This is the CLI's evident purpose and nothing else leaves the process.",
+        "to": "stdout of the example CLI",
+        "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/src/main.zig"
+      }
+    ]
+  }
+}

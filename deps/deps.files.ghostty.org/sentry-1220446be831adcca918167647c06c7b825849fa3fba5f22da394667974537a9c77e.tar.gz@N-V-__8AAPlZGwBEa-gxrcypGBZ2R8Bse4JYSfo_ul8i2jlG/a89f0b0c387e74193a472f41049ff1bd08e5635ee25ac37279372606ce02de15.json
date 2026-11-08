@@ -1,0 +1,55 @@
+{
+  "kind": "third-party",
+  "module": "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz",
+  "from": "",
+  "to": "N-V-__8AAPlZGwBEa-gxrcypGBZ2R8Bse4JYSfo_ul8i2jlG",
+  "scope": "surface",
+  "part": 2,
+  "parts": 2,
+  "packages": [
+    "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/vendor"
+  ],
+  "digest": "sha256:a89f0b0c387e74193a472f41049ff1bd08e5635ee25ac37279372606ce02de15",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This unit is sentry-native's vendor directory: the acutest unit-test header, the jsmn JSON tokenizer, the MPack 1.0 MessagePack amalgamation (allocator routed to sentry_malloc/sentry_free), and the stb_sprintf formatter. I read every file and found no network use, no encoded payloads, no load-time constructors, no hooking, no reading of secrets, and no hidden behaviour. The code matches the upstream libraries apart from the expected sentry allocator integration.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz@N-V-__8AAPlZGwBEa-gxrcypGBZ2R8Bse4JYSfo_ul8i2jlG/vendor/acutest.h",
+        "line": 1440,
+        "title": "Test harness checks for an attached debugger",
+        "detail": "Acutest's test runner reads /proc/self/status for TracerPid, and on Windows calls IsDebuggerPresent(). It uses the result only to stop forking each test into a child process when a debugger is attached. This is documented upstream acutest behaviour that makes debugging easier. It hides nothing, and it exists only in the test-harness main(), not in library code."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz@N-V-__8AAPlZGwBEa-gxrcypGBZ2R8Bse4JYSfo_ul8i2jlG/vendor/mpack.h",
+        "line": 207,
+        "title": "MPack allocator redirected to sentry allocator",
+        "detail": "The vendored MPack 1.0 amalgamation sets MPACK_MALLOC to sentry_malloc and MPACK_FREE to sentry_free, declared extern in mpack.c. This is sentry-native's usual integration change: it routes allocations through sentry's allocator. It is not a hook or a function replacement."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz@N-V-__8AAPlZGwBEa-gxrcypGBZ2R8Bse4JYSfo_ul8i2jlG/vendor/stb_sprintf.h",
+        "line": 0,
+        "title": "stb_sprintf supports %n",
+        "detail": "stb_sprintf supports the %n specifier, which writes through a pointer argument. This is standard upstream behaviour and a hazard only if a caller passes an untrusted format string. It is not a deliberate weakness."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": [
+      {
+        "what": "MessagePack-encoded data supplied by the calling code",
+        "to": "A local file whose path the caller passes to mpack_writer_init_filename / mpack_writer_init_stdfile (sentry uses this for its own envelope and run state)",
+        "file": "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz@N-V-__8AAPlZGwBEa-gxrcypGBZ2R8Bse4JYSfo_ul8i2jlG/vendor/mpack.c"
+      },
+      {
+        "what": "Unit-test results (test names, durations, pass or fail) and the test command line. Only in the test-runner main(), which is compiled only for sentry's own tests.",
+        "to": "A file named by the --xml-output option, and child test processes started with fork or CreateProcessA",
+        "file": "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz@N-V-__8AAPlZGwBEa-gxrcypGBZ2R8Bse4JYSfo_ul8i2jlG/vendor/acutest.h"
+      }
+    ]
+  }
+}

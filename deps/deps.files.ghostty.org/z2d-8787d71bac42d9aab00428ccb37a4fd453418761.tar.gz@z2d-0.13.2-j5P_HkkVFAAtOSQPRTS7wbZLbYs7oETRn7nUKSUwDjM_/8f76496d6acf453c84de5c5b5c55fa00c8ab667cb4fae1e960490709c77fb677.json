@@ -1,0 +1,47 @@
+{
+  "kind": "third-party",
+  "module": "deps.files.ghostty.org/z2d-8787d71bac42d9aab00428ccb37a4fd453418761.tar.gz",
+  "from": "",
+  "to": "z2d-0.13.2-j5P_HkkVFAAtOSQPRTS7wbZLbYs7oETRn7nUKSUwDjM_",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "deps.files.ghostty.org/z2d-8787d71bac42d9aab00428ccb37a4fd453418761.tar.gz",
+    "deps.files.ghostty.org/z2d-8787d71bac42d9aab00428ccb37a4fd453418761.tar.gz/src",
+    "deps.files.ghostty.org/z2d-8787d71bac42d9aab00428ccb37a4fd453418761.tar.gz/src/internal",
+    "deps.files.ghostty.org/z2d-8787d71bac42d9aab00428ccb37a4fd453418761.tar.gz/src/internal/test-fonts"
+  ],
+  "digest": "sha256:8f76496d6acf453c84de5c5b5c55fa00c8ab667cb4fae1e960490709c77fb677",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "z2d is a pure-Zig 2D vector graphics library. Its build.zig only defines the module and an option, plus optional docs, coverage and release steps that run system tools solely when explicitly invoked. The library surface parses font files from caller-supplied paths or buffers. I checked build.zig, build.zig.zon, the font/text/glyph code and the embedded test fonts, and found no network use, process execution, load-time code or hidden payloads.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/z2d-8787d71bac42d9aab00428ccb37a4fd453418761.tar.gz@z2d-0.13.2-j5P_HkkVFAAtOSQPRTS7wbZLbYs7oETRn7nUKSUwDjM_/build.zig",
+        "line": 82,
+        "title": "Developer-only build steps invoke system commands",
+        "detail": "build.zig registers optional steps that run system tools: tar and sed for docs, python3 http.server for docs-serve, rm/sh/kcov/xdg-open for coverage, and build-support/scripts/release.sh for releases. Each runs only when that named step or option (docs-serve, docs-bundle, release, -Dcover) is invoked explicitly. A dependent project that imports the z2d module triggers none of them. The release script is not even in the package's .paths. These are ordinary developer conveniences, not build-time payloads."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/z2d-8787d71bac42d9aab00428ccb37a4fd453418761.tar.gz@z2d-0.13.2-j5P_HkkVFAAtOSQPRTS7wbZLbYs7oETRn7nUKSUwDjM_/src/internal/test-fonts/Inter-Regular.subset.ttf",
+        "line": 0,
+        "title": "Binary test font fixtures used only in tests",
+        "detail": "The four font files (Inter subsets, an Inter TTC, AnnotationMono) are referenced by @embedFile only inside test blocks and test-only structs (TestSingleFont, TestFontCollection, testInitFont). Zig compiles test blocks only in test builds and analyses declarations lazily, so these binaries are not embedded in a normal library build. They are parsed only as fonts by the library's own TrueType reader. The way they are used is consistent with legitimate test fixtures."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/z2d-8787d71bac42d9aab00428ccb37a4fd453418761.tar.gz@z2d-0.13.2-j5P_HkkVFAAtOSQPRTS7wbZLbYs7oETRn7nUKSUwDjM_/src/font.zig",
+        "line": 55,
+        "title": "Font loading reads a caller-specified file",
+        "detail": "File.loadFile, reached through Context.setFontToFile, reads a caller-supplied path relative to cwd into memory. Reading that font file is the API's documented purpose. No path is hard-coded outside tests."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "kind": "third-party",
+  "module": "deps.files.ghostty.org/zf-87153bb86b75d21fbac897b738f316d449f5d0c9.tar.gz",
+  "from": "",
+  "to": "zf-0.11.0-OIRy8XCRAAB6FiMwIrtD6FqlagnFwpI6YyOu7bXeYH5J",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "deps.files.ghostty.org/zf-87153bb86b75d21fbac897b738f316d449f5d0c9.tar.gz"
+  ],
+  "digest": "sha256:aa63492b1de9a9d142f40aefa1f4d7719800a93a7087cfab9cf6a9dcf050190e",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "The surface of zf 0.11.0, a fuzzy-finder library, consists of a standard Zig build script and manifest. The script exposes the zf module, test steps and an optional TUI executable that uses a hash-pinned, lazily fetched vaxis dependency. I checked for build-time execution, code generation, file reads, network use and unexpected files, found none, and no capabilities were listed to explain.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/zf-87153bb86b75d21fbac897b738f316d449f5d0c9.tar.gz@zf-0.11.0-OIRy8XCRAAB6FiMwIrtD6FqlagnFwpI6YyOu7bXeYH5J/build.zig",
+        "line": 1,
+        "title": "Standard build script",
+        "detail": "build.zig declares a library module from src/zf/zf.zig, test steps, and an optional TUI executable that depends on the lazily fetched vaxis dependency. It contains no system commands, no build-time code generation, no file reads beyond the source paths and no network access. It does nothing beyond a standard Zig build script."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/zf-87153bb86b75d21fbac897b738f316d449f5d0c9.tar.gz@zf-0.11.0-OIRy8XCRAAB6FiMwIrtD6FqlagnFwpI6YyOu7bXeYH5J/build.zig.zon",
+        "line": 7,
+        "title": "Pinned lazy dependency and restricted package paths",
+        "detail": "The single dependency is libvaxis, pinned to commit 6fd944a2 with a content hash and marked lazy, so it is fetched only when the TUI is built. The package paths ship only src/zf, the build files and LICENSE, so the src/tui sources the TUI build needs are absent. A consumer importing the zf module therefore gets only the library code."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

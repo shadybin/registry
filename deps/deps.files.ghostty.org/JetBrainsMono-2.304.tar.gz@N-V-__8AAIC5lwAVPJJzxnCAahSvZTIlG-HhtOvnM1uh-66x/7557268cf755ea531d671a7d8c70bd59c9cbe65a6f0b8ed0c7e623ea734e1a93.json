@@ -1,0 +1,48 @@
+{
+  "kind": "third-party",
+  "module": "deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz",
+  "from": "",
+  "to": "N-V-__8AAIC5lwAVPJJzxnCAahSvZTIlG-HhtOvnM1uh-66x",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz",
+    "deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz/fonts",
+    "deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz/fonts/ttf",
+    "deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz/fonts/variable",
+    "deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz/fonts/webfonts"
+  ],
+  "digest": "sha256:7557268cf755ea531d671a7d8c70bd59c9cbe65a6f0b8ed0c7e623ea734e1a93",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This third-party unit is the JetBrains Mono 2.304 font archive that Ghostty embeds as its default font. It contains only TTF, variable TTF and WOFF2 font files plus macOS AppleDouble sidecar metadata, with no build steps, code or load-time logic. I found no executable surface, no capabilities and no data flows, and the file layout and sizes are consistent with the upstream release.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz@N-V-__8AAIC5lwAVPJJzxnCAahSvZTIlG-HhtOvnM1uh-66x/fonts/ttf/JetBrainsMono-Regular.ttf",
+        "line": 0,
+        "title": "Archive contains only font data files",
+        "detail": "The unit holds only TrueType, variable TrueType and WOFF2 font files for JetBrains Mono 2.304, plus a license and authors file. There are no build scripts, no code generation and no executable code. Ghostty embeds these fonts as its default terminal typeface, which fits the module's purpose. File sizes (about 270 KB per static TTF, 205–215 KB for the NL variants, about 300 KB for the variable fonts, about 90–98 KB per WOFF2) match the upstream JetBrains Mono 2.304 release. The contents cannot be read as source, so their bytes were not checked against the upstream release here."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz@N-V-__8AAIC5lwAVPJJzxnCAahSvZTIlG-HhtOvnM1uh-66x/._.",
+        "line": 0,
+        "title": "macOS AppleDouble metadata files are packaging artifacts",
+        "detail": "Every ._* file is 163 bytes and has the same digest (0bc10de2…). These are macOS AppleDouble extended-attribute sidecars, typically com.apple.provenance or quarantine metadata, that tar on macOS adds when it archives files. They are packaging artifacts. They are not fonts, and a font loader would neither compile them in nor parse them. Their identical, tiny content leaves no room for a hidden payload."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz@N-V-__8AAIC5lwAVPJJzxnCAahSvZTIlG-HhtOvnM1uh-66x/fonts/variable/JetBrainsMono[wght].ttf",
+        "line": 0,
+        "title": "Fonts are parsed at run time",
+        "detail": "Embedded fonts are parsed at run time by the font rasteriser (FreeType or CoreText). In principle a crafted font could exploit a parser bug. Nothing here suggests tampering: the file names, layout and sizes match the official release, and the archive is pinned by its content hash."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

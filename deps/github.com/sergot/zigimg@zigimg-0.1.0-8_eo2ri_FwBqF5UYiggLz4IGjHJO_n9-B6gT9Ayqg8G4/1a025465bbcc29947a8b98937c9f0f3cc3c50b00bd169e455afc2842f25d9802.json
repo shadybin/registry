@@ -1,0 +1,44 @@
+{
+  "kind": "third-party",
+  "module": "github.com/sergot/zigimg",
+  "from": "",
+  "to": "zigimg-0.1.0-8_eo2ri_FwBqF5UYiggLz4IGjHJO_n9-B6gT9Ayqg8G4",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "github.com/sergot/zigimg"
+  ],
+  "digest": "sha256:1a025465bbcc29947a8b98937c9f0f3cc3c50b00bd169e455afc2842f25d9802",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "zigimg is a Zig image-format library; the surface reviewed is its build.zig, build.zig.zon and README. The build script only defines the module and optional test steps, and the manifest declares no dependencies; there are no build-time downloads, process execution, code generation or embedded payloads. No capabilities were listed and none of the reviewed files acts on the world beyond the standard build.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/sergot/zigimg@zigimg-0.1.0-8_eo2ri_FwBqF5UYiggLz4IGjHJO_n9-B6gT9Ayqg8G4/build.zig",
+        "line": 1,
+        "title": "Standard build script",
+        "detail": "build.zig registers the zigimg module from zigimg.zig, adds a test artifact, and defines test steps that run only when the user invokes them. It has no system commands, downloads, generated code or file writes outside the build cache when the module is used as a dependency."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/sergot/zigimg@zigimg-0.1.0-8_eo2ri_FwBqF5UYiggLz4IGjHJO_n9-B6gT9Ayqg8G4/build.zig.zon",
+        "line": 1,
+        "title": "Manifest without dependencies",
+        "detail": "The manifest declares no dependencies and lists ordinary package paths. Including 'tests' means test fixtures are packaged, but nothing in the surface reads them at build time for dependents."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/sergot/zigimg@zigimg-0.1.0-8_eo2ri_FwBqF5UYiggLz4IGjHJO_n9-B6gT9Ayqg8G4/README.md",
+        "line": 1,
+        "title": "Fork of upstream zigimg",
+        "detail": "The module path is github.com/sergot/zigimg, but the README refers to the upstream zigimg/zigimg repository. This looks like a fork. The surface shown contains nothing harmful, but the fork's provenance cannot be confirmed from these files."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

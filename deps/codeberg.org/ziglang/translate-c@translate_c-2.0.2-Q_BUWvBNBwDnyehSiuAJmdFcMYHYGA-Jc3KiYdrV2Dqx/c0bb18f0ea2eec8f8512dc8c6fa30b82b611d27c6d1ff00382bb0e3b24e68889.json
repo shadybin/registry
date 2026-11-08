@@ -1,0 +1,57 @@
+{
+  "kind": "third-party",
+  "module": "codeberg.org/ziglang/translate-c",
+  "from": "",
+  "to": "translate_c-2.0.2-Q_BUWvBNBwDnyehSiuAJmdFcMYHYGA-Jc3KiYdrV2Dqx",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "codeberg.org/ziglang/translate-c",
+    "codeberg.org/ziglang/translate-c/build",
+    "codeberg.org/ziglang/translate-c/test"
+  ],
+  "digest": "sha256:c0bb18f0ea2eec8f8512dc8c6fa30b82b611d27c6d1ff00382bb0e3b24e68889",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This is the surface of the translate-c Zig package: its build.zig, the Translator build helper and the test-case lowering code. Together they build the translate-c executable on top of the pinned aro dependency and wire Run steps that translate C headers into Zig modules. I checked the build-time code for network access, execution of anything other than the package's own artifact, reads outside the package and build cache, and encoded payloads, and found none; no file is marked as missing from the source repository.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "codeberg.org/ziglang/translate-c@translate_c-2.0.2-Q_BUWvBNBwDnyehSiuAJmdFcMYHYGA-Jc3KiYdrV2Dqx/build.zig",
+        "line": 40,
+        "title": "advapi32 linked on Windows",
+        "detail": "On Windows targets the translate-c tool links advapi32. This is consistent with Windows SDK and MSVC detection through the registry in the aro and Zig toolchain code; Zig's own translate-c does the same. Nothing in the surface uses it for anything else."
+      },
+      {
+        "severity": "info",
+        "file": "codeberg.org/ziglang/translate-c@translate_c-2.0.2-Q_BUWvBNBwDnyehSiuAJmdFcMYHYGA-Jc3KiYdrV2Dqx/build.zig.zon",
+        "line": 12,
+        "title": "Pinned aro dependency",
+        "detail": "The aro dependency is fetched from codeberg.org/ziglang/arocc at a fixed commit and pinned by a content hash, so its contents cannot change silently."
+      },
+      {
+        "severity": "info",
+        "file": "codeberg.org/ziglang/translate-c@translate_c-2.0.2-Q_BUWvBNBwDnyehSiuAJmdFcMYHYGA-Jc3KiYdrV2Dqx/test/cases.zig",
+        "line": 58,
+        "title": "Test case discovery at build configuration time",
+        "detail": "lowerCases opens test/cases while the build graph is configured. That directory is not in the package's .paths, so for consumers the open fails and only a fail step is attached to the test steps. The code only parses test manifests and builds test steps; nothing runs unless the test steps are invoked."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": [
+      {
+        "what": "The C source path, include and framework paths, macro definitions, target triple and translation flags go to the translate-c executable as arguments. It writes the generated .zig file and a deps.d dependency file as build outputs.",
+        "to": "translate-c child process run by the Zig build system, writing into the build cache",
+        "file": "codeberg.org/ziglang/translate-c@translate_c-2.0.2-Q_BUWvBNBwDnyehSiuAJmdFcMYHYGA-Jc3KiYdrV2Dqx/build/Translator.zig"
+      },
+      {
+        "what": "Installs the translate-c executable, aro's builtin include directory and the package's lib/ directory into the build's install prefix. Standard Zig build install steps.",
+        "to": "install prefix (zig-out)",
+        "file": "codeberg.org/ziglang/translate-c@translate_c-2.0.2-Q_BUWvBNBwDnyehSiuAJmdFcMYHYGA-Jc3KiYdrV2Dqx/build.zig"
+      }
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "kind": "third-party",
+  "module": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz",
+  "from": "",
+  "to": "N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o",
+  "scope": "surface",
+  "part": 2,
+  "parts": 2,
+  "packages": [
+    "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/blast",
+    "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/dotzlib",
+    "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/dotzlib/DotZLib",
+    "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/gcc_gvmat64",
+    "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/infback9",
+    "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/iostream",
+    "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/iostream2",
+    "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/iostream3",
+    "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/minizip",
+    "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/puff",
+    "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/testzlib",
+    "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/contrib/untgz",
+    "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/doc",
+    "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/examples",
+    "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz/test"
+  ],
+  "digest": "sha256:4a87fef4b2f96f0c03990daf6450c4699948681c4bef98b7ef8bbb65a037efab",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This unit is the contrib, examples, test and doc trees of the zlib 1.3.1 tarball: blast, puff, infback9, minizip, the iostream wrappers, the gvmat64 assembly, and example and test programs. I checked them for network use, process execution, environment or secret access, load-time constructors, hooking, encoded payloads and hidden switches, and found none. The code matches upstream zlib, and the non-source files are upstream docs and fixtures that nothing reads or compiles.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz@N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o/contrib/dotzlib/DotZLib.chm",
+        "line": 0,
+        "title": "Binary and unreadable files are upstream docs and fixtures",
+        "detail": "The .cs files under contrib/dotzlib/DotZLib, plus DotZLib.chm, contrib/blast/test.pk (8 bytes, matching the 'AIAIAI' example stream documented in blast.c), contrib/puff/zeros.raw and doc/crc-doc.1.0.pdf, could not be shown as source. All are standard files of the upstream zlib 1.3.1 distribution: documentation, test fixtures and C# bindings. None is marked as absent from the source repository. Nothing in the reviewed C sources reads, unpacks or compiles them, and a Zig/C build of zlib does not compile C# or use these fixtures."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz@N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o/contrib/gcc_gvmat64/gvmat64.S",
+        "line": 1,
+        "title": "Assembly longest_match matches upstream contrib",
+        "detail": "gvmat64.S is the well-known longest_match optimisation by Gilles Vollant. It only reads deflate_state fields, compares window bytes and returns a match length. It makes no system calls, has no hidden symbols and does no self-modification. Its dsXxx struct offsets are hard-coded and would be wrong for current zlib, but it is not part of a normal zlib build."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz@N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o/contrib/untgz/untgz.c",
+        "line": 0,
+        "title": "Example and test programs do only local file I/O",
+        "detail": "miniunz.c, untgz.c, gun.c, gzappend.c, gzlog.c, minigzip.c and the other programs are stock zlib example and test tools. They read and write files named on their own command lines. untgz extracts tar entries without path-traversal checks, a long-known upstream weakness. These are standalone programs with their own main() functions and are not linked into the library."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

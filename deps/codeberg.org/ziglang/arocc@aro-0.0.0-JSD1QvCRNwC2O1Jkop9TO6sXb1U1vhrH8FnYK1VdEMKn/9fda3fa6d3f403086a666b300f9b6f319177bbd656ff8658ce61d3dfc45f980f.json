@@ -1,0 +1,45 @@
+{
+  "kind": "third-party",
+  "module": "codeberg.org/ziglang/arocc",
+  "from": "",
+  "to": "aro-0.0.0-JSD1QvCRNwC2O1Jkop9TO6sXb1U1vhrH8FnYK1VdEMKn",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "codeberg.org/ziglang/arocc",
+    "codeberg.org/ziglang/arocc/include"
+  ],
+  "digest": "sha256:9fda3fa6d3f403086a666b300f9b6f319177bbd656ff8658ce61d3dfc45f980f",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This surface is the build script, the package manifest and the bundled C standard headers of arocc, the Aro C compiler used by Zig. build.zig only defines modules, generates Zig code from builtin .def tables using an in-repo generator, and declares opt-in test, fmt and fuzz steps. The headers contain only standard definitions, and no network access, secret access, obfuscation or out-of-repo files were found.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "codeberg.org/ziglang/arocc@aro-0.0.0-JSD1QvCRNwC2O1Jkop9TO6sXb1U1vhrH8FnYK1VdEMKn/build.zig",
+        "line": 6,
+        "title": "Build-time code generation from .def files",
+        "detail": "build.zig compiles build/generate_def.zig for the host and runs it on each src/aro/Builtins/*.def file to generate Zig modules at build time. The generator source is not part of this surface, but the step is the ordinary codegen used by the upstream arocc project to turn builtin definition tables into Zig code. It takes only repository files as input and writes to the build cache."
+      },
+      {
+        "severity": "info",
+        "file": "codeberg.org/ziglang/arocc@aro-0.0.0-JSD1QvCRNwC2O1Jkop9TO6sXb1U1vhrH8FnYK1VdEMKn/build.zig",
+        "line": 109,
+        "title": "Dead git invocation and opt-in fuzz system command",
+        "detail": "There is code that runs `git describe` to compute a version string, but it is unreachable because of `if (true) break :v version_string;`. The afl-clang-lto system command runs only when a user explicitly invokes the fuzz step. Neither runs when the module is consumed as a dependency."
+      },
+      {
+        "severity": "info",
+        "file": "codeberg.org/ziglang/arocc@aro-0.0.0-JSD1QvCRNwC2O1Jkop9TO6sXb1U1vhrH8FnYK1VdEMKn/include/stdint.h",
+        "line": 0,
+        "title": "Freestanding C headers are standard",
+        "detail": "The include/ directory holds the compiler's own standard C headers (float.h, limits.h, stdint.h, stdatomic.h and others). They contain only standard macro and typedef definitions, with no hidden code and no instructions aimed at a reviewer."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

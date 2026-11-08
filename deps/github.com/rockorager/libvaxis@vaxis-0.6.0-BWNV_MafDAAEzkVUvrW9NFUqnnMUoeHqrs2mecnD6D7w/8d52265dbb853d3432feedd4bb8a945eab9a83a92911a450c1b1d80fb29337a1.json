@@ -1,0 +1,72 @@
+{
+  "kind": "third-party",
+  "module": "github.com/rockorager/libvaxis",
+  "from": "vaxis-0.6.0-BWNV_LC4CwBka_bJk8SOXqzCM-nyQH00jzdL0kUhGwRE",
+  "to": "vaxis-0.6.0-BWNV_MafDAAEzkVUvrW9NFUqnnMUoeHqrs2mecnD6D7w",
+  "scope": "diff",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "github.com/rockorager/libvaxis",
+    "github.com/rockorager/libvaxis/include",
+    "github.com/rockorager/libvaxis/src",
+    "github.com/rockorager/libvaxis/src/vxfw",
+    "github.com/rockorager/libvaxis/src/widgets",
+    "github.com/rockorager/libvaxis/src/widgets/terminal"
+  ],
+  "digest": "sha256:8d52265dbb853d3432feedd4bb8a945eab9a83a92911a450c1b1d80fb29337a1",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This diff adds cursor position (CPR) reporting, cancellation-based shutdown of the event loop with retry/backoff, a signal-safe SIGWINCH self-pipe with a C API for resize callbacks, and Windows win32-input-mode handling, plus mechanical updates for Zig 0.17 builtins (@backingInt/@fromBackingInt, field_names). I checked the build script, the dependency manifest, the tty/signal code, the PTY exec path and the tests: nothing sends data off the machine, reads secrets, downloads code or hides behaviour. The only notable item is the zigimg dependency moving to a hash-pinned third-party fork.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "concern",
+        "file": "build.zig.zon",
+        "line": 8,
+        "title": "Image dependency switched from upstream zigimg to a third-party fork",
+        "detail": "The zigimg dependency moves from github.com/zigimg/zigimg to a personal fork, github.com/sergot/zigimg, at a new commit. The content hash is pinned, and minimum_zig_version rises to 0.17.0 at the same time. That pattern points to a fork made for compatibility with the new compiler while upstream catches up. Still, it moves a transitive dependency to a different publisher. The fork's code is a separate review unit and is not judged here."
+      },
+      {
+        "severity": "info",
+        "file": "src/tty.zig",
+        "line": 182,
+        "title": "SIGWINCH self-pipe and dispatch thread",
+        "detail": "SIGWINCH handling now only writes a byte to a non-blocking self-pipe, which is async-signal-safe. A concurrent task reads the pipe and runs the registered callbacks. New C API functions tty_notify_winsize and tty_remove_winsize_notify expose up to 8 callbacks. This is ordinary terminal-library behaviour."
+      },
+      {
+        "severity": "info",
+        "file": "src/Loop.zig",
+        "line": 84,
+        "title": "Event loop shutdown and retry rework",
+        "detail": "The input loop stops by closing the queue and cancelling the task instead of sending a device status report. Transient read errors are retried with capped backoff, and malformed input is discarded. These are robustness changes with no external effects."
+      },
+      {
+        "severity": "info",
+        "file": "build.zig",
+        "line": 223,
+        "title": "Build changes limited to tests and examples",
+        "detail": "The build adds a translate-c step for include/vaxis.h, used only by the ABI conformance test, and a C example test executable (examples/c/tty.c) attached to the test step. Neither affects the library artifacts consumers link."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": [
+      {
+        "what": "Cursor position request escape sequence (CSI 6n) written by the new queryCursorPosition; the terminal's reply is parsed back as a cursor_position event.",
+        "to": "the controlling terminal (tty writer)",
+        "file": "src/Vaxis.zig"
+      },
+      {
+        "what": "Win32-input-mode enable/disable sequences (ESC[?9001h on init, ESC[?9001l on deinit) so key releases and modifiers arrive as input records.",
+        "to": "the Windows console (stdout)",
+        "file": "src/tty.zig"
+      },
+      {
+        "what": "A single zero byte written from the SIGWINCH handler to wake a dispatch thread that runs resize callbacks. The pipe is created with CLOEXEC and never leaves the process.",
+        "to": "an internal self-pipe within the same process",
+        "file": "src/tty.zig"
+      }
+    ]
+  }
+}

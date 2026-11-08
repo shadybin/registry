@@ -1,0 +1,50 @@
+{
+  "kind": "third-party",
+  "module": "deps.files.ghostty.org/translate_c-02ff0c523fb92a38939b04d0145c4a9602a74d56.tar.gz",
+  "from": "",
+  "to": "translate_c-2.0.0-Q_BUWltOBwBYABF84EUL208pIFeUIwbBs29FmVBaafN5",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "deps.files.ghostty.org/translate_c-02ff0c523fb92a38939b04d0145c4a9602a74d56.tar.gz",
+    "deps.files.ghostty.org/translate_c-02ff0c523fb92a38939b04d0145c4a9602a74d56.tar.gz/build",
+    "deps.files.ghostty.org/translate_c-02ff0c523fb92a38939b04d0145c4a9602a74d56.tar.gz/test"
+  ],
+  "digest": "sha256:6d27dff905273924a9d2d7f3fb14813aa78a9e60f223458a460e14511740b8cf",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This is the build surface of the Zig translate-c package: build.zig, build.zig.zon, the build/Translator.zig helper that wires a run step for the translate-c executable, and test/cases.zig, which builds the test graph from local case files. I checked for network access, hidden execution, encoded payloads, credential reads and system modification and found none. Everything is standard Zig build-graph construction consistent with the package's purpose.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/translate_c-02ff0c523fb92a38939b04d0145c4a9602a74d56.tar.gz@translate_c-2.0.0-Q_BUWltOBwBYABF84EUL208pIFeUIwbBs29FmVBaafN5/build.zig.zon",
+        "line": 10,
+        "title": "Pinned dependency on aro",
+        "detail": "build.zig.zon pins the aro C frontend to a codeberg.org/ziglang git commit by content hash. The dependency is fetched by the Zig package manager, is integrity-checked, and belongs to a separate review unit."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/translate_c-02ff0c523fb92a38939b04d0145c4a9602a74d56.tar.gz@translate_c-2.0.0-Q_BUWltOBwBYABF84EUL208pIFeUIwbBs29FmVBaafN5/test/cases.zig",
+        "line": 56,
+        "title": "Test case discovery reads local files at build-graph time",
+        "detail": "lowerCases reads the test/cases directory from the package root to generate test steps. That directory is not in the package's .paths, so it is missing from the tarball and the code fails gracefully with addFail. It only runs for test steps and does no network or system access."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": [
+      {
+        "what": "The C source file path, include and framework paths, macro definitions, target triple and flags are passed as arguments. The translated Zig file and a deps file are written to the build cache.",
+        "to": "translate-c executable run as a build step (another program)",
+        "file": "deps.files.ghostty.org/translate_c-02ff0c523fb92a38939b04d0145c4a9602a74d56.tar.gz@translate_c-2.0.0-Q_BUWltOBwBYABF84EUL208pIFeUIwbBs29FmVBaafN5/build/Translator.zig"
+      },
+      {
+        "what": "Installs aro's include directory, the package's lib directory and the translate-c executable.",
+        "to": "install prefix directory",
+        "file": "deps.files.ghostty.org/translate_c-02ff0c523fb92a38939b04d0145c4a9602a74d56.tar.gz@translate_c-2.0.0-Q_BUWltOBwBYABF84EUL208pIFeUIwbBs29FmVBaafN5/build.zig"
+      }
+    ]
+  }
+}

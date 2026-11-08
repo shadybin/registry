@@ -1,0 +1,112 @@
+{
+  "kind": "third-party",
+  "module": "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz",
+  "from": "",
+  "to": "N-V-__8AAPlZGwBEa-gxrcypGBZ2R8Bse4JYSfo_ul8i2jlG",
+  "scope": "surface",
+  "part": 1,
+  "parts": 2,
+  "packages": [
+    "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz",
+    "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/.mvn/wrapper",
+    "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/examples",
+    "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/include",
+    "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/ndk",
+    "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/ndk/gradle/wrapper",
+    "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/ndk/lib/src/main/jni",
+    "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/ndk/sample/src/main/cpp",
+    "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/src",
+    "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/src/backends",
+    "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/src/integrations",
+    "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/src/modulefinder",
+    "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/src/path",
+    "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/src/symbolizer",
+    "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/src/transports",
+    "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/src/unwinder",
+    "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/tests/fixtures",
+    "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/tests/fuzzing-failures",
+    "deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz/tests/unit"
+  ],
+  "digest": "sha256:064711f2f3a388f799b468b722c1b75e8e4384f3570c5ea25586adcf3366089e",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This unit is the sentry-native 0.7.8 crash/error reporting SDK: core event, scope and session handling; inproc, breakpad and crashpad backends; curl, winhttp, disk and function transports; module finders, symbolizers and unwinders; plus tests and examples. I reviewed all source files for hidden network destinations, credential access, code loading, TLS weakening, persistence and obfuscation. The code matches upstream behaviour: data goes only to the configured DSN and local database files. The binary jars, keystore and test fixtures are standard upstream tooling and test data, not compiled in.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": ".mvn/wrapper/maven-wrapper.jar",
+        "line": 0,
+        "title": "Build-tool wrapper jars present",
+        "detail": ".mvn/wrapper/maven-wrapper.jar and ndk/gradle/wrapper/gradle-wrapper.jar are standard Maven and Gradle wrapper jars for the upstream Java/Android tooling. Neither is marked as absent from the source repository. They are not part of the C build that links this library, so they do not affect what is compiled into the binary."
+      },
+      {
+        "severity": "info",
+        "file": "ndk/debug.keystore",
+        "line": 0,
+        "title": "Android debug keystore present",
+        "detail": "ndk/debug.keystore is the upstream Android sample's debug signing keystore. It is not used in the native build."
+      },
+      {
+        "severity": "info",
+        "file": "tests/fixtures/sentry_example",
+        "line": 0,
+        "title": "Binary test fixtures read only by unit tests",
+        "detail": "tests/fixtures/*.so, sentry_example and the fuzzing-failures inputs are read only by the unit tests (test_modulefinder.c, test_fuzzfailures.c) as parse inputs. Nothing loads or executes them, and they are not compiled into the library."
+      },
+      {
+        "severity": "info",
+        "file": "src/sentry_options.c",
+        "line": 23,
+        "title": "Defaults taken from environment variables",
+        "detail": "sentry_options_new reads the SENTRY_DSN, SENTRY_DEBUG, SENTRY_RELEASE and SENTRY_ENVIRONMENT environment variables as defaults. This is documented upstream behaviour: the DSN only sets the reporting destination, and the embedding application can override all of them."
+      },
+      {
+        "severity": "info",
+        "file": "src/path/sentry_path_unix.c",
+        "line": 63,
+        "title": "Permissive file modes for database files",
+        "detail": "Lock files are created with mode 0666 and data files with 0664. Envelopes may contain crash data, so files written to a shared directory could be readable by other local users. This matches upstream and is not deliberate."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": [
+      {
+        "what": "Serialized Sentry envelopes: events, breadcrumbs, user/tags/extra/contexts, OS context, loaded module list, stack traces, sessions, and any configured attachments",
+        "to": "HTTP(S) POST to the envelope endpoint derived from the configured DSN, optionally through the configured proxy",
+        "file": "src/transports/sentry_transport_curl.c"
+      },
+      {
+        "what": "The same serialized Sentry envelopes as the curl transport",
+        "to": "HTTP(S) POST via WinHTTP to the DSN envelope endpoint (Windows)",
+        "file": "src/transports/sentry_transport_winhttp.c"
+      },
+      {
+        "what": "Minidumps plus the serialized scope event, breadcrumb files and configured attachments",
+        "to": "Out-of-process crashpad_handler executable, which uploads to the DSN minidump URL",
+        "file": "src/backends/sentry_backend_crashpad.cpp"
+      },
+      {
+        "what": "Path of crashpad_wer.dll, registered as a WER helper module (Windows crashpad backend only)",
+        "to": "Windows registry HKCU\\Software\\Microsoft\\Windows\\Windows Error Reporting\\RuntimeExceptionHelperModules",
+        "file": "src/backends/sentry_backend_crashpad.cpp"
+      },
+      {
+        "what": "Run directories, lock files, session.json, queued envelopes, the last_crash marker and the user-consent file",
+        "to": "Files under the configured database path (default .sentry-native in the working directory)",
+        "file": "src/sentry_database.c"
+      },
+      {
+        "what": "Debug log messages, only when debug is enabled",
+        "to": "stderr, or the Android log",
+        "file": "src/sentry_logger.c"
+      },
+      {
+        "what": "Envelopes written to files for the Java SDK to send",
+        "to": "Outbox directory supplied by the Android Java layer",
+        "file": "ndk/lib/src/main/jni/sentry.c"
+      }
+    ]
+  }
+}

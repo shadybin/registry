@@ -1,0 +1,82 @@
+{
+  "kind": "third-party",
+  "module": "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz",
+  "from": "",
+  "to": "N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz",
+    "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz/examples",
+    "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz/examples/demo",
+    "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz/include",
+    "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz/src",
+    "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz/test/integration-test-common",
+    "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz/test/layer-tests",
+    "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz/test/lock-tests",
+    "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz/test/mock-server",
+    "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz/test/test-common",
+    "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz/test/unit-tests"
+  ],
+  "digest": "sha256:30c5a7281ad70d80c78bca1209ea9b968e22978297409493f190f4f5e6862eb9",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This unit is gtk4-layer-shell 1.1.0, a GTK4 library that shims libwayland-client calls so GTK windows become wlr-layer-shell or ext-session-lock surfaces. I read the library sources, the preload constructor, the libwayland interposition code, the examples, the tests and the mock compositor. I found no build-time payloads, encoded data, network access outside the Wayland compositor connection, secret access or hidden behaviour. The symbol interposition and the preload constructor are the library's documented purpose.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz@N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr/src/libwayland-shim.c",
+        "line": 185,
+        "title": "Interposes libwayland-client symbols (documented purpose)",
+        "detail": "libwayland-shim.c defines wl_proxy_marshal_array_flags and wl_proxy_destroy, and stolen-from-libwayland.c the other wl_proxy_marshal* entry points. This overrides libwayland-client symbols and forwards to the real ones through dlsym(RTLD_NEXT). This is the library's documented mechanism (linking.md) for making GTK4 create layer-shell and session-lock surfaces. Requests are forwarded unchanged except xdg_wm_base.get_xdg_surface and xdg_surface.get_popup on surfaces the application registered. No data is captured or sent elsewhere."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz@N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr/src/layer-shell-preload.c",
+        "line": 112,
+        "title": "Load-time constructor in preload helper",
+        "detail": "layer-shell-preload.c has an __attribute__((constructor)) that installs a hook. The hook turns the process's first XDG surface (all of them with LAYER_ALL_SURFACES=1) into a layer surface configured from LAYER_* environment variables. This file is meant for the separate liblayer-shell-preload.so and is documented in the changelog. If the embedding build compiled it into the main library, windows would be converted unexpectedly. That would be visible misbehaviour, not concealment. Check that the consuming build excludes this file."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz@N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr/src/gtk4-session-lock.c",
+        "line": 191,
+        "title": "Wrong null check on wl_output",
+        "detail": "After `struct wl_output* output = gdk_wayland_monitor_get_wl_output(monitor);` the code re-checks `!monitor` instead of `!output`. This is an ordinary bug."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz@N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr/src/registry.c",
+        "line": 82,
+        "title": "Misleading diagnostic message",
+        "detail": "get_layer_shell_global_from_display prints a message about the Session Lock protocol when Layer Shell is missing. This is a copy-paste mistake."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": [
+      {
+        "what": "Layer-shell protocol requests: layer surface creation, anchor, margin, size, exclusive zone, keyboard interactivity, layer and namespace string.",
+        "to": "Wayland compositor (via libwayland-client socket)",
+        "file": "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz@N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr/src/layer-surface.c"
+      },
+      {
+        "what": "ext_session_lock_v1 lock, unlock_and_destroy and lock-surface requests.",
+        "to": "Wayland compositor (via libwayland-client socket)",
+        "file": "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz@N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr/src/session-lock.c"
+      },
+      {
+        "what": "All of the process's Wayland requests, forwarded unchanged unless they concern XDG surfaces turned into layer or lock surfaces.",
+        "to": "Real libwayland-client (wl_proxy_marshal_array_flags via RTLD_NEXT)",
+        "file": "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz@N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr/src/libwayland-shim.c"
+      },
+      {
+        "what": "Diagnostic messages about missing protocol support.",
+        "to": "stderr",
+        "file": "deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz@N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr/src/registry.c"
+      }
+    ]
+  }
+}

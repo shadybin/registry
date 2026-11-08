@@ -1,0 +1,44 @@
+{
+  "kind": "third-party",
+  "module": "github.com/jacobsandlund/uucode",
+  "from": "",
+  "to": "uucode-0.2.0-ZZjBPoGFVgCiflJNFc6Io8xzC67B6PA5bUkk4LT0kCxg",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "github.com/jacobsandlund/uucode"
+  ],
+  "digest": "sha256:1d95d6266a5df48149a3f6c3d8aab4d80b811ce738ab73a562f416b7f862d520",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "uucode is a Zig Unicode library whose build.zig generates a small build-config source file from user options. It also compiles and runs a host generator that turns the bundled UCD files into lookup tables. I checked build.zig and build.zig.zon and found no network access, no downloads, no access to secrets or files outside the package, no persistence, and no obfuscated or encoded payloads.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/jacobsandlund/uucode@uucode-0.2.0-ZZjBPoGFVgCiflJNFc6Io8xzC67B6PA5bUkk4LT0kCxg/build.zig",
+        "line": 289,
+        "title": "Build-time code generator executable is run",
+        "detail": "build.zig compiles src/generate.zig into a host executable (uucode_generate) and runs it during the build, with the package root as working directory. It reads the Unicode Character Database files listed in ucd/.gitignore and writes tables.zig into the Zig build cache. This is a normal codegen step for a Unicode table library. The generator source and the ucd data files are not part of this surface, so this review cannot confirm what they do."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/jacobsandlund/uucode@uucode-0.2.0-ZZjBPoGFVgCiflJNFc6Io8xzC67B6PA5bUkk4LT0kCxg/build.zig",
+        "line": 86,
+        "title": "Build options can inject source into the generated config",
+        "detail": "The -Dbuild_config.zig option accepts raw Zig source. The values of -Dfields* are interpolated into generated Zig source without escaping. Only the person invoking the build controls these inputs, so this is not a supply-chain risk."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/jacobsandlund/uucode@uucode-0.2.0-ZZjBPoGFVgCiflJNFc6Io8xzC67B6PA5bUkk4LT0kCxg/build.zig",
+        "line": 295,
+        "title": "ucd/.gitignore embedded to list input files",
+        "detail": "build.zig embeds ucd/.gitignore at build time and uses it only as a list of UCD input filenames, which become cache-invalidation inputs."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "kind": "third-party",
+  "module": "deps.files.ghostty.org/zig_objc-3352c12a868f8787ab71bf2ca6eab9fcfb635c52.tar.gz",
+  "from": "",
+  "to": "zig_objc-0.0.0-Ir_Sp_4tAQDXtPi51nW_jD9LOEzBvU9lofwO9Pzi6IB4",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "deps.files.ghostty.org/zig_objc-3352c12a868f8787ab71bf2ca6eab9fcfb635c52.tar.gz"
+  ],
+  "digest": "sha256:03ac3fe0d1a97bda5a18e9ebbcbfe9fa6f0fa8e3a5eda3c130cd89f2268b3db2",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This is the surface of zig_objc, Zig bindings for the Objective-C runtime: its build.zig and build.zig.zon. The build script locates the Apple SDK via xcrun and patches one block-pointer declaration in objc/runtime.h so Zig's translate-c can handle it. It then translates the runtime headers into a module and links libobjc and Foundation; I found no network access, downloads, encoded payloads, persistence or writes outside the build cache, and the package declares no dependencies.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/zig_objc-3352c12a868f8787ab71bf2ca6eab9fcfb635c52.tar.gz@zig_objc-0.0.0-Ir_Sp_4tAQDXtPi51nW_jD9LOEzBvU9lofwO9Pzi6IB4/build.zig",
+        "line": 55,
+        "title": "Build-time patch of SDK header for translate-c",
+        "detail": "At build time the script reads objc/runtime.h from the Xcode SDK. It replaces the single objc_enumerateClasses declaration, whose block-pointer parameter Zig 0.16 translate-c cannot parse, with a void* parameter. It then writes the result into the build cache and translates it with the SDK headers. The patch is exact-match and fails loudly if the header changes. It only affects generated bindings and has no side effects outside the build cache."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/zig_objc-3352c12a868f8787ab71bf2ca6eab9fcfb635c52.tar.gz@zig_objc-0.0.0-Ir_Sp_4tAQDXtPi51nW_jD9LOEzBvU9lofwO9Pzi6IB4/build.zig",
+        "line": 160,
+        "title": "Runs xcrun at build time to find the SDK",
+        "detail": "appleSDKPath calls std.zig.system.darwin.getSdk, which runs `xcrun` to locate the Apple SDK, and caches the result per target. This is standard for building against Apple frameworks."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": [
+      {
+        "what": "A patched copy of the Apple SDK's objc/runtime.h and a small objc-import.h wrapper header, written at build time for translate-c.",
+        "to": "Zig build cache (WriteFiles step output directory)",
+        "file": "deps.files.ghostty.org/zig_objc-3352c12a868f8787ab71bf2ca6eab9fcfb635c52.tar.gz@zig_objc-0.0.0-Ir_Sp_4tAQDXtPi51nW_jD9LOEzBvU9lofwO9Pzi6IB4/build.zig"
+      }
+    ]
+  }
+}

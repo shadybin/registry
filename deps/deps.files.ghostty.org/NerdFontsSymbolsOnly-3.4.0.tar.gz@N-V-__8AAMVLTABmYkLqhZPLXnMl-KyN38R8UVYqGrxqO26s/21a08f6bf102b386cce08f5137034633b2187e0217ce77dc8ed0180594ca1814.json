@@ -1,0 +1,37 @@
+{
+  "kind": "third-party",
+  "module": "deps.files.ghostty.org/NerdFontsSymbolsOnly-3.4.0.tar.gz",
+  "from": "",
+  "to": "N-V-__8AAMVLTABmYkLqhZPLXnMl-KyN38R8UVYqGrxqO26s",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "deps.files.ghostty.org/NerdFontsSymbolsOnly-3.4.0.tar.gz"
+  ],
+  "digest": "sha256:21a08f6bf102b386cce08f5137034633b2187e0217ce77dc8ed0180594ca1814",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This unit is the Nerd Fonts Symbols Only 3.4.0 archive, mirrored on deps.files.ghostty.org. It contains two TTF symbol fonts, used as glyph data, plus macOS AppleDouble (._*) metadata stubs. There is no build script, source code or executable content, and no capabilities are requested. The binaries are fonts whose sizes fit the upstream release, and the small ._ files are ordinary tar packaging artifacts, so nothing here acts on the world.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/NerdFontsSymbolsOnly-3.4.0.tar.gz@N-V-__8AAMVLTABmYkLqhZPLXnMl-KyN38R8UVYqGrxqO26s/SymbolsNerdFont-Regular.ttf",
+        "line": 0,
+        "title": "Embedded binary font files",
+        "detail": "The unit holds two TrueType fonts, SymbolsNerdFont-Regular.ttf (2.4 MB) and SymbolsNerdFontMono-Regular.ttf (2.5 MB). They are the Nerd Fonts 3.4.0 symbols-only release, and the terminal presumably embeds them as fallback glyph fonts. They are data, not code, and run nothing at build time or at load. Their contents cannot be reviewed as source. A crafted font could in principle target a font parser, but their sizes match the upstream release and nothing suggests tampering. Their digests could be checked against the upstream Nerd Fonts v3.4.0 release asset."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/NerdFontsSymbolsOnly-3.4.0.tar.gz@N-V-__8AAMVLTABmYkLqhZPLXnMl-KyN38R8UVYqGrxqO26s/._.",
+        "line": 0,
+        "title": "macOS AppleDouble metadata files in tarball",
+        "detail": "The files prefixed ._ (._., ._LICENSE, ._README.md, ._10-nerd-font-symbols.conf and ._*.ttf) are AppleDouble resource-fork and extended-attribute stubs. macOS tar adds them when it archives a directory. Each is 163 or 263 bytes, and the 163-byte ones are byte-identical across files, which fits a single xattr such as com.apple.provenance. They are packaging artifacts that nothing compiles, executes or reads."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

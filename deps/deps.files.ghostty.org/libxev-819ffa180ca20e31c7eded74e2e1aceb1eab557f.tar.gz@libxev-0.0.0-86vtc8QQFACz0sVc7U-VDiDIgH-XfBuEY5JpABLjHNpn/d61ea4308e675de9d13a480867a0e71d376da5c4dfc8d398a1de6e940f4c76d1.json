@@ -1,0 +1,53 @@
+{
+  "kind": "third-party",
+  "module": "deps.files.ghostty.org/libxev-819ffa180ca20e31c7eded74e2e1aceb1eab557f.tar.gz",
+  "from": "",
+  "to": "libxev-0.0.0-86vtc8QQFACz0sVc7U-VDiDIgH-XfBuEY5JpABLjHNpn",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "deps.files.ghostty.org/libxev-819ffa180ca20e31c7eded74e2e1aceb1eab557f.tar.gz",
+    "deps.files.ghostty.org/libxev-819ffa180ca20e31c7eded74e2e1aceb1eab557f.tar.gz/examples",
+    "deps.files.ghostty.org/libxev-819ffa180ca20e31c7eded74e2e1aceb1eab557f.tar.gz/include",
+    "deps.files.ghostty.org/libxev-819ffa180ca20e31c7eded74e2e1aceb1eab557f.tar.gz/website/public"
+  ],
+  "digest": "sha256:d61ea4308e675de9d13a480867a0e71d376da5c4dfc8d398a1de6e940f4c76d1",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "libxev is a cross-platform event-loop library; this surface is its build.zig, build.zig.zon, C header, C example programs and a website favicon. The build script only defines the Zig module, static/dynamic C libraries, tests, benchmarks and examples, and optionally generates man pages with scdoc. There are no downloads, no hidden build steps, no encoded payloads and no use of the binary asset.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/libxev-819ffa180ca20e31c7eded74e2e1aceb1eab557f.tar.gz@libxev-0.0.0-86vtc8QQFACz0sVc7U-VDiDIgH-XfBuEY5JpABLjHNpn/build.zig",
+        "line": 306,
+        "title": "Build runs scdoc to generate man pages",
+        "detail": "manPages() runs the system program `scdoc` via addSystemCommand, feeding it the package's own docs/*.scd files and installing the output as man pages. This is ordinary documentation generation, gated on scdoc being present or the emit-man-pages option, and does not touch anything outside the build."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/libxev-819ffa180ca20e31c7eded74e2e1aceb1eab557f.tar.gz@libxev-0.0.0-86vtc8QQFACz0sVc7U-VDiDIgH-XfBuEY5JpABLjHNpn/build.zig",
+        "line": 60,
+        "title": "Stale comment about libxml2",
+        "detail": "The comment above the dynamic library says it requires a native target 'so we can link to libxml2', yet nothing links libxml2. It looks like a stale copy-paste comment and has no effect on what is built."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/libxev-819ffa180ca20e31c7eded74e2e1aceb1eab557f.tar.gz@libxev-0.0.0-86vtc8QQFACz0sVc7U-VDiDIgH-XfBuEY5JpABLjHNpn/website/public/favicon.ico",
+        "line": 0,
+        "title": "Unreferenced binary website asset",
+        "detail": "website/public/favicon.ico is a 25 KB binary. Nothing in build.zig or the sources shown references it. It belongs to the project website and is not compiled in or read at build time."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": [
+      {
+        "what": "Contents of the package's own docs/*.scd man-page sources",
+        "to": "scdoc program at build time (stdin), output installed under share/man in the build prefix",
+        "file": "deps.files.ghostty.org/libxev-819ffa180ca20e31c7eded74e2e1aceb1eab557f.tar.gz@libxev-0.0.0-86vtc8QQFACz0sVc7U-VDiDIgH-XfBuEY5JpABLjHNpn/build.zig"
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "kind": "third-party",
+  "module": "deps.files.ghostty.org/plasma_wayland_protocols-12207e0851c12acdeee0991e893e0132fc87bb763969a585dc16ecca33e88334c566.tar.gz",
+  "from": "",
+  "to": "N-V-__8AAKYZBAB-CFHBKs3u4JkeiT4BMvyHu3Y5aaWF3Bbs",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "deps.files.ghostty.org/plasma_wayland_protocols-12207e0851c12acdeee0991e893e0132fc87bb763969a585dc16ecca33e88334c566.tar.gz/autotests"
+  ],
+  "digest": "sha256:1997d6f48bbaa6964be52780e3f5861fedf4f9b43366d99e462059f0f5cd19db",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "The surface of this unit is a single file, autotests/build.c: a placeholder C program that includes the generated Wayland protocol headers and returns 0, to check that they compile. It has no side effects, network use, process execution or hidden payload, and no capabilities are listed to explain.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/plasma_wayland_protocols-12207e0851c12acdeee0991e893e0132fc87bb763969a585dc16ecca33e88334c566.tar.gz@N-V-__8AAKYZBAB-CFHBKs3u4JkeiT4BMvyHu3Y5aaWF3Bbs/autotests/build.c",
+        "line": 1,
+        "title": "Trivial header-compilation test template",
+        "detail": "autotests/build.c is a CMake configure_file template for plasma-wayland-protocols' autotests. It includes the generated client and server headers and returns 0 from main, which only checks that the headers compile. It contains no logic, no I/O and no encoded data."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

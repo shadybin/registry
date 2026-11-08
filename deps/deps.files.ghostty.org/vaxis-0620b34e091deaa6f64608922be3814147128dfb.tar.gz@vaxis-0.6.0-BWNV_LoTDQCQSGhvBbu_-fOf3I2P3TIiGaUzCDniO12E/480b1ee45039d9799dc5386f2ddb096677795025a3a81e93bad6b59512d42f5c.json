@@ -1,0 +1,45 @@
+{
+  "kind": "third-party",
+  "module": "deps.files.ghostty.org/vaxis-0620b34e091deaa6f64608922be3814147128dfb.tar.gz",
+  "from": "",
+  "to": "vaxis-0.6.0-BWNV_LoTDQCQSGhvBbu_-fOf3I2P3TIiGaUzCDniO12E",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "deps.files.ghostty.org/vaxis-0620b34e091deaa6f64608922be3814147128dfb.tar.gz",
+    "deps.files.ghostty.org/vaxis-0620b34e091deaa6f64608922be3814147128dfb.tar.gz/include"
+  ],
+  "digest": "sha256:480b1ee45039d9799dc5386f2ddb096677795025a3a81e93bad6b59512d42f5c",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "The surface of vaxis 0.6.0, a terminal UI library, is its Zig build script, its package manifest and its C API header. The build script only wires up modules, libraries, tests and examples. Dependencies are pinned by commit and content hash, and the header contains only declarations, with nothing suspicious such as build-time execution, encoded payloads or reviewer-directed text.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/vaxis-0620b34e091deaa6f64608922be3814147128dfb.tar.gz@vaxis-0.6.0-BWNV_LoTDQCQSGhvBbu_-fOf3I2P3TIiGaUzCDniO12E/build.zig",
+        "line": 4,
+        "title": "Build script is conventional",
+        "detail": "build.zig reads build.zig.zon at compile time via @embedFile, only to extract the version string. It declares library, example, benchmark, test and docs steps. No system commands run, no network fetches happen outside Zig's hash-pinned dependency mechanism, and no files are generated from opaque data."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/vaxis-0620b34e091deaa6f64608922be3814147128dfb.tar.gz@vaxis-0.6.0-BWNV_LoTDQCQSGhvBbu_-fOf3I2P3TIiGaUzCDniO12E/build.zig.zon",
+        "line": 6,
+        "title": "Dependencies pinned by commit and hash",
+        "detail": "The zigimg and uucode dependencies are fetched from GitHub at fixed commits and verified against content hashes by the Zig package manager. They are separate review units."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/vaxis-0620b34e091deaa6f64608922be3814147128dfb.tar.gz@vaxis-0.6.0-BWNV_LoTDQCQSGhvBbu_-fOf3I2P3TIiGaUzCDniO12E/include/vaxis.h",
+        "line": 1,
+        "title": "C header is plain declarations",
+        "detail": "vaxis.h contains only declarations, macros and type definitions for the C API: terminal, TTY, PTY spawning, images and the OSC 7501 program-status protocol. All of this fits a terminal UI library. It has no executable code and no directives aimed at reviewers."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

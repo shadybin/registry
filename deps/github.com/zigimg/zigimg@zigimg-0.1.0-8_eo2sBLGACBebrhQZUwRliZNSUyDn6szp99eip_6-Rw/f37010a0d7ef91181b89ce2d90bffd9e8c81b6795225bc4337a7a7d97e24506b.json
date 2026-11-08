@@ -1,0 +1,54 @@
+{
+  "kind": "third-party",
+  "module": "github.com/zigimg/zigimg",
+  "from": "zigimg-0.1.0-8_eo2oyaFwBZwJpmqPkCfVXWBrHcqbYwmrp1I6bTD3lI",
+  "to": "zigimg-0.1.0-8_eo2sBLGACBebrhQZUwRliZNSUyDn6szp99eip_6-Rw",
+  "scope": "diff",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "github.com/zigimg/zigimg",
+    "github.com/zigimg/zigimg/src",
+    "github.com/zigimg/zigimg/src/Image",
+    "github.com/zigimg/zigimg/src/compressions",
+    "github.com/zigimg/zigimg/src/compressions/deflate",
+    "github.com/zigimg/zigimg/src/formats",
+    "github.com/zigimg/zigimg/src/formats/jpeg",
+    "github.com/zigimg/zigimg/src/formats/png",
+    "github.com/zigimg/zigimg/src/formats/tiff",
+    "github.com/zigimg/zigimg/tests",
+    "github.com/zigimg/zigimg/tests/formats"
+  ],
+  "digest": "sha256:f37010a0d7ef91181b89ce2d90bffd9e8c81b6795225bc4337a7a7d97e24506b",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "The diff moves zigimg to the Zig 0.17 builtins (@backingInt, @fromBackingInt, @trunc, @Int, @splat), adds the Sega BGR222/444 pixel formats and Image.dupe, and makes grayscale types use the shared `to` methods. It also brings bounds and overflow hardening to LZW, JPEG and GIF parsing, plus new tests. I checked every changed file and found no network access, process execution, file access beyond the existing image read/write APIs, environment reads, encoded payloads or build-script changes.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/zigimg/zigimg@zigimg-0.1.0-8_eo2sBLGACBebrhQZUwRliZNSUyDn6szp99eip_6-Rw/src/PixelFormatConverter.zig",
+        "line": 540,
+        "title": "Copy-paste bug in sega_bgr444 conversions",
+        "detail": "The sega_bgr444 to RGB and float32 conversion cases call RgbColorToRgbColor(.sega_bgr222, ...) and rgbColorToColorf32(.sega_bgr222, ...). That reads the wrong union field of the pixel storage. It is a copy-paste error and is either a compile error or a memory-safety bug, not deliberate."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/zigimg/zigimg@zigimg-0.1.0-8_eo2sBLGACBebrhQZUwRliZNSUyDn6szp99eip_6-Rw/src/color.zig",
+        "line": 0,
+        "title": "Typo in grayscale float4",
+        "detail": "ToMethodsGrayscale.float4 references self.valuie, a typo. Because Zig evaluates lazily, it only fails to compile if the function is called. Harmless."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/zigimg/zigimg@zigimg-0.1.0-8_eo2sBLGACBebrhQZUwRliZNSUyDn6szp99eip_6-Rw/src/compressions/lzw.zig",
+        "line": 23,
+        "title": "Hardening fixes for malformed input",
+        "detail": "The LZW decoder now caps the dictionary size. JPEG dequantization and IDCT now check for overflow. GIF parsing tolerates truncated files. The SGI alpha channel now reads from the correct buffer. All of these are ordinary robustness fixes for parsing untrusted images."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "kind": "third-party",
+  "module": "deps.files.ghostty.org/zig_wayland-27dda01712ddf3cb46ebd93380d88b01a7c828f8.tar.gz",
+  "from": "",
+  "to": "wayland-0.7.0-dev-lQa1klz9AQB87V0pMKMdm8JvyOx32XR9FxcWnw9wh6XZ",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "deps.files.ghostty.org/zig_wayland-27dda01712ddf3cb46ebd93380d88b01a7c828f8.tar.gz",
+    "deps.files.ghostty.org/zig_wayland-27dda01712ddf3cb46ebd93380d88b01a7c828f8.tar.gz/src"
+  ],
+  "digest": "sha256:95e65554ea1323dc32904d91ff1694b3b2f50fe6c2c2702b70518fb039ce84dd",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This is zig-wayland's build surface: build.zig exposes a Scanner helper that builds and runs src/scanner.zig at build time to turn Wayland protocol XML into Zig bindings, locating system XML via pkg-config; the package's own build function does nothing unless enable-tests is set. I checked the build script, manifest and the generator for network access, secret reads, hidden behaviour or payloads and found only ordinary XML parsing and source generation consistent with the library's purpose.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/zig_wayland-27dda01712ddf3cb46ebd93380d88b01a7c828f8.tar.gz@wayland-0.7.0-dev-lQa1klz9AQB87V0pMKMdm8JvyOx32XR9FxcWnw9wh6XZ/build.zig",
+        "line": 120,
+        "title": "Build-time pkg-config invocation",
+        "detail": "Scanner.create runs `pkg-config --variable=pkgdatadir wayland-scanner/wayland-protocols` (honouring $PKG_CONFIG) when the caller does not supply XML paths. This is the standard way to locate wayland.xml and wayland-protocols and only reads a directory path."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/zig_wayland-27dda01712ddf3cb46ebd93380d88b01a7c828f8.tar.gz@wayland-0.7.0-dev-lQa1klz9AQB87V0pMKMdm8JvyOx32XR9FxcWnw9wh6XZ/src/scanner.zig",
+        "line": 26,
+        "title": "Build-time code generator",
+        "detail": "The scanner is a host executable built from src/scanner.zig and run during the build to parse protocol XML and emit Zig bindings. It only opens the XML files given with -i and writes the single -o output; it embeds wayland_client_core.zig, wayland_server_core.zig, common_core.zig, ffi.zig and client_display_functions.zig verbatim into the output. No network, environment, or unrelated file access."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": [
+      {
+        "what": "Arguments '--variable=pkgdatadir wayland-scanner' / 'wayland-protocols' to locate system protocol XML directories",
+        "to": "pkg-config subprocess at build time (or the program named by $PKG_CONFIG)",
+        "file": "deps.files.ghostty.org/zig_wayland-27dda01712ddf3cb46ebd93380d88b01a7c828f8.tar.gz@wayland-0.7.0-dev-lQa1klz9AQB87V0pMKMdm8JvyOx32XR9FxcWnw9wh6XZ/build.zig"
+      },
+      {
+        "what": "Zig binding source generated from Wayland protocol XML plus embedded core source files",
+        "to": "Generated wayland.zig file in the Zig build cache (path passed via -o)",
+        "file": "deps.files.ghostty.org/zig_wayland-27dda01712ddf3cb46ebd93380d88b01a7c828f8.tar.gz@wayland-0.7.0-dev-lQa1klz9AQB87V0pMKMdm8JvyOx32XR9FxcWnw9wh6XZ/src/scanner.zig"
+      }
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "kind": "third-party",
+  "module": "github.com/zig-utils/zig-regex",
+  "from": "zig_regex-0.2.0-omky0f_2BgAXpSGi4MbMSngUU98FBX9RQIB2ShE3G2ww",
+  "to": "zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3",
+  "scope": "diff",
+  "part": 3,
+  "parts": 3,
+  "packages": [
+    "github.com/zig-utils/zig-regex/src"
+  ],
+  "digest": "sha256:6a65fd371dd8982cb0e600cba1d1b35bbb03e50de81f1ae5f821c8ad0b635c42",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This part of the zig-regex 0.2.1 diff adds generated Unicode property tables, a UTF-8 byte-range lowering for character classes, and changes to the NFA VM that reuse buffers and fix capture handling. I checked every added and changed line for I/O, network use, process execution, environment access, encoded payloads and build-time hooks, and found none. All of the code is pure regex-engine logic.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/src/unicode_prop_data.zig",
+        "line": 1,
+        "title": "Generated Unicode property tables",
+        "detail": "The new file is a large generated table of Unicode 17.0.0 Script, Script_Extensions and binary-property ranges, used for \\p{...} matching. It holds only numeric range structs, StaticStringMap name lookups and a switch that returns slices. Nothing in it is encoded or executable, and it has no I/O or side effects. Spot checks agree with known UCD data, for example ASCII letters mapped to Latin (75) and White_Space ranges."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/src/utf8_class.zig",
+        "line": 1,
+        "title": "UTF-8 class lowering",
+        "detail": "The new file lowers code-point class sets into UTF-8/WTF-8 byte-range sequences, the standard utf8-ranges technique. It is pure computation over allocator-managed lists with no system access."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/src/vm.zig",
+        "line": 96,
+        "title": "VM scratch-buffer reuse and capture fixes",
+        "detail": "The VM changes are performance and correctness work:\n- reuse of the visited bitmap and the thread lists across calls;\n- a pool of capture buffers;\n- skipping allocation when there are zero captures;\n- a `matched` flag on captures, with every capture slot initialized;\n- case-insensitive matching for character classes;\n- clearing captures on transitions.\nOne behaviour change: `deinit` must now be called on the VM, and the tests were updated to do so. Nothing in the change is security-relevant."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

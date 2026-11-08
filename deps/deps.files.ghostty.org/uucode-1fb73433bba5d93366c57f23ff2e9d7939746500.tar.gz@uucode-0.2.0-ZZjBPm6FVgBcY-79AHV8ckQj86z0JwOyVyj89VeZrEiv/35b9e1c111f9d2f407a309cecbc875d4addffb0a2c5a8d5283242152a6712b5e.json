@@ -1,0 +1,55 @@
+{
+  "kind": "third-party",
+  "module": "deps.files.ghostty.org/uucode-1fb73433bba5d93366c57f23ff2e9d7939746500.tar.gz",
+  "from": "",
+  "to": "uucode-0.2.0-ZZjBPm6FVgBcY-79AHV8ckQj86z0JwOyVyj89VeZrEiv",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "deps.files.ghostty.org/uucode-1fb73433bba5d93366c57f23ff2e9d7939746500.tar.gz"
+  ],
+  "digest": "sha256:35b9e1c111f9d2f407a309cecbc875d4addffb0a2c5a8d5283242152a6712b5e",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "uucode is a Zig Unicode library. Its build.zig assembles a build-config Zig file from the fields options, then compiles and runs a host generator that produces Unicode tables from the bundled ucd/ data. build.zig.zon only declares package metadata and paths. Neither file contains network access, external process execution, downloads, environment probing or writes outside the build cache.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/uucode-1fb73433bba5d93366c57f23ff2e9d7939746500.tar.gz@uucode-0.2.0-ZZjBPm6FVgBcY-79AHV8ckQj86z0JwOyVyj89VeZrEiv/build.zig",
+        "line": 298,
+        "title": "Build-time code generation runs a host executable",
+        "detail": "build.zig compiles src/generate.zig into a host executable and runs it during the build, with the working directory set to the package root. It writes tables.zig into the build cache, and the declared inputs are the package's own ucd/ files. This is the usual way a Unicode library builds its lookup tables from UCD data. The generator source is not part of this surface, so its runtime behaviour was not reviewed here."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/uucode-1fb73433bba5d93366c57f23ff2e9d7939746500.tar.gz@uucode-0.2.0-ZZjBPm6FVgBcY-79AHV8ckQj86z0JwOyVyj89VeZrEiv/build.zig",
+        "line": 303,
+        "title": "UCD input list derived from embedded .gitignore",
+        "detail": "The list of UCD input files is taken from the embedded ucd/.gitignore via src/ucd_inputs.zig. The list is used only to register file inputs for cache invalidation. It is an unusual source for such a list but is benign: it reads data files from inside the package, does nothing that leaves the package, and executes nothing."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/uucode-1fb73433bba5d93366c57f23ff2e9d7939746500.tar.gz@uucode-0.2.0-ZZjBPm6FVgBcY-79AHV8ckQj86z0JwOyVyj89VeZrEiv/build.zig",
+        "line": 265,
+        "title": "Build options interpolated into generated source",
+        "detail": "Strings from the fields build options are written unescaped into generated Zig source. These values come from the depending project's own build configuration, so this does not cross a trust boundary."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": [
+      {
+        "what": "Generated Zig source listing the Unicode property fields chosen through build options",
+        "to": "Zig build cache (generated build_config.zig via addWriteFiles)",
+        "file": "deps.files.ghostty.org/uucode-1fb73433bba5d93366c57f23ff2e9d7939746500.tar.gz@uucode-0.2.0-ZZjBPm6FVgBcY-79AHV8ckQj86z0JwOyVyj89VeZrEiv/build.zig"
+      },
+      {
+        "what": "Unicode lookup tables generated at build time from the package's bundled ucd/ data files",
+        "to": "Zig build cache (tables.zig output of the uucode_generate host executable)",
+        "file": "deps.files.ghostty.org/uucode-1fb73433bba5d93366c57f23ff2e9d7939746500.tar.gz@uucode-0.2.0-ZZjBPm6FVgBcY-79AHV8ckQj86z0JwOyVyj89VeZrEiv/build.zig"
+      }
+    ]
+  }
+}

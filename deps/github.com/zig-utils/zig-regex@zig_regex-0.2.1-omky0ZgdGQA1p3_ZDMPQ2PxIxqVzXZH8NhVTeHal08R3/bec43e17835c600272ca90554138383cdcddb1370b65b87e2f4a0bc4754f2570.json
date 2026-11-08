@@ -1,0 +1,51 @@
+{
+  "kind": "third-party",
+  "module": "github.com/zig-utils/zig-regex",
+  "from": "zig_regex-0.2.0-omky0f_2BgAXpSGi4MbMSngUU98FBX9RQIB2ShE3G2ww",
+  "to": "zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3",
+  "scope": "diff",
+  "part": 1,
+  "parts": 3,
+  "packages": [
+    "github.com/zig-utils/zig-regex"
+  ],
+  "digest": "sha256:bec43e17835c600272ca90554138383cdcddb1370b65b87e2f4a0bc4754f2570",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This diff part covers the zig-regex build.zig and build.zig.zon. It adds test suites, a test-core step and new benchmark executables (now installed only on opt-in), replaces run-argument passthrough with build options, and bumps the version. I checked the build script for build-time execution, downloads, system commands, file writes or hidden payloads and found none: the changes only declare build and test steps over files in the package.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/build.zig",
+        "line": 252,
+        "title": "New test steps registered",
+        "detail": "The build script adds test steps (anchored_search, differential_fuzz, random_fuzz, inline_modifiers, benchmarks) and re-enables the posix_classes and fuzz tests. It also adds a 'test-core' step. All of these are ordinary addTest/addRunArtifact declarations against files in the package and run only when a developer invokes 'zig build test'. Nothing executes at build time beyond step graph construction."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/build.zig",
+        "line": 515,
+        "title": "Benchmark executables gated behind install-benchmarks option",
+        "detail": "The benchmark executables (benchmark, prefix_bench, findall_bench, zg, line_count_bench) are now installed only when -Dinstall-benchmarks=true. Before, the existing ones were always installed. This narrows what a default build produces. The new executables link libc for clock_gettime timing. None of them runs as part of a dependency build."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/build.zig",
+        "line": 117,
+        "title": "Run argument handling changed to build options",
+        "detail": "Passthrough of 'zig build run -- args' is replaced by a single -Drun-arg option, and a similar -Dfindall-bench-arg option is added. Both are developer conveniences for local run steps and have no security relevance."
+      },
+      {
+        "severity": "info",
+        "file": "github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3/build.zig.zon",
+        "line": 3,
+        "title": "Version and minimum Zig version bump",
+        "detail": "The version is bumped to 0.2.1 and minimum_zig_version to a 0.17.0-dev build. The empty dependencies field is removed. No external dependencies are introduced."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "kind": "third-party",
+  "module": "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz",
+  "from": "",
+  "to": "N-V-__8AAKrHGAAs2shYq8UkE6bGcR1QJtLTyOE_lcosMn6t",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz/cursor",
+    "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz/doc/publican/sources/images",
+    "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz/egl",
+    "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz/src",
+    "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz/tests",
+    "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz/tests/data"
+  ],
+  "digest": "sha256:60d983f6937eb546cce5d3a5f75a359db83ed35dd38b1dd181c548897f246f10",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "This unit is the libwayland source surface: the client and server libraries, the connection marshalling code (via libffi), the event loop, shm, the cursor library with its xcursor theme loader, the egl shim, the wayland-scanner, and the test suite. I checked build tools, binary files, socket and environment handling, and test code. All of it matches upstream libwayland: data goes only to the local compositor socket and shared memory, and there is no network use, credential access, hidden behaviour or code loading.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz@N-V-__8AAKrHGAAs2shYq8UkE6bGcR1QJtLTyOE_lcosMn6t/tests/test-runner.c",
+        "line": 239,
+        "title": "Debugger detection in test harness",
+        "detail": "The test runner forks a child that ptrace-attaches to the parent to detect a debugger, then disables timeouts and fd-leak checks. This is upstream libwayland test code, used only to ease debugging of tests. It is not part of the client or server libraries and has no effect on shipped behaviour."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz@N-V-__8AAKrHGAAs2shYq8UkE6bGcR1QJtLTyOE_lcosMn6t/cursor/cursor.pcf",
+        "line": 0,
+        "title": "Binary font and image files not used in build",
+        "detail": "cursor.pcf is read only by the standalone convert_font.c tool. That tool generates cursor-data.h, which is committed as readable source and matches the standard X cursor glyphs. The PNG files are documentation images. Neither binary is compiled in or unpacked at build time."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz@N-V-__8AAKrHGAAs2shYq8UkE6bGcR1QJtLTyOE_lcosMn6t/src/wayland-os.c",
+        "line": 45,
+        "title": "Overridable syscall wrappers",
+        "detail": "The wl_fcntl, wl_socket, wl_recvmsg and wl_epoll_create1 function pointers are overridable for unit tests. This matches upstream, and the pointers are initialised to the libc functions."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": [
+      {
+        "what": "Wayland protocol requests and passed file descriptors (connection.c sendmsg with SCM_RIGHTS)",
+        "to": "Local Wayland compositor over a Unix-domain socket ($XDG_RUNTIME_DIR/$WAYLAND_DISPLAY, or the fd in WAYLAND_SOCKET)",
+        "file": "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz@N-V-__8AAKrHGAAs2shYq8UkE6bGcR1QJtLTyOE_lcosMn6t/src/wayland-client.c"
+      },
+      {
+        "what": "Cursor image pixels loaded from local cursor themes or built-in fallback data",
+        "to": "Compositor, through shared memory (memfd, or an unlinked temp file in XDG_RUNTIME_DIR)",
+        "file": "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz@N-V-__8AAKrHGAAs2shYq8UkE6bGcR1QJtLTyOE_lcosMn6t/cursor/wayland-cursor.c"
+      },
+      {
+        "what": "Protocol message trace, only when WAYLAND_DEBUG is set (wl_closure_print)",
+        "to": "stderr",
+        "file": "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz@N-V-__8AAKrHGAAs2shYq8UkE6bGcR1QJtLTyOE_lcosMn6t/src/connection.c"
+      },
+      {
+        "what": "Server-side display socket creation, used only by compositors that call wl_display_add_socket",
+        "to": "Listening socket and .lock file in XDG_RUNTIME_DIR",
+        "file": "deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz@N-V-__8AAKrHGAAs2shYq8UkE6bGcR1QJtLTyOE_lcosMn6t/src/wayland-server.c"
+      }
+    ]
+  }
+}

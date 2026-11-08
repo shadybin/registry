@@ -1,0 +1,45 @@
+{
+  "kind": "third-party",
+  "module": "deps.files.ghostty.org/aro-d0c8c4d9c55daa7ef6e40cf0f630a5b5e900989b.tar.gz",
+  "from": "",
+  "to": "aro-0.0.0-JSD1QtuBNwCASyBtNF3pqTl_W3oAJQGEVyFAtrBSE_Pa",
+  "scope": "surface",
+  "part": 1,
+  "parts": 1,
+  "packages": [
+    "deps.files.ghostty.org/aro-d0c8c4d9c55daa7ef6e40cf0f630a5b5e900989b.tar.gz",
+    "deps.files.ghostty.org/aro-d0c8c4d9c55daa7ef6e40cf0f630a5b5e900989b.tar.gz/include"
+  ],
+  "digest": "sha256:05b4f00d27bc89153baeebd7bb25f39c3aa1e965f5d0048e2298f66c84460fc8",
+  "cached": false,
+  "served_by": "claude-opus-5-5",
+  "result": {
+    "summary": "Aro is a C compiler/frontend written in Zig. This surface is its build.zig, its build.zig.zon and its bundled standard C headers. The build script defines modules, runs a local generator over builtin .def tables, installs the headers and defines optional test, fuzz and Tracy steps; it has no network access, no hidden commands and no encoded payloads. The headers are plain macro and typedef definitions.",
+    "verdict": "pass",
+    "findings": [
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/aro-d0c8c4d9c55daa7ef6e40cf0f630a5b5e900989b.tar.gz@aro-0.0.0-JSD1QtuBNwCASyBtNF3pqTl_W3oAJQGEVyFAtrBSE_Pa/build.zig",
+        "line": 6,
+        "title": "Build-time code generation from .def files",
+        "detail": "build.zig compiles build/generate_def.zig for the host and runs it on the Builtins/*.def files in src/aro to produce Zig modules. This is ordinary table generation for compiler builtins. The generator's own source is not part of this surface; what it does is consistent with its name and inputs."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/aro-d0c8c4d9c55daa7ef6e40cf0f630a5b5e900989b.tar.gz@aro-0.0.0-JSD1QtuBNwCASyBtNF3pqTl_W3oAJQGEVyFAtrBSE_Pa/build.zig",
+        "line": 113,
+        "title": "Unreachable git invocation and opt-in system commands",
+        "detail": "A `git describe` invocation sits behind `if (true) break :v version_string;`, so it never runs. The fuzz step's afl-clang-lto command, the tests and the Tracy integration only run when the user explicitly asks for those steps or options."
+      },
+      {
+        "severity": "info",
+        "file": "deps.files.ghostty.org/aro-d0c8c4d9c55daa7ef6e40cf0f630a5b5e900989b.tar.gz@aro-0.0.0-JSD1QtuBNwCASyBtNF3pqTl_W3oAJQGEVyFAtrBSE_Pa/include/stdint.h",
+        "line": 0,
+        "title": "Bundled C headers are standard definitions",
+        "detail": "The include/*.h files are standard freestanding C headers: limits, stdint, stdatomic, stdarg and similar. They contain only macros and typedefs mapped to compiler builtins. There is no executable payload."
+      }
+    ],
+    "capabilities": [],
+    "data_flows": []
+  }
+}
