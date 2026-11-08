@@ -73,6 +73,30 @@ fetch() {
   return 1
 }
 
+# certify_run <gh_repo> <tag> <published>: sets $run to "<id> <status> <conclusion>" for the
+# newest certify run of tag in gh_repo, so the badge and page can say what it is doing
+# while the release has no statement. A run's plan job is named "plan <tag>" since
+# shadybin v1.0.6; for an older certify, a plan job in a run since the release was
+# published, on the tag or started by hand, is taken as certifying it. Only the run's id,
+# status and conclusion are passed on; shadybin builds the link and checks the rest.
+certify_run() {
+  local gh_repo=$1 tag=$2 published=$3 id branch event status conclusion names
+  run=
+  while read -r id branch event status conclusion; do
+    [[ "$id" =~ ^[0-9]+$ ]] || continue
+    # The last part of each job's name: "plan <tag>", or "plan", inside the certify call.
+    names=$(gh api "repos/$gh_repo/actions/runs/$id/jobs?per_page=100" \
+      -q '.jobs[].name | select(contains(" / ")) | split(" / ") | last' 2>/dev/null) || continue
+    if grep -qxF "plan $tag" <<<"$names" ||
+      { grep -qx 'plan' <<<"$names" && { [ "$branch" = "$tag" ] || [ "$event" = workflow_dispatch ]; }; }; then
+      run="$id $status ${conclusion:-}"
+      return 0
+    fi
+  done < <(gh api -X GET "repos/$gh_repo/actions/runs" -f created=">=$published" -f per_page=30 \
+    -q '.workflow_runs[] | "\(.id) \(.head_branch) \(.event) \(.status) \(.conclusion // "")"' 2>/dev/null)
+  return 1
+}
+
 shopt -s nullglob
 for project in github.com/*/*/shadybin.json; do
   repo=${project%/shadybin.json}
@@ -107,7 +131,12 @@ for project in github.com/*/*/shadybin.json; do
   # of it: so an old green badge cannot outlive a release nobody certified.
   if latest=$(gh api "repos/$gh_repo/releases/latest" -q '.tag_name + " " + .published_at' 2>/dev/null) &&
     read -r tag published <<<"$latest" && [[ "$tag" =~ $tag_pattern ]]; then
-    shadybin badge -registry . -repo "$repo" -tag "$tag" -published "$published" ||
+    run_args=()
+    if [ ! -e "$repo/$tag/statement.txt" ] && certify_run "$gh_repo" "$tag" "$published"; then
+      read -r run_id run_status run_conclusion <<<"$run"
+      run_args=(-run "$run_id" -run-status "$run_status" -run-conclusion "${run_conclusion:-}")
+    fi
+    shadybin badge -registry . -repo "$repo" -tag "$tag" -published "$published" ${run_args[@]+"${run_args[@]}"} ||
       echo "::warning::$repo $tag: badge not updated"
   fi
 done
