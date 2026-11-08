@@ -1,0 +1,202 @@
+{
+  "model": "claude-opus-5-5",
+  "prompt": "3",
+  "previous": "v1.0.5",
+  "modules": [
+    {
+      "path": "github.com/anthropics/anthropic-sdk-go",
+      "version": "v1.82.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/bahlo/generic-list-go",
+      "version": "v0.2.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/buger/jsonparser",
+      "version": "v1.1.2",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/go-logr/logr",
+      "version": "v1.4.2",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/go-logr/stdr",
+      "version": "v1.2.2",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/invopop/jsonschema",
+      "version": "v0.14.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/pb33f/ordered-map/v2",
+      "version": "v2.3.1",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/shadybin/shadybin",
+      "version": "",
+      "owned": true,
+      "scope": "project",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/shadybin/shadybin/verify",
+      "version": "",
+      "owned": true,
+      "scope": "project",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/standard-webhooks/standard-webhooks/libraries",
+      "version": "v0.0.1",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/tidwall/gjson",
+      "version": "v1.18.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/tidwall/match",
+      "version": "v1.1.1",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/tidwall/pretty",
+      "version": "v1.2.1",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/tidwall/sjson",
+      "version": "v1.2.5",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "go.opentelemetry.io/auto/sdk",
+      "version": "v1.1.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "go.opentelemetry.io/otel",
+      "version": "v1.33.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "go.opentelemetry.io/otel/metric",
+      "version": "v1.33.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "go.opentelemetry.io/otel/trace",
+      "version": "v1.33.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "go.yaml.in/yaml/v4",
+      "version": "v4.0.0-rc.2",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "golang.org/x/sync",
+      "version": "v0.16.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    }
+  ],
+  "units": [
+    {
+      "kind": "project",
+      "module": "github.com/shadybin/shadybin",
+      "from": "v1.0.5",
+      "to": "",
+      "scope": "diff",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/shadybin/shadybin/cmd/shadybin",
+        "github.com/shadybin/shadybin/internal/checksums",
+        "github.com/shadybin/shadybin/internal/cli",
+        "github.com/shadybin/shadybin/internal/env",
+        "github.com/shadybin/shadybin/internal/keys",
+        "github.com/shadybin/shadybin/internal/manifest",
+        "github.com/shadybin/shadybin/internal/registry",
+        "github.com/shadybin/shadybin/internal/review",
+        "github.com/shadybin/shadybin/verify"
+      ],
+      "digest": "sha256:bdcf70fa8d4c0287a83865be113eccd6e13878583dc250ad83f5dbd5a24b2853",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "The change adds optional -run, -run-status and -run-conclusion flags to the badge command. These record a release's newest certify run in run.json inside the registry, show \"certifying\" or \"certify failed\" badge states, and link the run from the project page. I checked the new validation, the file writes, the state logic and the template change. None of it touches the network, secrets, execution or the signature verification path, and nothing is hidden or deceptive.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "internal/registry/registry.go",
+            "line": 317,
+            "title": "Stale run record can hold a release in 'certifying' past the pending window",
+            "detail": "State now returns Certifying whenever a recorded run.json has a status other than \"completed\", and this takes precedence over the PendingFor clock. If intake records a queued or in-progress run and never refreshes run.json, the badge could read \"certifying\" indefinitely instead of turning to \"not certified\". It is a state-display weakness, not a hidden behaviour. It cannot make an unsigned release look certified, because verify.Checker relies on signed statements, not on badges."
+          },
+          {
+            "severity": "info",
+            "file": "internal/registry/registry.go",
+            "line": 232,
+            "title": "Run link constructed and validated, not taken from input",
+            "detail": "NewRun builds the run URL as https://github.com/\u003cowner\u003e/\u003cname\u003e/actions/runs/\u003cid\u003e. It does not accept a caller-supplied URL. It requires the repo to be on github.com with exactly owner/name, and it rejects any status or conclusion GitHub does not use. LoadRun checks the same things again when it reads the file. The URL goes into an href in the project page template, so the input validation limits link injection."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "The newest certify run's GitHub Actions URL (built from the repo and numeric run id), its status and its conclusion, all checked against fixed lists.",
+            "to": "run.json in the release's directory of the local registry checkout (the registry's own state, later published at shadybin.dev/registry)",
+            "file": "internal/registry/registry.go"
+          }
+        ]
+      }
+    }
+  ],
+  "verdict": "certified",
+  "reasons": null
+}
