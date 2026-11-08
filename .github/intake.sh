@@ -76,11 +76,12 @@ fetch() {
 # certify_run <gh_repo> <tag> <published>: sets $run to "<id> <status> <conclusion>" for the
 # newest certify run of tag in gh_repo, so the badge and page can say what it is doing
 # while the release has no statement. A run's plan job is named "plan <tag>" since
-# shadybin v1.0.6; for an older certify, a plan job in a run since the release was
-# published, on the tag or started by hand, is taken as certifying it. Only the run's id,
+# shadybin v1.0.6; for an older certify, a plan job in a run on the tag, or started by
+# hand since the release was published, is taken as certifying it. Only the run's id,
 # status and conclusion are passed on; shadybin builds the link and checks the rest.
 certify_run() {
   local gh_repo=$1 tag=$2 published=$3 id branch event status conclusion names
+  local runs_query='.workflow_runs[] | "\(.id) \(.head_branch) \(.event) \(.status) \(.conclusion // "")"'
   run=
   while read -r id branch event status conclusion; do
     [[ "$id" =~ ^[0-9]+$ ]] || continue
@@ -92,8 +93,15 @@ certify_run() {
       run="$id $status ${conclusion:-}"
       return 0
     fi
-  done < <(gh api -X GET "repos/$gh_repo/actions/runs" -f created=">=$published" -f per_page=30 \
-    -q '.workflow_runs[] | "\(.id) \(.head_branch) \(.event) \(.status) \(.conclusion // "")"' 2>/dev/null)
+  done < <(
+    # Runs on the tag (a release workflow that certifies itself starts before
+    # it publishes), and runs since publishing (certify started by hand),
+    # newest first.
+    {
+      gh api -X GET "repos/$gh_repo/actions/runs" -f branch="$tag" -f per_page=10 -q "$runs_query"
+      gh api -X GET "repos/$gh_repo/actions/runs" -f created=">=$published" -f per_page=30 -q "$runs_query"
+    } 2>/dev/null | sort -rnu -k1,1
+  )
   return 1
 }
 
