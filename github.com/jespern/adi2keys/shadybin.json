@@ -1,0 +1,14 @@
+{
+  "repo": "github.com/jespern/adi2keys",
+  "language": "swift",
+  "seal": true,
+  "builds": [
+    {
+      "runner": "xcode-27",
+      "toolchain": {"xcode": "27.2"},
+      "run": ["VERSION=\"${TAG#v}\" zsh release/build.sh"],
+      "artifacts": ["dist/adi2keys-*-unsigned.zip"]
+    }
+  ],
+  "checksums": "*.sha256"
+}
