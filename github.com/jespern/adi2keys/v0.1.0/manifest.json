@@ -1,0 +1,16 @@
+{
+  "tool": "none",
+  "module": "github.com/jespern/adi2keys",
+  "goos": null,
+  "packages": [
+    "github.com/jespern/adi2keys",
+    "github.com/jespern/adi2keys/.github/workflows",
+    "github.com/jespern/adi2keys/Sources/ADI2Protocol",
+    "github.com/jespern/adi2keys/Sources/adi2keys",
+    "github.com/jespern/adi2keys/Tests/ADI2ProtocolTests",
+    "github.com/jespern/adi2keys/docs",
+    "github.com/jespern/adi2keys/release"
+  ],
+  "modules": {},
+  "capabilities": {}
+}

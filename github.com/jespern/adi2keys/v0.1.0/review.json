@@ -1,0 +1,103 @@
+{
+  "model": "claude-opus-5-5",
+  "prompt": "3",
+  "previous": "",
+  "modules": [
+    {
+      "path": "github.com/jespern/adi2keys",
+      "version": "",
+      "owned": true,
+      "scope": "project"
+    }
+  ],
+  "units": [
+    {
+      "kind": "project",
+      "module": "github.com/jespern/adi2keys",
+      "from": "",
+      "to": "",
+      "scope": "whole",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/jespern/adi2keys",
+        "github.com/jespern/adi2keys/.github/workflows",
+        "github.com/jespern/adi2keys/Sources/ADI2Protocol",
+        "github.com/jespern/adi2keys/Sources/adi2keys",
+        "github.com/jespern/adi2keys/Tests/ADI2ProtocolTests",
+        "github.com/jespern/adi2keys/docs",
+        "github.com/jespern/adi2keys/release"
+      ],
+      "digest": "sha256:a638b19a183102b12484ae4e91053f0144933b43560559243722c0cabdf8a185",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "adi2keys is a small macOS background agent that installs a session event tap for the media volume and mute keys and, while an RME ADI-2 is the default output, sends matching SysEx volume and mute commands to the device over CoreMIDI. I read all the Swift sources, the protocol tests, the install, uninstall, signing and release scripts and the CI workflow. There is no networking, no access to secrets, no capture of other input, no code downloads and no hidden behaviour; the login item and local signing certificate are documented in the README.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "Sources/adi2keys/KeyTap.swift",
+            "line": 57,
+            "title": "Event tap limited to media volume keys",
+            "detail": "The CGEvent tap's mask covers only NSEvent systemDefined events. The callback acts only on NX_SUBTYPE_AUX_CONTROL_BUTTONS volume up, volume down and mute, and passes every other event through. Keystrokes are not captured, recorded or sent anywhere. This matches the README's statement that the app only intercepts the volume keys."
+          },
+          {
+            "severity": "info",
+            "file": "Sources/adi2keys/main.swift",
+            "line": 19,
+            "title": "Registers itself as a login item",
+            "detail": "SMAppService.mainApp.register() runs on every launch from a bundle, so the app opens at login. The README discloses this and uninstall.sh reverses it."
+          },
+          {
+            "severity": "info",
+            "file": "make-signing-identity.sh",
+            "line": 39,
+            "title": "Local self-signed signing identity",
+            "detail": "The script imports a self-signed code-signing identity into the login keychain with -T /usr/bin/codesign, so builds keep a stable signature and the Accessibility grant. It is local only and documented. uninstall.sh does not remove the certificate, which the README also states."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "SysEx messages: a 'request all settings' command and volume and mute parameter changes for the configured output",
+            "to": "The connected ADI-2 device's CoreMIDI destination port (USB MIDI)",
+            "file": "Sources/adi2keys/MIDI.swift"
+          },
+          {
+            "what": "Registers the app as a login item at launch, and unregisters it when run with --unregister-login-item (used by uninstall.sh); both are documented in the README",
+            "to": "macOS ServiceManagement (login items)",
+            "file": "Sources/adi2keys/main.swift"
+          },
+          {
+            "what": "Connection status and the ADI-2 MIDI port name, marked public; errors",
+            "to": "macOS unified log (subsystem org.noehr.adi2keys)",
+            "file": "Sources/adi2keys/Agent.swift"
+          },
+          {
+            "what": "A self-signed code-signing certificate and private key, with codesign allowed to use the key without a prompt",
+            "to": "User's login keychain",
+            "file": "make-signing-identity.sh"
+          },
+          {
+            "what": "The built, locally signed app bundle; the script then launches it",
+            "to": "~/Applications/adi2keys.app",
+            "file": "install.sh"
+          },
+          {
+            "what": "Removes the app, its login item, its Accessibility grant and its org.noehr.adi2keys settings",
+            "to": "TCC database and user defaults",
+            "file": "uninstall.sh"
+          },
+          {
+            "what": "Unsigned release zip, its checksum and toolchain notes; the ANTHROPIC_API_KEY secret is passed to the certify workflow, pinned by commit",
+            "to": "GitHub Releases and the pinned shadybin certify workflow",
+            "file": ".github/workflows/release.yml"
+          }
+        ]
+      }
+    }
+  ],
+  "verdict": "certified",
+  "reasons": null
+}

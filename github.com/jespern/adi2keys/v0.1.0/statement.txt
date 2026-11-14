@@ -1,0 +1,8 @@
+shadybin statement v1
+repo github.com/jespern/adi2keys
+tag v0.1.0
+verdict certified
+report sha256:2afa65362d80fd674cecf623be1b7d356b83da98de54710c83040ce061b6215a
+manifest sha256:bc4fefac6aaf2081bebbf128342bd7647ac33e2c71b3bef014be5272ec41fcb1
+review sha256:27e5ca7095f99810322c6455e6bb9223cf976019215cf3858f99780fd3679d3d
+file sha256:3217dbcb7181c25b78a6deef72f72879b6b0173c307ef5c9975e8d76615a2b1e adi2keys-0.1.0-unsigned.zip
