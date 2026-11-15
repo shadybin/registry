@@ -1,0 +1,97 @@
+# github.com/jespern/marlin v0.2.2
+
+## Rebuild
+
+Rebuilt from tag `v0.2.2` (ba5e71f387eec10d44c2b56c2f3d5b9ce291636a) and compared with the published checksums.
+
+Rebuilt offline, as a user without privileges, from the files the review covers: 229 other files of the repository emptied and `.git` removed first (scope `sha256:6959a0e169fd8c8b81815fd01ddbc4ef50f215858bd818657489529d56c55e3d`).
+
+| File | Published | Rebuilt | Result |
+|---|---|---|---|
+| `marlin-aarch64-darwin` | `sha256:d0cc67b8b08b…` | `sha256:d0cc67b8b08b…` | identical |
+| `marlin-aarch64-darwin.tar.gz` | `sha256:95ec6ada8c5c…` | `sha256:287cf34cf66a…` | same contents (only archive times and owners differ) |
+| `marlin-aarch64-linux` | `sha256:4d44f04bced4…` | `sha256:4d44f04bced4…` | identical |
+| `marlin-aarch64-linux.tar.gz` | `sha256:a64becafd9b2…` | `sha256:f0cab3aeb5bb…` | same contents (only archive times and owners differ) |
+| `marlin-x86_64-darwin` | `sha256:cf3dffb459b3…` | `sha256:cf3dffb459b3…` | identical |
+| `marlin-x86_64-darwin.tar.gz` | `sha256:1d607db2ad17…` | `sha256:ee6e53a9fb4a…` | same contents (only archive times and owners differ) |
+| `marlin-x86_64-linux` | `sha256:ec1941153cae…` | `sha256:ec1941153cae…` | identical |
+| `marlin-x86_64-linux.tar.gz` | `sha256:b2926ea6f41d…` | `sha256:11305815ab92…` | same contents (only archive times and owners differ) |
+
+## Capabilities
+
+No capability analysis for this language: only Go has one. Compiled in: 1953 packages, from 46 third-party modules.
+
+### Changes since v0.2.1
+
+- Packages removed: `./src/mk64`, `./src/wipeout`
+
+## Review
+
+**Certified.**
+
+`claude-opus-5-5` reviewed the code compiled into the binary as what changed since v0.2.1, the last certified release: 1 units, 0 of them answered from the shared cache. The verdict follows from its answers by a fixed rule, with no person involved.
+
+- Reviewed with the project's code, since it is in the vendor's repository: `github.com/jespern/marlin`
+- Third-party, unchanged since the last certified release, when it was reviewed: `github.com/ghostty-org/ghostty@ghostty-1.4.1-dev-5UdBC58_nQWN3FHzqvvLtKzhOKptGc_uH9t7ejdTBGd3`, `deps.files.ghostty.org/aro-d0c8c4d9c55daa7ef6e40cf0f630a5b5e900989b.tar.gz@aro-0.0.0-JSD1QtuBNwCASyBtNF3pqTl_W3oAJQGEVyFAtrBSE_Pa`, `deps.files.ghostty.org/DearBindings_v0.17_ImGui_v1.92.5-docking.tar.gz@N-V-__8AANT61wB--nJ95Gj_ctmzAtcjloZ__hRqNw5lC1Kr`, `deps.files.ghostty.org/freetype-1220b81f6ecfb3fd222f76cf9106fecfa6554ab07ec7fdc4124b9bb063ae2adf969d.tar.gz@N-V-__8AAKLKpwC4H27Ps_0iL3bPkQb-z6ZVSrB-x_3EEkub`, `deps.files.ghostty.org/libpng-1220aa013f0c83da3fb64ea6d327f9173fa008d10e28bc9349eac3463457723b1c66.tar.gz@N-V-__8AAJrvXQCqAT8Mg9o_tk6m0yf5Fz-gCNEOKLyTSerD`, `deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz@N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o`, `deps.files.ghostty.org/translate_c-02ff0c523fb92a38939b04d0145c4a9602a74d56.tar.gz@translate_c-2.0.0-Q_BUWltOBwBYABF84EUL208pIFeUIwbBs29FmVBaafN5`, `deps.files.ghostty.org/N-V-__8AAEbOfQBnvcFcCX2W5z7tDaN8vaNZGamEQtNOe0UI.tar.gz@N-V-__8AAEbOfQBnvcFcCX2W5z7tDaN8vaNZGamEQtNOe0UI`, `deps.files.ghostty.org/N-V-__8AAOgqbADacob-q2_DMQlmgaG4xKHRuW-6PJ4oJzMZ.tar.xz@N-V-__8AAOgqbADacob-q2_DMQlmgaG4xKHRuW-6PJ4oJzMZ`, `deps.files.ghostty.org/libxml2-2.11.5.tar.gz@N-V-__8AAG3RoQEyRC2Vw7Qoro5SYBf62IHn3HjqtNVY6aWK`, `deps.files.ghostty.org/glslang-12201278a1a05c0ce0b6eb6026c65cd3e9247aa041b1c260324bf29cee559dd23ba1.tar.gz@N-V-__8AABzkUgISeKGgXAzgtutgJsZc0-kkeqBBscJgMkvy`, `deps.files.ghostty.org/gobject-2026-10-02-38-1.tar.zst@gobject-0.3.2-Skun7LuIogBbEh-6WrLeEzMaRCnOMB3eOf__RaPYSMCZ`, `deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz@N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr`, `deps.files.ghostty.org/wayland-protocols-258d8f88f2c8c25a830c6316f87d23ce1a0f12d9.tar.gz@N-V-__8AAKw-DAAaV8bOAAGqA0-oD7o-HNIlPFYKRXSPT03S`, `deps.files.ghostty.org/harfbuzz-11.0.0.tar.xz@N-V-__8AAG02ugUcWec-Ndp-i7JTsJ0dgF8nnJRUInkGLG7G`, `deps.files.ghostty.org/highway-66486a10623fa0d72fe91260f96c892e41aceb06.tar.gz@N-V-__8AAGmZhABbsPJLfbqrh6JTHsXhY6qCaLAQyx25e0XE`, `deps.files.ghostty.org/ghostty-themes-release-20261026-153024-27cbbb5.tgz@N-V-__8AAIs9BgCF_swp81fS2tAWIJytW8NCUa6EbSOygPE3`, `deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz@N-V-__8AAIC5lwAVPJJzxnCAahSvZTIlG-HhtOvnM1uh-66x`, `deps.files.ghostty.org/gettext-0.24.tar.gz@N-V-__8AADcZkgn4cMhTUpIz6mShCKyqqB-NBtf_S2bHaTC-`, `deps.files.ghostty.org/libxev-819ffa180ca20e31c7eded74e2e1aceb1eab557f.tar.gz@libxev-0.0.0-86vtc8QQFACz0sVc7U-VDiDIgH-XfBuEY5JpABLjHNpn`, `deps.files.ghostty.org/NerdFontsSymbolsOnly-3.4.0.tar.gz@N-V-__8AAMVLTABmYkLqhZPLXnMl-KyN38R8UVYqGrxqO26s`, `deps.files.ghostty.org/oniguruma-1220c15e72eadd0d9085a8af134904d9a0f5dfcbed5f606ad60edc60ebeccd9706bb.tar.gz@N-V-__8AAHjwMQDBXnLq3Q2QhaivE0kE2aD138vtX2Bq1g7c`, `deps.files.ghostty.org/plasma_wayland_protocols-12207e0851c12acdeee0991e893e0132fc87bb763969a585dc16ecca33e88334c566.tar.gz@N-V-__8AAKYZBAB-CFHBKs3u4JkeiT4BMvyHu3Y5aaWF3Bbs`, `deps.files.ghostty.org/breakpad-b99f444ba5f6b98cac261cbb391d8766b34a5918.tar.gz@N-V-__8AALw2uwF_03u4JRkZwRLc3Y9hakkYV7NKRR9-RIZJ`, `deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz@N-V-__8AAPlZGwBEa-gxrcypGBZ2R8Bse4JYSfo_ul8i2jlG`, `deps.files.ghostty.org/spirv_cross-1220fb3b5586e8be67bc3feb34cbe749cf42a60d628d2953632c2f8141302748c8da.tar.gz@N-V-__8AANb6pwD7O1WG6L5nvD_rNMvnSc9Cpg1ijSlTYywv`, `deps.files.ghostty.org/uucode-1fb73433bba5d93366c57f23ff2e9d7939746500.tar.gz@uucode-0.2.0-ZZjBPm6FVgBcY-79AHV8ckQj86z0JwOyVyj89VeZrEiv`, `deps.files.ghostty.org/vaxis-0620b34e091deaa6f64608922be3814147128dfb.tar.gz@vaxis-0.6.0-BWNV_LoTDQCQSGhvBbu_-fOf3I2P3TIiGaUzCDniO12E`, `github.com/zigimg/zigimg@zigimg-0.1.0-8_eo2sBLGACBebrhQZUwRliZNSUyDn6szp99eip_6-Rw`, `deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz@N-V-__8AAKrHGAAs2shYq8UkE6bGcR1QJtLTyOE_lcosMn6t`, `deps.files.ghostty.org/N-V-__8AAFdWDwA0ktbNUi9pFBHCRN4weXIgIfCrVjfGxqgA.tar.gz@N-V-__8AAFdWDwA0ktbNUi9pFBHCRN4weXIgIfCrVjfGxqgA`, `deps.files.ghostty.org/pixels-12207ff340169c7d40c570b4b6a97db614fe47e0d83b5801a932dcd44917424c8806.tar.gz@N-V-__8AADYiAAB_80AWnH1AxXC0tql9thT-R-DYO1gBqTLc`, `deps.files.ghostty.org/wuffs-7411f488fe2e2c205c3d3b3d28638b7356522930.tar.gz@N-V-__8AAP5JWgCGP_AD0teWpa4krRvE9VPZzvviGdbmN4jI`, `deps.files.ghostty.org/z2d-8787d71bac42d9aab00428ccb37a4fd453418761.tar.gz@z2d-0.13.2-j5P_HkkVFAAtOSQPRTS7wbZLbYs7oETRn7nUKSUwDjM_`, `deps.files.ghostty.org/zf-87153bb86b75d21fbac897b738f316d449f5d0c9.tar.gz@zf-0.11.0-OIRy8XCRAAB6FiMwIrtD6FqlagnFwpI6YyOu7bXeYH5J`, `github.com/rockorager/libvaxis@vaxis-0.6.0-BWNV_MafDAAEzkVUvrW9NFUqnnMUoeHqrs2mecnD6D7w`, `github.com/jacobsandlund/uucode@uucode-0.2.0-ZZjBPoGFVgCiflJNFc6Io8xzC67B6PA5bUkk4LT0kCxg`, `github.com/sergot/zigimg@zigimg-0.1.0-8_eo2ri_FwBqF5UYiggLz4IGjHJO_n9-B6gT9Ayqg8G4`, `deps.files.ghostty.org/zig_js-3c23860e47fdcdc5af805efb7fd0bdac5fd3e9bc.tar.gz@zig_js-0.0.0-rjCAV7-GAADvMTBL7lPMuvDk7xgS9PCMIZWiOUXLZSlj`, `deps.files.ghostty.org/zig_objc-3352c12a868f8787ab71bf2ca6eab9fcfb635c52.tar.gz@zig_objc-0.0.0-Ir_Sp_4tAQDXtPi51nW_jD9LOEzBvU9lofwO9Pzi6IB4`, `deps.files.ghostty.org/zig_wayland-27dda01712ddf3cb46ebd93380d88b01a7c828f8.tar.gz@wayland-0.7.0-dev-lQa1klz9AQB87V0pMKMdm8JvyOx32XR9FxcWnw9wh6XZ`, `github.com/zig-utils/zig-regex@zig_regex-0.2.1-omky0ZgdGQA1p3_ZDMPQ2PxIxqVzXZH8NhVTeHal08R3`, `codeberg.org/ziglang/translate-c@translate_c-2.0.2-Q_BUWvBNBwDnyehSiuAJmdFcMYHYGA-Jc3KiYdrV2Dqx`, `codeberg.org/ziglang/arocc@aro-0.0.0-JSD1QvCRNwC2O1Jkop9TO6sXb1U1vhrH8FnYK1VdEMKn`, `sqlite.org/sqlite-amalgamation@3.53.4`, `github.com/yaml/libyaml@0.2.5`
+
+Published packages checked against their source repositories:
+
+- `deps.files.ghostty.org/aro-d0c8c4d9c55daa7ef6e40cf0f630a5b5e900989b.tar.gz@aro-0.0.0-JSD1QtuBNwCASyBtNF3pqTl_W3oAJQGEVyFAtrBSE_Pa`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/DearBindings_v0.17_ImGui_v1.92.5-docking.tar.gz@N-V-__8AANT61wB--nJ95Gj_ctmzAtcjloZ__hRqNw5lC1Kr`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/freetype-1220b81f6ecfb3fd222f76cf9106fecfa6554ab07ec7fdc4124b9bb063ae2adf969d.tar.gz@N-V-__8AAKLKpwC4H27Ps_0iL3bPkQb-z6ZVSrB-x_3EEkub`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/libpng-1220aa013f0c83da3fb64ea6d327f9173fa008d10e28bc9349eac3463457723b1c66.tar.gz@N-V-__8AAJrvXQCqAT8Mg9o_tk6m0yf5Fz-gCNEOKLyTSerD`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/zlib-1220fed0c74e1019b3ee29edae2051788b080cd96e90d56836eea857b0b966742efb.tar.gz@N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/translate_c-02ff0c523fb92a38939b04d0145c4a9602a74d56.tar.gz@translate_c-2.0.0-Q_BUWltOBwBYABF84EUL208pIFeUIwbBs29FmVBaafN5`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/N-V-__8AAEbOfQBnvcFcCX2W5z7tDaN8vaNZGamEQtNOe0UI.tar.gz@N-V-__8AAEbOfQBnvcFcCX2W5z7tDaN8vaNZGamEQtNOe0UI`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/N-V-__8AAOgqbADacob-q2_DMQlmgaG4xKHRuW-6PJ4oJzMZ.tar.xz@N-V-__8AAOgqbADacob-q2_DMQlmgaG4xKHRuW-6PJ4oJzMZ`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/libxml2-2.11.5.tar.gz@N-V-__8AAG3RoQEyRC2Vw7Qoro5SYBf62IHn3HjqtNVY6aWK`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/glslang-12201278a1a05c0ce0b6eb6026c65cd3e9247aa041b1c260324bf29cee559dd23ba1.tar.gz@N-V-__8AABzkUgISeKGgXAzgtutgJsZc0-kkeqBBscJgMkvy`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/gobject-2026-10-02-38-1.tar.zst@gobject-0.3.2-Skun7LuIogBbEh-6WrLeEzMaRCnOMB3eOf__RaPYSMCZ`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/gtk4-layer-shell-1.1.0.tar.gz@N-V-__8AALiNBAA-_0gprYr92CjrMj1I5bqNu0TSJOnjFNSr`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/wayland-protocols-258d8f88f2c8c25a830c6316f87d23ce1a0f12d9.tar.gz@N-V-__8AAKw-DAAaV8bOAAGqA0-oD7o-HNIlPFYKRXSPT03S`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/harfbuzz-11.0.0.tar.xz@N-V-__8AAG02ugUcWec-Ndp-i7JTsJ0dgF8nnJRUInkGLG7G`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/highway-66486a10623fa0d72fe91260f96c892e41aceb06.tar.gz@N-V-__8AAGmZhABbsPJLfbqrh6JTHsXhY6qCaLAQyx25e0XE`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/ghostty-themes-release-20261026-153024-27cbbb5.tgz@N-V-__8AAIs9BgCF_swp81fS2tAWIJytW8NCUa6EbSOygPE3`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/JetBrainsMono-2.304.tar.gz@N-V-__8AAIC5lwAVPJJzxnCAahSvZTIlG-HhtOvnM1uh-66x`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/gettext-0.24.tar.gz@N-V-__8AADcZkgn4cMhTUpIz6mShCKyqqB-NBtf_S2bHaTC-`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/libxev-819ffa180ca20e31c7eded74e2e1aceb1eab557f.tar.gz@libxev-0.0.0-86vtc8QQFACz0sVc7U-VDiDIgH-XfBuEY5JpABLjHNpn`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/NerdFontsSymbolsOnly-3.4.0.tar.gz@N-V-__8AAMVLTABmYkLqhZPLXnMl-KyN38R8UVYqGrxqO26s`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/oniguruma-1220c15e72eadd0d9085a8af134904d9a0f5dfcbed5f606ad60edc60ebeccd9706bb.tar.gz@N-V-__8AAHjwMQDBXnLq3Q2QhaivE0kE2aD138vtX2Bq1g7c`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/plasma_wayland_protocols-12207e0851c12acdeee0991e893e0132fc87bb763969a585dc16ecca33e88334c566.tar.gz@N-V-__8AAKYZBAB-CFHBKs3u4JkeiT4BMvyHu3Y5aaWF3Bbs`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/breakpad-b99f444ba5f6b98cac261cbb391d8766b34a5918.tar.gz@N-V-__8AALw2uwF_03u4JRkZwRLc3Y9hakkYV7NKRR9-RIZJ`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/sentry-1220446be831adcca918167647c06c7b825849fa3fba5f22da394667974537a9c77e.tar.gz@N-V-__8AAPlZGwBEa-gxrcypGBZ2R8Bse4JYSfo_ul8i2jlG`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/spirv_cross-1220fb3b5586e8be67bc3feb34cbe749cf42a60d628d2953632c2f8141302748c8da.tar.gz@N-V-__8AANb6pwD7O1WG6L5nvD_rNMvnSc9Cpg1ijSlTYywv`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/uucode-1fb73433bba5d93366c57f23ff2e9d7939746500.tar.gz@uucode-0.2.0-ZZjBPm6FVgBcY-79AHV8ckQj86z0JwOyVyj89VeZrEiv`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/vaxis-0620b34e091deaa6f64608922be3814147128dfb.tar.gz@vaxis-0.6.0-BWNV_LoTDQCQSGhvBbu_-fOf3I2P3TIiGaUzCDniO12E`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/wayland-9cb3d7aa9dc995ffafdbdef7ab86a949d0fb0e7d.tar.gz@N-V-__8AAKrHGAAs2shYq8UkE6bGcR1QJtLTyOE_lcosMn6t`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/N-V-__8AAFdWDwA0ktbNUi9pFBHCRN4weXIgIfCrVjfGxqgA.tar.gz@N-V-__8AAFdWDwA0ktbNUi9pFBHCRN4weXIgIfCrVjfGxqgA`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/pixels-12207ff340169c7d40c570b4b6a97db614fe47e0d83b5801a932dcd44917424c8806.tar.gz@N-V-__8AADYiAAB_80AWnH1AxXC0tql9thT-R-DYO1gBqTLc`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/wuffs-7411f488fe2e2c205c3d3b3d28638b7356522930.tar.gz@N-V-__8AAP5JWgCGP_AD0teWpa4krRvE9VPZzvviGdbmN4jI`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/z2d-8787d71bac42d9aab00428ccb37a4fd453418761.tar.gz@z2d-0.13.2-j5P_HkkVFAAtOSQPRTS7wbZLbYs7oETRn7nUKSUwDjM_`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/zf-87153bb86b75d21fbac897b738f316d449f5d0c9.tar.gz@zf-0.11.0-OIRy8XCRAAB6FiMwIrtD6FqlagnFwpI6YyOu7bXeYH5J`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/zig_js-3c23860e47fdcdc5af805efb7fd0bdac5fd3e9bc.tar.gz@zig_js-0.0.0-rjCAV7-GAADvMTBL7lPMuvDk7xgS9PCMIZWiOUXLZSlj`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/zig_objc-3352c12a868f8787ab71bf2ca6eab9fcfb635c52.tar.gz@zig_objc-0.0.0-Ir_Sp_4tAQDXtPi51nW_jD9LOEzBvU9lofwO9Pzi6IB4`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+- `deps.files.ghostty.org/zig_wayland-27dda01712ddf3cb46ebd93380d88b01a7c828f8.tar.gz@wayland-0.7.0-dev-lQa1klz9AQB87V0pMKMdm8JvyOx32XR9FxcWnw9wh6XZ`: not checkable: an archive from deps.files.ghostty.org, not a repository.
+
+### `github.com/jespern/marlin` changes since v0.2.1
+
+PASS: This diff removes the MK64/wipEout game ports and adds phone pairing for the web companion, phone dictation, remote MCP servers with OAuth, plugin-provided MCP servers, a Muse Code guest, a user profile file, Ghostty shell integration, shell crash recovery, and live tailing of Claude Code background output. I checked the new network paths, credential storage, pairing/auth logic, subprocess launches, and file reads; all serve documented features with appropriate scoping (0600 files, HTTPS checks, path containment), and nothing hidden, exfiltrating, or backdoor-like was found.
+
+- **concern** `src/daemon/plugins.zig:0` Plugin installs can now launch MCP server processes: Installing a plugin now also registers MCP servers it declares, and the daemon reloads extensions afterwards, which spawns the plugin's stdio server commands without a separate confirmation. This matches Claude Code plugin semantics and the release notes, and is user-initiated, but it widens what a marketplace install executes.
+- **info** `src/client/web.zig:0` Web companion can listen beyond loopback with pairing: With `[web] listen` set beyond loopback and no `[web] proxy`, any LAN peer can connect; non-local requests still need a paired cookie, and Host/Origin checks remain. A six-digit pairing code with a 5-failure burn and 5-minute TTL bounds brute force.
+- **info** `src/daemon/plugins.zig:0` gh credential helper for private marketplaces: Uses the user's gh login only as a credential helper for github.com clones of marketplaces the user adds; documented in the site release notes.
+- **info** `build.zig:0` Game ports and asset downloaders removed: The MK64 and wipEout game ports, their asset downloads and scripts were removed; no remaining download-and-run paths were added.
+
+Data leaving the process:
+
+- Session transcripts, events, push info, and the account's HOME path, served only to loopback or paired devices; device cookies issued after a correct pairing code → HTTP clients on [web] listen (loopback by default; LAN/reverse proxy when configured) (`src/client/web.zig`)
+- Outstanding pairing code and SHA-256 hashes of device tokens with device names → $XDG_STATE_HOME/marlin/web/pairing.json (0600) (`src/mobile/pairing.zig`)
+- Audio clip uploaded by a paired phone; temp files deleted afterwards and the transcript returned to the browser → Temp directory under $TMPDIR, then ffmpeg and the configured whisper/parakeet binary (`src/client/web_transcribe.zig`)
+- JSON-RPC requests, tool arguments, configured headers, and a stored OAuth bearer token for that server → Configured remote MCP server URL (HTTPS, or http only to localhost) (`src/daemon/tools/mcp.zig`)
+- Dynamic client registration, PKCE authorization code exchange, refresh tokens; tokens saved to <config>/mcp-auth.json with 0600 → Authorization server metadata, registration and token endpoints (HTTPS) (`src/daemon/tools/mcp_oauth.zig`)
+- OAuth redirect callback containing the authorization code → 127.0.0.1 ephemeral port listener (`src/daemon/mcp_login.zig`)
+- Uses `gh auth git-credential` as a fallback credential helper so private GitHub marketplaces clone with the user's gh login → git clone of a plugin marketplace from github.com (`src/daemon/plugins.zig`)
+- Plugin-declared MCP servers are launched (stdio) or contacted (HTTP) with expanded environment and headers → Child processes / remote URLs declared by installed plugins (`src/daemon/plugin_mcp.zig`)
+- Contents of ~/.config/marlin/profile.md applicable to the session cwd → Model providers and guest agents (system prompt / --append-system-prompt / developerInstructions) (`src/daemon/profile.zig`)
+- User prompts, session history, approvals and question answers for the Muse Code guest → `muse serve` child process over stdio (`src/daemon/guest/muse_turn.zig`)
+- Running shell's foreground command line and transcript, for recovery after a crash → Marlin's SQLite store (live_shells table, context columns) (`src/daemon/store.zig`)
