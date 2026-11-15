@@ -1,0 +1,222 @@
+{
+  "model": "claude-opus-5-5",
+  "prompt": "3",
+  "previous": "v1.1.2",
+  "modules": [
+    {
+      "path": "github.com/anthropics/anthropic-sdk-go",
+      "version": "v1.82.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/bahlo/generic-list-go",
+      "version": "v0.2.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/buger/jsonparser",
+      "version": "v1.1.2",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/go-logr/logr",
+      "version": "v1.4.2",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/go-logr/stdr",
+      "version": "v1.2.2",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/invopop/jsonschema",
+      "version": "v0.14.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/pb33f/ordered-map/v2",
+      "version": "v2.3.1",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/shadybin/shadybin",
+      "version": "",
+      "owned": true,
+      "scope": "project",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/shadybin/shadybin/verify",
+      "version": "",
+      "owned": true,
+      "scope": "project",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/standard-webhooks/standard-webhooks/libraries",
+      "version": "v0.0.1",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/tidwall/gjson",
+      "version": "v1.18.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/tidwall/match",
+      "version": "v1.1.1",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/tidwall/pretty",
+      "version": "v1.2.1",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "github.com/tidwall/sjson",
+      "version": "v1.2.5",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "go.opentelemetry.io/auto/sdk",
+      "version": "v1.1.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "go.opentelemetry.io/otel",
+      "version": "v1.33.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "go.opentelemetry.io/otel/metric",
+      "version": "v1.33.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "go.opentelemetry.io/otel/trace",
+      "version": "v1.33.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "go.yaml.in/yaml/v4",
+      "version": "v4.0.0-rc.2",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    },
+    {
+      "path": "golang.org/x/sync",
+      "version": "v0.16.0",
+      "owned": false,
+      "scope": "unchanged",
+      "provenance": "from its repository"
+    }
+  ],
+  "units": [
+    {
+      "kind": "project",
+      "module": "github.com/shadybin/shadybin",
+      "from": "v1.1.2",
+      "to": "",
+      "scope": "diff",
+      "part": 1,
+      "parts": 1,
+      "packages": [
+        "github.com/shadybin/shadybin/cmd/shadybin",
+        "github.com/shadybin/shadybin/internal/checksums",
+        "github.com/shadybin/shadybin/internal/cli",
+        "github.com/shadybin/shadybin/internal/env",
+        "github.com/shadybin/shadybin/internal/keys",
+        "github.com/shadybin/shadybin/internal/manifest",
+        "github.com/shadybin/shadybin/internal/registry",
+        "github.com/shadybin/shadybin/internal/review",
+        "github.com/shadybin/shadybin/verify"
+      ],
+      "digest": "sha256:e9505dc541f94926bb2211d2c2b9f61091e6180758f17448d98190dc97220319",
+      "cached": false,
+      "served_by": "claude-opus-5-5",
+      "result": {
+        "summary": "The change factors HTTP downloads into a shared helper in internal/review/retry.go and wraps the existing network fetches (go mod download, crates.io, vendored archives, git fetches for Rust provenance and Swift packages, zig build --fetch) in a bounded retry with fixed waits. I checked that the endpoints, the commands and the integrity checks are unchanged: the digest check in fetchArchive, the FETCH_HEAD check in Swift, and Zig hash mismatches, which are marked final and not retried. No new destinations, secrets access or hidden behaviour were added.",
+        "verdict": "pass",
+        "findings": [
+          {
+            "severity": "info",
+            "file": "internal/review/golang.go",
+            "line": 102,
+            "title": "Go module download retries even on errors that will repeat",
+            "detail": "Fetch now retries `go mod download` on any error, including a checksum mismatch that another try would only repeat. The only effect is up to 25 seconds of extra delay before the same error is returned. The check is not weakened."
+          },
+          {
+            "severity": "info",
+            "file": "internal/review/rust.go",
+            "line": 232,
+            "title": "Crate size limit now detected explicitly",
+            "detail": "fetchCrate previously read at most maxArchive bytes and could silently truncate a crate. It now reads limit+1 and rejects anything larger. This is a correctness improvement."
+          }
+        ],
+        "capabilities": [],
+        "data_flows": [
+          {
+            "what": "HTTP GET requests for archives, now retried up to three times on network errors, 5xx, 408 or 429.",
+            "to": "Any URL passed to download (static.crates.io crate URLs, vendored-archive URLs declared by the project)",
+            "file": "internal/review/retry.go"
+          },
+          {
+            "what": "The module path and version to download, now retried on failure.",
+            "to": "The go command (`go mod download`) and, through it, the Go module proxy",
+            "file": "internal/review/golang.go"
+          },
+          {
+            "what": "A shallow fetch of the commit named in the crate's .cargo_vcs_info.json, now retried.",
+            "to": "git, and through it the crate's declared repository",
+            "file": "internal/review/rust.go"
+          },
+          {
+            "what": "A shallow fetch of the pinned revision and submodule updates, now retried.",
+            "to": "git, and through it the Swift package's repository and its submodules",
+            "file": "internal/review/swift.go"
+          },
+          {
+            "what": "A fetch of the pinned package, now retried unless the hash mismatches.",
+            "to": "The zig command (`zig build --fetch`) and, through it, the package URL from build.zig.zon",
+            "file": "internal/review/zig.go"
+          }
+        ]
+      }
+    }
+  ],
+  "verdict": "certified",
+  "reasons": null
+}
